@@ -118,6 +118,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'social_auth',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -150,3 +151,17 @@ LOGGING = {
 }
 
 DATABASES['default'] =  dj_database_url.config()
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# Secure Scrubland
+GOOGLE_OAUTH2_CLIENT_ID      = os.environ.get('GOOGLE_OAUTH2_CLIENT_ID')
+GOOGLE_OAUTH2_CLIENT_SECRET  = os.environ.get('GOOGLE_OAUTH2_CLIENT_SECRET')
+GOOGLE_OAUTH_EXTRA_SCOPE = ['https://www.googleapis.com/auth/latitude.all.best']
+
+LOGIN_URL          = '/login-form/'
+LOGIN_REDIRECT_URL = '/logged-in/'
+LOGIN_ERROR_URL    = '/login-error/'
