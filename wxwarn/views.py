@@ -17,13 +17,13 @@ def home(request):
     return render_to_response('index.html', {}, context_instance=RequestContext(request))
 
 
-def about(request):
+def how_it_works(request):
     """
     GET /about/
 
     Show the home page
     """
-    return render_to_response('about.html', {}, context_instance=RequestContext(request))
+    return render_to_response('how-it-works.html', {}, context_instance=RequestContext(request))
 
 
 def logout(request):

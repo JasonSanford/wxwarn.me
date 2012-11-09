@@ -25,7 +25,10 @@
                 <a class="brand" href="${reverse('home')}">WxWarnMe</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li class="${'active' if False else ''}"><a href="${reverse('about')}">About</a></li>
+                        <li class="${'active' if current_page == 'how_it_works' else ''}"><a href="${reverse('how_it_works')}">How it Works</a></li>
+                        % if not request.user.is_anonymous():
+                        <li class="${'active' if False else ''}"><a href="${reverse('account_landing')}">Account</a></li>
+                        % endif
                     </ul>
                     % if not request.user.is_anonymous():
                     <p class="navbar-text pull-right">&nbsp;-&nbsp;<a style="color: #fff;" href="${reverse('logout')}">logout</a></p>
