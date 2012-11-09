@@ -1,3 +1,4 @@
+<% from django.core.urlresolvers import reverse %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,13 +22,15 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
-                <a class="brand" href="#">WxWarnMe</a>
+                <a class="brand" href="${reverse('home')}">WxWarnMe</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li class="${'active' if False else ''}"><a href="${reverse('about')}">About</a></li>
                     </ul>
+                    % if not request.user.is_anonymous():
+                    <p class="navbar-text pull-right">&nbsp;-&nbsp;<a style="color: #fff;" href="${reverse('logout')}">logout</a></p>
+                    <p class="navbar-text pull-right">Hi <a style="color: #fff;" href="${reverse('account_landing')}">${'%s %s' % (request.user.first_name, request.user.last_name)}</a> !</p>
+                    % endif
                 </div>
             </div>
         </div>

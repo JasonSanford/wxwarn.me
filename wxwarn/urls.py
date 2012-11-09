@@ -1,5 +1,7 @@
 from django.conf.urls import patterns, include, url
 
+from social_auth.views import auth
+
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -7,6 +9,10 @@ from django.conf.urls import patterns, include, url
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'wxwarn.views.home', name='home'),
+    url(r'^about/$', 'wxwarn.views.about', name='about'),
+    url(r'^login/$', auth, kwargs={'backend': 'google-oauth2'}, name='login'),
+    url(r'^logout/$', 'wxwarn.views.logout', name='logout'),
+    url(r'^account/$', 'wxwarn.views.account_landing', name='account_landing'),
     # url(r'^wxwarn/', include('wxwarn.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
