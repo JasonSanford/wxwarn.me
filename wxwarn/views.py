@@ -21,7 +21,7 @@ def home(request):
 
 def how_it_works(request):
     """
-    GET /about/
+    GET /how-it-works/
 
     Show the home page
     """

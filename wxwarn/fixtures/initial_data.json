@@ -1,0 +1,9 @@
+[
+    {
+        "model": "wxwarn.locationsource",
+        "pk": 1,
+        "fields": {
+            "name": "Google Latitude"
+        }
+    }
+]

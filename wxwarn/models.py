@@ -7,8 +7,6 @@ from jsonfield.fields import JSONField
 
 class LocationSource(models.Model):
     name = models.CharField(max_length=255)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return self.name
