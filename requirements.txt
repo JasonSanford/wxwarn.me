@@ -3,6 +3,7 @@ Mako==0.7.2
 MarkupSafe==0.15
 distribute==0.6.28
 dj-database-url==0.2.1
+django-jsonfield==0.8.11
 django-mako==0.1.5pre
 django-social-auth==0.7.8
 httplib2==0.7.6

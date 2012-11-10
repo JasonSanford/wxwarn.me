@@ -14,6 +14,8 @@ def home(request):
 
     Show the home page
     """
+    if request.user.is_authenticated():
+        return redirect('account_landing')
     return render_to_response('index.html', {}, context_instance=RequestContext(request))
 
 
@@ -23,7 +25,7 @@ def how_it_works(request):
 
     Show the home page
     """
-    return render_to_response('how-it-works.html', {}, context_instance=RequestContext(request))
+    return render_to_response('how_it_works.html', {}, context_instance=RequestContext(request))
 
 
 def logout(request):
