@@ -61,6 +61,7 @@ class Command(BaseCommand):
         point.latitude = data['data']['latitude']
         point.longitude = data['data']['longitude']
         point.source = source
+        point.source_data = data
         point.source_created = date
         point.save()
 

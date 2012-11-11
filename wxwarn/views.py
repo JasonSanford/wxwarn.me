@@ -21,7 +21,7 @@ def home(request):
 
 def how_it_works(request):
     """
-    GET /how-it-works/
+    GET /how_it_works/
 
     Show the home page
     """
@@ -45,5 +45,10 @@ def account_landing(request):
 
     Account landing page
     """
-    return render_to_response('account_landing.html', {}, context_instance=RequestContext(request))
+
+    return render_to_response('account_landing.html',
+            {
+                'leaflet': True,
+                'last_location': request.user.get_profile().last_location
+            }, context_instance=RequestContext(request))
 

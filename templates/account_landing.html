@@ -1,4 +1,33 @@
 <%inherit file="base.html"/>
-<div class="row">
-    <h3>Hi ${request.user.first_name}!</h3>
+
+<h3>Hi ${request.user.first_name}!</h3>
+
+<h4>We think you're here.</h4>
+
+<div class="row-fluid" style="height: 300px;">
+    <div class="span9" style="height: 100%;">
+        <div id="map" style="height: 100%;"></div>
+    </div>
+    <div class="span3" style="height: 100%;"></div>
 </div>
+
+<%block name="javascript">
+<script>
+    % if last_location is not None:
+    var start_location = new L.LatLng(${last_location['coordinates'][1]}, ${last_location['coordinates'][0]});
+    % else:
+    var start_location = new L.LatLng(37.92686760148135, -96.767578125);
+    %endif
+    var map = new L.Map('map', {
+        center: start_location,
+        zoom: 15,
+        layers: [
+            new L.TileLayer('http://{s}.tiles.mapbox.com/v3/jcsanford.map-xu5k4lii/{z}/{x}/{y}.png', {
+                maxZoom: 16,
+                subdomains: ['a', 'b', 'c', 'd'],
+                attribution: 'Tiles Courtesy of <a href="http://www.mapbox.com/" target="_blank">MapBox</a>. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
+            })
+        ]
+    });
+</script>
+</%block>
