@@ -44,19 +44,5 @@
             "user": 5,
             "provider": "google-oauth2"
         }
-    },
-    {
-        "pk": 2,
-        "model": "wxwarn.userprofile",
-        "fields": {
-            "user": 1
-        }
-    },
-    {
-        "pk": 5,
-        "model": "wxwarn.userprofile",
-        "fields": {
-            "user": 5
-        }
     }
 ]
