@@ -1,4 +1,4 @@
-[
+[g
     {
         "pk": 1,
         "model": "auth.user",
@@ -57,27 +57,6 @@
         "model": "wxwarn.userprofile",
         "fields": {
             "user": 5
-        }
-    },
-    {
-        "pk": 9,
-        "model": "wxwarn.userlocation",
-        "fields": {
-            "source_created": "2012-11-10T21:49:56.496Z",
-            "source_data": {
-                "data": {
-                    "latitude": 39.573609,
-                    "kind": "latitude#location",
-                    "timestampMs": "1352584196496",
-                    "longitude": -105.016031,
-                    "accuracy": 5
-                }
-            },
-            "created": "2012-11-11T06:47:38.506Z",
-            "longitude": -105.016031,
-            "source": 1,
-            "user": 5,
-            "latitude": 39.573609
         }
     }
 ]
