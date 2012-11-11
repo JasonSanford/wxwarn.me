@@ -50,7 +50,7 @@ class Command(BaseCommand):
                     float(data['data']['timestampMs']) / 1000,
                     local_tz
                 )
-        source = LocationSource.objects.get_or_create(name='Google Latitude')
+        source, created = LocationSource.objects.get_or_create(name='Google Latitude')
 
         point = UserLocation()
         point.user = user
