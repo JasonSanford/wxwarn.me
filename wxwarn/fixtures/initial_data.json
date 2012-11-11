@@ -1,0 +1,90 @@
+[
+    {
+        "pk": 1,
+        "model": "wxwarn.locationsource",
+        "fields": {
+            "name": "Google Latitude"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "auth.user",
+        "fields": {
+            "username": "JasonSanford",
+            "first_name": "",
+            "last_name": "",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2012-11-10T06:46:17.707Z",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$10000$xdBRcCngSDOU$ggdvMboYzdMywQANOIH0IHhL3dcSDgTC+GEkyKjTYQg=",
+            "email": "jasonsanford@gmail.com",
+            "date_joined": "2012-11-06T04:07:26.161Z"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "auth.user",
+        "fields": {
+            "username": "jasonsanford",
+            "first_name": "Jason",
+            "last_name": "Sanford",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2012-11-11T06:42:32.408Z",
+            "groups": [],
+            "user_permissions": [],
+            "password": "!",
+            "email": "jasonsanford@gmail.com",
+            "date_joined": "2012-11-11T06:42:32.387Z"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "social_auth.usersocialauth",
+        "fields": {
+            "uid": "jasonsanford@gmail.com",
+            "extra_data": "{\"access_token\": \"ya29.AHES6ZRP5fH_O3Sc51BZStvDN3DkZh-0qfyjP28YnpjlgvqRBQXCDg\", \"expiration_date\": 1352620057.0, \"expires\": 3600, \"refresh_token\": \"1/JB4btAcir3kC4ZCQMYwEZTAfW-JuI1NLpiGsUJ4_YK4\", \"id_token\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6IjJiYmJiYjYwZWE3Yjg2OTdhZTdjM2Y5NzJiMjQ0NGMzNjc4NjVhMDYifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiZW1haWwiOiJqYXNvbnNhbmZvcmRAZ21haWwuY29tIiwiaWQiOiIxMDI5MzgyMjAwMjI2MzUyOTI0NjQiLCJjaWQiOiI0MDcwMTk4NTI2ODYuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJ0b2tlbl9oYXNoIjoiTk4wckZhS01sMnFjcjlJYmRjS3FKUSIsImF1ZCI6IjQwNzAxOTg1MjY4Ni5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInZlcmlmaWVkX2VtYWlsIjoidHJ1ZSIsImlhdCI6MTM1MjYxNjE1NSwiZXhwIjoxMzUyNjIwMDU1fQ.P_DbMP5sJiV3c3hbwKAV2ZbgNzDBeW4hiYd5DW8oUr3aI32AWOTvg7ckEQ48hEZUz2EUjrmfWZ6djSTbmQk9J7TQ9gzYouKA09IoXp5FfFaHQvgqXeqVek2lov3F3uslBJf2YWVeYvo4QIkS7n9vs5SMW2vYGW4BGU6AJBHtjHU\"}",
+            "user": 5,
+            "provider": "google-oauth2"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "wxwarn.userprofile",
+        "fields": {
+            "user": 1
+        }
+    },
+    {
+        "pk": 5,
+        "model": "wxwarn.userprofile",
+        "fields": {
+            "user": 5
+        }
+    },
+    {
+        "pk": 9,
+        "model": "wxwarn.userlocation",
+        "fields": {
+            "source_created": "2012-11-10T21:49:56.496Z",
+            "source_data": {
+                "data": {
+                    "latitude": 39.573609,
+                    "kind": "latitude#location",
+                    "timestampMs": "1352584196496",
+                    "longitude": -105.016031,
+                    "accuracy": 5
+                }
+            },
+            "created": "2012-11-11T06:47:38.506Z",
+            "longitude": -105.016031,
+            "source": 1,
+            "user": 5,
+            "latitude": 39.573609
+        }
+    }
+]
