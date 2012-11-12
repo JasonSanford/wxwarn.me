@@ -46,11 +46,12 @@ class UserLocation(models.Model):
 
     def __unicode__(self):
         # TODO: Add datetime
-        return '%s at %s, %s' % (self.user.username, self.latitude, self.longitude)
+        return '%s at %s, %s' % (self.user.username,
+                                 self.latitude, self.longitude)
 
 
 def create_user_profile(sender, instance, created, **kwargs):  
-    if created:  
-       profile, created = UserProfile.objects.get_or_create(user=instance)  
+    if created:
+       profile, created = UserProfile.objects.get_or_create(user=instance)
 
 post_save.connect(create_user_profile, sender=User) 

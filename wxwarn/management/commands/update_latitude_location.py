@@ -4,7 +4,6 @@ import logging
 import time
 
 from django.contrib.auth.models import User
-#from django.contrib.gis.geos import Point
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
@@ -44,25 +43,17 @@ class Command(BaseCommand):
         auth.save()
 
     def update_location(self, data, user):
-        #(source_type, created) = LocationSourceType.objects.get_or_create(name='Google Latitude')
-        local_tz = pytz.timezone('UTC')
-        date = datetime.datetime.fromtimestamp(
-                    float(data['data']['timestampMs']) / 1000,
-                    local_tz
-                )
-        source, created = LocationSource.objects.get_or_create(name='Google Latitude')
+        gmt = pytz.timezone('GMT')
+        source_date = datetime.datetime.fromtimestamp(float(data['data']['timestampMs']) / 1000, gmt)
+        (location_source, created) = LocationSource.objects.get_or_create(name='Google Latitude')
 
         point = UserLocation()
         point.user = user
-        #point.location = Point(
-        #            data['data']['longitude'],
-        #            data['data']['latitude'],
-        #        )
         point.latitude = data['data']['latitude']
         point.longitude = data['data']['longitude']
-        point.source = source
+        point.source = location_source
         point.source_data = data
-        point.source_created = date
+        point.source_created = source_date
         point.save()
 
     def refresh_access_token(self, data):
