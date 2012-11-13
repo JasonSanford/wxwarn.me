@@ -10,6 +10,7 @@ from django.db.models.signals import post_save
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User)
+    premium = models.BooleanField(default=False)
 
     @property
     def last_location(self):
