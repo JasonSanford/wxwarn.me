@@ -120,6 +120,8 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'social_auth',
     'wxwarn',
+    'kombu.transport.django',
+    'djcelery',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -163,6 +165,11 @@ LOGGING = {
 }
 
 DATABASES['default'] =  dj_database_url.config()
+
+BROKER_BACKEND = 'django'
+
+import djcelery
+djcelery.setup_loader()
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.google.GoogleOAuth2Backend',
