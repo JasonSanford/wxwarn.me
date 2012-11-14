@@ -6,6 +6,9 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
+from social_auth.models import UserSocialAuth
+
+from wxwarn.utils import get_user_location
 
 
 def home(request):
@@ -45,7 +48,10 @@ def account_landing(request):
 
     Account landing page
     """
-
+    social_auth_user = UserSocialAuth.objects.get(
+            user = request.user,
+            provider = 'google-oauth2')
+    get_user_location(social_auth_user)
     return render_to_response('account_landing.html',
             {
                 'leaflet': True,
