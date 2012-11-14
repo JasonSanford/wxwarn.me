@@ -22,6 +22,7 @@
         "model": "wxwarn.userprofile",
         "fields": {
             "user": 1,
+            "active": true,
             "premium": false
         }
     },
