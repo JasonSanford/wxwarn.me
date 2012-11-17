@@ -56,7 +56,9 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
+# You'll need to set `export STATIC_URL=/static/` locally. Found in .env
+STATIC_URL = os.environ['STATIC_URL'] if os.environ.get('STATIC_URL') else 'http://s3.amazonaws.com/wxwarnme/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -122,6 +124,7 @@ INSTALLED_APPS = (
     'wxwarn',
     'kombu.transport.django',
     'djcelery',
+    'storages',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -187,3 +190,9 @@ GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {'access_type': 'offline'}
 LOGIN_URL          = '/login/'
 LOGIN_REDIRECT_URL = '/account/'
 LOGIN_ERROR_URL    = '/login-error/'
+
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'wxwarnme'
