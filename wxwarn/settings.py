@@ -1,5 +1,6 @@
 # Django settings for wxwarn project.
 import os
+from datetime import timedelta
 
 import dj_database_url
 
@@ -173,6 +174,18 @@ BROKER_BACKEND = 'django'
 
 import djcelery
 djcelery.setup_loader()
+
+CELERYBEAT_SCHEDULE = {
+    'update_all_users_locations': {
+        'task': 'tasks.update_locations',
+        'schedule': timedelta(minutes=5),
+        'kwargs': {
+            'premium': False
+        }
+    },
+}
+
+CELERY_TIMEZONE = 'UTC'
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.google.GoogleOAuth2Backend',

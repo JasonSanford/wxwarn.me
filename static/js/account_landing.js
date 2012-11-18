@@ -1,5 +1,5 @@
 (function() {
-    var start_location = new L.LatLng(37.92686760148135, -96.767578125)
+    var start_location = wx.user.last_location ? new L.LatLng(wx.user.last_location.coordinates[1], wx.user.last_location.coordinates[0]) : new L.LatLng(37.92686760148135, -96.767578125)
     L.map('map', {
         center: start_location,
         zoom: 15,

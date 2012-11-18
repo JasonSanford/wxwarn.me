@@ -2,7 +2,9 @@
 
 <h3>Hi ${request.user.first_name}!</h3>
 
-<h4>We think you're here.</h4>
+<h4>We think you&apos;re here.</h4>
+
+<h5>We&apos;ve tracked you ${location_count} times.</h5>
 
 <div class="row-fluid" style="height: 300px;">
     <div class="span9" style="height: 100%;">
@@ -12,5 +14,11 @@
 </div>
 
 <%block name="javascript">
+<script>
+wx.user = {
+    last_location: ${last_location},
+    all_locations: ${all_locations}
+};
+</script>
 <script src="${STATIC_URL}js/account_landing.js"></script>
 </%block>

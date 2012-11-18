@@ -23,6 +23,15 @@ class UserProfile(models.Model):
             return None
         return user_location.geojson
 
+    @property
+    def all_locations(self):
+        user_locations = UserLocation.objects.filter(user=self.user)
+        return {
+            'type': 'GeometryCollection',
+            'geometries': [user_location.geojson for user_location in user_locations]
+        }
+
+
 
 class LocationSource(models.Model):
     name = models.CharField(max_length=255)

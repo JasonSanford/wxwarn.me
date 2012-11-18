@@ -1,4 +1,5 @@
 import logging
+import json
 
 from djangomako.shortcuts import render_to_response
 from django.shortcuts import redirect, render
@@ -51,10 +52,13 @@ def account_landing(request):
     social_auth_user = UserSocialAuth.objects.get(
             user = request.user,
             provider = 'google-oauth2')
-    get_user_location(social_auth_user)
+    user_profile = request.user.get_profile()
+    all_locations = user_profile.all_locations
     return render_to_response('account_landing.html',
             {
                 'leaflet': True,
-                'last_location': request.user.get_profile().last_location
+                'last_location': json.dumps(user_profile.last_location),
+                'all_locations': json.dumps(all_locations),
+                'location_count': len(all_locations['geometries'])
             }, context_instance=RequestContext(request))
 
