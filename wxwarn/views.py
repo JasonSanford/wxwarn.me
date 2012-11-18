@@ -62,10 +62,3 @@ def account_landing(request):
                 'location_count': len(all_locations['geometries'])
             }, context_instance=RequestContext(request))
 
-def google_verification(request):
-    """
-    GET /googlea7b7e9db0856207d.html
-
-    Google verification page
-    """
-    return render_to_response('google_verification.html', {})
