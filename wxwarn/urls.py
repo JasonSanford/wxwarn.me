@@ -22,4 +22,5 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('social_auth.urls')),
+    url(r'^googlea7b7e9db0856207d.html$', 'wxwarn.views.google_verification', name='google_verification'),
 )
