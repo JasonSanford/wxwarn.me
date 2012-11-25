@@ -7,8 +7,27 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 
-class UserProfile(models.Model):
+class County(models.Model):
+    id = models.CharField(max_length=6, primary_key=True)
+    name = models.CharField(max_length=200)
+    geometry = models.TextField()
 
+
+class WeatherAlert(models.Model):
+    nws_id = models.CharField(max_length=1000, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    source_created = models.DateTimeField()
+    source_updated = models.DateTimeField()
+    effective = models.DateTimeField()
+    expires = models.DateTimeField()
+    event = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+    summary = models.TextField()
+    url = models.CharField(max_length=1028)
+    fips = models.TextField()
+
+class UserProfile(models.Model):
     user = models.OneToOneField(User)
     active = models.BooleanField(default=True)
     premium = models.BooleanField(default=False)
@@ -59,6 +78,12 @@ class UserLocation(models.Model):
         # TODO: Add datetime
         return '%s at %s, %s' % (self.user.username,
                                  self.latitude, self.longitude)
+
+
+class UserWeatherAlert(models.Model):
+    user = models.ForeignKey(User)
+    user_location = models.ForeignKey(UserLocation)
+    weather_alert = models.ForeignKey(WeatherAlert)
 
 
 def create_user_profile(sender, instance, created, **kwargs):  

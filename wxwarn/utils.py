@@ -2,18 +2,22 @@ import datetime
 import json
 import logging
 import time
+from dateutil import parser
 
 import pytz
 import requests
 from django.contrib.auth.models import User
 from django.conf import settings
 from social_auth.models import UserSocialAuth
+from bs4 import BeautifulSoup
 
-from wxwarn.models import LocationSource, UserLocation, UserProfile
+from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert
 
+#WEATHER_ALERTS_URL = 'http://localhost:8000/static/weather_alerts.xml'
+WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/us.php?x=0'
 
 def get_user_location(social_auth_user):
-    # TODO: support things other than latitude here
+    # TODO: support things other than Google Latitude here
     if social_auth_user.provider == 'google-oauth2':
         oauth_data = social_auth_user.extra_data
 
@@ -89,3 +93,42 @@ def insert_user_location(data, user):
             source_data = data,
             source_created = source_date)
     user_location.save()
+
+
+def get_weather_alerts():
+    response = requests.get(WEATHER_ALERTS_URL)
+    soup = BeautifulSoup(response.text)
+    for parsed_alert in soup.find_all('entry'):
+        data_dict = _create_data_dict(parsed_alert)
+        cre = parsed_alert.published.text
+        source_created = parser.parse(cre)
+        #2012-11-21T14:22:00-07:00
+        #print source_created
+        #fips = geocode.value.text
+        #print parsed_alert.id.text
+        # TODO: Check the id of each alert to see if we've alrady got it
+        #print parsed_alert.find('cap:effective')
+        #"""
+        (weather_alert, created) = WeatherAlert.objects.get_or_create(
+                nws_id=parsed_alert.id.text,
+                defaults=data_dict)
+        if not created and  data_dict['source_updated'] > weather_alert.source_updated:
+            weather_alert.__dict__.update(data_dict)
+            weather_alert.save()
+            print 'Updated: %s' % weather_alert.nws_id
+        print 'Created?: %s' % created
+        #"""
+
+
+def _create_data_dict(parsed_alert):
+    return {
+        'source_created': parser.parse(parsed_alert.published.text),
+        'source_updated': parser.parse(parsed_alert.updated.text),
+        'effective': parser.parse(parsed_alert.find('cap:effective').text),
+        'expires': parser.parse(parsed_alert.find('cap:expires').text),
+        'event': parsed_alert.find('cap:event').text,
+        'title': parsed_alert.title.text,
+        'summary': parsed_alert.summary.text,
+        'url': parsed_alert.link['href'],
+        'fips': parsed_alert.find('cap:geocode').value.text,
+    }

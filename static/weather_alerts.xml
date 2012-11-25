@@ -1,0 +1,3286 @@
+<?xml version = '1.0' encoding = 'UTF-8' standalone = 'yes'?>
+
+<!--
+This atom/xml feed is an index to active advisories, watches and warnings 
+issued by the National Weather Service.  This index file is not the complete 
+Common Alerting Protocol (CAP) alert message.  To obtain the complete CAP 
+alert, please follow the links for each entry in this index.  Also note the 
+CAP message uses a style sheet to convey the information in a human readable 
+format.  Please view the source of the CAP message to see the complete data 
+set.  Not all information in the CAP message is contained in this index of 
+active alerts.
+-->
+
+
+<feed
+xmlns = 'http://www.w3.org/2005/Atom'
+xmlns:cap = 'urn:oasis:names:tc:emergency:cap:1.1'
+xmlns:ha = 'http://www.alerting.net/namespace/index_1.0'
+>
+<!-- http-date = Wed, 21 Nov 2012 09:23:00 GMT -->
+
+<id>http://alerts.weather.gov/cap/us.atom</id>
+<logo>http://alerts.weather.gov/images/xml_logo.gif</logo>
+<generator>NWS CAP Server</generator>
+<updated>2012-11-21T15:23:00-06:00</updated>
+<author>
+<name>w-nws.webmaster@noaa.gov</name>
+</author>
+<title>Current Watches, Warnings and Advisories for the United States Issued by the National Weather Service</title>
+<link href='http://alerts.weather.gov/cap/us.atom'/>
+
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=AK124CD047FCF0.HighWindWatch.124CD0559694AK.AFCNPWAER.fcc5a683eb650c79fe19c18f4bcd113a</id>
+    <updated>2012-11-21T10:32:00-09:00</updated>
+    <published>2012-11-21T10:32:00-09:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>High Wind Watch issued November 21 at 10:32AM AKST until November 22 at 9:00PM AKST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=AK124CD047FCF0.HighWindWatch.124CD0559694AK.AFCNPWAER.fcc5a683eb650c79fe19c18f4bcd113a'/>
+    <summary>LOW PRESSURE OVER THE NORTHERN GULF OF ALASKA WILL INTENSIFY AS A LARGE STRONG STORM MOVES INTO THE SOUTHEAST GULF OF ALASKA THROUGH THURSDAY. DEEP COLD ARCTIC AIR OVER THE EASTERN INTERIOR WILL CONTINUE TO FLOW THROUGH THE PASSES OF THE CHUGACH MOUNTAINS IN RESPONSE TO THE LOW IN THE GULF OF ALASKA AND HIGH PRESSURE OVER THE INTERIOR.</summary>
+    <cap:event>High Wind Watch</cap:event>
+    <cap:effective>2012-11-21T10:32:00-09:00</cap:effective>
+    <cap:expires>2012-11-21T23:45:00-09:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Future</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Possible</cap:certainty>
+    <cap:areaDesc>Northeast Prince William Sound</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>002261</value>
+    <valueName>UGC</valueName>
+    <value>AKZ131</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/X.NEW.PAFC.HW.A.0015.121122T2100Z-121123T0600Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=AK124CD047F070.AirQualityAlert.124CD063DCE0AK.AFGAQAAFG.191f5479cd77038afb3e1da01f2eea9e</id>
+    <updated>2012-11-21T10:00:00-09:00</updated>
+    <published>2012-11-21T10:00:00-09:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Air Quality Alert issued November 21 at 10:00AM AKST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=AK124CD047F070.AirQualityAlert.124CD063DCE0AK.AFGAQAAFG.191f5479cd77038afb3e1da01f2eea9e'/>
+    <summary>...AIR QUALITY ALERT IN EFFECT UNTIL 5 PM AKST FRIDAY... THE FAIRBANKS NORTH STAR BOROUGH AIR QUALITY PROGRAM HAS ISSUED AN AIR QUALITY ADVISORY FOR THE FAIRBANKS NORTH STAR BOROUGH...IN EFFECT UNTIL 5 PM AKST FRIDAY. CURRENT NORTH POLE AIR QUALITY IS CLASSIFIED AS UNHEALTHY...AND EXCEEDS THE EPA HEALTH LIMIT FOR FINE PARTICULATE POLLUTION.</summary>
+    <cap:event>Air Quality Alert</cap:event>
+    <cap:effective>2012-11-21T10:00:00-09:00</cap:effective>
+    <cap:expires>2012-11-22T17:00:00-09:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Unknown</cap:urgency>
+    <cap:severity>Unknown</cap:severity>
+    <cap:certainty>Unknown</cap:certainty>
+    <cap:areaDesc>Middle Tanana Valley</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>002090 002290</value>
+    <valueName>UGC</valueName>
+    <value>AKZ222</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value></value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=AK124CD0471678.HighWindWatch.124CD0547390AK.AJKNPWAJK.7ff20c9b139d716f455485e24e3fc1ed</id>
+    <updated>2012-11-21T04:42:00-09:00</updated>
+    <published>2012-11-21T04:42:00-09:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>High Wind Watch issued November 21 at 4:42AM AKST until November 22 at 3:00PM AKST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=AK124CD0471678.HighWindWatch.124CD0547390AK.AJKNPWAJK.7ff20c9b139d716f455485e24e3fc1ed'/>
+    <summary>...VERY WINDY CONDITIONS TO IMPACT THE SOUTHERN COASTAL AREAS THURSDAY... .A VERY POWERFUL STORM WILL BE MOVING INTO THE SOUTHERN GULF OF ALASKA ON THURSDAY. STRONG GUSTY WINDS WILL SPREAD INTO THE SOUTHWEST COASTAL AREAS THURSDAY. ...HIGH WIND WATCH IN EFFECT FROM THURSDAY MORNING THROUGH THURSDAY</summary>
+    <cap:event>High Wind Watch</cap:event>
+    <cap:effective>2012-11-21T04:42:00-09:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-09:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Future</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Possible</cap:certainty>
+    <cap:areaDesc>Cape Decision to Salisbury Sound Coastal Area; Dixon Entrance to Cape Decision Coastal Area; Inner Channels from Kupreanof Island to Etolin Island; Southern Inner Channels</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>002130 002201 002220 002232 002280</value>
+    <valueName>UGC</valueName>
+    <value>AKZ023 AKZ026 AKZ027 AKZ028</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/X.NEW.PAJK.HW.A.0007.121122T1200Z-121123T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=AK124CD0471678.HighWindWatch.124CD0547390AK.AJKNPWAJK.ef7ea56e6dd147bc0f31be239895e181</id>
+    <updated>2012-11-21T04:42:00-09:00</updated>
+    <published>2012-11-21T04:42:00-09:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>High Wind Watch issued November 21 at 4:42AM AKST until November 22 at 7:00PM AKST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=AK124CD0471678.HighWindWatch.124CD0547390AK.AJKNPWAJK.ef7ea56e6dd147bc0f31be239895e181'/>
+    <summary>...VERY WINDY CONDITIONS TO IMPACT THE SOUTHERN COASTAL AREAS THURSDAY... .A VERY POWERFUL STORM WILL BE MOVING INTO THE SOUTHERN GULF OF ALASKA ON THURSDAY. STRONG GUSTY WINDS WILL SPREAD INTO THE SOUTHWEST COASTAL AREAS THURSDAY. ...HIGH WIND WATCH IN EFFECT FROM THURSDAY MORNING THROUGH</summary>
+    <cap:event>High Wind Watch</cap:event>
+    <cap:effective>2012-11-21T04:42:00-09:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-09:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Future</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Possible</cap:certainty>
+    <cap:areaDesc>Juneau Borough and Northern Admiralty Island</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>002110 002232 002280</value>
+    <valueName>UGC</valueName>
+    <value>AKZ025</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/X.NEW.PAJK.HW.A.0007.121122T1500Z-121123T0400Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=AZ124CD048284C.HydrologicOutlook.124CD05780D0AZ.VEFESFVEF.21ed349ec556ce3c2dc7a437d76861fb</id>
+    <updated>2012-11-21T13:43:00-07:00</updated>
+    <published>2012-11-21T13:43:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Hydrologic Outlook issued November 21 at 1:43PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=AZ124CD048284C.HydrologicOutlook.124CD05780D0AZ.VEFESFVEF.21ed349ec556ce3c2dc7a437d76861fb'/>
+    <summary>...HIGHER THAN NORMAL FLOW ON THE COLORADO RIVER THROUGH MOHAVE COUNTY AND ENTERING LAKE MEAD TO CONTINUE THROUGH THE HOLIDAY WEEKEND... THE DEPARTMENT OF INTERIOR HAS BEEN CONDUCTING A HIGH FLOW EXPERIMENTAL RELEASE FROM GLEN CANYON DAM NEAR PAGE ARIZONA. MONITORING STATIONS ALONG THE COLORADO RIVER IN MOHAVE COUNTY</summary>
+    <cap:event>Hydrologic Outlook</cap:event>
+    <cap:effective>2012-11-21T13:43:00-07:00</cap:effective>
+    <cap:expires>2012-11-22T14:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Future</cap:urgency>
+    <cap:severity>Unknown</cap:severity>
+    <cap:certainty>Possible</cap:certainty>
+    <cap:areaDesc>Mohave</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>004015</value>
+    <valueName>UGC</valueName>
+    <value>AZC015</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value></value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=CA124CD0483E90.HighSurfAdvisory.124CD055FA30CA.SGXCFWSGX.66452a1b725ffa657d3af0044a77e6a1</id>
+    <updated>2012-11-21T13:00:00-08:00</updated>
+    <published>2012-11-21T13:00:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>High Surf Advisory issued November 21 at 1:00PM PST until November 23 at 3:00AM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=CA124CD0483E90.HighSurfAdvisory.124CD055FA30CA.SGXCFWSGX.66452a1b725ffa657d3af0044a77e6a1'/>
+    <summary>...HIGH SURF ADVISORY FOR BEACHES ALONG SOUTHERN SAN DIEGO COUNTY FOR THANKSGIVING... .A NORTHWEST SWELL ORIGINATING FROM THE GULF OF ALASKA IS BUILD TODAY AND EXPECTED TO PEAK THURSDAY...RESULTING IN ELEVATED SURF FOR WEST FACING BEACHES. SOUTHERN SAN DIEGO COUNTY BEACHES WILL SEE THE HIGHEST SURF DUE TO THE GREATER EXPOSURE TO THE NORTHWEST</summary>
+    <cap:event>High Surf Advisory</cap:event>
+    <cap:effective>2012-11-21T13:00:00-08:00</cap:effective>
+    <cap:expires>2012-11-22T03:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>San Diego County Coastal Areas</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>006073</value>
+    <valueName>UGC</valueName>
+    <value>CAZ043</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KSGX.SU.Y.0014.121122T0500Z-121123T1100Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=CA124CD047B574.WindAdvisory.124CD0544C80CA.REVNPWREV.8f2e9354a5d73a4a56c2ebf99b4e185f</id>
+    <updated>2012-11-21T09:49:00-08:00</updated>
+    <published>2012-11-21T09:49:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 9:49AM PST until November 21 at 4:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=CA124CD047B574.WindAdvisory.124CD0544C80CA.REVNPWREV.8f2e9354a5d73a4a56c2ebf99b4e185f'/>
+    <summary>...WIND ADVISORY NOW IN EFFECT UNTIL 4 PM PST THIS AFTERNOON... THE WIND ADVISORY IS NOW IN EFFECT UNTIL 4 PM PST THIS AFTERNOON. * TIMING: GUSTY WINDS WILL CONTINUE THROUGH THIS AFTERNOON. * WINDS: SOUTHWEST TO WEST 20 TO 30 MPH WITH GUSTS TO 50 MPH. RIDGE GUSTS UP TO 115 MPH. * WAVE HEIGHTS ON LAKE TAHOE: 2 TO 5 FEET WITH HIGHEST WAVES FROM</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T09:49:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Greater Lake Tahoe Area</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>006003 006017 006057 006061</value>
+    <valueName>UGC</valueName>
+    <value>CAZ072</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KREV.WI.Y.0018.000000T0000Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=CO124CD04697E8.RedFlagWarning.124CD0544C80CO.PUBRFWPUB.6dd791b6e3c067c0b2d1d2b5afbca187</id>
+    <updated>2012-11-21T02:18:00-08:00</updated>
+    <published>2012-11-21T02:18:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Red Flag Warning issued November 21 at 2:18AM PST until November 21 at 4:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=CO124CD04697E8.RedFlagWarning.124CD0544C80CO.PUBRFWPUB.6dd791b6e3c067c0b2d1d2b5afbca187'/>
+    <summary>...A RED FLAG WARNING FOR STRONG WINDS...LOW HUMIDITY...DRY FUELS AND PERSISTENT DROUGHT CONDITIONS HAS BEEN ISSUED FROM 1100 LOCAL THROUGH 1700 LOCAL FOR FIRE WEATHER ZONES 233 AND 237...INCLUDING EASTERN LAS ANIMAS AND BACA COUNTIES... ...RED FLAG WARNING IN EFFECT FROM 11 AM THIS MORNING TO 5 PM MST THIS AFTERNOON FOR GUSTY WINDS AND LOW RELATIVE HUMIDITY FOR FIRE</summary>
+    <cap:event>Red Flag Warning</cap:event>
+    <cap:effective>2012-11-21T02:18:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Baca County Including Springfield and Eastern Comanche Grasslands; Eastern Las Animas County Including Pinon Canyon</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>008009 008071</value>
+    <valueName>UGC</valueName>
+    <value>COZ233 COZ237</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KPUB.FW.W.0044.121121T1800Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD047DDB0.FireWeatherWatch.124CD055FA30FL.JAXRFWJAX.8aa4843bf643cd9e91ce5dc13f8bd73b</id>
+    <updated>2012-11-21T13:52:00-05:00</updated>
+    <published>2012-11-21T13:52:00-05:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Fire Weather Watch issued November 21 at 1:52PM EST until November 22 at 5:00PM EST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD047DDB0.FireWeatherWatch.124CD055FA30FL.JAXRFWJAX.8aa4843bf643cd9e91ce5dc13f8bd73b'/>
+    <summary>...FIRE WEATHER WATCH IN EFFECT FROM THURSDAY MORNING THROUGH THURSDAY AFTERNOON FOR LOW HUMIDITY...HIGH ERC VALUES...AND HIGH DISPERSION VALUES FOR NORTHEAST FLORIDA... THE NATIONAL WEATHER SERVICE IN JACKSONVILLE HAS ISSUED A FIRE WEATHER WATCH...WHICH IS IN EFFECT FROM THURSDAY MORNING THROUGH THURSDAY AFTERNOON.</summary>
+    <cap:event>Fire Weather Watch</cap:event>
+    <cap:effective>2012-11-21T13:52:00-05:00</cap:effective>
+    <cap:expires>2012-11-22T06:00:00-05:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Future</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Possible</cap:certainty>
+    <cap:areaDesc>Alachua; Baker; Bradford; Clay; Columbia; Duval; Gilchrist; Hamilton; Marion; Nassau; Putnam; Suwannee; Union</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>012001 012003 012007 012019 012023 012031 012041 012047 012083 012089 012107 012121 012125</value>
+    <valueName>UGC</valueName>
+    <value>FLZ020 FLZ021 FLZ022 FLZ023 FLZ024 FLZ025 FLZ030 FLZ031 FLZ032 FLZ035 FLZ036 FLZ037 FLZ040</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KJAX.FW.A.0032.121122T1600Z-121122T2200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD047DDB0.FireWeatherWatch.124CD055FA30FL.JAXRFWJAX.d3ff88566ce1d9d5da010d4b2bcb5287</id>
+    <updated>2012-11-21T13:52:00-05:00</updated>
+    <published>2012-11-21T13:52:00-05:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Fire Weather Watch issued November 21 at 1:52PM EST until November 22 at 5:00PM EST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD047DDB0.FireWeatherWatch.124CD055FA30FL.JAXRFWJAX.d3ff88566ce1d9d5da010d4b2bcb5287'/>
+    <summary>...FIRE WEATHER WATCH IN EFFECT FROM THURSDAY MORNING THROUGH THURSDAY AFTERNOON FOR GUSTY WINDS...LOW HUMIDITY...HIGH ERC VALUES...AND HIGH DISPERSION VALUES FOR ST JOHNS AND FLAGLER COUNTIES... THE NATIONAL WEATHER SERVICE IN JACKSONVILLE HAS ISSUED A FIRE WEATHER WATCH...WHICH IS IN EFFECT FROM THURSDAY MORNING THROUGH THURSDAY AFTERNOON.</summary>
+    <cap:event>Fire Weather Watch</cap:event>
+    <cap:effective>2012-11-21T13:52:00-05:00</cap:effective>
+    <cap:expires>2012-11-22T06:00:00-05:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Future</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Possible</cap:certainty>
+    <cap:areaDesc>Flagler; St. Johns</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>012035 012109</value>
+    <valueName>UGC</valueName>
+    <value>FLZ033 FLZ038</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KJAX.FW.A.0032.121122T1600Z-121122T2200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD047DC20.RedFlagWarning.124CD05605E8FL.TAERFWTAE.c1715efc941dbf16a93c49f7b0e353eb</id>
+    <updated>2012-11-21T13:48:00-05:00</updated>
+    <published>2012-11-21T13:48:00-05:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Red Flag Warning issued November 21 at 1:48PM EST until November 22 at 6:00PM EST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD047DC20.RedFlagWarning.124CD05605E8FL.TAERFWTAE.c1715efc941dbf16a93c49f7b0e353eb'/>
+    <summary>...RED FLAG WARNING IN EFFECT UNTIL 6 PM EST THIS EVENING FOR MUCH OF THE FLORIDA BIG BEND DUE TO BRIEF DURATIONS OF RELATIVE HUMIDITY LESS THAN 35 PERCENT COINCIDENT WITH HIGH DISPERSION AND ERC VALUES... ...RED FLAG WARNING IN EFFECT FROM NOON TO 6 PM EST THURSDAY FOR THE FLORIDA BIG BEND DUE TO LONG DURATIONS OF RELATIVE HUMIDITY LESS THAN 35 PERCENT COINCIDENT WITH HIGH DISPERSION AND ERC VALUES...</summary>
+    <cap:event>Red Flag Warning</cap:event>
+    <cap:effective>2012-11-21T13:48:00-05:00</cap:effective>
+    <cap:expires>2012-11-22T06:30:00-05:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Coastal Dixie; Coastal Jefferson; Coastal Taylor; Coastal Wakulla; Gadsden; Inland &apos;Dixie; Inland Jefferson; Inland Taylor; Inland Wakulla; Lafayette; Leon; Madison</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>012029 012039 012065 012067 012073 012079 012123 012129</value>
+    <valueName>UGC</valueName>
+    <value>FLZ016 FLZ016 FLZ017 FLZ017 FLZ018 FLZ018 FLZ019 FLZ019 FLZ027 FLZ027 FLZ028 FLZ028 FLZ029 FLZ029 FLZ034 FLZ034 FLZ118 FLZ118 FLZ127 FLZ127 FLZ128 FLZ128 FLZ134 FLZ134</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.UPG.KTAE.FW.A.0041.121122T1700Z-121122T2300Z/
+/O.NEW.KTAE.FW.W.0054.121122T1700Z-121122T2300Z/
+/O.CON.KTAE.FW.W.0053.000000T0000Z-121121T2300Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD047DC20.RedFlagWarning.124CD05605E8FL.TAERFWTAE.d99d6a40f4fdcf261bebcdd49c6690e2</id>
+    <updated>2012-11-21T13:48:00-05:00</updated>
+    <published>2012-11-21T13:48:00-05:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Red Flag Warning issued November 21 at 1:48PM EST until November 22 at 6:00PM EST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD047DC20.RedFlagWarning.124CD05605E8FL.TAERFWTAE.d99d6a40f4fdcf261bebcdd49c6690e2'/>
+    <summary>...RED FLAG WARNING IN EFFECT UNTIL 6 PM EST THIS EVENING FOR MUCH OF THE FLORIDA BIG BEND DUE TO BRIEF DURATIONS OF RELATIVE HUMIDITY LESS THAN 35 PERCENT COINCIDENT WITH HIGH DISPERSION AND ERC VALUES... ...RED FLAG WARNING IN EFFECT FROM NOON TO 6 PM EST THURSDAY FOR THE FLORIDA BIG BEND DUE TO LONG DURATIONS OF RELATIVE HUMIDITY LESS THAN 35 PERCENT COINCIDENT WITH HIGH DISPERSION AND ERC VALUES...</summary>
+    <cap:event>Red Flag Warning</cap:event>
+    <cap:effective>2012-11-21T13:48:00-05:00</cap:effective>
+    <cap:expires>2012-11-22T06:30:00-05:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Liberty</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>012077</value>
+    <valueName>UGC</valueName>
+    <value>FLZ026</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KTAE.FW.W.0054.121122T1700Z-121122T2300Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD047D450.FireWeatherWatch.124CD055D320FL.MFLRFWMFL.49bfe7e1df0be185707c9815dc7a387e</id>
+    <updated>2012-11-21T13:28:00-05:00</updated>
+    <published>2012-11-21T13:28:00-05:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Fire Weather Watch issued November 21 at 1:28PM EST until November 22 at 6:00PM EST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD047D450.FireWeatherWatch.124CD055D320FL.MFLRFWMFL.49bfe7e1df0be185707c9815dc7a387e'/>
+    <summary>...FIRE WEATHER WATCH IN EFFECT THURSDAY AFTERNOON FOR A COMBINATION OF WINDS AROUND 15 MPH...RELATIVE HUMIDITY VALUES BELOW 35 PERCENT AND AN ENERGY RELEASE COMPONENT GREATER THAN 20... ...FIRE WEATHER WATCH IN EFFECT THURSDAY AFTERNOON DUE TO A COMBINATION OF WINDS AROUND 15 MPH...RELATIVE HUMIDITY VALUES BELOW</summary>
+    <cap:event>Fire Weather Watch</cap:event>
+    <cap:effective>2012-11-21T13:28:00-05:00</cap:effective>
+    <cap:expires>2012-11-22T05:00:00-05:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Future</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Possible</cap:certainty>
+    <cap:areaDesc>Coastal Collier County; Coastal Miami Dade County; Far South Miami-Dade County; Inland Collier County; Inland Miami-Dade County; Mainland Monroe; Metropolitan Miami Dade</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>012021 012086 012087</value>
+    <valueName>UGC</valueName>
+    <value>FLZ069 FLZ070 FLZ073 FLZ074 FLZ075 FLZ173 FLZ174</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KMFL.FW.A.0008.121122T1700Z-121122T2300Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD047B2B8.FireWeatherWatch.124CD0562CF8FL.TBWRFWTBW.29bbfdfbf90fbf18d3e0265067e86a98</id>
+    <updated>2012-11-21T12:42:00-05:00</updated>
+    <published>2012-11-21T12:42:00-05:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Fire Weather Watch issued November 21 at 12:42PM EST until November 22 at 6:00PM EST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD047B2B8.FireWeatherWatch.124CD0562CF8FL.TBWRFWTBW.29bbfdfbf90fbf18d3e0265067e86a98'/>
+    <summary>...A FIRE WEATHER WATCH WILL BE IN EFFECT FROM 12 NOON THROUGH 6 PM EST THURSDAY FOR PINELLAS...SARASOTA...AND LEE COUNTIES... .SEVERAL HOURS OF CRITICALLY LOW RELATIVE HUMIDITY VALUES AND ERC VALUES OF 32 TO 36 COULD WILL LEAD TO RED FLAG CONDITIONS FOR PINELLAS...SARASOTA...AND LEE COUNTIES. ...FIRE WEATHER WATCH IN EFFECT THURSDAY AFTERNOON FOR...</summary>
+    <cap:event>Fire Weather Watch</cap:event>
+    <cap:effective>2012-11-21T12:42:00-05:00</cap:effective>
+    <cap:expires>2012-11-22T07:30:00-05:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Future</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Possible</cap:certainty>
+    <cap:areaDesc>Lee; Pinellas; Sarasota</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>012071 012103 012115</value>
+    <valueName>UGC</valueName>
+    <value>FLZ050 FLZ060 FLZ065</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KTBW.FW.A.0015.121122T1700Z-121122T2300Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD046745C.RipCurrentStatement.124CD054C1B0FL.MFLCFWMFL.8785806a3d504bf8f36f641799cd57ed</id>
+    <updated>2012-11-21T04:27:00-05:00</updated>
+    <published>2012-11-21T04:27:00-05:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Rip Current Statement issued November 21 at 4:27AM EST until November 22 at 7:00PM EST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD046745C.RipCurrentStatement.124CD054C1B0FL.MFLCFWMFL.8785806a3d504bf8f36f641799cd57ed'/>
+    <summary>...HIGH RIP CURRENT RISK THROUGH AT LEAST THURSDAY EVENING FOR PALM BEACH AND BROWARD COUNTY BEACHES... .THE COMBINATION OF A NORTHER EASTERLY SWELL AND WIND SWELL MIX ALONG WITH MODERATE SURF HAS GENERATED STRONG RIP CURRENTS ALONG PORTIONS OF THE SOUTHEAST FLORIDA COAST AND WILL CONTINUE TO DO SO THROUGH AT LEAST THANKSGIVING.</summary>
+    <cap:event>Rip Current Statement</cap:event>
+    <cap:effective>2012-11-21T04:27:00-05:00</cap:effective>
+    <cap:expires>2012-11-21T22:00:00-05:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Coastal Broward County; Coastal Palm Beach County</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>012011 012099</value>
+    <valueName>UGC</valueName>
+    <value>FLZ168 FLZ172</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KMFL.RP.S.0035.000000T0000Z-121123T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD0464324.RipCurrentStatement.124CD056000CFL.JAXCFWJAX.e7ceced6cf8ad8a6854e0b254aadddd7</id>
+    <updated>2012-11-21T03:01:00-05:00</updated>
+    <published>2012-11-21T03:01:00-05:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Rip Current Statement issued November 21 at 3:01AM EST until November 23 at 6:00AM EST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=FL124CD0464324.RipCurrentStatement.124CD056000CFL.JAXCFWJAX.e7ceced6cf8ad8a6854e0b254aadddd7'/>
+    <summary>...HIGH RIP CURRENT RISK NOW IN EFFECT THROUGH LATE THURSDAY NIGHT... EAST-NORTHEAST SWELLS AND ROUGH WIND WAVES WILL CONTINUE TO IMPACT THE SURF ZONE ALONG THE NORTHEAST FLORIDA AND SOUTHEAST GEORGIA COASTLINE. BREAKERS IN THE 3 TO 6 FEET RANGE AND A STRONG NORTH TO SOUTH LONG-SHORE CURRENT WILL CONTINUE TO PROMOTE A HIGH RISK</summary>
+    <cap:event>Rip Current Statement</cap:event>
+    <cap:effective>2012-11-21T03:01:00-05:00</cap:effective>
+    <cap:expires>2012-11-22T06:15:00-05:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Duval; Flagler; Nassau; St. Johns</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>012031 012035 012089 012109</value>
+    <valueName>UGC</valueName>
+    <value>FLZ024 FLZ025 FLZ033 FLZ038</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KJAX.RP.S.0024.000000T0000Z-121123T1100Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=GA124CD0464324.RipCurrentStatement.124CD056000CGA.JAXCFWJAX.c893ce4ac88f78bb69a58294fcbdc022</id>
+    <updated>2012-11-21T03:01:00-05:00</updated>
+    <published>2012-11-21T03:01:00-05:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Rip Current Statement issued November 21 at 3:01AM EST until November 23 at 6:00AM EST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=GA124CD0464324.RipCurrentStatement.124CD056000CGA.JAXCFWJAX.c893ce4ac88f78bb69a58294fcbdc022'/>
+    <summary>...HIGH RIP CURRENT RISK NOW IN EFFECT THROUGH LATE THURSDAY NIGHT... EAST-NORTHEAST SWELLS AND ROUGH WIND WAVES WILL CONTINUE TO IMPACT THE SURF ZONE ALONG THE NORTHEAST FLORIDA AND SOUTHEAST GEORGIA COASTLINE. BREAKERS IN THE 3 TO 6 FEET RANGE AND A STRONG NORTH TO SOUTH LONG-SHORE CURRENT WILL CONTINUE TO PROMOTE A HIGH RISK</summary>
+    <cap:event>Rip Current Statement</cap:event>
+    <cap:effective>2012-11-21T03:01:00-05:00</cap:effective>
+    <cap:expires>2012-11-22T06:15:00-05:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Coastal Camden; Coastal Glynn</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>013039 013127</value>
+    <valueName>UGC</valueName>
+    <value>GAZ154 GAZ166</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KJAX.RP.S.0024.000000T0000Z-121123T1100Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=IA124CD048478C.WindAdvisory.124CD0551B88IA.DMXNPWDMX.de5e0cd733bb6c9d69bfd7fba31a37e1</id>
+    <updated>2012-11-21T15:23:00-06:00</updated>
+    <published>2012-11-21T15:23:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 3:23PM CST until November 23 at 6:00AM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=IA124CD048478C.WindAdvisory.124CD0551B88IA.DMXNPWDMX.de5e0cd733bb6c9d69bfd7fba31a37e1'/>
+    <summary>...GUSTY NORTHWEST WINDS WILL DEVELOP THURSDAY AFTERNOON... .A COLD FRONT WILL PASS THROUGH THE AREA THURSDAY AFTERNOON AND WILL BRING STRONG AND GUSTY NORTHWEST WINDS TO NORTHERN IOWA. THE BOUNDARY WILL BE FOLLOWED BY ANOTHER PUSH OF COLD AIR THURSDAY NIGHT AND ANOTHER ROUND OF STRONG WINDS. ...WIND ADVISORY IN EFFECT FROM NOON THURSDAY TO 6 AM CST</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T15:23:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T23:30:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Calhoun; Cerro Gordo; Emmet; Hancock; Humboldt; Kossuth; Palo Alto; Pocahontas; Sac; Webster; Winnebago; Worth; Wright</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>019025 019033 019063 019081 019091 019109 019147 019151 019161 019187 019189 019195 019197</value>
+    <valueName>UGC</valueName>
+    <value>IAZ004 IAZ005 IAZ006 IAZ007 IAZ015 IAZ016 IAZ017 IAZ023 IAZ024 IAZ025 IAZ033 IAZ034 IAZ035</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KDMX.WI.Y.0013.121122T1800Z-121123T1200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=IA124CD04844D0.WindAdvisory.124CD0551B88IA.FSDNPWFSD.b37e57cd90c7fd4734a859dea0021803</id>
+    <updated>2012-11-21T15:16:00-06:00</updated>
+    <published>2012-11-21T15:16:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 3:16PM CST until November 22 at 6:00PM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=IA124CD04844D0.WindAdvisory.124CD0551B88IA.FSDNPWFSD.b37e57cd90c7fd4734a859dea0021803'/>
+    <summary>.VERY STRONG NORTHWEST WINDS ARE EXPECTED THANKSGIVING DAY BEHIND A COLD FRONT WHICH WILL MOVE ACROSS THE AREA FROM THE NORTHWEST LATE TONIGHT AND EARLY THANKSGIVING MORNING. THESE WINDS WILL REACH SUSTAINED SPEEDS OF 30 TO 35 MPG AT TIMES OVER PART OF THE AREA...WITH GUSTS AROUND 45 MPH. WINDS WILL DECREASE THANKSGIVING NIGHT BUT IT WILL STILL BE WINDY.</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T15:16:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T23:30:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Buena Vista; Cherokee; Clay; Dickinson; Ida; Lyon; O&apos;Brien; Osceola; Plymouth; Sioux; Woodbury</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>019021 019035 019041 019059 019093 019119 019141 019143 019149 019167 019193</value>
+    <valueName>UGC</valueName>
+    <value>IAZ001 IAZ002 IAZ003 IAZ012 IAZ013 IAZ014 IAZ020 IAZ021 IAZ022 IAZ031 IAZ032</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXA.KFSD.WI.Y.0028.121122T1800Z-121123T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=IA124CD0469464.SpecialWeatherStatement.124CD04865A0IA.DMXSPSDMX.5cbb8723b52b9d02b674ba862220ba57</id>
+    <updated>2012-11-21T04:09:00-06:00</updated>
+    <published>2012-11-21T04:09:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Special Weather Statement issued November 21 at 4:09AM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=IA124CD0469464.SpecialWeatherStatement.124CD04865A0IA.DMXSPSDMX.5cbb8723b52b9d02b674ba862220ba57'/>
+    <summary>...ELEVATED FIRE DANGER FOR THIS AFTERNOON... SOUTH TO SOUTHWEST WINDS WILL INCREASE TO 15 TO 20 MPH...WITH GUSTS TO AS HIGH AS 30 TO 35 MPH BY THIS AFTERNOON. THE INCREASING WIND COMBINED WITH RELATIVE HUMIDITY LEVELS FALLING TO NEAR 35 PERCENT WILL PRODUCE AN ELEVATED FIRE DANGER THIS AFTERNOON FROM NOON THROUGH 400 PM. PARTICULAR CAUTION IS ADVISED DUE TO AN</summary>
+    <cap:event>Special Weather Statement</cap:event>
+    <cap:effective>2012-11-21T04:09:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Observed</cap:certainty>
+    <cap:areaDesc>Calhoun; Cerro Gordo; Crawford; Emmet; Hancock; Humboldt; Kossuth; Palo Alto; Pocahontas; Sac; Winnebago; Worth</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>019025 019033 019047 019063 019081 019091 019109 019147 019151 019161 019189 019195</value>
+    <valueName>UGC</valueName>
+    <value>IAZ004 IAZ005 IAZ006 IAZ007 IAZ015 IAZ016 IAZ017 IAZ023 IAZ024 IAZ033 IAZ034 IAZ044</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value></value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=ID124CD047F458.WindAdvisory.124CD0544C80ID.OTXNPWOTX.2b15b2224a912302742e576543b8540c</id>
+    <updated>2012-11-21T12:10:00-07:00</updated>
+    <published>2012-11-21T12:10:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 12:10PM MST until November 21 at 5:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=ID124CD047F458.WindAdvisory.124CD0544C80ID.OTXNPWOTX.2b15b2224a912302742e576543b8540c'/>
+    <summary>...WINDY CONDITIONS TODAY SOUTH CENTRAL BASIN AND PALOUSE AREAS... .A STRONG COLD FRONT WILL CONCENTRATE WINDS IN THE SOUTHERN CENTRAL BASIN AND PALOUSE AREAS OF EASTERN WASHINGTON TODAY. CAUTION SHOULD BE EXERCISED WHEN OUTDOORS AND DRIVING HIGH PROFILE VEHICLES. ...WIND ADVISORY REMAINS IN EFFECT UNTIL 4 PM PST THIS</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T12:10:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T17:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Idaho Palouse</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>016009 016057</value>
+    <valueName>UGC</valueName>
+    <value>IDZ003</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KOTX.WI.Y.0015.000000T0000Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=ID124CD047DC20.WindAdvisory.124CD054C1B0ID.PIHNPWPIH.1c25b8149814e73bbf8cba5631cbf8f2</id>
+    <updated>2012-11-21T11:48:00-07:00</updated>
+    <published>2012-11-21T11:48:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 11:48AM MST until November 21 at 8:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=ID124CD047DC20.WindAdvisory.124CD054C1B0ID.PIHNPWPIH.1c25b8149814e73bbf8cba5631cbf8f2'/>
+    <summary>...WIND ADVISORY IN EFFECT UNTIL 8 PM MST THIS EVENING... THE NATIONAL WEATHER SERVICE IN POCATELLO HAS ISSUED A WIND ADVISORY...WHICH IS IN EFFECT UNTIL 8 PM MST THIS EVENING. * TIMING...UNTIL 800 PM MST THIS EVENING. * WINDS...SOUTHWEST WINDS AT 30 WITH GUSTS TO 45 MPH. * LOCATIONS INCLUDE...INL COMPLEX...ARCO...IDAHO FALLS.</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T11:48:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T20:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Upper Snake River Plain</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>016011 016019 016023 016051 016065</value>
+    <valueName>UGC</valueName>
+    <value>IDZ020</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KPIH.WI.Y.0032.121121T1848Z-121122T0300Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=ID124CD047186C.WinterWeatherAdvisory.124CD04865A0ID.MSOWSWMSO.4689ddcc458ffc60adfb5fc41f28194e</id>
+    <updated>2012-11-21T06:47:00-07:00</updated>
+    <published>2012-11-21T06:47:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 6:47AM MST until November 21 at 11:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=ID124CD047186C.WinterWeatherAdvisory.124CD04865A0ID.MSOWSWMSO.4689ddcc458ffc60adfb5fc41f28194e'/>
+    <summary>...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL 11 PM MST THIS EVENING ABOVE 5000 FEET... A WINTER WEATHER ADVISORY ABOVE 5000 FEET REMAINS IN EFFECT UNTIL 11 PM MST THIS EVENING. * IMPACTS/TIMING: SNOW WILL DEVELOP OVER LOST TRAIL... BANNOCK AND LEMHI PASSES THIS MORNING. THE SNOW WILL CAUSE HAZARDOUS</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T06:47:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T15:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Eastern Lemhi County</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>016059</value>
+    <valueName>UGC</valueName>
+    <value>IDZ010</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KMSO.WW.Y.0054.000000T0000Z-121122T0600Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=ID124CD047186C.WinterWeatherAdvisory.124CD04865A0ID.MSOWSWMSO.fcb0fd8e8b9847466d5b57c4ad90513c</id>
+    <updated>2012-11-21T06:47:00-07:00</updated>
+    <published>2012-11-21T06:47:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 6:47AM MST until November 22 at 5:00AM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=ID124CD047186C.WinterWeatherAdvisory.124CD04865A0ID.MSOWSWMSO.fcb0fd8e8b9847466d5b57c4ad90513c'/>
+    <summary>...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL 4 AM PST THURSDAY ABOVE 4500 FEET... A WINTER WEATHER ADVISORY ABOVE 4500 FEET REMAINS IN EFFECT UNTIL 4 AM PST THURSDAY. * IMPACTS/TIMING: SNOW LEVELS WILL STEADILY FALL THROUGHOUT THE DAY...WITH THE HEAVIEST SNOW ACCUMULATIONS BEING ABOVE 4500</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T06:47:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T15:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Northern Clearwater Mountains; Southern Clearwater Mountains</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>016035 016049</value>
+    <valueName>UGC</valueName>
+    <value>IDZ005 IDZ006</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KMSO.WW.Y.0054.000000T0000Z-121122T1200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=ID124CD0468014.WinterStormWarning.124CD0544C80ID.PIHWSWPIH.4e44b73034c4bb4e500d2b4937de0e84</id>
+    <updated>2012-11-21T02:57:00-07:00</updated>
+    <published>2012-11-21T02:57:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Storm Warning issued November 21 at 2:57AM MST until November 21 at 5:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=ID124CD0468014.WinterStormWarning.124CD0544C80ID.PIHWSWPIH.4e44b73034c4bb4e500d2b4937de0e84'/>
+    <summary>...WINTER STORM WARNING REMAINS IN EFFECT UNTIL 5 PM MST THIS AFTERNOON... A WINTER STORM WARNING REMAINS IN EFFECT UNTIL 5 PM MST THIS AFTERNOON. * TIMING...ONGOING THROUGH THIS AFTERNOON. * MAIN IMPACTS...ADDITIONAL SNOW ACCUMULATION OF 6 TO 8 INCHES</summary>
+    <cap:event>Winter Storm Warning</cap:event>
+    <cap:effective>2012-11-21T02:57:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T17:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Big and Little Wood River Region; Sawtooth Mountains</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>016013 016037</value>
+    <valueName>UGC</valueName>
+    <value>IDZ018 IDZ031</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KPIH.WS.W.0008.000000T0000Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MI124CD0484020.WinterStormWatch.124CD05515ACMI.MQTWSWMQT.90c8268576eaea3544e067aca2633e98</id>
+    <updated>2012-11-21T16:04:00-05:00</updated>
+    <published>2012-11-21T16:04:00-05:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Storm Watch issued November 21 at 4:04PM EST until November 24 at 5:00AM EST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MI124CD0484020.WinterStormWatch.124CD05515ACMI.MQTWSWMQT.90c8268576eaea3544e067aca2633e98'/>
+    <summary>...SEVERAL INCHES OF SNOW WITH STRONG WINDS LATE THURSDAY NIGHT INTO FRIDAY NIGHT... .A LOW PRESSURE SYSTEM WILL DRAG A STRONG COLD FRONT ACROSS THE AREA LATE ON THANKSGIVING DAY. INCREASING NORTHWEST WINDS BEHIND THE FRONT WILL BRING MUCH COLDER AIR INTO THE AREA...BRINGING TEMPERATURES TO NEAR OR BELOW FREEZING AND WIND CHILL VALUES FALLING TO AROUND 20</summary>
+    <cap:event>Winter Storm Watch</cap:event>
+    <cap:effective>2012-11-21T16:04:00-05:00</cap:effective>
+    <cap:expires>2012-11-22T00:15:00-05:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Future</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Possible</cap:certainty>
+    <cap:areaDesc>Alger; Luce; Northern Schoolcraft</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>026003 026095 026153</value>
+    <valueName>UGC</valueName>
+    <value>MIZ006 MIZ007 MIZ085</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KMQT.WS.A.0006.121123T0900Z-121124T1000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MN124CD0484660.WindAdvisory.124CD055B7C8MN.ABRNPWABR.90a226f5cf4d32f59f2c7bd9a21fe8cd</id>
+    <updated>2012-11-21T15:20:00-06:00</updated>
+    <published>2012-11-21T15:20:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 3:20PM CST until November 23 at 12:00AM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MN124CD0484660.WindAdvisory.124CD055B7C8MN.ABRNPWABR.90a226f5cf4d32f59f2c7bd9a21fe8cd'/>
+    <summary>...STRONG WINDS FOR THURSDAY... .A WEATHER SYSTEM PASSING THROUGH NORTH DAKOTA EARLY THURSDAY WILL DRAW STRONG WINDS AND COLDER AIR INTO THE REGION. THE STRONG WINDS WILL PERSIST INTO THURSDAY EVENING. ...WIND ADVISORY IN EFFECT FROM NOON THURSDAY TO MIDNIGHT CST THURSDAY NIGHT...</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T15:20:00-06:00</cap:effective>
+    <cap:expires>2012-11-22T03:30:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Big Stone; Traverse</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>027011 027155</value>
+    <valueName>UGC</valueName>
+    <value>MNZ039 MNZ046</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXA.KABR.WI.Y.0034.121122T1800Z-121123T0600Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MN124CD04845FC.WindAdvisory.124CD05536E0MN.MPXNPWMPX.033c35659d389e3b5ce8f3fd6c58e73f</id>
+    <updated>2012-11-21T15:19:00-06:00</updated>
+    <published>2012-11-21T15:19:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 3:19PM CST until November 23 at 6:00AM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MN124CD04845FC.WindAdvisory.124CD05536E0MN.MPXNPWMPX.033c35659d389e3b5ce8f3fd6c58e73f'/>
+    <summary>...STRONG WINDS DEVELOPING THURSDAY ACROSS MUCH OF CENTRAL AND SOUTHERN MINNESOTA... .A WIND ADVISORY HAS BEEN ISSUED FOR THURSDAY AFTERNOON THROUGH EARLY FRIDAY MORNING FOR AREAS ALONG AND WEST OF A LINE FROM LONG PRAIRIE TO SAINT CLOUD TO COTTAGE GROVE TO RED WING...INCLUDING ALL OF THE TWIN CITIES METRO. BY LATE MORNING...SUSTAINED</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T15:19:00-06:00</cap:effective>
+    <cap:expires>2012-11-22T00:00:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Anoka; Blue Earth; Brown; Carver; Chippewa; Dakota; Douglas; Faribault; Freeborn; Goodhue; Hennepin; Kandiyohi; Lac Qui Parle; Le Sueur; Martin; McLeod; Meeker; Nicollet; Pope; Ramsey; Redwood; Renville; Rice; Scott; Sherburne; Sibley; Stearns; Steele; Stevens; Swift; Todd; Waseca; Washington; Watonwan; Wright; Yellow Medicine</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>027003 027013 027015 027019 027023 027037 027041 027043 027047 027049 027053 027067 027073 027079 027085 027091 027093 027103 027121 027123 027127 027129 027131 027139 027141 027143 027145 027147 027149 027151 027153 027161 027163 027165 027171 027173</value>
+    <valueName>UGC</valueName>
+    <value>MNZ041 MNZ042 MNZ047 MNZ048 MNZ049 MNZ051 MNZ054 MNZ055 MNZ056 MNZ057 MNZ058 MNZ059 MNZ060 MNZ061 MNZ062 MNZ063 MNZ064 MNZ065 MNZ066 MNZ067 MNZ068 MNZ069 MNZ070 MNZ073 MNZ074 MNZ075 MNZ076 MNZ077 MNZ078 MNZ082 MNZ083 MNZ084 MNZ085 MNZ091 MNZ092 MNZ093</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KMPX.WI.Y.0019.121122T1800Z-121123T1200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MN124CD04844D0.WindAdvisory.124CD0551B88MN.FSDNPWFSD.890e325fc208602b1d4f8f0a10cdc6be</id>
+    <updated>2012-11-21T15:16:00-06:00</updated>
+    <published>2012-11-21T15:16:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 3:16PM CST until November 22 at 6:00PM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MN124CD04844D0.WindAdvisory.124CD0551B88MN.FSDNPWFSD.890e325fc208602b1d4f8f0a10cdc6be'/>
+    <summary>.VERY STRONG NORTHWEST WINDS ARE EXPECTED THANKSGIVING DAY BEHIND A COLD FRONT WHICH WILL MOVE ACROSS THE AREA FROM THE NORTHWEST LATE TONIGHT AND EARLY THANKSGIVING MORNING. THESE WINDS WILL REACH SUSTAINED SPEEDS OF 30 TO 35 MPG AT TIMES OVER PART OF THE AREA...WITH GUSTS AROUND 45 MPH. WINDS WILL DECREASE THANKSGIVING NIGHT BUT IT WILL STILL BE WINDY.</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T15:16:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T23:30:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Cottonwood; Jackson; Lincoln; Lyon; Murray; Nobles; Pipestone; Rock</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>027033 027063 027081 027083 027101 027105 027117 027133</value>
+    <valueName>UGC</valueName>
+    <value>MNZ071 MNZ072 MNZ080 MNZ081 MNZ089 MNZ090 MNZ097 MNZ098</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXA.KFSD.WI.Y.0028.121122T1800Z-121123T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MN124CD0469914.WinterStormWatch.124CD0656380MN.FGFWSWFGF.4a992731ff484a42ca492eb3ca7e651a</id>
+    <updated>2012-11-21T04:21:00-06:00</updated>
+    <published>2012-11-21T04:21:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Storm Watch issued November 21 at 4:21AM CST until November 23 at 6:00AM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MN124CD0469914.WinterStormWatch.124CD0656380MN.FGFWSWFGF.4a992731ff484a42ca492eb3ca7e651a'/>
+    <summary>...WINTER STORM IS POSSIBLE THANKSGIVING AFTERNOON AND NIGHT... .AN AREA OF LOW PRESSURE IS EXPECTED TO TRACK ACROSS THE NORTHERN PLAINS THANKSGIVING MORNING. STRONG NORTH WINDS WILL DEVELOP IN ITS WAKE AS A COLD FRONT SWEEPS THROUGH THE REGION. TEMPERATURES ARE LIKELY TO FALL THROUGHOUT THE DAY WITH SNOW DEVELOPING BY THE AFTERNOON HOURS. THE EXACT TRACK OF THIS SYSTEM IS STILL</summary>
+    <cap:event>Winter Storm Watch</cap:event>
+    <cap:effective>2012-11-21T04:21:00-06:00</cap:effective>
+    <cap:expires>2012-11-23T06:00:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Future</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Possible</cap:certainty>
+    <cap:areaDesc>East Marshall; East Polk; Kittson; Lake Of The Woods; North Beltrami; North Clearwater; Pennington; Red Lake; Roseau; South Beltrami; West Marshall; West Polk</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>027007 027029 027069 027077 027089 027113 027119 027125 027135</value>
+    <valueName>UGC</valueName>
+    <value>MNZ001 MNZ004 MNZ005 MNZ006 MNZ007 MNZ008 MNZ009 MNZ013 MNZ014 MNZ015 MNZ016 MNZ017</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KFGF.WS.A.0005.121122T1800Z-121123T1200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD0478A7C.WinterWeatherAdvisory.124CD054C1B0MT.TFXWSWTFX.d35e2adbc9c6ccac8f093a243b2ab0e9</id>
+    <updated>2012-11-21T09:39:00-07:00</updated>
+    <published>2012-11-21T09:39:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 9:39AM MST until November 21 at 8:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD0478A7C.WinterWeatherAdvisory.124CD054C1B0MT.TFXWSWTFX.d35e2adbc9c6ccac8f093a243b2ab0e9'/>
+    <summary>...WINTER WEATHER ADVISORY IN EFFECT UNTIL 8 PM MST THIS EVENING FOR ELEVATIONS ABOVE 5000 FEET... THE NATIONAL WEATHER SERVICE IN GREAT FALLS HAS ISSUED A WINTER WEATHER ADVISORY FOR ELEVATIONS ABOVE 5000 FEET FOR SNOW...WHICH IS IN EFFECT UNTIL 8 PM MST THIS EVENING. * TIMING AND MAIN IMPACT: SNOW WILL CONTINUE TO DEVELOP THIS</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T09:39:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T20:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Cascade; Judith Basin; Meagher</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>030013 030045 030059</value>
+    <valueName>UGC</valueName>
+    <value>MTZ012 MTZ050 MTZ054</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXB.KTFX.WW.Y.0041.000000T0000Z-121122T0300Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD0478A7C.WinterWeatherAdvisory.124CD054FA54MT.TFXWSWTFX.a49793b336f800f65b1ab8ae3de6071e</id>
+    <updated>2012-11-21T09:39:00-07:00</updated>
+    <published>2012-11-21T09:39:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 9:39AM MST until November 22 at 12:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD0478A7C.WinterWeatherAdvisory.124CD054FA54MT.TFXWSWTFX.a49793b336f800f65b1ab8ae3de6071e'/>
+    <summary>...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON MST THURSDAY FOR ELEVATIONS ABOVE 5000 FEET... A WINTER WEATHER ADVISORY FOR ELEVATIONS ABOVE 5000 FEET REMAINS IN EFFECT UNTIL NOON MST THURSDAY. * TIMING AND MAIN IMPACT: LIGHT TO MODERATE SNOW WILL CONTINUE THROUGH TONIGHT THEN DIMINISH THANKSGIVING MORNING.</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T09:39:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T21:45:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Central and Southern Lewis and Clark; Northern Rocky Mountain Front; Southern Rocky Mountain Front</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>030035 030049 030073 030099</value>
+    <valueName>UGC</valueName>
+    <value>MTZ009 MTZ014 MTZ048</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KTFX.WW.Y.0041.000000T0000Z-121122T1900Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD0478A7C.WinterWeatherAdvisory.124CD054FA54MT.TFXWSWTFX.83660a0c85266a8d74706b9a97b8dab8</id>
+    <updated>2012-11-21T09:39:00-07:00</updated>
+    <published>2012-11-21T09:39:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 9:39AM MST until November 22 at 12:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD0478A7C.WinterWeatherAdvisory.124CD054FA54MT.TFXWSWTFX.83660a0c85266a8d74706b9a97b8dab8'/>
+    <summary>...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON MST THURSDAY... A WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON MST THURSDAY. * TIMING AND MAIN IMPACT: SNOW WILL CONTINUE THIS MORNING AND THROUGH THIS EVENING. SNOW WILL DIMINISH LATER TONIGHT INTO</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T09:39:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T21:45:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Gallatin; Madison</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>030031 030057</value>
+    <valueName>UGC</valueName>
+    <value>MTZ015 MTZ055</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KTFX.WW.Y.0041.000000T0000Z-121122T1900Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD047186C.WinterWeatherAdvisory.124CD04865A0MT.MSOWSWMSO.ee28875e18917eb791fb7a1e1293db9b</id>
+    <updated>2012-11-21T06:47:00-07:00</updated>
+    <published>2012-11-21T06:47:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 6:47AM MST until November 22 at 5:00AM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD047186C.WinterWeatherAdvisory.124CD04865A0MT.MSOWSWMSO.ee28875e18917eb791fb7a1e1293db9b'/>
+    <summary>...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL 5 AM MST THURSDAY... A WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL 5 AM MST THURSDAY. * IMPACTS/TIMING: SNOW LEVELS WILL BE STEADILY FALLING THROUGHOUT THE DAY. LOLO AND MARIAS PASSES WILL BE IMPACTED BY</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T06:47:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T15:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Bitterroot, Sapphire Mountains; Lower Clark Fork Region; West Glacier, Bob Marshall Region</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>030029 030039 030047 030061 030063 030081 030089</value>
+    <valueName>UGC</valueName>
+    <value>MTZ002 MTZ004 MTZ006</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KMSO.WW.Y.0054.000000T0000Z-121122T1200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD047186C.WinterWeatherAdvisory.124CD04865A0MT.MSOWSWMSO.9e3ff6c291494f0aeb891f0f21c6fdd1</id>
+    <updated>2012-11-21T06:47:00-07:00</updated>
+    <published>2012-11-21T06:47:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 6:47AM MST until November 22 at 5:00AM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD047186C.WinterWeatherAdvisory.124CD04865A0MT.MSOWSWMSO.9e3ff6c291494f0aeb891f0f21c6fdd1'/>
+    <summary>...WINTER WEATHER ADVISORY REMAINS IN EFFECT FROM 5 PM THIS AFTERNOON TO 5 AM MST THURSDAY... A WINTER WEATHER ADVISORY REMAINS IN EFFECT FROM 5 PM THIS AFTERNOON TO 5 AM MST THURSDAY. * IMPACTS/TIMING: SNOW LEVELS WILL BE DROPPING TO THE VALLEY FLOOR BY LATE AFTERNOON. CONDITIONS FOR SNOW BANDS APPEAR TO</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T06:47:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T15:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Blackfoot Region; Flathead, Mission Valleys; Missoula, Bitterroot Valleys</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>030029 030039 030047 030063 030077 030081 030089</value>
+    <valueName>UGC</valueName>
+    <value>MTZ003 MTZ005 MTZ043</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KMSO.WW.Y.0054.121122T0000Z-121122T1200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD047186C.WinterWeatherAdvisory.124CD04865A0MT.MSOWSWMSO.0489b7d0ce4e92ce136b17ac4ec9c8ad</id>
+    <updated>2012-11-21T06:47:00-07:00</updated>
+    <published>2012-11-21T06:47:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 6:47AM MST until November 22 at 5:00AM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD047186C.WinterWeatherAdvisory.124CD04865A0MT.MSOWSWMSO.0489b7d0ce4e92ce136b17ac4ec9c8ad'/>
+    <summary>...WINTER WEATHER ADVISORY IN EFFECT UNTIL 5 AM MST THURSDAY ABOVE 6000 FEET... THE NATIONAL WEATHER SERVICE IN MISSOULA HAS ISSUED A WINTER WEATHER ADVISORY FOR SNOW ABOVE 6000 FEET... WHICH IS IN EFFECT UNTIL 5 AM MST THURSDAY. * IMPACTS/TIMING: SNOW LEVELS WILL BE STEADILY FALLING THROUGHOUT</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T06:47:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T15:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Butte, Pintlar Region</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>030023 030039 030077 030093</value>
+    <valueName>UGC</valueName>
+    <value>MTZ007</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXA.KMSO.WW.Y.0054.000000T0000Z-121122T1200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD046CD6C.HighWindWarning.124CD0544C80MT.TFXNPWTFX.5cee8c38a96689841db88c490b3d7f31</id>
+    <updated>2012-11-21T04:55:00-07:00</updated>
+    <published>2012-11-21T04:55:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>High Wind Warning issued November 21 at 4:55AM MST until November 21 at 11:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD046CD6C.HighWindWarning.124CD0544C80MT.TFXNPWTFX.5cee8c38a96689841db88c490b3d7f31'/>
+    <summary>...HIGH WIND WARNING REMAINS IN EFFECT UNTIL 11 PM MST THIS EVENING FOR ROUTE 287 OVER NORRIS HILL IN MADISON COUNTY... A HIGH WIND WARNING FOR ROUTE 287 OVER NORRIS HILL IN MADISON COUNTY REMAINS IN EFFECT UNTIL 11 PM MST THIS EVENING. * TIMING AND MAIN IMPACT: STRONG SOUTHWEST WINDS WILL CONTINUE AT TIMES OVER NORRIS HILL THIS MORNING THEN DIMINISH BY LATE THIS</summary>
+    <cap:event>High Wind Warning</cap:event>
+    <cap:effective>2012-11-21T04:55:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T17:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Madison</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>030057</value>
+    <valueName>UGC</valueName>
+    <value>MTZ015</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KTFX.HW.W.0043.000000T0000Z-121122T0600Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD046A210.WindAdvisory.124CD0544C80MT.BYZNPWBYZ.ceb1c2d0673c27ec12672a59ef70e52e</id>
+    <updated>2012-11-21T03:44:00-07:00</updated>
+    <published>2012-11-21T03:44:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 3:44AM MST until November 21 at 9:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD046A210.WindAdvisory.124CD0544C80MT.BYZNPWBYZ.ceb1c2d0673c27ec12672a59ef70e52e'/>
+    <summary>.THE COMBINATION OF LOW PRESSURE OVER MONTANA...AND A COLD FRONT PUSHING THROUGH THE AREA THIS AFTERNOON AND EVENING...WILL CREATE STRONG SOUTHWEST WINDS NEAR LIVINGSTON AND ALONG THE BEARTOOTH FOOTHILLS THROUGH THIS EVENING. ...WIND ADVISORY REMAINS IN EFFECT UNTIL 9 PM MST THIS EVENING... * IMPACTS...STRONG AND SUDDEN CROSS WINDS WILL MAKE DRIVING</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T03:44:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T17:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Livingston Area</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>030067</value>
+    <valueName>UGC</valueName>
+    <value>MTZ065</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KBYZ.WI.Y.0021.000000T0000Z-121122T0400Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD046A210.WindAdvisory.124CD0544C80MT.BYZNPWBYZ.1bf9d27637686470e5174cb2590405d7</id>
+    <updated>2012-11-21T03:44:00-07:00</updated>
+    <published>2012-11-21T03:44:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 3:44AM MST until November 21 at 9:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD046A210.WindAdvisory.124CD0544C80MT.BYZNPWBYZ.1bf9d27637686470e5174cb2590405d7'/>
+    <summary>.THE COMBINATION OF LOW PRESSURE OVER MONTANA...AND A COLD FRONT PUSHING THROUGH THE AREA THIS AFTERNOON AND EVENING...WILL CREATE STRONG SOUTHWEST WINDS NEAR LIVINGSTON AND ALONG THE BEARTOOTH FOOTHILLS THROUGH THIS EVENING. ...WIND ADVISORY REMAINS IN EFFECT UNTIL 9 PM MST THIS EVENING... * IMPACTS...STRONG SOUTHWEST WINDS WILL CREATE DANGEROUS DRIVING</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T03:44:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T17:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Beartooth Foothills</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>030095 030097</value>
+    <valueName>UGC</valueName>
+    <value>MTZ066</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KBYZ.WI.Y.0021.000000T0000Z-121122T0400Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD0469A40.WinterWeatherAdvisory.124CD0488CB0MT.GGWWSWGGW.677d4a4c795a733a751866e9b7b27bbf</id>
+    <updated>2012-11-21T03:24:00-07:00</updated>
+    <published>2012-11-21T03:24:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 3:24AM MST until November 22 at 12:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=MT124CD0469A40.WinterWeatherAdvisory.124CD0488CB0MT.GGWWSWGGW.677d4a4c795a733a751866e9b7b27bbf'/>
+    <summary>...WINTER WEATHER ADVISORY IN EFFECT FROM 8 PM THIS EVENING TO NOON MST THURSDAY... THE NATIONAL WEATHER SERVICE IN GLASGOW HAS ISSUED A WINTER WEATHER ADVISORY FOR SNOW AND FREEZING RAIN...WHICH IS IN EFFECT FROM 8 PM THIS EVENING TO NOON MST THURSDAY. * TIMING...PRECIPITATION WILL BEGIN THIS EVENING AND CONTINUE</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T03:24:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Daniels; Eastern Roosevelt; Northern Valley; Sheridan</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>030019 030085 030091 030105</value>
+    <valueName>UGC</valueName>
+    <value>MTZ018 MTZ019 MTZ061 MTZ062</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KGGW.WW.Y.0013.121122T0300Z-121122T1900Z/</value>
+    </cap:parameter>
+    </entry>
+    
+
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=NC124CD047D388.CoastalFloodAdvisory.124CD055AC10NC.MHXCFWMHX.9bfc526f38953839cf9ed6b14efd9983</id>
+    <updated>2012-11-21T13:26:00-05:00</updated>
+    <published>2012-11-21T13:26:00-05:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Coastal Flood Advisory issued November 21 at 1:26PM EST until November 23 at 7:00AM EST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=NC124CD047D388.CoastalFloodAdvisory.124CD055AC10NC.MHXCFWMHX.9bfc526f38953839cf9ed6b14efd9983'/>
+    <summary>...DANGEROUS SURF CONDITIONS WITH LARGE WAVE RUN UP AND MINOR OCEAN OVERWASH EXPECTED NORTH OF CAPE HATTERAS THURSDAY INTO EARLY FRIDAY... .LOW PRESSURE INTENSIFYING WELL OFF OF THE NORTH CAROLINA COAST THURSDAY WILL PRODUCE STRONG NORTHERLY WINDS AND DANGEROUS SURF OFF OF THE NORTH CAROLINA OUTER BANKS. THIS WILL LEAD TO MINOR OCEAN OVERWASH NORTH OF CAPE HATTERAS AROUND THE TIMES OF HIGH</summary>
+    <cap:event>Coastal Flood Advisory</cap:event>
+    <cap:effective>2012-11-21T13:26:00-05:00</cap:effective>
+    <cap:expires>2012-11-22T04:00:00-05:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Outer Banks Dare</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>037055</value>
+    <valueName>UGC</valueName>
+    <value>NCZ103</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KMHX.CF.Y.0012.121122T1200Z-121123T1200Z/
+/O.NEW.KMHX.SU.Y.0007.121122T1200Z-121123T1200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=NC124CD047D388.HighSurfAdvisory.124CD055AC10NC.MHXCFWMHX.9bfc526f38953839cf9ed6b14efd9983</id>
+    <updated>2012-11-21T13:26:00-05:00</updated>
+    <published>2012-11-21T13:26:00-05:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>High Surf Advisory issued November 21 at 1:26PM EST until November 23 at 7:00AM EST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=NC124CD047D388.HighSurfAdvisory.124CD055AC10NC.MHXCFWMHX.9bfc526f38953839cf9ed6b14efd9983'/>
+    <summary>...DANGEROUS SURF CONDITIONS WITH LARGE WAVE RUN UP AND MINOR OCEAN OVERWASH EXPECTED NORTH OF CAPE HATTERAS THURSDAY INTO EARLY FRIDAY... .LOW PRESSURE INTENSIFYING WELL OFF OF THE NORTH CAROLINA COAST THURSDAY WILL PRODUCE STRONG NORTHERLY WINDS AND DANGEROUS SURF OFF OF THE NORTH CAROLINA OUTER BANKS. THIS WILL LEAD TO MINOR OCEAN OVERWASH NORTH OF CAPE HATTERAS AROUND THE TIMES OF HIGH</summary>
+    <cap:event>High Surf Advisory</cap:event>
+    <cap:effective>2012-11-21T13:26:00-05:00</cap:effective>
+    <cap:expires>2012-11-22T04:00:00-05:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Outer Banks Dare</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>037055</value>
+    <valueName>UGC</valueName>
+    <value>NCZ103</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KMHX.CF.Y.0012.121122T1200Z-121123T1200Z/
+/O.NEW.KMHX.SU.Y.0007.121122T1200Z-121123T1200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=NC124CD047AD40.SpecialWeatherStatement.124CD054C1B0NC.MHXSPSMHX.8a423e41b0ce6fa99ae193e2fc1ad19d</id>
+    <updated>2012-11-21T12:28:00-05:00</updated>
+    <published>2012-11-21T12:28:00-05:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Special Weather Statement issued November 21 at 12:28PM EST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=NC124CD047AD40.SpecialWeatherStatement.124CD054C1B0NC.MHXSPSMHX.8a423e41b0ce6fa99ae193e2fc1ad19d'/>
+    <summary>...MINOR OCEAN OVERWASH POSSIBLE THIS AFTERNOON AND AGAIN LATE TONIGHT ACROSS PORTIONS OF HATTERAS ISLAND... INCREASING NORTHERLY FLOW AND SEAS OF 7 TO 9 FEET OCCURRING ALONG THE OUTER BANKS THIS AFTERNOON AND TONIGHT WILL CONTRIBUTE TO MINOR OCEAN OVERWASH A FEW HOURS AROUND THE TIMES OF HIGH TIDE. THE AREA MOST VULNERABLE TO THIS WILL BE AROUND MIRLO BEACH WHERE</summary>
+    <cap:event>Special Weather Statement</cap:event>
+    <cap:effective>2012-11-21T12:28:00-05:00</cap:effective>
+    <cap:expires>2012-11-21T22:00:00-05:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Observed</cap:certainty>
+    <cap:areaDesc>Outer Banks Dare</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>037055</value>
+    <valueName>UGC</valueName>
+    <value>NCZ103</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value></value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0484084.WindAdvisory.124CD05515ACND.BISNPWBIS.6d7ef81e64a880b995fd43430eb068ac</id>
+    <updated>2012-11-21T15:05:00-06:00</updated>
+    <published>2012-11-21T15:05:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 3:05PM CST until November 22 at 8:00PM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0484084.WindAdvisory.124CD05515ACND.BISNPWBIS.6d7ef81e64a880b995fd43430eb068ac'/>
+    <summary>...WIND ADVISORY SOUTHWEST NORTH DAKOTA THANKSGIVING DAY... .STRONG NORTHWEST WINDS WILL DEVELOP BEHIND A DEPARTING COLD FRONT THANKSGIVING MORNING ACROSS SOUTHWEST NORTH DAKOTA. EXPECT SUSTAINED WINDS OF 30 TO 35 MPH...WITH GUSTS BETWEEN 40 AND 50 MPH...FROM BEACH ...MEDORA AND DICKINSON...THROUGH AMIDON AND BOWMAN...TO HETTINGER AND SELFRIDGE. PEOPLE TRAVELING SHOULD</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T15:05:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T23:15:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Dunn; McKenzie</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>038025 038053</value>
+    <valueName>UGC</valueName>
+    <value>NDZ017 NDZ018</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXA.KBIS.WI.Y.0040.121122T1200Z-121123T0200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0484084.WindAdvisory.124CD05515ACND.BISNPWBIS.e6ffb20acc8f035f709265c1ffa45e7f</id>
+    <updated>2012-11-21T15:05:00-06:00</updated>
+    <published>2012-11-21T15:05:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 3:05PM CST until November 22 at 8:00PM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0484084.WindAdvisory.124CD05515ACND.BISNPWBIS.e6ffb20acc8f035f709265c1ffa45e7f'/>
+    <summary>...WIND ADVISORY SOUTHWEST NORTH DAKOTA THANKSGIVING DAY... .STRONG NORTHWEST WINDS WILL DEVELOP BEHIND A DEPARTING COLD FRONT THANKSGIVING MORNING ACROSS SOUTHWEST NORTH DAKOTA. EXPECT SUSTAINED WINDS OF 30 TO 35 MPH...WITH GUSTS BETWEEN 40 AND 50 MPH...FROM BEACH ...MEDORA AND DICKINSON...THROUGH AMIDON AND BOWMAN...TO HETTINGER AND SELFRIDGE. PEOPLE TRAVELING SHOULD</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T15:05:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T23:15:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Adams; Billings; Bowman; Golden Valley; Hettinger; Slope; Stark</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>038001 038007 038011 038033 038041 038087 038089</value>
+    <valueName>UGC</valueName>
+    <value>NDZ031 NDZ032 NDZ033 NDZ040 NDZ041 NDZ043 NDZ044</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KBIS.WI.Y.0040.121122T1200Z-121123T0200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0484084.WindAdvisory.124CD05515ACND.BISNPWBIS.d610f75747d29d169201d59d5cdcbf9e</id>
+    <updated>2012-11-21T15:05:00-06:00</updated>
+    <published>2012-11-21T15:05:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 3:05PM CST until November 23 at 12:00AM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0484084.WindAdvisory.124CD05515ACND.BISNPWBIS.d610f75747d29d169201d59d5cdcbf9e'/>
+    <summary>...WIND ADVISORY SOUTHWEST NORTH DAKOTA THANKSGIVING DAY... .STRONG NORTHWEST WINDS WILL DEVELOP BEHIND A DEPARTING COLD FRONT THANKSGIVING MORNING ACROSS SOUTHWEST NORTH DAKOTA. EXPECT SUSTAINED WINDS OF 30 TO 35 MPH...WITH GUSTS BETWEEN 40 AND 50 MPH...FROM BEACH ...MEDORA AND DICKINSON...THROUGH AMIDON AND BOWMAN...TO HETTINGER AND SELFRIDGE. PEOPLE TRAVELING SHOULD</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T15:05:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T23:15:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Burleigh; Dickey; Emmons; Kidder; La Moure; Logan; McIntosh; McLean; Mercer; Morton; Oliver</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>038015 038021 038029 038043 038045 038047 038051 038055 038057 038059 038065</value>
+    <valueName>UGC</valueName>
+    <value>NDZ019 NDZ020 NDZ021 NDZ034 NDZ035 NDZ036 NDZ046 NDZ047 NDZ048 NDZ050 NDZ051</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXB.KBIS.WI.Y.0040.121122T1200Z-121123T0600Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0484084.WindAdvisory.124CD05515ACND.BISNPWBIS.ee32f703361b2b7f904fb450679f55da</id>
+    <updated>2012-11-21T15:05:00-06:00</updated>
+    <published>2012-11-21T15:05:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 3:05PM CST until November 23 at 12:00AM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0484084.WindAdvisory.124CD05515ACND.BISNPWBIS.ee32f703361b2b7f904fb450679f55da'/>
+    <summary>...WIND ADVISORY SOUTHWEST NORTH DAKOTA THANKSGIVING DAY... .STRONG NORTHWEST WINDS WILL DEVELOP BEHIND A DEPARTING COLD FRONT THANKSGIVING MORNING ACROSS SOUTHWEST NORTH DAKOTA. EXPECT SUSTAINED WINDS OF 30 TO 35 MPH...WITH GUSTS BETWEEN 40 AND 50 MPH...FROM BEACH ...MEDORA AND DICKINSON...THROUGH AMIDON AND BOWMAN...TO HETTINGER AND SELFRIDGE. PEOPLE TRAVELING SHOULD</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T15:05:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T23:15:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Grant; Sioux</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>038037 038085</value>
+    <valueName>UGC</valueName>
+    <value>NDZ042 NDZ045</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KBIS.WI.Y.0040.121122T1200Z-121123T0600Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0483EF4.WinterWeatherAdvisory.124CD05515ACND.BISWSWBIS.9a6e11f11a2742952da0bdd41e4d3abe</id>
+    <updated>2012-11-21T15:01:00-06:00</updated>
+    <published>2012-11-21T15:01:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 3:01PM CST until November 23 at 12:00AM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0483EF4.WinterWeatherAdvisory.124CD05515ACND.BISWSWBIS.9a6e11f11a2742952da0bdd41e4d3abe'/>
+    <summary>...WINTER WEATHER ADVISORY NORTHERN NORTH DAKOTA LATE WEDNESDAY NIGHT THROUGH THANKSGIVING EVENING... .A STRONG COLD FRONT WILL SWEEP THROUGH NORTHERN NORTH DAKOTA WEDNESDAY NIGHT INTO EARLY THURSDAY MORNING. AHEAD OF THE COLD FRONT...EXPECT A WINTRY MIX OF SNOW AND LIGHT FREEZING RAIN LATE WEDNESDAY NIGHT...CHANGING TO ALL SNOW THURSDAY MORNING. BRISK</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T15:01:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T23:15:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Bottineau; Burke; Divide; McHenry; Mountrail; Pierce; Renville; Rolette; Ward; Williams</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>038009 038013 038023 038049 038061 038069 038075 038079 038101 038105</value>
+    <valueName>UGC</valueName>
+    <value>NDZ001 NDZ002 NDZ003 NDZ004 NDZ005 NDZ009 NDZ010 NDZ011 NDZ012 NDZ013</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KBIS.WW.Y.0018.121122T0600Z-121123T0600Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0483EF4.WinterWeatherAdvisory.124CD05515ACND.BISWSWBIS.134bb62a5200f6c3eee8ffc8684d5b61</id>
+    <updated>2012-11-21T15:01:00-06:00</updated>
+    <published>2012-11-21T15:01:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 3:01PM CST until November 23 at 12:00AM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0483EF4.WinterWeatherAdvisory.124CD05515ACND.BISWSWBIS.134bb62a5200f6c3eee8ffc8684d5b61'/>
+    <summary>...WINTER WEATHER ADVISORY NORTHERN NORTH DAKOTA LATE WEDNESDAY NIGHT THROUGH THANKSGIVING EVENING... .A STRONG COLD FRONT WILL SWEEP THROUGH NORTHERN NORTH DAKOTA WEDNESDAY NIGHT INTO EARLY THURSDAY MORNING. AHEAD OF THE COLD FRONT...EXPECT A WINTRY MIX OF SNOW AND LIGHT FREEZING RAIN LATE WEDNESDAY NIGHT...CHANGING TO ALL SNOW THURSDAY MORNING. BRISK</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T15:01:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T23:15:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Foster; Sheridan; Stutsman; Wells</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>038031 038083 038093 038103</value>
+    <valueName>UGC</valueName>
+    <value>NDZ022 NDZ023 NDZ025 NDZ037</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXA.KBIS.WW.Y.0018.121122T0600Z-121123T0600Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0469914.WinterStormWatch.124CD0656380ND.FGFWSWFGF.eac94178f96e8511e1f39e299cdf25b6</id>
+    <updated>2012-11-21T04:21:00-06:00</updated>
+    <published>2012-11-21T04:21:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Storm Watch issued November 21 at 4:21AM CST until November 23 at 6:00AM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=ND124CD0469914.WinterStormWatch.124CD0656380ND.FGFWSWFGF.eac94178f96e8511e1f39e299cdf25b6'/>
+    <summary>...WINTER STORM IS POSSIBLE THANKSGIVING AFTERNOON AND NIGHT... .AN AREA OF LOW PRESSURE IS EXPECTED TO TRACK ACROSS THE NORTHERN PLAINS THANKSGIVING MORNING. STRONG NORTH WINDS WILL DEVELOP IN ITS WAKE AS A COLD FRONT SWEEPS THROUGH THE REGION. TEMPERATURES ARE LIKELY TO FALL THROUGHOUT THE DAY WITH SNOW DEVELOPING BY THE AFTERNOON HOURS. THE EXACT TRACK OF THIS SYSTEM IS STILL</summary>
+    <cap:event>Winter Storm Watch</cap:event>
+    <cap:effective>2012-11-21T04:21:00-06:00</cap:effective>
+    <cap:expires>2012-11-23T06:00:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Future</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Possible</cap:certainty>
+    <cap:areaDesc>Benson; Cavalier; Eastern Walsh County; Grand Forks; Nelson; Pembina; Ramsey; Towner; Western Walsh County</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>038005 038019 038035 038063 038067 038071 038095 038099</value>
+    <valueName>UGC</valueName>
+    <value>NDZ006 NDZ007 NDZ008 NDZ014 NDZ015 NDZ016 NDZ026 NDZ027 NDZ054</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KFGF.WS.A.0005.121122T1800Z-121123T1200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=NE124CD04844D0.WindAdvisory.124CD0551B88NE.FSDNPWFSD.1b77c7fde670c6094c160bdd2d351b6f</id>
+    <updated>2012-11-21T15:16:00-06:00</updated>
+    <published>2012-11-21T15:16:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 3:16PM CST until November 22 at 6:00PM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=NE124CD04844D0.WindAdvisory.124CD0551B88NE.FSDNPWFSD.1b77c7fde670c6094c160bdd2d351b6f'/>
+    <summary>.VERY STRONG NORTHWEST WINDS ARE EXPECTED THANKSGIVING DAY BEHIND A COLD FRONT WHICH WILL MOVE ACROSS THE AREA FROM THE NORTHWEST LATE TONIGHT AND EARLY THANKSGIVING MORNING. THESE WINDS WILL REACH SUSTAINED SPEEDS OF 30 TO 35 MPG AT TIMES OVER PART OF THE AREA...WITH GUSTS AROUND 45 MPH. WINDS WILL DECREASE THANKSGIVING NIGHT BUT IT WILL STILL BE WINDY.</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T15:16:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T23:30:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Dixon</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>031051</value>
+    <valueName>UGC</valueName>
+    <value>NEZ013</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXA.KFSD.WI.Y.0028.121122T1500Z-121123T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=NE124CD04844D0.WindAdvisory.124CD0551B88NE.FSDNPWFSD.445606782b0e2fab3bdfac577e3ad2a6</id>
+    <updated>2012-11-21T15:16:00-06:00</updated>
+    <published>2012-11-21T15:16:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 3:16PM CST until November 22 at 6:00PM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=NE124CD04844D0.WindAdvisory.124CD0551B88NE.FSDNPWFSD.445606782b0e2fab3bdfac577e3ad2a6'/>
+    <summary>.VERY STRONG NORTHWEST WINDS ARE EXPECTED THANKSGIVING DAY BEHIND A COLD FRONT WHICH WILL MOVE ACROSS THE AREA FROM THE NORTHWEST LATE TONIGHT AND EARLY THANKSGIVING MORNING. THESE WINDS WILL REACH SUSTAINED SPEEDS OF 30 TO 35 MPG AT TIMES OVER PART OF THE AREA...WITH GUSTS AROUND 45 MPH. WINDS WILL DECREASE THANKSGIVING NIGHT BUT IT WILL STILL BE WINDY.</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T15:16:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T23:30:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Dakota</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>031043</value>
+    <valueName>UGC</valueName>
+    <value>NEZ014</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXA.KFSD.WI.Y.0028.121122T1800Z-121123T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=NE124CD0480394.HighWindWarning.124CD0562140NE.CYSNPWCYS.4fd3a7a2a9d2279b85125b02275884fc</id>
+    <updated>2012-11-21T13:49:00-06:00</updated>
+    <published>2012-11-21T13:49:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>High Wind Warning issued November 21 at 1:49PM CST until November 22 at 5:00PM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=NE124CD0480394.HighWindWarning.124CD0562140NE.CYSNPWCYS.4fd3a7a2a9d2279b85125b02275884fc'/>
+    <summary>...STRONG WINDS THIS AFTERNOON THROUGH THANKSGIVING DAY ACROSS SOUTHEAST WYOMING AND WESTERN NEBRASKA... .A DEVELOPING STRENGTHENING PRESSURE GRADIENT AND WINDS ALOFT WILL COMBINE TO PRODUCE STRONG WINDS. THESE WINDS HAVE ALREADY STARTED IN OUR WIND PRONE AREAS NEAR ARLINGTON AND HAVE BEEN INCREASING AT BORDEAUX AND VEDAUWOO. WINDS ARE EXPECTED TO BECOME</summary>
+    <cap:event>High Wind Warning</cap:event>
+    <cap:effective>2012-11-21T13:49:00-06:00</cap:effective>
+    <cap:expires>2012-11-22T06:00:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Banner; Box Butte; Cheyenne; Dawes; Kimball; Morrill; North Sioux; Scotts Bluff; South Sioux</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>031007 031013 031033 031045 031105 031123 031157 031165</value>
+    <valueName>UGC</valueName>
+    <value>NEZ002 NEZ003 NEZ019 NEZ020 NEZ021 NEZ054 NEZ055 NEZ095 NEZ096</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.UPG.KCYS.HW.A.0027.121122T1600Z-121122T2300Z/
+/O.EXA.KCYS.HW.W.0035.121122T1000Z-121122T2300Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=NE124CD0480010.RedFlagWarning.124CD0549AA0NE.LBFRFWLBF.95853431a6cb669a95baaca9f0a07ef9</id>
+    <updated>2012-11-21T13:40:00-06:00</updated>
+    <published>2012-11-21T13:40:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Red Flag Warning issued November 21 at 1:40PM CST until November 21 at 8:00PM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=NE124CD0480010.RedFlagWarning.124CD0549AA0NE.LBFRFWLBF.95853431a6cb669a95baaca9f0a07ef9'/>
+    <summary>...RED FLAG WARNING FOR LOW RELATIVE HUMIDITY AND GUSTY WINDS... .LOW PRESSURE DEEPENING ACROSS THE NORTHERN PLAINS HAS INCREASED WINDS ACROSS THE EASTERN PANHANDLE THIS AFTERNOON. IN ADDITION...VERY DRY AIR IS IN PLACE ACROSS THE REGION LEADING TO CRITICALLY LOW RELATIVE HUMIDITY VALUES. ...RED FLAG WARNING IN EFFECT UNTIL 7 PM MST THIS EVENING FOR</summary>
+    <cap:event>Red Flag Warning</cap:event>
+    <cap:effective>2012-11-21T13:40:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T20:00:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Eastern Panhandle, Crescent Lake NWR</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>031005 031031 031049 031069 031075 031101 031161</value>
+    <valueName>UGC</valueName>
+    <value>NEZ204</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KLBF.FW.W.0052.121121T1940Z-121122T0200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=NE124CD04680DC.RedFlagWarning.124CD0547390NE.CYSRFWCYS.f034ab3f83c15795f5712b51f0e798d2</id>
+    <updated>2012-11-21T03:59:00-06:00</updated>
+    <published>2012-11-21T03:59:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Red Flag Warning issued November 21 at 3:59AM CST until November 21 at 7:00PM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=NE124CD04680DC.RedFlagWarning.124CD0547390NE.CYSRFWCYS.f034ab3f83c15795f5712b51f0e798d2'/>
+    <summary>...RED FLAG WARNING LATE THIS MORNING AND THIS AFTERNOON FOR PART OF SOUTHEAST WYOMING AND WESTERN NEBRASKA... .SURFACE LOW PRESSURE WILL STRENGTHEN TODAY ACROSS THE WESTERN DAKOTAS AND WILL COMBINE WITH A STRENGTHENING PRESSURE GRADIENT... LOW HUMIDITIES AND GUSTY WEST WINDS TO PRODUCE CRITICAL FIRE WEATHER CONDITIONS LATE THIS MORNING AND THIS AFTERNOON.</summary>
+    <cap:event>Red Flag Warning</cap:event>
+    <cap:effective>2012-11-21T03:59:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T19:00:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Box Butte, South Sioux; Pine Ridge, Nebraska National Forest, Oglala National Grasslands; Scotts Bluff National Monument, Wildcat Hills</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>031007 031013 031033 031045 031105 031123 031157 031165</value>
+    <valueName>UGC</valueName>
+    <value>NEZ311 NEZ312 NEZ313</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KCYS.FW.W.0077.121121T1600Z-121122T0100Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=NV124CD047B574.LakeWindAdvisory.124CD0544C80NV.REVNPWREV.d780aadc02ccdf794a8ee9278cafcd72</id>
+    <updated>2012-11-21T09:49:00-08:00</updated>
+    <published>2012-11-21T09:49:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Lake Wind Advisory issued November 21 at 9:49AM PST until November 21 at 4:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=NV124CD047B574.LakeWindAdvisory.124CD0544C80NV.REVNPWREV.d780aadc02ccdf794a8ee9278cafcd72'/>
+    <summary>...LAKE WIND ADVISORY REMAINS IN EFFECT UNTIL 4 PM PST THIS AFTERNOON FOR PYRAMID LAKE... A LAKE WIND ADVISORY FOR PYRAMID LAKE REMAINS IN EFFECT UNTIL 4 PM PST THIS AFTERNOON. * WINDS: SOUTHWEST 15 TO 30 WITH GUSTS TO 45 MPH. * WAVE HEIGHTS: 2 TO 4 FEET WITH HIGHEST WAVES FROM MID LAKE TO</summary>
+    <cap:event>Lake Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T09:49:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Western Nevada Basin and Range including Pyramid Lake</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>032001 032019 032027 032031</value>
+    <valueName>UGC</valueName>
+    <value>NVZ004</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KREV.LW.Y.0070.000000T0000Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=NV124CD047B574.WindAdvisory.124CD0544C80NV.REVNPWREV.669245120d419370817e6c377b78dc26</id>
+    <updated>2012-11-21T09:49:00-08:00</updated>
+    <published>2012-11-21T09:49:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 9:49AM PST until November 21 at 4:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=NV124CD047B574.WindAdvisory.124CD0544C80NV.REVNPWREV.669245120d419370817e6c377b78dc26'/>
+    <summary>...WIND ADVISORY NOW IN EFFECT UNTIL 4 PM PST THIS AFTERNOON... THE WIND ADVISORY IS NOW IN EFFECT UNTIL 4 PM PST THIS AFTERNOON. * TIMING: GUSTY WINDS WILL CONTINUE THROUGH THIS AFTERNOON. * WINDS: SOUTHWEST TO WEST 20 TO 30 MPH WITH GUSTS TO 50 MPH. RIDGE GUSTS UP TO 115 MPH. * WAVE HEIGHTS ON LAKE TAHOE: 2 TO 5 FEET WITH HIGHEST WAVES FROM</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T09:49:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Greater Lake Tahoe Area</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>032005 032031 032510</value>
+    <valueName>UGC</valueName>
+    <value>NVZ002</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KREV.WI.Y.0018.000000T0000Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=NV124CD047B574.WindAdvisory.124CD0544C80NV.REVNPWREV.6305dc61ea904385b22e425134eb40cc</id>
+    <updated>2012-11-21T09:49:00-08:00</updated>
+    <published>2012-11-21T09:49:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 9:49AM PST until November 21 at 4:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=NV124CD047B574.WindAdvisory.124CD0544C80NV.REVNPWREV.6305dc61ea904385b22e425134eb40cc'/>
+    <summary>...WIND ADVISORY NOW IN EFFECT UNTIL 4 PM PST THIS AFTERNOON... THE WIND ADVISORY IS NOW IN EFFECT UNTIL 4 PM PST THIS AFTERNOON. * TIMING: GUSTY WINDS WILL CONTINUE THROUGH THIS AFTERNOON. * WINDS: SOUTHWEST TO WEST WINDS 20 TO 35 MPH WITH GUSTS UP TO 55 MPH. * GUSTS UP TO 70 MPH IN THE FOOTHILLS AND WIND PRONE AREAS</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T09:49:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Greater Reno-Carson City-Minden Area</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>032005 032019 032029 032031 032510</value>
+    <valueName>UGC</valueName>
+    <value>NVZ003</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KREV.WI.Y.0018.000000T0000Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=OR124CD0481EEC.FloodWarning.124CD05760C8OR.PQRFLSPQR.6019e135743f49be67ffb4be3fc81047</id>
+    <updated>2012-11-21T12:19:00-08:00</updated>
+    <published>2012-11-21T12:19:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Flood Warning issued November 21 at 12:19PM PST until November 23 at 3:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=OR124CD0481EEC.FloodWarning.124CD05760C8OR.PQRFLSPQR.6019e135743f49be67ffb4be3fc81047'/>
+    <summary>NW OREGON/SW WASHINGTON COASTAL BASINS BULLETIN WILLAMETTE TRIBUTARIES BULLETIN ...THE FLOOD WARNING IS CANCELLED FOR THE FOLLOWING RIVERS IN OREGON... NEHALEM RIVER NEAR FOSS AFFECTING CLATSOP AND TILLAMOOK COUNTIES LUCKIAMUTE RIVER NEAR SUVER AFFECTING BENTON AND POLK COUNTIES</summary>
+    <cap:event>Flood Warning</cap:event>
+    <cap:effective>2012-11-21T12:19:00-08:00</cap:effective>
+    <cap:expires>2012-11-22T12:18:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Clackamas; Marion</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>041005 041047</value>
+    <valueName>UGC</valueName>
+    <value>ORC005 ORC047</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KPQR.FL.W.0056.121121T2314Z-121123T2300Z/
+/AURO3.1.ER.121121T2314Z.121122T1800Z.121123T1400Z.NO/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=OR124CD0481A3C.FloodWarning.124CD0549D5COR.MFRFLSMFR.43ee0ba4c83578b586ab40bb91f53e3f</id>
+    <updated>2012-11-21T12:07:00-08:00</updated>
+    <published>2012-11-21T12:07:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Flood Warning issued November 21 at 12:07PM PST until November 22 at 11:36PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=OR124CD0481A3C.FloodWarning.124CD0549D5COR.MFRFLSMFR.43ee0ba4c83578b586ab40bb91f53e3f'/>
+    <summary>...THE FLOOD WARNING CONTINUES FOR THE FOLLOWING RIVERS IN OREGON... COQUILLE RIVER AT COQUILLE AFFECTING COOS COUNTY... .THE COQUILLE RIVER IS STILL HIGH FOLLOWING THE HEAVY RAIN FROM THE PAST FEW DAYS. THE COQUILLE RIVER AT COQUILLE IS EXPECTED TO REMAIN ABOVE MODERATE FLOOD STAGE THROUGH TONIGHT. THE FLOOD WARNING CONTINUES FOR</summary>
+    <cap:event>Flood Warning</cap:event>
+    <cap:effective>2012-11-21T12:07:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T18:07:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Coos</cap:areaDesc>
+    <cap:polygon>43.12,-124.42 43.07,-124.16 43.10,-124.12 43.23,-124.22 43.16,-124.41 43.12,-124.42</cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>041011</value>
+    <valueName>UGC</valueName>
+    <value>ORC011</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KMFR.FL.W.0015.000000T0000Z-121123T0736Z/
+/COQO3.2.ER.121121T0147Z.121121T1430Z.121122T1936Z.NO/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=OR124CD047F584.WinterWeatherAdvisory.124CD0544C80OR.PQRWSWPQR.7e59bd46c85de7239e786c40bb1d3837</id>
+    <updated>2012-11-21T11:13:00-08:00</updated>
+    <published>2012-11-21T11:13:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 11:13AM PST until November 21 at 4:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=OR124CD047F584.WinterWeatherAdvisory.124CD0544C80OR.PQRWSWPQR.7e59bd46c85de7239e786c40bb1d3837'/>
+    <summary>...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL 4 PM PST THIS AFTERNOON FOR THE SOUTH WASHINGTON AND NORTH AND CENTRAL OREGON CASCADES... A WINTER WEATHER ADVISORY FOR SNOW REMAINS IN EFFECT UNTIL 4 PM PST THIS AFTERNOON. * TIMING...THROUGH THIS AFTERNOON.</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T11:13:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Cascades in Lane County; Northern Oregon Cascades</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>041005 041027 041039 041043 041047 041051</value>
+    <valueName>UGC</valueName>
+    <value>ORZ011 ORZ013</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KPQR.WW.Y.0026.000000T0000Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=OR124CD0479184.WindAdvisory.124CD0544C80OR.PDTNPWPDT.e76056f37c6ebe7b7c71f3c81a025c75</id>
+    <updated>2012-11-21T08:57:00-08:00</updated>
+    <published>2012-11-21T08:57:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 8:57AM PST until November 21 at 4:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=OR124CD0479184.WindAdvisory.124CD0544C80OR.PDTNPWPDT.e76056f37c6ebe7b7c71f3c81a025c75'/>
+    <summary>...WINDY CONDITIONS TODAY ACROSS PORTIONS OF NORTH OREGON AND SOUTHEASTERN WASHINGTON... .A SECOND WAVE FROM THE STRONG PACIFIC STORM SYSTEM OFF THE COAST HAS MOVED THROUGH EASTERN WASHINGTON AND OREGON THIS MORNING. THE COMBINATION OF TIGHT SURFACE PRESSURE GRADIENTS AND STRONG WINDS ALOFT MIXING TO THE SURFACE WILL CREATE VERY WINDY</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T08:57:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>North Central Oregon</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>041013 041017 041031 041055 041065</value>
+    <valueName>UGC</valueName>
+    <value>ORZ042</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KPDT.WI.Y.0036.000000T0000Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=OR124CD0479184.WindAdvisory.124CD0544C80OR.PDTNPWPDT.6bedc9ff97afe83a33c1467ab5dacd4a</id>
+    <updated>2012-11-21T08:57:00-08:00</updated>
+    <published>2012-11-21T08:57:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 8:57AM PST until November 21 at 4:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=OR124CD0479184.WindAdvisory.124CD0544C80OR.PDTNPWPDT.6bedc9ff97afe83a33c1467ab5dacd4a'/>
+    <summary>...WINDY CONDITIONS TODAY ACROSS PORTIONS OF NORTH OREGON AND SOUTHEASTERN WASHINGTON... .A SECOND WAVE FROM THE STRONG PACIFIC STORM SYSTEM OFF THE COAST HAS MOVED THROUGH EASTERN WASHINGTON AND OREGON THIS MORNING. THE COMBINATION OF TIGHT SURFACE PRESSURE GRADIENTS AND STRONG WINDS ALOFT MIXING TO THE SURFACE WILL CREATE VERY WINDY</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T08:57:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Foothills of the Northern Blue Mountains of Oregon; Foothills of the Southern Blue Mountains of Oregon; Lower Columbia Basin of Oregon</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>041021 041049 041059 041069</value>
+    <valueName>UGC</valueName>
+    <value>ORZ044 ORZ507 ORZ508</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KPDT.WI.Y.0036.000000T0000Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=PR124CD0484728.FloodAdvisory.124CD054525CPR.JSJFLSSJU.72f54ef18e4cc0d6e431f2338ca161a9</id>
+    <updated>2012-11-21T17:22:00-04:00</updated>
+    <published>2012-11-21T17:22:00-04:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Flood Advisory issued November 21 at 5:22PM AST until November 21 at 8:15PM AST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=PR124CD0484728.FloodAdvisory.124CD054525CPR.JSJFLSSJU.72f54ef18e4cc0d6e431f2338ca161a9'/>
+    <summary>THE NATIONAL WEATHER SERVICE IN SAN JUAN HAS ISSUED AN * URBAN AND SMALL STREAM FLOOD ADVISORY FOR THE FOLLOWING MUNICIPALITIES... IN PUERTO RICO BAYAMON...COMERIO...COROZAL...GUAYNABO...MOROVIS...NARANJITO... OROCOVIS...SAN JUAN...TRUJILLO ALTO...VEGA ALTA...VEGA BAJA...</summary>
+    <cap:event>Flood Advisory</cap:event>
+    <cap:effective>2012-11-21T17:22:00-04:00</cap:effective>
+    <cap:expires>2012-11-21T20:15:00-04:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Aguas Buenas; Bayamon; Comerio; Corozal; Guaynabo; Morovis; Naranjito; Orocovis; San Juan; Toa Alta; Trujillo Alto; Vega Alta; Vega Baja</cap:areaDesc>
+    <cap:polygon>18.31,-66.03 18.30,-66.05 18.31,-66.06 18.29,-66.07 18.24,-66.43 18.37,-66.45 18.39,-66.05 18.31,-66.03</cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>072007 072021 072045 072047 072061 072101 072105 072107 072127 072135 072139 072143 072145</value>
+    <valueName>UGC</valueName>
+    <value>PRC007 PRC021 PRC045 PRC047 PRC061 PRC101 PRC105 PRC107 PRC127 PRC135 PRC139 PRC143 PRC145</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.TJSJ.FA.Y.0443.121121T2122Z-121122T0015Z/
+/00000.N.ER.000000T0000Z.000000T0000Z.000000T0000Z.OO/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=PR124CD0482A40.FloodAdvisory.124CD0487734PR.JSJFLSSJU.8e2b46ba6cd2ac6eb3acdc637816a054</id>
+    <updated>2012-11-21T16:48:00-04:00</updated>
+    <published>2012-11-21T16:48:00-04:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Flood Advisory issued November 21 at 4:48PM AST until November 21 at 6:45PM AST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=PR124CD0482A40.FloodAdvisory.124CD0487734PR.JSJFLSSJU.8e2b46ba6cd2ac6eb3acdc637816a054'/>
+    <summary>THE NATIONAL WEATHER SERVICE IN SAN JUAN HAS ISSUED AN * URBAN AND SMALL STREAM FLOOD ADVISORY FOR THE FOLLOWING MUNICIPALITIES... IN PUERTO RICO HATILLO...LARES...UTUADO...YAUCO...SAN SEBASTIAN...ADJUNTAS... ARECIBO...LAS MARIAS AND CAMUY</summary>
+    <cap:event>Flood Advisory</cap:event>
+    <cap:effective>2012-11-21T16:48:00-04:00</cap:effective>
+    <cap:expires>2012-11-21T18:45:00-04:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Adjuntas; Arecibo; Camuy; Hatillo; Lares; Las Marias; San Sebastian; Utuado; Yauco</cap:areaDesc>
+    <cap:polygon>18.37,-66.65 18.21,-66.63 18.21,-66.64 18.19,-66.64 18.18,-66.65 18.16,-66.85 18.17,-66.84 18.19,-66.86 18.19,-66.89 18.20,-66.93 18.36,-66.98 18.37,-66.65</cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>072001 072013 072027 072065 072081 072083 072131 072141 072153</value>
+    <valueName>UGC</valueName>
+    <value>PRC001 PRC013 PRC027 PRC065 PRC081 PRC083 PRC131 PRC141 PRC153</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.TJSJ.FA.Y.0442.121121T2048Z-121121T2245Z/
+/00000.N.ER.000000T0000Z.000000T0000Z.000000T0000Z.OO/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=PR124CD0481780.FloodAdvisory.124CD0488CB0PR.JSJFLSSJU.bbba3a4c43590fbf989159746b1bdc6f</id>
+    <updated>2012-11-21T16:00:00-04:00</updated>
+    <published>2012-11-21T16:00:00-04:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Flood Advisory issued November 21 at 4:00PM AST until November 21 at 7:00PM AST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=PR124CD0481780.FloodAdvisory.124CD0488CB0PR.JSJFLSSJU.bbba3a4c43590fbf989159746b1bdc6f'/>
+    <summary>THE NATIONAL WEATHER SERVICE IN SAN JUAN HAS ISSUED AN * URBAN AND SMALL STREAM FLOOD ADVISORY FOR THE FOLLOWING MUNICIPALITIES... IN PUERTO RICO CAGUAS...CAYEY...GUAYAMA...GURABO...JUNCOS...PATILLAS AND SAN LORENZO</summary>
+    <cap:event>Flood Advisory</cap:event>
+    <cap:effective>2012-11-21T16:00:00-04:00</cap:effective>
+    <cap:expires>2012-11-21T19:00:00-04:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Caguas; Cayey; Guayama; Gurabo; Juncos; Patillas; San Lorenzo</cap:areaDesc>
+    <cap:polygon>18.21,-65.88 18.16,-65.92 18.04,-66.05 18.10,-66.13 18.27,-65.99 18.21,-65.88</cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>072025 072035 072057 072063 072077 072109 072129</value>
+    <valueName>UGC</valueName>
+    <value>PRC025 PRC035 PRC057 PRC063 PRC077 PRC109 PRC129</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.TJSJ.FA.Y.0441.121121T2000Z-121121T2300Z/
+/00000.N.ER.000000T0000Z.000000T0000Z.000000T0000Z.OO/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD0484728.WindAdvisory.124CD0555DF0SD.UNRNPWUNR.fc1a5af234488bcdcc36c60703567620</id>
+    <updated>2012-11-21T14:22:00-07:00</updated>
+    <published>2012-11-21T14:22:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 2:22PM MST until November 22 at 4:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD0484728.WindAdvisory.124CD0555DF0SD.UNRNPWUNR.fc1a5af234488bcdcc36c60703567620'/>
+    <summary>.A VIGOROUS PACIFIC STORM SYSTEM WILL CROSS THE REGION LATE TONIGHT AND TOMORROW. THIS WILL BRING COLDER AIR AND GUSTY NORTHWEST WINDS OVER MUCH OF WESTERN SOUTH DAKOTA ON THANKSGIVING DAY. WINDS ARE EXPECTED TO DECREASE TOMORROW EVENING. ...WIND ADVISORY IN EFFECT FROM 5 AM MST /6 AM CST/ TO 7 PM MST /8 PM CST/ THURSDAY...</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T14:22:00-07:00</cap:effective>
+    <cap:expires>2012-11-22T00:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Bennett; Butte; Haakon; Harding; Jackson; Mellette; Northern Foot Hills; Northern Meade Co Plains; Pennington Co Plains; Perkins; Southern Meade Co Plains; Sturgis, Piedmont Foot Hills; Todd; Tripp; Ziebach</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>046007 046019 046055 046063 046071 046081 046093 046095 046103 046105 046121 046123 046137</value>
+    <valueName>UGC</valueName>
+    <value>SDZ001 SDZ002 SDZ012 SDZ013 SDZ014 SDZ025 SDZ031 SDZ032 SDZ043 SDZ044 SDZ046 SDZ047 SDZ049 SDZ072 SDZ073</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.UPG.KUNR.HW.A.0006.121122T1500Z-121122T2300Z/
+/O.NEW.KUNR.WI.Y.0043.121122T1200Z-121123T0200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD0484728.WindAdvisory.124CD0555DF0SD.UNRNPWUNR.05f6632bbdc7ab4e666ddf9c5ef89154</id>
+    <updated>2012-11-21T14:22:00-07:00</updated>
+    <published>2012-11-21T14:22:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 2:22PM MST until November 22 at 7:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD0484728.WindAdvisory.124CD0555DF0SD.UNRNPWUNR.05f6632bbdc7ab4e666ddf9c5ef89154'/>
+    <summary>.A VIGOROUS PACIFIC STORM SYSTEM WILL CROSS THE REGION LATE TONIGHT AND TOMORROW. THIS WILL BRING COLDER AIR AND GUSTY NORTHWEST WINDS OVER MUCH OF WESTERN SOUTH DAKOTA ON THANKSGIVING DAY. WINDS ARE EXPECTED TO DECREASE TOMORROW EVENING. ...WIND ADVISORY IN EFFECT FROM 5 AM TO 7 PM MST THURSDAY... THE NATIONAL WEATHER SERVICE IN RAPID CITY HAS ISSUED A WIND</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T14:22:00-07:00</cap:effective>
+    <cap:expires>2012-11-22T00:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Rapid City</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>046103</value>
+    <valueName>UGC</valueName>
+    <value>SDZ026</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KUNR.WI.Y.0043.121122T1200Z-121123T0200Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD0484660.WindAdvisory.124CD055B7C8SD.ABRNPWABR.a25f5e44a70670a39c55ae38455b6047</id>
+    <updated>2012-11-21T14:20:00-07:00</updated>
+    <published>2012-11-21T14:20:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 2:20PM MST until November 22 at 11:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD0484660.WindAdvisory.124CD055B7C8SD.ABRNPWABR.a25f5e44a70670a39c55ae38455b6047'/>
+    <summary>...STRONG WINDS FOR THURSDAY... .A WEATHER SYSTEM PASSING THROUGH NORTH DAKOTA EARLY THURSDAY WILL DRAW STRONG WINDS AND COLDER AIR INTO THE REGION. THE STRONG WINDS WILL PERSIST INTO THURSDAY EVENING. ...WIND ADVISORY REMAINS IN EFFECT FROM 6 AM CST /5 AM MST/ THURSDAY TO MIDNIGHT CST /11 PM MST/ THURSDAY NIGHT...</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T14:20:00-07:00</cap:effective>
+    <cap:expires>2012-11-22T02:30:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Buffalo; Campbell; Corson; Dewey; Edmunds; Faulk; Hand; Hughes; Hyde; Jones; Lyman; McPherson; Potter; Stanley; Sully; Walworth</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>046017 046021 046031 046041 046045 046049 046059 046065 046069 046075 046085 046089 046107 046117 046119 046129</value>
+    <valueName>UGC</valueName>
+    <value>SDZ003 SDZ004 SDZ005 SDZ009 SDZ010 SDZ015 SDZ016 SDZ017 SDZ033 SDZ034 SDZ035 SDZ036 SDZ037 SDZ045 SDZ048 SDZ051</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KABR.WI.Y.0034.121122T1200Z-121123T0600Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD0484660.WindAdvisory.124CD055B7C8SD.ABRNPWABR.a7be4b58958e2223670627594458eaa8</id>
+    <updated>2012-11-21T14:20:00-07:00</updated>
+    <published>2012-11-21T14:20:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 2:20PM MST until November 22 at 11:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD0484660.WindAdvisory.124CD055B7C8SD.ABRNPWABR.a7be4b58958e2223670627594458eaa8'/>
+    <summary>...STRONG WINDS FOR THURSDAY... .A WEATHER SYSTEM PASSING THROUGH NORTH DAKOTA EARLY THURSDAY WILL DRAW STRONG WINDS AND COLDER AIR INTO THE REGION. THE STRONG WINDS WILL PERSIST INTO THURSDAY EVENING. ...WIND ADVISORY REMAINS IN EFFECT FROM NOON THURSDAY TO MIDNIGHT CST THURSDAY NIGHT...</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T14:20:00-07:00</cap:effective>
+    <cap:expires>2012-11-22T02:30:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Brown; Clark; Codington; Day; Deuel; Grant; Hamlin; Marshall; Roberts; Spink</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>046013 046025 046029 046037 046039 046051 046057 046091 046109 046115</value>
+    <valueName>UGC</valueName>
+    <value>SDZ006 SDZ007 SDZ008 SDZ011 SDZ018 SDZ019 SDZ020 SDZ021 SDZ022 SDZ023</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KABR.WI.Y.0034.121122T1800Z-121123T0600Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD04844D0.WindAdvisory.124CD0551B88SD.FSDNPWFSD.029e1c56fdca739b1878ca789eec1935</id>
+    <updated>2012-11-21T14:16:00-07:00</updated>
+    <published>2012-11-21T14:16:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 2:16PM MST until November 22 at 5:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD04844D0.WindAdvisory.124CD0551B88SD.FSDNPWFSD.029e1c56fdca739b1878ca789eec1935'/>
+    <summary>.VERY STRONG NORTHWEST WINDS ARE EXPECTED THANKSGIVING DAY BEHIND A COLD FRONT WHICH WILL MOVE ACROSS THE AREA FROM THE NORTHWEST LATE TONIGHT AND EARLY THANKSGIVING MORNING. THESE WINDS WILL REACH SUSTAINED SPEEDS OF 30 TO 35 MPG AT TIMES OVER PART OF THE AREA...WITH GUSTS AROUND 45 MPH. WINDS WILL DECREASE THANKSGIVING NIGHT BUT IT WILL STILL BE WINDY.</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T14:16:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T22:30:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Aurora; Beadle; Brule; Charles Mix; Davison; Douglas; Gregory; Jerauld; Sanborn</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>046003 046005 046015 046023 046035 046043 046053 046073 046111</value>
+    <valueName>UGC</valueName>
+    <value>SDZ038 SDZ050 SDZ052 SDZ053 SDZ057 SDZ058 SDZ059 SDZ063 SDZ064</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KFSD.WI.Y.0028.121122T1500Z-121123T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD04844D0.WindAdvisory.124CD0551B88SD.FSDNPWFSD.6bc774247bc784e7e29d8ceeae575a3b</id>
+    <updated>2012-11-21T14:16:00-07:00</updated>
+    <published>2012-11-21T14:16:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 2:16PM MST until November 22 at 5:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD04844D0.WindAdvisory.124CD0551B88SD.FSDNPWFSD.6bc774247bc784e7e29d8ceeae575a3b'/>
+    <summary>.VERY STRONG NORTHWEST WINDS ARE EXPECTED THANKSGIVING DAY BEHIND A COLD FRONT WHICH WILL MOVE ACROSS THE AREA FROM THE NORTHWEST LATE TONIGHT AND EARLY THANKSGIVING MORNING. THESE WINDS WILL REACH SUSTAINED SPEEDS OF 30 TO 35 MPG AT TIMES OVER PART OF THE AREA...WITH GUSTS AROUND 45 MPH. WINDS WILL DECREASE THANKSGIVING NIGHT BUT IT WILL STILL BE WINDY.</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T14:16:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T22:30:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Brookings; Kingsbury; Lake; McCook; Miner</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>046011 046077 046079 046087 046097</value>
+    <valueName>UGC</valueName>
+    <value>SDZ039 SDZ040 SDZ054 SDZ055 SDZ061</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KFSD.WI.Y.0028.121122T1800Z-121123T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD04844D0.WindAdvisory.124CD0551B88SD.FSDNPWFSD.e3a882c99cea2cce7030386b48a0d29f</id>
+    <updated>2012-11-21T14:16:00-07:00</updated>
+    <published>2012-11-21T14:16:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 2:16PM MST until November 22 at 5:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD04844D0.WindAdvisory.124CD0551B88SD.FSDNPWFSD.e3a882c99cea2cce7030386b48a0d29f'/>
+    <summary>.VERY STRONG NORTHWEST WINDS ARE EXPECTED THANKSGIVING DAY BEHIND A COLD FRONT WHICH WILL MOVE ACROSS THE AREA FROM THE NORTHWEST LATE TONIGHT AND EARLY THANKSGIVING MORNING. THESE WINDS WILL REACH SUSTAINED SPEEDS OF 30 TO 35 MPG AT TIMES OVER PART OF THE AREA...WITH GUSTS AROUND 45 MPH. WINDS WILL DECREASE THANKSGIVING NIGHT BUT IT WILL STILL BE WINDY.</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T14:16:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T22:30:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Lincoln; Minnehaha; Moody; Union</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>046083 046099 046101 046127</value>
+    <valueName>UGC</valueName>
+    <value>SDZ056 SDZ062 SDZ067 SDZ071</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXA.KFSD.WI.Y.0028.121122T1800Z-121123T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD04844D0.WindAdvisory.124CD0551B88SD.FSDNPWFSD.71ce9d64ddf085179f09ac228cb7acdb</id>
+    <updated>2012-11-21T14:16:00-07:00</updated>
+    <published>2012-11-21T14:16:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 2:16PM MST until November 22 at 5:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD04844D0.WindAdvisory.124CD0551B88SD.FSDNPWFSD.71ce9d64ddf085179f09ac228cb7acdb'/>
+    <summary>.VERY STRONG NORTHWEST WINDS ARE EXPECTED THANKSGIVING DAY BEHIND A COLD FRONT WHICH WILL MOVE ACROSS THE AREA FROM THE NORTHWEST LATE TONIGHT AND EARLY THANKSGIVING MORNING. THESE WINDS WILL REACH SUSTAINED SPEEDS OF 30 TO 35 MPG AT TIMES OVER PART OF THE AREA...WITH GUSTS AROUND 45 MPH. WINDS WILL DECREASE THANKSGIVING NIGHT BUT IT WILL STILL BE WINDY.</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T14:16:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T22:30:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Bon Homme; Hanson; Hutchinson</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>046009 046061 046067</value>
+    <valueName>UGC</valueName>
+    <value>SDZ060 SDZ065 SDZ068</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KFSD.WI.Y.0028.121122T1500Z-121123T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD04844D0.WindAdvisory.124CD0551B88SD.FSDNPWFSD.454eb8e3773d145354790b6c71cfbbdd</id>
+    <updated>2012-11-21T14:16:00-07:00</updated>
+    <published>2012-11-21T14:16:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 2:16PM MST until November 22 at 5:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD04844D0.WindAdvisory.124CD0551B88SD.FSDNPWFSD.454eb8e3773d145354790b6c71cfbbdd'/>
+    <summary>.VERY STRONG NORTHWEST WINDS ARE EXPECTED THANKSGIVING DAY BEHIND A COLD FRONT WHICH WILL MOVE ACROSS THE AREA FROM THE NORTHWEST LATE TONIGHT AND EARLY THANKSGIVING MORNING. THESE WINDS WILL REACH SUSTAINED SPEEDS OF 30 TO 35 MPG AT TIMES OVER PART OF THE AREA...WITH GUSTS AROUND 45 MPH. WINDS WILL DECREASE THANKSGIVING NIGHT BUT IT WILL STILL BE WINDY.</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T14:16:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T22:30:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Clay; Turner; Yankton</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>046027 046125 046135</value>
+    <valueName>UGC</valueName>
+    <value>SDZ066 SDZ069 SDZ070</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXA.KFSD.WI.Y.0028.121122T1500Z-121123T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD046E3B0.ExtremeFireDanger.124CD054796CSD.UNRRFDUNR.4800ac69c0856f07686e055b63c7c381</id>
+    <updated>2012-11-21T05:12:00-07:00</updated>
+    <published>2012-11-21T05:12:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Extreme Fire Danger issued November 21 at 5:12AM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=SD124CD046E3B0.ExtremeFireDanger.124CD054796CSD.UNRRFDUNR.4800ac69c0856f07686e055b63c7c381'/>
+    <summary>.DISCUSSION...AN APPROACHING PACIFIC STORM SYSTEM WILL PRODUCE VERY WARM TEMPERATURES AND INCREASING SOUTHWEST WINDS TODAY. MAXIMUM TEMPERATURES WILL REACH THE LOWER 70S IN MANY LOCATIONS WITH READINGS IN THE 60S COMMON. MINIMUM RELATIVE HUMIDITIES WILL DROP TO BELOW 25 PERCENT OVER MOST OF THE FORECAST AREA. WINDS THIS AFTERNOON ARE FORECAST TO INCREASE TO 10 TO 20 MPH FROM THE</summary>
+    <cap:event>Extreme Fire Danger</cap:event>
+    <cap:effective>2012-11-21T05:12:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T18:15:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Unknown</cap:urgency>
+    <cap:severity>Unknown</cap:severity>
+    <cap:certainty>Unknown</cap:certainty>
+    <cap:areaDesc>Bennett; Custer Co Plains; Hermosa Foot Hills; Jackson; Mellette; Northern Foot Hills; Rapid City; Shannon; Todd</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>046007 046033 046071 046081 046095 046103 046113 046121</value>
+    <valueName>UGC</valueName>
+    <value>SDZ025 SDZ026 SDZ030 SDZ042 SDZ043 SDZ044 SDZ046 SDZ047 SDZ074</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value></value>
+    </cap:parameter>
+    </entry>
+    
+
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD048446C.FloodWarning.124CD05515ACWA.SEWFLSSEW.10a14d308cb5469ecd46b2c29d5eabd4</id>
+    <updated>2012-11-21T13:15:00-08:00</updated>
+    <published>2012-11-21T13:15:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Flood Warning issued November 21 at 1:15PM PST until November 22 at 12:11AM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD048446C.FloodWarning.124CD05515ACWA.SEWFLSSEW.10a14d308cb5469ecd46b2c29d5eabd4'/>
+    <summary>...THE FLOOD WARNING CONTINUES FOR THE FOLLOWING RIVERS IN WASHINGTON... CHEHALIS RIVER NEAR GRAND MOUND AFFECTING THURSTON COUNTY. CHEHALIS RIVER AT PORTER AFFECTING GRAYS HARBOR COUNTY. .FLOOD BULLETIN NO. 28. SOUTH WEST REGION</summary>
+    <cap:event>Flood Warning</cap:event>
+    <cap:effective>2012-11-21T13:15:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T21:15:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Thurston</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>053067</value>
+    <valueName>UGC</valueName>
+    <value>WAC067</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KSEW.FL.W.0028.000000T0000Z-121122T0811Z/
+/CGMW1.1.ER.121120T1407Z.121121T0800Z.121121T2311Z.NO/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD048446C.FloodWarning.124CD05515ACWA.SEWFLSSEW.ca17d7c4252834dd5b4fd56de36ebaae</id>
+    <updated>2012-11-21T13:15:00-08:00</updated>
+    <published>2012-11-21T13:15:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Flood Warning issued November 21 at 1:15PM PST until November 22 at 8:19PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD048446C.FloodWarning.124CD05515ACWA.SEWFLSSEW.ca17d7c4252834dd5b4fd56de36ebaae'/>
+    <summary>...THE FLOOD WARNING CONTINUES FOR THE FOLLOWING RIVERS IN WASHINGTON... CHEHALIS RIVER NEAR GRAND MOUND AFFECTING THURSTON COUNTY. CHEHALIS RIVER AT PORTER AFFECTING GRAYS HARBOR COUNTY. .FLOOD BULLETIN NO. 28. SOUTH WEST REGION</summary>
+    <cap:event>Flood Warning</cap:event>
+    <cap:effective>2012-11-21T13:15:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T21:15:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Grays Harbor</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>053027</value>
+    <valueName>UGC</valueName>
+    <value>WAC027</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KSEW.FL.W.0031.000000T0000Z-121123T0419Z/
+/CRPW1.1.ER.121121T1430Z.121122T0000Z.121122T1919Z.NO/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD047F584.WinterWeatherAdvisory.124CD0544C80WA.PQRWSWPQR.484c288368f8aeda18b7732e2faab3fe</id>
+    <updated>2012-11-21T11:13:00-08:00</updated>
+    <published>2012-11-21T11:13:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 11:13AM PST until November 21 at 4:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD047F584.WinterWeatherAdvisory.124CD0544C80WA.PQRWSWPQR.484c288368f8aeda18b7732e2faab3fe'/>
+    <summary>...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL 4 PM PST THIS AFTERNOON FOR THE SOUTH WASHINGTON AND NORTH AND CENTRAL OREGON CASCADES... A WINTER WEATHER ADVISORY FOR SNOW REMAINS IN EFFECT UNTIL 4 PM PST THIS AFTERNOON. * TIMING...THROUGH THIS AFTERNOON.</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T11:13:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>South Washington Cascades</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>053015 053059</value>
+    <valueName>UGC</valueName>
+    <value>WAZ019</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KPQR.WW.Y.0026.000000T0000Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD047F458.WindAdvisory.124CD0544C80WA.OTXNPWOTX.c71e3f590e8018cbeb10143bd4d0f208</id>
+    <updated>2012-11-21T11:10:00-08:00</updated>
+    <published>2012-11-21T11:10:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 11:10AM PST until November 21 at 4:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD047F458.WindAdvisory.124CD0544C80WA.OTXNPWOTX.c71e3f590e8018cbeb10143bd4d0f208'/>
+    <summary>...WINDY CONDITIONS TODAY SOUTH CENTRAL BASIN AND PALOUSE AREAS... .A STRONG COLD FRONT WILL CONCENTRATE WINDS IN THE SOUTHERN CENTRAL BASIN AND PALOUSE AREAS OF EASTERN WASHINGTON TODAY. CAUTION SHOULD BE EXERCISED WHEN OUTDOORS AND DRIVING HIGH PROFILE VEHICLES. ...WIND ADVISORY REMAINS IN EFFECT UNTIL 4 PM PST THIS</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T11:10:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Lower Garfield and Asotin Counties; Moses Lake Area; Upper Columbia Basin; Washington Palouse</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>053001 053003 053017 053023 053025 053043 053047 053063 053075</value>
+    <valueName>UGC</valueName>
+    <value>WAZ032 WAZ033 WAZ034 WAZ035</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KOTX.WI.Y.0015.000000T0000Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD047DE14.WinterWeatherAdvisory.124CD054C1B0WA.OTXWSWOTX.c5b6287532cc2a35cd1d552dceb8085f</id>
+    <updated>2012-11-21T10:53:00-08:00</updated>
+    <published>2012-11-21T10:53:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 10:53AM PST until November 21 at 7:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD047DE14.WinterWeatherAdvisory.124CD054C1B0WA.OTXWSWOTX.c5b6287532cc2a35cd1d552dceb8085f'/>
+    <summary>...SNOW WILL AFFECT HOLIDAY TRAVEL ACROSS THE CASCADE PASSES... .A MOIST PACIFIC STORM SYSTEM WILL BRING SIGNIFICANT ACCUMULATIONS OF SNOW TO THE NORTHERN CASCADES TODAY. WHILE PRECIPITATION WILL BE LARGELY RAIN OR RAIN SNOW MIX IN THE VALLEYS...HIGHER VALLEYS NEAR THE CREST WILL RECEIVE ACCUMULATING SNOW.</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T10:53:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T19:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>East Slopes Northern Cascades</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>053007 053047</value>
+    <valueName>UGC</valueName>
+    <value>WAZ042</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KOTX.WW.Y.0029.000000T0000Z-121122T0300Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD0479184.WindAdvisory.124CD0544C80WA.PDTNPWPDT.f788bc8ac663139d543f55632c56792b</id>
+    <updated>2012-11-21T08:57:00-08:00</updated>
+    <published>2012-11-21T08:57:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 8:57AM PST until November 21 at 4:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD0479184.WindAdvisory.124CD0544C80WA.PDTNPWPDT.f788bc8ac663139d543f55632c56792b'/>
+    <summary>...WINDY CONDITIONS TODAY ACROSS PORTIONS OF NORTH OREGON AND SOUTHEASTERN WASHINGTON... .A SECOND WAVE FROM THE STRONG PACIFIC STORM SYSTEM OFF THE COAST HAS MOVED THROUGH EASTERN WASHINGTON AND OREGON THIS MORNING. THE COMBINATION OF TIGHT SURFACE PRESSURE GRADIENTS AND STRONG WINDS ALOFT MIXING TO THE SURFACE WILL CREATE VERY WINDY</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T08:57:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Foothills of the Blue Mountains of Washington; Lower Columbia Basin of Washington</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>053005 053013 053021 053039 053071</value>
+    <valueName>UGC</valueName>
+    <value>WAZ028 WAZ029</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KPDT.WI.Y.0036.000000T0000Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD0479184.WindAdvisory.124CD0544C80WA.PDTNPWPDT.758c2344d60a3a1c6252477491030662</id>
+    <updated>2012-11-21T08:57:00-08:00</updated>
+    <published>2012-11-21T08:57:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Wind Advisory issued November 21 at 8:57AM PST until November 21 at 4:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD0479184.WindAdvisory.124CD0544C80WA.PDTNPWPDT.758c2344d60a3a1c6252477491030662'/>
+    <summary>...WINDY CONDITIONS TODAY ACROSS PORTIONS OF NORTH OREGON AND SOUTHEASTERN WASHINGTON... .A SECOND WAVE FROM THE STRONG PACIFIC STORM SYSTEM OFF THE COAST HAS MOVED THROUGH EASTERN WASHINGTON AND OREGON THIS MORNING. THE COMBINATION OF TIGHT SURFACE PRESSURE GRADIENTS AND STRONG WINDS ALOFT MIXING TO THE SURFACE WILL CREATE VERY WINDY</summary>
+    <cap:event>Wind Advisory</cap:event>
+    <cap:effective>2012-11-21T08:57:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Simcoe Highlands</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>053039 053077</value>
+    <valueName>UGC</valueName>
+    <value>WAZ521</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KPDT.WI.Y.0036.000000T0000Z-121122T0000Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD0475F20.FloodWarning.124CD0545770WA.SEWFLSSEW.2203582587e29d7ca30bed7a916d3b32</id>
+    <updated>2012-11-21T07:28:00-08:00</updated>
+    <published>2012-11-21T07:28:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Flood Warning issued November 21 at 7:28AM PST until November 21 at 11:44PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD0475F20.FloodWarning.124CD0545770WA.SEWFLSSEW.2203582587e29d7ca30bed7a916d3b32'/>
+    <summary>...THE FLOOD WARNING CONTINUES FOR THE FOLLOWING RIVERS IN WASHINGTON... SKOKOMISH RIVER NEAR POTLATCH AFFECTING MASON COUNTY. .FLOOD BULLETIN NO. 27. OLYMPIC PENINSULA REGION MODERATE RAIN SHOWERS OVERNIGHT CAUSED A MINOR RISE IN THE</summary>
+    <cap:event>Flood Warning</cap:event>
+    <cap:effective>2012-11-21T07:28:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T16:28:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Moderate</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Mason</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>053045</value>
+    <valueName>UGC</valueName>
+    <value>WAC045</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KSEW.FL.W.0023.000000T0000Z-121122T0744Z/
+/SRPW1.1.ER.121119T0705Z.121120T0100Z.121121T2244Z.NR/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD046C40C.WinterWeatherAdvisory.124CD0547390WA.SEWWSWSEW.2e383feadcbdeb952e0ed97c2eda3f98</id>
+    <updated>2012-11-21T03:31:00-08:00</updated>
+    <published>2012-11-21T03:31:00-08:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 3:31AM PST until November 21 at 10:00PM PST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WA124CD046C40C.WinterWeatherAdvisory.124CD0547390WA.SEWWSWSEW.2e383feadcbdeb952e0ed97c2eda3f98'/>
+    <summary>...WINTER WEATHER ADVISORY NOW IN EFFECT UNTIL 10 PM PST THIS EVENING... * SOME AFFECTED LOCATIONS...MOUNT BAKER HIGHWAY...STEVENS PASS...SNOQUALMIE PASS...THE ROAD TO PARADISE IN MOUNT RAINIER NATIONAL PARK...HURRICANE RIDGE IN THE OLYMPICS. * TIMING...EXPECT SNOW SHOWERS IN THE MOUNTAINS TODAY...WITH</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T03:31:00-08:00</cap:effective>
+    <cap:expires>2012-11-21T17:00:00-08:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Olympics; West Slopes Central Cascades and Passes; West Slopes Northern Cascades and Passes</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>053009 053027 053031 053033 053041 053045 053053 053057 053061 053073</value>
+    <valueName>UGC</valueName>
+    <value>WAZ513 WAZ518 WAZ519</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KSEW.WW.Y.0036.000000T0000Z-121122T0600Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WI124CD0482B08.SpecialWeatherStatement.124CD0549AA0WI.GRBSPSGRB.ebbc9946051eceb8a0942a64789ad6b7</id>
+    <updated>2012-11-21T14:50:00-06:00</updated>
+    <published>2012-11-21T14:50:00-06:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Special Weather Statement issued November 21 at 2:50PM CST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WI124CD0482B08.SpecialWeatherStatement.124CD0549AA0WI.GRBSPSGRB.ebbc9946051eceb8a0942a64789ad6b7'/>
+    <summary>...UNSEASONABLY WARM WEATHER EXPECTED FOR THANKSGIVING DAY... WEDNESDAY AFTERNOON TEMPERATURES WERE VERY MILD FOR THE LATTER PART OF NOVEMBER...WITH READINGS AT MOST REPORTING STATIONS ABOUT 20 DEGREES ABOVE NORMAL. SKIES WERE PARTLY CLOUDY...WITH SOUTH WINDS OF 10 TO 15 MPH. WINDS WERE A LITTLE STRONGER NEAR THE LAKE. THE VERY MILD WEATHER WILL CONTINUE OVERNIGHT AND THROUGH THANKSGIVING</summary>
+    <cap:event>Special Weather Statement</cap:event>
+    <cap:effective>2012-11-21T14:50:00-06:00</cap:effective>
+    <cap:expires>2012-11-21T20:00:00-06:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Observed</cap:certainty>
+    <cap:areaDesc>Brown; Calumet; Door; Florence; Forest; Kewaunee; Langlade; Lincoln; Manitowoc; Marathon; Menominee; Northern Marinette County; Northern Oconto County; Oneida; Outagamie; Portage; Shawano; Southern Marinette County; Southern Oconto County; Vilas; Waupaca; Waushara; Winnebago; Wood</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>055009 055015 055029 055037 055041 055061 055067 055069 055071 055073 055075 055078 055083 055085 055087 055097 055115 055125 055135 055137 055139 055141</value>
+    <valueName>UGC</valueName>
+    <value>WIZ005 WIZ010 WIZ011 WIZ012 WIZ013 WIZ018 WIZ019 WIZ020 WIZ021 WIZ022 WIZ030 WIZ031 WIZ035 WIZ036 WIZ037 WIZ038 WIZ039 WIZ040 WIZ045 WIZ048 WIZ049 WIZ050 WIZ073 WIZ074</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value></value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0480394.HighWindWarning.124CD0562140WY.CYSNPWCYS.58c6f44fdf0312358636bc1f394916d6</id>
+    <updated>2012-11-21T12:49:00-07:00</updated>
+    <published>2012-11-21T12:49:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>High Wind Warning issued November 21 at 12:49PM MST until November 22 at 4:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0480394.HighWindWarning.124CD0562140WY.CYSNPWCYS.58c6f44fdf0312358636bc1f394916d6'/>
+    <summary>...STRONG WINDS THIS AFTERNOON THROUGH THANKSGIVING DAY ACROSS SOUTHEAST WYOMING AND WESTERN NEBRASKA... .A DEVELOPING STRENGTHENING PRESSURE GRADIENT AND WINDS ALOFT WILL COMBINE TO PRODUCE STRONG WINDS. THESE WINDS HAVE ALREADY STARTED IN OUR WIND PRONE AREAS NEAR ARLINGTON AND HAVE BEEN INCREASING AT BORDEAUX AND VEDAUWOO. WINDS ARE EXPECTED TO BECOME</summary>
+    <cap:event>High Wind Warning</cap:event>
+    <cap:effective>2012-11-21T12:49:00-07:00</cap:effective>
+    <cap:expires>2012-11-22T05:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Central Laramie County; Converse County Lower Elevations; East Laramie County; East Platte County; Goshen County; Laramie Valley; Niobrara County</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>056001 056009 056015 056021 056027 056031</value>
+    <valueName>UGC</valueName>
+    <value>WYZ101 WYZ102 WYZ107 WYZ108 WYZ115 WYZ118 WYZ119</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KCYS.HW.W.0035.121122T1000Z-121122T2300Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0480394.HighWindWarning.124CD0562140WY.CYSNPWCYS.220243ca61edc7baf0e1b96227ce47a6</id>
+    <updated>2012-11-21T12:49:00-07:00</updated>
+    <published>2012-11-21T12:49:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>High Wind Warning issued November 21 at 12:49PM MST until November 22 at 4:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0480394.HighWindWarning.124CD0562140WY.CYSNPWCYS.220243ca61edc7baf0e1b96227ce47a6'/>
+    <summary>...STRONG WINDS THIS AFTERNOON THROUGH THANKSGIVING DAY ACROSS SOUTHEAST WYOMING AND WESTERN NEBRASKA... .A DEVELOPING STRENGTHENING PRESSURE GRADIENT AND WINDS ALOFT WILL COMBINE TO PRODUCE STRONG WINDS. THESE WINDS HAVE ALREADY STARTED IN OUR WIND PRONE AREAS NEAR ARLINGTON AND HAVE BEEN INCREASING AT BORDEAUX AND VEDAUWOO. WINDS ARE EXPECTED TO BECOME</summary>
+    <cap:event>High Wind Warning</cap:event>
+    <cap:effective>2012-11-21T12:49:00-07:00</cap:effective>
+    <cap:expires>2012-11-22T05:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Central Carbon County; Ferris, Seminoe, Shirley Mountains; Shirley Basin</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>056001 056007</value>
+    <valueName>UGC</valueName>
+    <value>WYZ104 WYZ105 WYZ109</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KCYS.HW.W.0035.121122T0000Z-121122T2300Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0480394.HighWindWarning.124CD0562140WY.CYSNPWCYS.214d9028f35628bcbd85322cb031cf3b</id>
+    <updated>2012-11-21T12:49:00-07:00</updated>
+    <published>2012-11-21T12:49:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>High Wind Warning issued November 21 at 12:49PM MST until November 22 at 4:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0480394.HighWindWarning.124CD0562140WY.CYSNPWCYS.214d9028f35628bcbd85322cb031cf3b'/>
+    <summary>...STRONG WINDS THIS AFTERNOON THROUGH THANKSGIVING DAY ACROSS SOUTHEAST WYOMING AND WESTERN NEBRASKA... .A DEVELOPING STRENGTHENING PRESSURE GRADIENT AND WINDS ALOFT WILL COMBINE TO PRODUCE STRONG WINDS. THESE WINDS HAVE ALREADY STARTED IN OUR WIND PRONE AREAS NEAR ARLINGTON AND HAVE BEEN INCREASING AT BORDEAUX AND VEDAUWOO. WINDS ARE EXPECTED TO BECOME</summary>
+    <cap:event>High Wind Warning</cap:event>
+    <cap:effective>2012-11-21T12:49:00-07:00</cap:effective>
+    <cap:expires>2012-11-22T05:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Central Laramie Range and Southwest Platte County; North Snowy Range Foothills; South Laramie Range; South Laramie Range Foothills</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>056001 056007 056021 056031</value>
+    <valueName>UGC</valueName>
+    <value>WYZ106 WYZ110 WYZ116 WYZ117</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.EXT.KCYS.HW.W.0035.121121T1949Z-121122T2300Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD047DE14.WinterWeatherAdvisory.124CD0544C80WY.RIWWSWRIW.b4cbdc6eeebcfd06b996b16323abd1fe</id>
+    <updated>2012-11-21T11:53:00-07:00</updated>
+    <published>2012-11-21T11:53:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Winter Weather Advisory issued November 21 at 11:53AM MST until November 22 at 2:00AM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD047DE14.WinterWeatherAdvisory.124CD0544C80WY.RIWWSWRIW.b4cbdc6eeebcfd06b996b16323abd1fe'/>
+    <summary>...STRONG WINDS AND PERIODS OF MODERATE TO HEAVY SNOW WILL MAKE TRAVEL DIFFICULT IN NORTHWEST WYOMING THIS AFTERNOON THROUGH TONIGHT... .VERY STRONG WINDS AHEAD OF AN APPROACHING COLD FRONT WILL MAKE TRAVEL DIFFICULT OVER TETON PASS TOGWOTEE PASS AND IN YELLOWSTONE NATIONAL PARK THROUGH TONIGHT. INITIALLY... PRECIPITATION WILL BEGIN AS</summary>
+    <cap:event>Winter Weather Advisory</cap:event>
+    <cap:effective>2012-11-21T11:53:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T17:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Teton and Gros Ventre Mountains; Yellowstone National Park</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>016043 030031 030067 056013 056023 056029 056035 056039</value>
+    <valueName>UGC</valueName>
+    <value>WYZ001 WYZ012</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KRIW.WW.Y.0029.000000T0000Z-121122T0900Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD04680DC.RedFlagWarning.124CD0547390WY.CYSRFWCYS.1efa777fcf066b15b71b81f01c49bb82</id>
+    <updated>2012-11-21T02:59:00-07:00</updated>
+    <published>2012-11-21T02:59:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Red Flag Warning issued November 21 at 2:59AM MST until November 21 at 6:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD04680DC.RedFlagWarning.124CD0547390WY.CYSRFWCYS.1efa777fcf066b15b71b81f01c49bb82'/>
+    <summary>...RED FLAG WARNING LATE THIS MORNING AND THIS AFTERNOON FOR PART OF SOUTHEAST WYOMING AND WESTERN NEBRASKA... .SURFACE LOW PRESSURE WILL STRENGTHEN TODAY ACROSS THE WESTERN DAKOTAS AND WILL COMBINE WITH A STRENGTHENING PRESSURE GRADIENT... LOW HUMIDITIES AND GUSTY WEST WINDS TO PRODUCE CRITICAL FIRE WEATHER CONDITIONS LATE THIS MORNING AND THIS AFTERNOON.</summary>
+    <cap:event>Red Flag Warning</cap:event>
+    <cap:effective>2012-11-21T02:59:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T18:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Platte, Goshen, Central and Eastern Laramie</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>056015 056021 056031</value>
+    <valueName>UGC</valueName>
+    <value>WYZ310</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KCYS.FW.W.0077.121121T1600Z-121122T0100Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0467F4C.SpecialWeatherStatement.124CD0489868WY.RIWSPSRIW.ec8736525d94cedc9c739c4d813b6b09</id>
+    <updated>2012-11-21T02:55:00-07:00</updated>
+    <published>2012-11-21T02:55:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Special Weather Statement issued November 21 at 2:55AM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0467F4C.SpecialWeatherStatement.124CD0489868WY.RIWSPSRIW.ec8736525d94cedc9c739c4d813b6b09'/>
+    <summary>WINDS WILL INCREASE TO 30 TO 40 MPH WITH GUSTS OVER 60 MPH TODAY AND TONIGHT. GUSTS COULD LOCALLY EXCEED 70 MPH AT TIMES...ESPECIALLY OVER HIGHER ELEVATIONS AND EXPOSED LOCATIONS. IN ADDITION... PERIODS OF SNOW WILL MOVE INTO THE NORTHWEST BY THIS AFTERNOON AND WILL SPREAD EAST AND SOUTH THROUGH THE DAY...LEADING TO AREAS OF SHARPLY REDUCED VISIBILITY IN SNOW AND BLOWING SNOW BY</summary>
+    <cap:event>Special Weather Statement</cap:event>
+    <cap:effective>2012-11-21T02:55:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T16:30:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Observed</cap:certainty>
+    <cap:areaDesc>Absaroka Mountains; Bighorn Mountains Southeast; Bighorn Mountains West; Salt River and Wyoming Ranges; Wind River Mountains East; Wind River Mountains West</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>056003 056013 056017 056019 056023 056025 056029 056035 056043</value>
+    <valueName>UGC</valueName>
+    <value>WYZ002 WYZ008 WYZ009 WYZ014 WYZ015 WYZ024</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value></value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0467F4C.SpecialWeatherStatement.124CD0489868WY.RIWSPSRIW.29e08cfbe1d20288a69e4845e9e1cf08</id>
+    <updated>2012-11-21T02:55:00-07:00</updated>
+    <published>2012-11-21T02:55:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Special Weather Statement issued November 21 at 2:55AM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0467F4C.SpecialWeatherStatement.124CD0489868WY.RIWSPSRIW.29e08cfbe1d20288a69e4845e9e1cf08'/>
+    <summary>A COLD FRONT WILL APPROACH FROM THE NORTH THIS EVENING...EXPECT A SUDDEN BURST OF RAIN AND SNOW WITH THE FRONT...QUICKLY CHANGING TO SNOW BEHIND THE FRONT. IN ADDITION...EXPECT A PERIOD OF VERY STRONG NORTHWEST WINDS WITH A FEW GUSTS NEAR 60 MPH POSSIBLE. THESE STRONG WINDS WILL COMBINE WITH THE PRECIPITATION TO CREATE DIFFICULT TRAVEL TONIGHT. THOSE WHO PLAN ON TRAVELLING THROUGH NORTHERN</summary>
+    <cap:event>Special Weather Statement</cap:event>
+    <cap:effective>2012-11-21T02:55:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T16:30:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Observed</cap:certainty>
+    <cap:areaDesc>Northeast Johnson County</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>056019</value>
+    <valueName>UGC</valueName>
+    <value>WYZ010</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value></value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0467F4C.SpecialWeatherStatement.124CD0489868WY.RIWSPSRIW.d326170f36a212137af56bb65ad52795</id>
+    <updated>2012-11-21T02:55:00-07:00</updated>
+    <published>2012-11-21T02:55:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Special Weather Statement issued November 21 at 2:55AM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0467F4C.SpecialWeatherStatement.124CD0489868WY.RIWSPSRIW.d326170f36a212137af56bb65ad52795'/>
+    <summary>SOUTHWEST WINDS WILL INCREASE TODAY TO 30 TO 40 MPH WITH FREQUENT GUSTS OVER 60 MPH. THESE STRONG WINDS WILL CONTINUE THROUGH THE NIGHT WITH LIGHT SNOW POSSIBLE TOWARD MORNING. THOSE WITH OUTDOOR INTERESTS SHOULD PLAN ON RAPIDLY DETERIORATING CONDITIONS. THOSE WHO PLAN ON TRAVELLING WITH TRAILERS OR IN HIGH PROFILE VEHICLES SHOULD CONTINUE TO MONITOR ROAD CONDITIONS TODAY AND TONIGHT.</summary>
+    <cap:event>Special Weather Statement</cap:event>
+    <cap:effective>2012-11-21T02:55:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T16:30:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Minor</cap:severity>
+    <cap:certainty>Observed</cap:certainty>
+    <cap:areaDesc>Casper Mountain</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>056025</value>
+    <valueName>UGC</valueName>
+    <value>WYZ022</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value></value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0466DB8.AirQualityAlert.124CD0488CB0WY.UNRAQAUNR.749866a288f8fa883c9f044db38f6402</id>
+    <updated>2012-11-21T02:10:00-07:00</updated>
+    <published>2012-11-21T02:10:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Air Quality Alert issued November 21 at 2:10AM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0466DB8.AirQualityAlert.124CD0488CB0WY.UNRAQAUNR.749866a288f8fa883c9f044db38f6402'/>
+    <summary>...BLOWING DUST HEALTH ALERT IN EFFECT FOR THE ENTIRE POWDER RIVER BASIN OF NORTHEASTERN WYOMING FROM 1100 AM THIS MORNING THROUGH 500 PM MDT THIS AFTERNOON... STRONG SOUTHWEST WINDS WILL DEVELOP AHEAD OF AN APPROACHING PACIFIC STORM SYSTEM TODAY. SUSTAINED SOUTHWEST WINDS OF 30 TO 35 MPH WITH GUSTS OVER 45 MPH CAN BE EXPECTED TO DEVELOP LATE THIS MORNING AND</summary>
+    <cap:event>Air Quality Alert</cap:event>
+    <cap:effective>2012-11-21T02:10:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T16:00:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Unknown</cap:urgency>
+    <cap:severity>Unknown</cap:severity>
+    <cap:certainty>Unknown</cap:certainty>
+    <cap:areaDesc>Northern Cambell; Southern Campbell</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>056005</value>
+    <valueName>UGC</valueName>
+    <value>WYZ054 WYZ055</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value></value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0465260.HighWindWarning.124CD0487158WY.RIWNPWRIW.f09ac704a0787df668c48176d475266f</id>
+    <updated>2012-11-21T01:40:00-07:00</updated>
+    <published>2012-11-21T01:40:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>High Wind Warning issued November 21 at 1:40AM MST until November 21 at 11:00PM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0465260.HighWindWarning.124CD0487158WY.RIWNPWRIW.f09ac704a0787df668c48176d475266f'/>
+    <summary>...VERY STRONG WINDS EXPECTED ACROSS PARTS OF CENTRAL WYOMING TODAY AND TONIGHT... .A STRONG SOUTHWEST FLOW AHEAD OF AN APPROACHING COLD FRONT WILL BEGIN TO PRODUCE HIGH WINDS ACROSS NATRONA COUNTY AND THE GREEN MOUNTAINS AND RATTLESNAKE RANGES TODAY AND TONIGHT. AS THE COLD FRONT BLASTS SOUTHEAST THROUGH THE DUBOIS TO CROWHEART AREA</summary>
+    <cap:event>High Wind Warning</cap:event>
+    <cap:effective>2012-11-21T01:40:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T15:30:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Green Mountains and Rattlesnake Range</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>056013 056025 056037</value>
+    <valueName>UGC</valueName>
+    <value>WYZ019</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.UPG.KRIW.HW.A.0028.121121T1500Z-121122T0600Z/
+/O.NEW.KRIW.HW.W.0030.121121T1500Z-121122T0900Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0465260.HighWindWarning.124CD0487158WY.RIWNPWRIW.05c31abb6e9110044cbe6c6b6c995c21</id>
+    <updated>2012-11-21T01:42:00-07:00</updated>
+    <published>2012-11-21T01:40:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>Really bad wind dog</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0465260.HighWindWarning.124CD0487158WY.RIWNPWRIW.05c31abb6e9110044cbe6c6b6c995c21'/>
+    <summary>...VERY STRONG WINDS EXPECTED ACROSS PARTS OF CENTRAL WYOMING TODAY AND TONIGHT... .A STRONG SOUTHWEST FLOW AHEAD OF AN APPROACHING COLD FRONT WILL BEGIN TO PRODUCE HIGH WINDS ACROSS NATRONA COUNTY AND THE GREEN MOUNTAINS AND RATTLESNAKE RANGES TODAY AND TONIGHT. AS THE COLD FRONT BLASTS SOUTHEAST THROUGH THE DUBOIS TO CROWHEART AREA</summary>
+    <cap:event>High Wind Warning</cap:event>
+    <cap:effective>2012-11-21T01:40:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T15:30:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Expected</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Likely</cap:certainty>
+    <cap:areaDesc>Natrona County Lower Elevations</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>056025</value>
+    <valueName>UGC</valueName>
+    <value>WYZ020</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.NEW.KRIW.HW.W.0030.121121T1500Z-121122T0900Z/</value>
+    </cap:parameter>
+    </entry>
+    
+    <entry>
+    <id>http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0465260.HighWindWatch.124CD0487158WY.RIWNPWRIW.0f689cfa1f205cd61b1c16e3a5380dd0</id>
+    <updated>2012-11-21T01:40:00-07:00</updated>
+    <published>2012-11-21T01:40:00-07:00</published>
+    <author>
+    <name>w-nws.webmaster@noaa.gov</name>
+    </author>
+    <title>High Wind Watch issued November 21 at 1:40AM MST until November 22 at 8:00AM MST by NWS</title>
+    <link href='http://alerts.weather.gov/cap/wwacapget.php?x=WY124CD0465260.HighWindWatch.124CD0487158WY.RIWNPWRIW.0f689cfa1f205cd61b1c16e3a5380dd0'/>
+    <summary>...VERY STRONG WINDS EXPECTED ACROSS PARTS OF CENTRAL WYOMING TODAY AND TONIGHT... .A STRONG SOUTHWEST FLOW AHEAD OF AN APPROACHING COLD FRONT WILL BEGIN TO PRODUCE HIGH WINDS ACROSS NATRONA COUNTY AND THE GREEN MOUNTAINS AND RATTLESNAKE RANGES TODAY AND TONIGHT. AS THE COLD FRONT BLASTS SOUTHEAST THROUGH THE DUBOIS TO CROWHEART AREA</summary>
+    <cap:event>High Wind Watch</cap:event>
+    <cap:effective>2012-11-21T01:40:00-07:00</cap:effective>
+    <cap:expires>2012-11-21T15:30:00-07:00</cap:expires>
+    <cap:status>Actual</cap:status>
+    <cap:msgType>Alert</cap:msgType>
+    <cap:category>Met</cap:category>
+    <cap:urgency>Future</cap:urgency>
+    <cap:severity>Severe</cap:severity>
+    <cap:certainty>Possible</cap:certainty>
+    <cap:areaDesc>Upper Wind River Basin</cap:areaDesc>
+    <cap:polygon></cap:polygon>
+    <cap:geocode>
+    <valueName>FIPS6</valueName>
+    <value>056013</value>
+    <valueName>UGC</valueName>
+    <value>WYZ016</value>
+    </cap:geocode>
+    <cap:parameter>
+    <valueName>VTEC</valueName>
+    <value>/O.CON.KRIW.HW.A.0028.121122T0300Z-121122T1500Z/</value>
+    </cap:parameter>
+    </entry>
+    
+</feed>
