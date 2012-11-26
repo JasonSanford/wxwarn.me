@@ -8,8 +8,11 @@ from django.db.models.signals import post_save
 
 
 class County(models.Model):
-    id = models.CharField(max_length=6, primary_key=True)
+    id = models.CharField(max_length=6, primary_key=True) # 6 digit fips
     name = models.CharField(max_length=200)
+    state_name = models.CharField(max_length=100)
+    state_fips = models.CharField(max_length=6)
+    county_fips = models.CharField(max_length=6)
     geometry = models.TextField()
 
 
