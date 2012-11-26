@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from jsonfield.fields import JSONField
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from shapely.geometry import asShape
 
 
 class County(models.Model):
@@ -14,6 +15,24 @@ class County(models.Model):
     state_fips = models.CharField(max_length=6)
     county_fips = models.CharField(max_length=6)
     geometry = models.TextField()
+
+    @property
+    def shape(self): # via Shapely
+        return asShape(json.loads(self.geometry))
+
+    @property
+    def geojson(self):
+        return {
+            'id': self.id,
+            'type': 'Feature',
+            'properties': {
+                'name': self.name,
+                'state_name': self.state_name,
+                'state_fips': self.state_fips,
+                'county_fips': self.county_fips,
+            },
+            'geometry': json.loads(self.geometry)
+        }
 
 
 class WeatherAlert(models.Model):
@@ -29,6 +48,15 @@ class WeatherAlert(models.Model):
     summary = models.TextField()
     url = models.CharField(max_length=1028)
     fips = models.TextField()
+
+    @property
+    def geojson(self):
+        fips_codes = self.fips.split(' ')
+        counties = County.objects.filter(id__in=fips_codes)
+        return {
+            'type': 'FeatureCollection',
+            'features': [county.geojson for county in counties]
+        }
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
