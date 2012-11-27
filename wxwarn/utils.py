@@ -1,4 +1,5 @@
 import datetime
+from datetime import timedelta
 import json
 import logging
 import time
@@ -8,13 +9,16 @@ import pytz
 import requests
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.utils.timezone import now as d_now
 from social_auth.models import UserSocialAuth
 from bs4 import BeautifulSoup
 
-from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert
+from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, UserWeatherAlert
 
 #WEATHER_ALERTS_URL = 'http://localhost:8000/static/weather_alerts.xml'
 WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/us.php?x=0'
+
+USER_LOCATION_MAX_AGE = 60 * 3
 
 def get_user_location(social_auth_user):
     # TODO: support things other than Google Latitude here
@@ -132,3 +136,47 @@ def _create_data_dict(parsed_alert):
         'url': parsed_alert.link['href'],
         'fips': parsed_alert.find('cap:geocode').value.text,
     }
+
+
+def check_user_weather_alerts():
+    now = d_now()
+    #all = WeatherAlert.objects.all()
+    #print 'All is %s' % len(all)
+    current_weather_alerts = WeatherAlert.objects\
+                                .filter(effective__lte=now)\
+                                .filter(expires__gte=now)
+    print 'Current alert count: %s' % len(current_weather_alerts)
+    current_located_users = UserLocation.objects\
+                                .filter(created__gte=now-timedelta(minutes=USER_LOCATION_MAX_AGE))\
+                                .distinct('user')\
+                                .order_by('user', '-created')
+    print 'Current located user count: %s' % len(current_located_users)
+    new_user_weather_alerts = []
+    for current_located_user in current_located_users:
+        print current_located_user
+        for current_weather_alert in current_weather_alerts:
+            #print current_weather_alert
+            for polygon in current_weather_alert.shapes:
+                if polygon.contains(current_located_user.shape):
+                    """
+                    The user is in a weather alert polygon
+                    Let's see if we've already alerted them.
+                    """
+                    (user_weather_alert, created) = UserWeatherAlert.objects.get_or_create(
+                            user=current_located_user.user,
+                            weather_alert=current_weather_alert,
+                            defaults={
+                                'user_location': current_located_user,
+                            })
+                    if created:
+                        new_user_weather_alerts.append(user_weather_alert)
+                    break
+    """
+    Gathering of new user alerts complete, send emails
+    """
+    send_bulk_weather_alert_emails(new_user_weather_alerts)
+
+
+def send_bulk_weather_alert_emails(user_weather_alerts):
+    for user_weather_alert in user_weather_alerts:
+        print 'Sending email for UserWeatherAlert: %s' % user_weather_alert.id

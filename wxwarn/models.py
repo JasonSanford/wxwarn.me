@@ -58,6 +58,11 @@ class WeatherAlert(models.Model):
             'features': [county.geojson for county in counties]
         }
 
+    @property
+    def shapes(self):
+        polygons = [asShape(feature['geometry']) for feature in self.geojson['features']]
+        return polygons
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     active = models.BooleanField(default=True)
