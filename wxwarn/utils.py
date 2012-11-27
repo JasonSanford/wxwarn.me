@@ -37,7 +37,7 @@ def get_user_location(social_auth_user):
         # {u'data': {u'kind': u'latitude#location'}}
         # TODO: Protect against user revoked access
         # {u'error': {u'code': 401, u'message': u'Invalid Credentials', u'errors': [{u'locationType': u'header', u'domain': u'global', u'message': u'Invalid Credentials', u'reason': u'authError', u'location': u'Authorization'}]}}
-        print latitude_data
+        #print latitude_data
         insert_user_location(latitude_data, social_auth_user.user)
 
         social_auth_user.oauth_data = oauth_data
@@ -102,26 +102,23 @@ def insert_user_location(data, user):
 def get_weather_alerts():
     response = requests.get(WEATHER_ALERTS_URL)
     soup = BeautifulSoup(response.text)
-    for parsed_alert in soup.find_all('entry'):
+    parsed_alerts = soup.find_all('entry')
+    insert_count = 0
+    update_count = 0
+    print 'Total alerts from NWS: %s' % len(parsed_alerts)
+    for parsed_alert in parsed_alerts:
         data_dict = _create_data_dict(parsed_alert)
-        cre = parsed_alert.published.text
-        source_created = parser.parse(cre)
-        #2012-11-21T14:22:00-07:00
-        #print source_created
-        #fips = geocode.value.text
-        #print parsed_alert.id.text
-        # TODO: Check the id of each alert to see if we've alrady got it
-        #print parsed_alert.find('cap:effective')
-        #"""
         (weather_alert, created) = WeatherAlert.objects.get_or_create(
                 nws_id=parsed_alert.id.text,
                 defaults=data_dict)
-        if not created and  data_dict['source_updated'] > weather_alert.source_updated:
+        if not created and data_dict['source_updated'] > weather_alert.source_updated:
             weather_alert.__dict__.update(data_dict)
             weather_alert.save()
-            print 'Updated: %s' % weather_alert.nws_id
-        print 'Created?: %s' % created
-        #"""
+            update_count += 1
+        if created:
+            insert_count += 1
+    print 'New alerts: %s' % insert_count
+    print 'Updated alerts: %s' % update_count
 
 
 def _create_data_dict(parsed_alert):
