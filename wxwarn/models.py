@@ -100,6 +100,10 @@ class UserLocation(models.Model):
     source_data = JSONField()
 
     @property
+    def shape(self):
+        return asShape(self.geojson)
+
+    @property
     def geojson(self):
         return dict(
             type = 'Point',
