@@ -153,7 +153,7 @@ def check_user_weather_alerts():
         print current_located_user
         for current_weather_alert in current_weather_alerts:
             #print current_weather_alert
-            for polygon in current_weather_alert.shapes:
+            for (fips, polygon) in current_weather_alert.shapes:
                 if polygon.contains(current_located_user.shape):
                     """
                     The user is in a weather alert polygon
@@ -164,6 +164,7 @@ def check_user_weather_alerts():
                             weather_alert=current_weather_alert,
                             defaults={
                                 'user_location': current_located_user,
+                                'weather_alert_fips': fips
                             })
                     if created:
                         new_user_weather_alerts.append(user_weather_alert)
