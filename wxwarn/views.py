@@ -7,8 +7,10 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
+from django.http import Http404
 from social_auth.models import UserSocialAuth
 
+import short_url
 from wxwarn.utils import get_user_location
 from wxwarn.models import UserWeatherAlert
 
@@ -64,19 +66,19 @@ def account_landing(request):
             }, context_instance=RequestContext(request))
 
 
-def user_weather_alert(request, user_weather_alert_id=None):
-    if not user_weather_alert_id:
+def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_short_url=None):
+    if not (user_weather_alert_id or user_weather_alert_short_url):
         return redirect('wxwarn.views.home')
-    is_pk = False
+    if user_weather_alert_short_url:
+        try:
+            user_weather_alert_id = short_url.decode_url(user_weather_alert_short_url)
+        except: # No good exception to catch, library complains of substring error
+            raise Http404
+
     try:
-        user_weather_alert_id = int(user_weather_alert_id)
-        is_pk = True
-    except ValueError:
-        pass
-    if not is_pk:
-        pass
-        # TODO convert short URL to pk
-    a_user_weather_alert = UserWeatherAlert.objects.get(id=user_weather_alert_id)
+        a_user_weather_alert = UserWeatherAlert.objects.get(id=user_weather_alert_id)
+    except UserWeatherAlert.DoesNotExist:
+        raise Http404
     return render_to_response('user_weather_alert.html',
             {
                 'user': a_user_weather_alert.user,
