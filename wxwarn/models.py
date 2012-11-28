@@ -60,7 +60,7 @@ class WeatherAlert(models.Model):
 
     @property
     def shapes(self):
-        polygons = [asShape(feature['geometry']) for feature in self.geojson['features']]
+        polygons = [(feature['id'], asShape(feature['geometry'])) for feature in self.geojson['features']]
         return polygons
 
 class UserProfile(models.Model):
@@ -124,6 +124,7 @@ class UserWeatherAlert(models.Model):
     user = models.ForeignKey(User)
     user_location = models.ForeignKey(UserLocation)
     weather_alert = models.ForeignKey(WeatherAlert)
+    weather_alert_fips = models.CharField(max_length=6)
 
 
 def create_user_profile(sender, instance, created, **kwargs):  
