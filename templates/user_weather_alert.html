@@ -1,0 +1,19 @@
+<%inherit file="base.html"/>
+
+<%! import json %>
+
+<h3>${weather_alert.event}</h3>
+
+<p>${weather_alert.summary}</p>
+
+<div id="map" style="height: 300px;"></div>
+
+<%block name="javascript">
+
+<script>
+wx.user_location = ${json.dumps(user_location.geojson)};
+wx.weather_alert = ${json.dumps(weather_alert.geojson)};
+wx.weather_alert_fips = '${weather_alert_fips | n}';
+</script>
+<script src="${STATIC_URL}js/user_weather_alert.js"></script>
+</%block>

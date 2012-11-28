@@ -10,6 +10,7 @@ from django.template import RequestContext
 from social_auth.models import UserSocialAuth
 
 from wxwarn.utils import get_user_location
+from wxwarn.models import UserWeatherAlert
 
 
 def home(request):
@@ -60,5 +61,28 @@ def account_landing(request):
                 'last_location': json.dumps(user_profile.last_location),
                 'all_locations': json.dumps(all_locations),
                 'location_count': len(all_locations['geometries'])
+            }, context_instance=RequestContext(request))
+
+
+def user_weather_alert(request, user_weather_alert_id=None):
+    if not user_weather_alert_id:
+        return redirect('wxwarn.views.home')
+    is_pk = False
+    try:
+        user_weather_alert_id = int(user_weather_alert_id)
+        is_pk = True
+    except ValueError:
+        pass
+    if not is_pk:
+        pass
+        # TODO convert short URL to pk
+    a_user_weather_alert = UserWeatherAlert.objects.get(id=user_weather_alert_id)
+    return render_to_response('user_weather_alert.html',
+            {
+                'user': a_user_weather_alert.user,
+                'user_location': a_user_weather_alert.user_location,
+                'weather_alert': a_user_weather_alert.weather_alert,
+                'weather_alert_fips': a_user_weather_alert.weather_alert_fips,
+                'leaflet': True,
             }, context_instance=RequestContext(request))
 
