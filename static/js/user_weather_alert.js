@@ -14,10 +14,20 @@
         alert_layer = new L.GeoJSON(wx.weather_alert, {
             filter: function(feature, layer) {
                 return feature.id === wx.weather_alert_fips;
+            },
+            style: {
+                color: '#ff0000',
+                opacity: 0.8,
+                weight: 1,
+                fillColor: '#ff0000',
+                fillOpacity: 0.35,
+                clickable: false
             }
-        });
+        }),
+        start_marker = L.marker(start_location);
     map
         .fitBounds(alert_layer.getBounds())
         .addLayer(alert_layer)
-        .addLayer(L.marker(start_location));
+        .addLayer(start_marker);
+    L.control.layers(null, {"User Location": start_marker, "Alert Area": alert_layer}).addTo(map);
 }())

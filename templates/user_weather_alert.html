@@ -4,9 +4,23 @@
 
 <h3>${weather_alert.event}</h3>
 
-<p>${weather_alert.summary}</p>
+<div class="row" style="margin-bottom: 20px;">
+    <div class="span4">
+        <h4>${user_location.user.first_name}&apos;s Location</h4>
+        <p><span class="muted">At:</span> ${user_location.latitude}, ${user_location.longitude}</p>
+        <p><span class="muted">Around:</span> ${user_location.source_created}</p>
+        <p><span class="muted">Reported via:</span> ${user_location.source}</p>
+        <h4>Alert</h4>
+        <p><span class="muted">Effective:</span> ${weather_alert.effective}</p>
+        <p><span class="muted">Expires:</span> ${weather_alert.expires}</p>
+    </div>
+    <div id="map" style="height: 300px;" class="span8"></div>
+</div>
 
-<div id="map" style="height: 300px;"></div>
+<div class="row">
+    <h4>NWS Details</h4>
+    <p>${weather_alert.summary}</p>
+</div>
 
 <%block name="javascript">
 
