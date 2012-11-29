@@ -187,6 +187,10 @@ CELERYBEAT_SCHEDULE = {
         'task': 'tasks.get_weather_alerts',
         'schedule': timedelta(minutes=5),
     },
+    'check_users_weather_alerts': {
+        'task': 'tasks.check_users_weather_alerts',
+        'schedule': timedelta(minutes=5),
+    },
 }
 
 CELERY_TIMEZONE = 'UTC'

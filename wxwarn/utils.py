@@ -135,7 +135,7 @@ def _create_data_dict(parsed_alert):
     }
 
 
-def check_user_weather_alerts():
+def check_users_weather_alerts():
     now = d_now()
     #all = WeatherAlert.objects.all()
     #print 'All is %s' % len(all)
