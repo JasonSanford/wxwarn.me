@@ -34,6 +34,9 @@ class County(models.Model):
             'geometry': json.loads(self.geometry)
         }
 
+    def __unicode__(self):
+        return '%s County, %s' % (self.name, self.state_name)
+
 
 class WeatherAlert(models.Model):
     nws_id = models.CharField(max_length=1000, unique=True)
@@ -64,6 +67,10 @@ class WeatherAlert(models.Model):
         polygons = [(feature['id'], asShape(feature['geometry'])) for feature in self.geojson['features']]
         return polygons
 
+    def __unicode__(self):
+        return self.event
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     active = models.BooleanField(default=True)
@@ -87,7 +94,8 @@ class UserProfile(models.Model):
             'geometries': [user_location.geojson for user_location in user_locations]
         }
 
-
+    def __unicode__(self):
+        return 'UserProfile: %s' % self.user.username
 
 class LocationSource(models.Model):
     name = models.CharField(max_length=255)
@@ -126,6 +134,9 @@ class UserWeatherAlert(models.Model):
     user_location = models.ForeignKey(UserLocation)
     weather_alert = models.ForeignKey(WeatherAlert)
     weather_alert_fips = models.CharField(max_length=6)
+
+    def __unicode__(self):
+        return 'UserWeatherAlert: %s for %s' % (self.weather_alert, self.user_location)
 
 
 def create_user_profile(sender, instance, created, **kwargs):  
