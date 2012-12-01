@@ -48,6 +48,7 @@ class WeatherAlert(models.Model):
     summary = models.TextField()
     url = models.CharField(max_length=1028)
     fips = models.TextField()
+    fake = models.BooleanField(default=False)
 
     @property
     def geojson(self):
@@ -76,7 +77,7 @@ class UserProfile(models.Model):
                                 .order_by('-source_created')[0]
         except IndexError:
             return None
-        return user_location.geojson
+        return user_location
 
     @property
     def all_locations(self):

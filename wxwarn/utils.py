@@ -4,6 +4,8 @@ import json
 import logging
 import time
 from dateutil import parser
+import random
+import string
 
 import pytz
 import requests
@@ -13,7 +15,7 @@ from django.utils.timezone import now as d_now
 from social_auth.models import UserSocialAuth
 from bs4 import BeautifulSoup
 
-from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, UserWeatherAlert
+from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, UserWeatherAlert, County
 
 #WEATHER_ALERTS_URL = 'http://localhost:8000/static/weather_alerts.xml'
 WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/us.php?x=0'
@@ -178,3 +180,29 @@ def check_users_weather_alerts():
 def send_bulk_weather_alert_emails(user_weather_alerts):
     for user_weather_alert in user_weather_alerts:
         print 'Sending email for UserWeatherAlert: %s' % user_weather_alert.id
+
+
+def create_fake_weather_alert(user_id):
+    user_profile = User.objects.get(id=user_id).get_profile()
+    last_location = user_profile.last_location
+    print 'I\'m going to create a fake alert near %s, %s.' % (last_location.geojson['coordinates'][0], last_location.geojson['coordinates'][1])
+    for county in County.objects.all():
+        if county.shape.contains(last_location.shape):
+            print 'Found you at %s, %s. FIPS: %s' % (county.name, county.state_name, county.id)
+            now = d_now()
+            fake_weather_alert = WeatherAlert(
+                    nws_id=''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(6)),
+                    source_created=now,
+                    source_updated=now,
+                    effective=now-timedelta(minutes=10),
+                    expires=now+timedelta(hours=2),
+                    event='Winter Weather Advisory',
+                    title='Winter Weather Advisory issued November 26 at 4:17AM AKST until November 26 at 12:00PM AKST by NWS',
+                    summary='...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON AKST TODAY... A WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON AKST TODAY. * SNOW...ADDITIONAL ACCUMULATIONS OF 1 TO 3 INCHES THROUGH NOON MONDAY. STORM TOTAL ACCUMULATION OF 5 TO 8 INCHES SINCE SUNDAY',
+                    url='http://wxwarn.me',
+                    fips=county.id,
+                    fake=True)
+            fake_weather_alert.save()
+            break
+    check_users_weather_alerts()
+
