@@ -60,7 +60,7 @@ def account_landing(request):
     return render_to_response('account_landing.html',
             {
                 'leaflet': True,
-                'last_location': json.dumps(user_profile.last_location.geojson),
+                'last_location': json.dumps(user_profile.last_location.geojson if user_profile.last_location else None),
                 'all_locations': json.dumps(all_locations),
                 'location_count': len(all_locations['geometries'])
             }, context_instance=RequestContext(request))
