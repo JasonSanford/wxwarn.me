@@ -11,7 +11,10 @@ import pytz
 import requests
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 from django.utils.timezone import now as d_now
+from mako.template import Template
+from django.utils.html import strip_tags
 from social_auth.models import UserSocialAuth
 from bs4 import BeautifulSoup
 
@@ -180,6 +183,20 @@ def check_users_weather_alerts():
 def send_bulk_weather_alert_emails(user_weather_alerts):
     for user_weather_alert in user_weather_alerts:
         print 'Sending email for UserWeatherAlert: %s' % user_weather_alert.id
+        body_template = Template(filename='templates/email/user_weather_alert.html')
+        body_html = body_template.render(
+            event=user_weather_alert.weather_alert.event,
+            title=user_weather_alert.weather_alert.title,
+            summary=user_weather_alert.weather_alert.summary,
+            static_map_url=user_weather_alert.static_map_url)
+        body_text = strip_tags(body_html)
+        _from = 'alert@wxwarn.me'
+        to = (user_weather_alert.user.email, )
+        subject = user_weather_alert.weather_alert.event
+
+        msg = EmailMultiAlternatives(subject, body_text, _from, to)
+        msg.attach_alternative(body_html, 'text/html')
+        msg.send()
 
 
 def create_fake_weather_alert(user_id):

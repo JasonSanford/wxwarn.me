@@ -135,6 +135,19 @@ class UserWeatherAlert(models.Model):
     weather_alert = models.ForeignKey(WeatherAlert)
     weather_alert_fips = models.CharField(max_length=6)
 
+    @property
+    def weather_alert_shape(self): # A user is only in one county while some alerts cover multiple.
+        county = County.objects.get(id=self.weather_alert_fips)
+        return county.shape
+
+    @property
+    def static_map_url(self, width=560, height=450, zoom=10):
+        coords = list(self.weather_alert_shape.exterior.coords)
+        coords = map(lambda coord: (coord[1], coord[0]), coords)
+        path_str = '|'.join((','.join((str(y) for y in x)) for x in coords))
+        return 'http://maps.googleapis.com/maps/api/staticmap?center=%s,%s&zoom=%s&size=%sx%s&sensor=false&path=color:0xff0000ff|weight:1|fillcolor:0xFF000033|%s&markers=color:blue|label:S|%s,%s' %\
+                (self.user_location.latitude, self.user_location.longitude, zoom, width, height, path_str, self.user_location.latitude, self.user_location.longitude)
+
     def __unicode__(self):
         return 'UserWeatherAlert: %s for %s' % (self.weather_alert, self.user_location)
 
