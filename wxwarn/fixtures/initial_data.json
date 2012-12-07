@@ -7,8 +7,8 @@
             "first_name": "Jason",
             "last_name": "Sanford",
             "is_active": true,
-            "is_superuser": false,
-            "is_staff": false,
+            "is_superuser": true,
+            "is_staff": true,
             "last_login": "2012-11-11T06:42:32.408Z",
             "groups": [],
             "user_permissions": [],
@@ -23,7 +23,7 @@
         "fields": {
             "user": 1,
             "active": true,
-            "premium": false
+            "premium": true
         }
     },
     {
