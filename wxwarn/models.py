@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from shapely.geometry import asShape
 
+import short_url
+
 
 class County(models.Model):
     id = models.CharField(max_length=6, primary_key=True) # 6 digit fips
@@ -147,6 +149,10 @@ class UserWeatherAlert(models.Model):
         path_str = '|'.join((','.join((str(y) for y in x)) for x in coords))
         return 'http://maps.googleapis.com/maps/api/staticmap?center=%s,%s&zoom=%s&size=%sx%s&sensor=false&path=color:0xff0000ff|weight:1|fillcolor:0xFF000033|%s&markers=color:blue|label:S|%s,%s' %\
                 (self.user_location.latitude, self.user_location.longitude, zoom, width, height, path_str, self.user_location.latitude, self.user_location.longitude)
+
+    @property
+    def short_url_id(self):
+        return short_url.encode_url(self.id)
 
     def __unicode__(self):
         return 'UserWeatherAlert: %s for %s' % (self.weather_alert, self.user_location)

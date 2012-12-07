@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'wxwarn.views.logout', name='logout'),
     url(r'^account/$', 'wxwarn.views.account_landing', name='account_landing'),
     url(r'^alert/(?P<user_weather_alert_id>\d+)/$', 'wxwarn.views.user_weather_alert', name='user_weather_alert'),
-    url(r'^a/(?P<user_weather_alert_short_url>.+)/$', 'wxwarn.views.user_weather_alert', name='user_weather_alert'),
+    url(r'^a/(?P<user_weather_alert_short_url>.+)/$', 'wxwarn.views.user_weather_alert', name='user_weather_alert_short'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

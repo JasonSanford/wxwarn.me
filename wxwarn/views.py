@@ -5,7 +5,6 @@ from djangomako.shortcuts import render_to_response
 from django.shortcuts import redirect, render
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.http import Http404
 from social_auth.models import UserSocialAuth

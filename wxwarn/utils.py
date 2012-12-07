@@ -13,6 +13,7 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.utils.timezone import now as d_now
+from django.core.urlresolvers import reverse
 from mako.template import Template
 from django.utils.html import strip_tags
 from social_auth.models import UserSocialAuth
@@ -90,7 +91,8 @@ def get_latitude_location(oauth_data, granularity='best'):
 
 def insert_user_location(data, user):
     gmt = pytz.timezone('GMT')
-    logging.info(data)
+    print 'Inserting user location data'
+    print data
     source_date = datetime.datetime.fromtimestamp(float(data['data']['timestampMs']) / 1000, gmt)
     (location_source, created) = LocationSource.objects.get_or_create(name='Google Latitude')
 
@@ -187,8 +189,10 @@ def send_bulk_weather_alert_emails(user_weather_alerts):
         body_html = body_template.render(
             event=user_weather_alert.weather_alert.event,
             title=user_weather_alert.weather_alert.title,
-            summary=user_weather_alert.weather_alert.summary,
-            static_map_url=user_weather_alert.static_map_url)
+            summary=user_weather_alert.weather_alert.summary.lower(),
+            static_map_url=user_weather_alert.static_map_url,
+            weather_alert_short_url='http://wxwarn.me%s' % reverse('user_weather_alert_short', kwargs={'user_weather_alert_short_url': user_weather_alert.short_url_id}),
+            )
         body_text = strip_tags(body_html)
         _from = 'alert@wxwarn.me'
         to = (user_weather_alert.user.email, )
