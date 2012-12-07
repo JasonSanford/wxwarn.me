@@ -194,7 +194,7 @@ def send_bulk_weather_alert_emails(user_weather_alerts):
             weather_alert_short_url='http://wxwarn.me%s' % reverse('user_weather_alert_short', kwargs={'user_weather_alert_short_url': user_weather_alert.short_url_id}),
             )
         body_text = strip_tags(body_html)
-        _from = 'alert@wxwarn.me'
+        _from = 'weatheralert@wxwarn.me'
         to = (user_weather_alert.user.email, )
         subject = user_weather_alert.weather_alert.event
 
