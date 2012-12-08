@@ -77,6 +77,8 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     active = models.BooleanField(default=True)
     premium = models.BooleanField(default=False)
+    sms_number = models.CharField(max_length=50, null=True)
+    send_sms = models.BooleanField(default=False)
 
     @property
     def last_location(self):
