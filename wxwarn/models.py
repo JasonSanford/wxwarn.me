@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from jsonfield.fields import JSONField
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.utils.timezone import now as d_now
 from shapely.geometry import asShape
 
 import short_url
@@ -68,6 +69,11 @@ class WeatherAlert(models.Model):
     def shapes(self):
         polygons = [(feature['id'], asShape(feature['geometry'])) for feature in self.geojson['features']]
         return polygons
+
+    @property
+    def active(self):
+        now = d_now()
+        return self.effective <= now <= self.expires
 
     def __unicode__(self):
         return self.event
