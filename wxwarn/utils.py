@@ -18,6 +18,7 @@ from mako.template import Template
 from django.utils.html import strip_tags
 from social_auth.models import UserSocialAuth
 from bs4 import BeautifulSoup
+from twilio.rest import TwilioRestClient
 
 from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, UserWeatherAlert, County
 
@@ -179,10 +180,18 @@ def check_users_weather_alerts():
     """
     Gathering of new user alerts complete, send emails
     """
-    send_bulk_weather_alert_emails(new_user_weather_alerts)
+    send_bulk_weather_alerts(new_user_weather_alerts)
 
 
-def send_bulk_weather_alert_emails(user_weather_alerts):
+def send_bulk_weather_alerts(user_weather_alerts):
+    user_weather_alerts_to_email = filter(lambda uwa: uwa.user.get_profile().send_email_alerts, user_weather_alerts)
+    user_weather_alerts_to_sms = filter(lambda uwa: uwa.user.get_profile().send_sms_alerts, user_weather_alerts)
+
+    send_bulk_weather_email_alerts(user_weather_alerts_to_email)
+    send_bulk_weather_sms_alerts(user_weather_alerts_to_sms)
+
+
+def send_bulk_weather_email_alerts(user_weather_alerts):
     for user_weather_alert in user_weather_alerts:
         print 'Sending email for UserWeatherAlert: %s' % user_weather_alert.id
         body_template = Template(filename='templates/email/user_weather_alert.html')
@@ -201,6 +210,19 @@ def send_bulk_weather_alert_emails(user_weather_alerts):
         msg = EmailMultiAlternatives(subject, body_text, _from, to)
         msg.attach_alternative(body_html, 'text/html')
         msg.send()
+
+
+def send_bulk_weather_sms_alerts(user_weather_alerts):
+    client = TwilioRestClient()
+    for user_weather_alert in user_weather_alerts:
+        print 'Sending SMS alert for UserWeatherAlert: %s' % user_weather_alert.id
+        sms_number = user_weather_alert.user.get_profile().sms_number
+        if sms_number[:2] != '+1':
+            sms_number = '+1%s' % sms_number
+        weather_alert_short_url = 'http://wxwarn.me%s' % reverse('user_weather_alert_short', kwargs={'user_weather_alert_short_url': user_weather_alert.short_url_id})
+        sms_message = "We've detected a %s near your current location. Details: %s" %\
+                (user_weather_alert.weather_alert.event, weather_alert_short_url)
+        message = client.sms.messages.create(to=sms_number, from_=settings.TWILIO_FROM_NUMBER, body=sms_message)
 
 
 def create_fake_weather_alert(user_id):
