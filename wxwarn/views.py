@@ -51,17 +51,11 @@ def account_landing(request):
 
     Account landing page
     """
-    social_auth_user = UserSocialAuth.objects.get(
-            user = request.user,
-            provider = 'google-oauth2')
-    user_profile = request.user.get_profile()
-    all_locations = user_profile.all_locations
+    user_weather_alerts = UserWeatherAlert.objects.filter(user=request.user)
     return render_to_response('account_landing.html',
             {
                 'leaflet': True,
-                'last_location': json.dumps(user_profile.last_location.geojson if user_profile.last_location else None),
-                'all_locations': json.dumps(all_locations),
-                'location_count': len(all_locations['geometries'])
+                'user_weather_alerts': user_weather_alerts,
             }, context_instance=RequestContext(request))
 
 

@@ -199,7 +199,7 @@ def send_bulk_weather_email_alerts(user_weather_alerts):
             event=user_weather_alert.weather_alert.event,
             title=user_weather_alert.weather_alert.title,
             summary=user_weather_alert.weather_alert.summary.lower(),
-            static_map_url=user_weather_alert.static_map_url,
+            static_map_url=user_weather_alert.static_map_url(),
             weather_alert_short_url='http://wxwarn.me%s' % reverse('user_weather_alert_short', kwargs={'user_weather_alert_short_url': user_weather_alert.short_url_id}),
             )
         body_text = strip_tags(body_html)

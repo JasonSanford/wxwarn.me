@@ -151,7 +151,6 @@ class UserWeatherAlert(models.Model):
         county = County.objects.get(id=self.weather_alert_fips)
         return county.shape
 
-    @property
     def static_map_url(self, width=560, height=450, zoom=10):
         coords = list(self.weather_alert_shape.exterior.coords)
         coords = map(lambda coord: (coord[1], coord[0]), coords)
