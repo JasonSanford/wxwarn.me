@@ -6,12 +6,14 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
-from django.http import Http404
+from django.http import Http404, HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
+from django.views.decorators.http import require_POST
 from social_auth.models import UserSocialAuth
 
 import short_url
 from wxwarn.utils import get_user_location
-from wxwarn.models import UserWeatherAlert
+from wxwarn.models import UserWeatherAlert, UserProfile
+from wxwarn.forms import UserProfileForm
 
 
 def home(request):
@@ -52,10 +54,13 @@ def account_landing(request):
     Account landing page
     """
     user_weather_alerts = UserWeatherAlert.objects.filter(user=request.user)
+    user_profile = request.user.get_profile()
     return render_to_response('account_landing.html',
             {
                 'leaflet': True,
                 'user_weather_alerts': user_weather_alerts,
+                'user_profile_form': UserProfileForm(instance=user_profile),
+                'user_profile_id': user_profile.id
             }, context_instance=RequestContext(request))
 
 
@@ -80,4 +85,22 @@ def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_s
                 'weather_alert_fips': a_user_weather_alert.weather_alert_fips,
                 'leaflet': True,
             }, context_instance=RequestContext(request))
+
+
+@login_required
+@require_POST
+def user_profile(request):
+    if request.user.id != int(request.POST['id']):
+        return HttpResponseForbidden()
+    a_user_profile = UserProfile.objects.get(id=request.POST['id'])
+    form = UserProfileForm(request.POST, instance=a_user_profile)
+    if form.is_valid():
+        form.save()
+        return HttpResponse(json.dumps({'status': 'success'}), mimetype='application/json')
+    else:
+        message = ''
+        for field, errors in form.errors.items():
+            for error in errors:
+                message += 'Field %s: %s' % (field, error)
+        return HttpResponseBadRequest(json.dumps({'status': 'error', 'message': message}), mimetype='application/json')
 

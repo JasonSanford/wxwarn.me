@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^login/$', auth, kwargs={'backend': 'google-oauth2'}, name='login'),
     url(r'^logout/$', 'wxwarn.views.logout', name='logout'),
     url(r'^account/$', 'wxwarn.views.account_landing', name='account_landing'),
+    url(r'^user_profile/$', 'wxwarn.views.user_profile', name='user_profile'),
     url(r'^alert/(?P<user_weather_alert_id>\d+)/$', 'wxwarn.views.user_weather_alert', name='user_weather_alert'),
     url(r'^a/(?P<user_weather_alert_short_url>.+)/$', 'wxwarn.views.user_weather_alert', name='user_weather_alert_short'),
 
