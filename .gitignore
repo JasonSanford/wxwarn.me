@@ -3,3 +3,5 @@ venv
 .env
 celerybeat-schedule
 celerybeat-schedule.db
+initial_ugc.json
+initial_county.json
