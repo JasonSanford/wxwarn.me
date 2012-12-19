@@ -41,6 +41,14 @@ class County(models.Model):
         return '%s County, %s' % (self.name, self.state_name)
 
 
+class UGC(models.Model):
+    id = models.CharField(max_length=6, primary_key=True) # 6 digit UGC code
+    name = models.CharField(max_length=1000)
+    time_zone = models.CharField(max_length=3)
+    fe_area = models.CharField(max_length=3)
+    geometry = models.TextField()
+
+
 class WeatherAlert(models.Model):
     nws_id = models.CharField(max_length=1000, unique=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -54,6 +62,7 @@ class WeatherAlert(models.Model):
     summary = models.TextField()
     url = models.CharField(max_length=1028)
     fips = models.TextField()
+    ugc = models.TextField()
     fake = models.BooleanField(default=False)
 
     @property
