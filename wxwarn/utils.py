@@ -20,7 +20,7 @@ from social_auth.models import UserSocialAuth
 from bs4 import BeautifulSoup
 from twilio.rest import TwilioRestClient
 
-from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, UserWeatherAlert, County
+from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, UserWeatherAlert, County, UGC
 
 #WEATHER_ALERTS_URL = 'http://localhost:8000/static/weather_alerts.xml'
 WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/us.php?x=0'
@@ -159,10 +159,10 @@ def check_users_weather_alerts():
     print 'Current located user count: %s' % len(current_located_users)
     new_user_weather_alerts = []
     for current_located_user in current_located_users:
-        print current_located_user
+        #print current_located_user
         for current_weather_alert in current_weather_alerts:
             #print current_weather_alert
-            for (fips, polygon) in current_weather_alert.shapes:
+            for (ugc, polygon) in current_weather_alert.shapes:
                 if polygon.contains(current_located_user.shape):
                     """
                     The user is in a weather alert polygon
@@ -173,7 +173,7 @@ def check_users_weather_alerts():
                             weather_alert=current_weather_alert,
                             defaults={
                                 'user_location': current_located_user,
-                                'weather_alert_fips': fips
+                                'weather_alert_ugc': ugc
                             })
                     if created:
                         new_user_weather_alerts.append(user_weather_alert)
@@ -230,9 +230,9 @@ def create_fake_weather_alert(user_id):
     user_profile = User.objects.get(id=user_id).get_profile()
     last_location = user_profile.last_location
     print 'I\'m going to create a fake alert near %s, %s.' % (last_location.geojson['coordinates'][0], last_location.geojson['coordinates'][1])
-    for county in County.objects.all():
-        if county.shape.contains(last_location.shape):
-            print 'Found you at %s, %s. FIPS: %s' % (county.name, county.state_name, county.id)
+    for ugc in UGC.objects.all():
+        if ugc.shape.contains(last_location.shape):
+            print 'Found you at %s. UGC: %s' % (ugc.name, ugc.id)
             now = d_now()
             fake_weather_alert = WeatherAlert(
                     nws_id=''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(6)),
@@ -244,7 +244,7 @@ def create_fake_weather_alert(user_id):
                     title='Winter Weather Advisory issued November 26 at 4:17AM AKST until November 26 at 12:00PM AKST by NWS',
                     summary='...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON AKST TODAY... A WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON AKST TODAY. * SNOW...ADDITIONAL ACCUMULATIONS OF 1 TO 3 INCHES THROUGH NOON MONDAY. STORM TOTAL ACCUMULATION OF 5 TO 8 INCHES SINCE SUNDAY',
                     url='http://wxwarn.me',
-                    fips=county.id,
+                    ugc=ugc.id,
                     fake=True)
             fake_weather_alert.save()
             break

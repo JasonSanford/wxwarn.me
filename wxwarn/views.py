@@ -82,7 +82,7 @@ def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_s
                 'user': a_user_weather_alert.user,
                 'user_location': a_user_weather_alert.user_location,
                 'weather_alert': a_user_weather_alert.weather_alert,
-                'weather_alert_fips': a_user_weather_alert.weather_alert_fips,
+                'weather_alert_ugc': a_user_weather_alert.weather_alert_ugc,
                 'leaflet': True,
             }, context_instance=RequestContext(request))
 

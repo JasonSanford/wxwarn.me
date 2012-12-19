@@ -19,7 +19,7 @@
         }),
         alert_layer = new L.GeoJSON(wx.weather_alert, {
             filter: function(feature, layer) {
-                return feature.id === wx.weather_alert_fips;
+                return feature.id === wx.weather_alert_ugc;
             },
             style: {
                 color: '#ff0000',

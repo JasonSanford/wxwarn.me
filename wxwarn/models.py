@@ -48,6 +48,26 @@ class UGC(models.Model):
     fe_area = models.CharField(max_length=3)
     geometry = models.TextField()
 
+    @property
+    def shape(self): # via Shapely
+        return asShape(json.loads(self.geometry))
+
+    @property
+    def geojson(self):
+        return {
+            'id': self.id,
+            'type': 'Feature',
+            'properties': {
+                'name': self.name,
+                'time_zone': self.time_zone,
+                'fe_area': self.fe_area
+            },
+            'geometry': json.loads(self.geometry)
+        }
+
+    def __unicode__(self):
+        return self.name
+
 
 class WeatherAlert(models.Model):
     nws_id = models.CharField(max_length=1000, unique=True)
@@ -67,11 +87,11 @@ class WeatherAlert(models.Model):
 
     @property
     def geojson(self):
-        fips_codes = self.fips.split(' ')
-        counties = County.objects.filter(id__in=fips_codes)
+        ugc_codes = self.ugc.split(' ')
+        ugcs = UGC.objects.filter(id__in=ugc_codes)
         return {
             'type': 'FeatureCollection',
-            'features': [county.geojson for county in counties]
+            'features': [ugc.geojson for ugc in ugcs]
         }
 
     @property
@@ -153,19 +173,30 @@ class UserWeatherAlert(models.Model):
     user = models.ForeignKey(User)
     user_location = models.ForeignKey(UserLocation)
     weather_alert = models.ForeignKey(WeatherAlert)
-    weather_alert_fips = models.CharField(max_length=6)
+    weather_alert_ugc = models.CharField(max_length=6)
 
     @property
-    def weather_alert_shape(self): # A user is only in one county while some alerts cover multiple.
-        county = County.objects.get(id=self.weather_alert_fips)
-        return county.shape
+    def weather_alert_shape(self): # A user is only in one ugc while some alerts cover multiple.
+        ugc = UGC.objects.get(id=self.weather_alert_ugc)
+        return ugc.shape
 
     def static_map_url(self, width=560, height=450, zoom=10):
-        coords = list(self.weather_alert_shape.exterior.coords)
-        coords = map(lambda coord: (coord[1], coord[0]), coords)
-        path_str = '|'.join((','.join((str(y) for y in x)) for x in coords))
-        return 'http://maps.googleapis.com/maps/api/staticmap?center=%s,%s&zoom=%s&size=%sx%s&sensor=false&path=color:0xff0000ff|weight:1|fillcolor:0xFF000033|%s&markers=color:blue|label:S|%s,%s' %\
-                (self.user_location.latitude, self.user_location.longitude, zoom, width, height, path_str, self.user_location.latitude, self.user_location.longitude)
+        _coords = []
+        was = self.weather_alert_shape.simplify(0.005)
+        if hasattr(was, 'exterior'): # A Polygon
+            coords = list(was.exterior.coords)
+            coords = map(lambda coord: (coord[1], coord[0]), coords)
+            _coords.append(coords)
+        else: # A MultiPolygon
+            for polygon in was:
+                coords = list(polygon.exterior.coords)
+                coords = map(lambda coord: (coord[1], coord[0]), coords)
+                _coords.append(coords)
+        url = 'http://maps.googleapis.com/maps/api/staticmap?center=%s,%s&zoom=%s&size=%sx%s&sensor=false&markers=color:blue|label:S|%s,%s' %\
+                (self.user_location.latitude, self.user_location.longitude, zoom, width, height, self.user_location.latitude, self.user_location.longitude)
+        for coords_set in _coords:
+            url += '&path=color:0xff0000ff|weight:1|fillcolor:0xFF000033|%s' % '|'.join((','.join((str("{0:.4f}".format(y)) for y in x)) for x in coords_set))
+        return url
 
     @property
     def short_url_id(self):
