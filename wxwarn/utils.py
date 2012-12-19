@@ -139,7 +139,8 @@ def _create_data_dict(parsed_alert):
         'title': parsed_alert.title.text,
         'summary': parsed_alert.summary.text,
         'url': parsed_alert.link['href'],
-        'fips': parsed_alert.find('cap:geocode').value.text,
+        'fips': parsed_alert.find('cap:geocode').findChildren('value')[0].text,
+        'ugc': parsed_alert.find('cap:geocode').findChildren('value')[1].text
     }
 
 
