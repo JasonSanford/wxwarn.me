@@ -1,0 +1,11 @@
+<%inherit file="base.html"/>
+
+<% from django.core.urlresolvers import reverse %>
+
+<h3>${len(current_weather_alerts)} current weather alerts</h3>
+
+<ul>
+    % for cwa in current_weather_alerts:
+    <li><a href="${reverse('weather_alert', args=(cwa.id,))}">${cwa.event}</a> - ${cwa.summary}</li>
+    % endfor
+</ul>

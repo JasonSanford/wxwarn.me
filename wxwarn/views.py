@@ -8,11 +8,12 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.http import Http404, HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
 from django.views.decorators.http import require_POST
+from django.utils.timezone import now as d_now
 from social_auth.models import UserSocialAuth
 
 import short_url
 from wxwarn.utils import get_user_location
-from wxwarn.models import UserWeatherAlert, UserProfile
+from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert
 from wxwarn.forms import UserProfileForm
 
 
@@ -103,4 +104,21 @@ def user_profile(request):
             for error in errors:
                 message += 'Field %s: %s' % (field, error)
         return HttpResponseBadRequest(json.dumps({'status': 'error', 'message': message}), mimetype='application/json')
+
+
+def weather_alerts(request):
+    now = d_now()
+    current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now, expires__gte=now)
+    return render_to_response('weather_alerts.html',
+            {
+                'current_weather_alerts': current_weather_alerts
+            }, context_instance=RequestContext(request))
+
+
+def weather_alert(request, weather_alert_id):
+    a_weather_alert = WeatherAlert.objects.get(id=weather_alert_id)
+    return render_to_response('weather_alert.html',
+            {
+                'weather_alert': a_weather_alert
+            }, context_instance=RequestContext(request))
 
