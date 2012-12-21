@@ -1,4 +1,5 @@
 import json
+import re
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -103,6 +104,37 @@ class WeatherAlert(models.Model):
     def active(self):
         now = d_now()
         return self.effective <= now <= self.expires
+
+    @property
+    def category(self):
+        event = self.event
+
+        regex_cold = re.compile('freeze|frost|chill', re.IGNORECASE|re.DOTALL)
+        regex_fire = re.compile('fire|red flag', re.IGNORECASE|re.DOTALL)
+        regex_flood = re.compile('flood|water', re.IGNORECASE|re.DOTALL)
+        regex_snow = re.compile('winter|blizzard|snow|avalanche', re.IGNORECASE|re.DOTALL)
+        regex_heat = re.compile('heat', re.IGNORECASE|re.DOTALL)
+        regex_thunder = re.compile('thunder', re.IGNORECASE|re.DOTALL)
+        regex_tornado = re.compile('tornado', re.IGNORECASE|re.DOTALL)
+        regex_wind = re.compile('wind', re.IGNORECASE|re.DOTALL)
+
+        if regex_cold.search(event):
+            return 'cold'
+        if regex_fire.search(event):
+            return 'fire'
+        if regex_flood.search(event):
+            return 'flood'
+        if regex_heat.search(event):
+            return 'heat'
+        if regex_snow.search(event):
+            return 'snow'
+        if regex_thunder.search(event):
+            return 'thunder'
+        if regex_tornado.search(event):
+            return 'tornado'
+        if regex_wind.search(event):
+            return 'wind'
+        return None
 
     def __unicode__(self):
         return self.event

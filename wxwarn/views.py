@@ -116,9 +116,13 @@ def weather_alerts(request):
 
 
 def weather_alert(request, weather_alert_id):
-    a_weather_alert = WeatherAlert.objects.get(id=weather_alert_id)
+    try:
+        a_weather_alert = WeatherAlert.objects.get(id=weather_alert_id)
+    except WeatherAlert.DoesNotExist:
+        raise Http404
     return render_to_response('weather_alert.html',
             {
-                'weather_alert': a_weather_alert
+                'weather_alert': a_weather_alert,
+                'leaflet': True
             }, context_instance=RequestContext(request))
 

@@ -1,20 +1,27 @@
 <%inherit file="base.html"/>
 
+<% from django.core.urlresolvers import reverse %>
 <%! import json %>
 
 <h3>${weather_alert.event}</h3>
 
 <div class="row" style="margin-bottom: 20px;">
-    <div class="span4">
+    <div class="span4" style="height: 300px;${' background-image: url(%ssvg/%s.svg); background-repeat: no-repeat; background-position: right; background-size: 200px;' % (STATIC_URL, weather_alert.category) if weather_alert.category else ''}">
         <h4>${user_location.user.first_name}&apos;s Location</h4>
         <p><span class="muted">At:</span> ${user_location.latitude}, ${user_location.longitude}</p>
         <p><span class="muted">Around:</span> ${user_location.source_created}</p>
         <p><span class="muted">Reported via:</span> ${user_location.source}</p>
         <h4>Alert</h4>
+        <p><span class="muted">ID:</span> <a href="${reverse('weather_alert', args=(weather_alert.id,))}">${weather_alert.id}</a></p>
         <p><span class="muted">Effective:</span> ${weather_alert.effective}</p>
         <p><span class="muted">Expires:</span> ${weather_alert.expires}</p>
     </div>
-    <div id="map" style="height: 300px;" class="span8"></div>
+    <div class="span8" style="height: 100%;">
+        <div id="map-container" style="position: relative; height: 100%;">
+            <div id="map" style="height: 300px;"></div>
+            <div class="active-state-flag${' active' if weather_alert.active else ''}">${'Active' if weather_alert.active else 'Expired'}</div>
+        </div>
+    </div>
 </div>
 
 <div class="row">

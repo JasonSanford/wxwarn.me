@@ -1,5 +1,5 @@
 (function() {
-    var start_location = new L.LatLng(wx.user_location.coordinates[1], wx.user_location.coordinates[0]),
+    var start_location = new L.LatLng(-100, 40),
         road_layer = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/jcsanford.map-xu5k4lii/{z}/{x}/{y}.png', {
                 maxZoom: 16,
                 subdomains: ['a', 'b', 'c', 'd'],
@@ -18,9 +18,6 @@
             ]
         }),
         alert_layer = new L.GeoJSON(wx.weather_alert, {
-            filter: function(feature, layer) {
-                return feature.id === wx.weather_alert_ugc;
-            },
             style: {
                 color: '#ff0000',
                 opacity: 1,
