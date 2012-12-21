@@ -10,8 +10,7 @@
         <p><span class="muted">At:</span> ${user_location.latitude}, ${user_location.longitude}</p>
         <p><span class="muted">Around:</span> ${user_location.source_created}</p>
         <p><span class="muted">Reported via:</span> ${user_location.source}</p>
-        <h4>Alert</h4>
-        <p><span class="muted">ID:</span> <a href="${reverse('weather_alert', args=(weather_alert.id,))}">${weather_alert.id}</a></p>
+        <h5>${weather_alert.title}</h5>
         <p><span class="muted">Effective:</span> ${weather_alert.effective}</p>
         <p><span class="muted">Expires:</span> ${weather_alert.expires}</p>
     </div>
@@ -24,7 +23,7 @@
 </div>
 
 <div class="row">
-    <h4>NWS Details</h4>
+    <h4><a href="${reverse('weather_alert', args=(weather_alert.id,))}">Alert Details</a></h4>
     <p>${weather_alert.summary}</p>
 </div>
 
