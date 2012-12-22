@@ -1,0 +1,28 @@
+<%inherit file="/account/base.html"/>
+<% from django.core.urlresolvers import reverse %>
+
+<h4>We've  sent you ${len(user_weather_alerts)} weather warning${'' if len(user_weather_alerts) == 1 else 's'}</h4>
+<%
+from wxwarn.utils import grouper
+groups = grouper(3, user_weather_alerts)
+%>
+% for group in groups:
+<div class="row-fluid">
+    <ul class="thumbnails">
+        % for user_weather_alert in group:
+            % if user_weather_alert:
+        <li class="span4">
+            <div class="thumbnail">
+                <img src="${user_weather_alert.static_map_url(width=300, height=200, zoom=10)}">
+                <div class="caption">
+                    <h4>${user_weather_alert.weather_alert.event}</h4>
+                    <p><span class="muted">Status: </span>${'Active' if user_weather_alert.weather_alert.active else 'Expired'}</p>
+                    <a class="btn btn-primary" href="${reverse('user_weather_alert', args=(user_weather_alert.id,))}">Details</a>
+                </div>
+            </div>
+        </li>
+            % endif
+        % endfor
+    </ul>
+</div>
+% endfor

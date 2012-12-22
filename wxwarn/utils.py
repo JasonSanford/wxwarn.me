@@ -250,3 +250,10 @@ def create_fake_weather_alert(user_id):
             break
     check_users_weather_alerts()
 
+
+def grouper(n, iterable, fillvalue=None):
+    from itertools import izip_longest
+    "Collect data into fixed-length chunks or blocks"
+    # grouper(3, 'ABCDEFG', 'x') --> ABC DEF Gxx
+    args = [iter(iterable)] * n
+    return izip_longest(fillvalue=fillvalue, *args)

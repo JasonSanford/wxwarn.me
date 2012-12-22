@@ -52,16 +52,45 @@ def account_landing(request):
     """
     GET /account/
 
+    Account landing/status page
+    """
+    user_weather_alerts = UserWeatherAlert.objects.filter(user=request.user)
+    user_profile = request.user.get_profile()
+    return render_to_response('account/status.html',
+            {
+                'page': 'landing'
+            }, context_instance=RequestContext(request))
+
+
+@login_required
+def account_settings(request):
+    """
+    GET /account/settings/
+
+    Account landing page
+    """
+    user_profile = request.user.get_profile()
+    return render_to_response('account/settings.html',
+            {
+                'page': 'settings',
+                'user_profile_form': UserProfileForm(instance=user_profile),
+                'user_profile_id': user_profile.id
+            }, context_instance=RequestContext(request))
+
+
+@login_required
+def user_weather_alerts(request):
+    """
+    GET /account/my_weather_alerts/
+
     Account landing page
     """
     user_weather_alerts = UserWeatherAlert.objects.filter(user=request.user)
     user_profile = request.user.get_profile()
-    return render_to_response('account_landing.html',
+    return render_to_response('account/my_weather_alerts.html',
             {
-                'leaflet': True,
+                'page': 'my_weather_alerts',
                 'user_weather_alerts': user_weather_alerts,
-                'user_profile_form': UserProfileForm(instance=user_profile),
-                'user_profile_id': user_profile.id
             }, context_instance=RequestContext(request))
 
 
