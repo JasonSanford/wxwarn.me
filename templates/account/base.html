@@ -7,10 +7,10 @@
 <div class="row">
     <div class="span3">
         <ul class="nav nav-list">
-            <li class="nav-header">
-                <a href="${reverse('account_landing')}">My Account</a>
+            <li class="nav-header">My Account</li>
+            <li${' class="active"' if page == 'landing' else ''}>
+                <a href="${reverse('account_landing')}">Status</a>
             </li>
-            <li>
             <li${' class="active"' if page == 'my_weather_alerts' else ''}>
                 <a href="${reverse('user_weather_alerts')}">My Weather Alerts</a>
             </li>
