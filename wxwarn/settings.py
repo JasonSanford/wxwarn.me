@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'kombu.transport.django',
     'djcelery',
     'storages',
+    'south',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
