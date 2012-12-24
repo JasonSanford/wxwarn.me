@@ -169,6 +169,11 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return 'UserProfile: %s' % self.user.username
 
+
+class Timezone(models.Model):
+    name = models.CharField(max_length=255)
+
+
 class LocationSource(models.Model):
     name = models.CharField(max_length=255)
 

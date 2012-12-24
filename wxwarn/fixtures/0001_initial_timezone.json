@@ -1,0 +1,212 @@
+[
+    {
+        "pk": 1,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/New_York"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Detroit"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Kentucky/Louisville"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Kentucky/Monticello"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Indiana/Indianapolis"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Indiana/Vincennes"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Indiana/Winamac"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Indiana/Marengo"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Indiana/Petersburg"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Indiana/Vevay"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Chicago"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Indiana/Tell_City"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Indiana/Knox"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Menominee"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/North_Dakota/Center"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/North_Dakota/New_Salem"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/North_Dakota/Beulah"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Denver"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Boise"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Shiprock"
+        }
+    },
+    {
+        "pk": 21,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Phoenix"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Los_Angeles"
+        }
+    },
+    {
+        "pk": 23,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Anchorage"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Juneau"
+        }
+    },
+    {
+        "pk": 25,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Sitka"
+        }
+    },
+    {
+        "pk": 26,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Yakutat"
+        }
+    },
+    {
+        "pk": 27,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Nome"
+        }
+    },
+    {
+        "pk": 28,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Adak"
+        }
+    },
+    {
+        "pk": 29,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "America/Metlakatla"
+        }
+    },
+    {
+        "pk": 30,
+        "model": "wxwarn.timezone",
+        "fields": {
+            "name": "Pacific/Honolulu"
+        }
+    }
+]
