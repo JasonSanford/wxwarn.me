@@ -140,6 +140,13 @@ class WeatherAlert(models.Model):
         return self.event
 
 
+class Timezone(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.name
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     active = models.BooleanField(default=True)
@@ -147,6 +154,7 @@ class UserProfile(models.Model):
     sms_number = models.CharField(max_length=50, null=True)
     send_sms_alerts = models.BooleanField(default=False)
     send_email_alerts = models.BooleanField(default=True)
+    timezone = models.ForeignKey(Timezone, default=18) # default to America/Denver
 
     @property
     def last_location(self):
@@ -168,10 +176,6 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return 'UserProfile: %s' % self.user.username
-
-
-class Timezone(models.Model):
-    name = models.CharField(max_length=255)
 
 
 class LocationSource(models.Model):

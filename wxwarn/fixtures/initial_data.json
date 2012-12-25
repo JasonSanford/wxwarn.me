@@ -26,7 +26,8 @@
             "premium": true,
             "sms_number": "7046091521",
             "send_sms_alerts": true,
-            "send_email_alerts": true
+            "send_email_alerts": true,
+            "timezone": 18
         }
     },
     {
