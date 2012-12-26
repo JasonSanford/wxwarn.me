@@ -1,6 +1,7 @@
 <%inherit file="base.html"/>
 
-<% from django.core.urlresolvers import reverse%>
+<% from django.core.urlresolvers import reverse %>
+<%! import json %>
 
 <h3>${weather_alert_count} current weather alert${'' if weather_alert_count == 1 else 's'}</h3>
 
@@ -36,7 +37,7 @@ groups = grouper(10, weather_alerts_by_state)
         <a href="#tab-${state[0]}-list" data-toggle="tab">List</a>
     </li>
     <li>
-        <a href="#tab-${state[0]}-map" data-toggle="tab">Map</a>
+        <a href="#tab-${state[0]}-map" data-toggle="tab" data-state="${state[0]}" class="map-tab">Map</a>
     </li>
 </ul>
 <div class="tab-content">
@@ -47,10 +48,19 @@ groups = grouper(10, weather_alerts_by_state)
             % endfor
         </ul>
     </div>
-    <div class="tab-pane" id="tab-${state[0]}-map">Maps n such</div>
+    <div class="tab-pane" id="tab-${state[0]}-map">
+        <div class="map-container" style="height: 400px;"></div>
+    </div>
 </div>
     % else:
 <p>No current weather alerts</p>
     % endif
 
 % endfor
+
+<%block name="javascript">
+<script>
+wx.weather_alerts = ${json.dumps(weather_alerts_json)};
+</script>
+<script src="${STATIC_URL}js/weather_alerts.js"></script>
+</%block>

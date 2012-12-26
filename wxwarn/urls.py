@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^a/(?P<user_weather_alert_short_url>.+)/$', 'wxwarn.views.user_weather_alert', name='user_weather_alert_short'),
     url(r'^weather_alerts/$', 'wxwarn.views.weather_alerts', name='weather_alerts'),
     url(r'^weather_alerts/(?P<weather_alert_id>\d+)/$', 'wxwarn.views.weather_alert', name='weather_alert'),
+    url(r'^weather_alerts/(?P<weather_alert_id>\d+).geojson$', 'wxwarn.views.weather_alert_geojson', name='weather_alert_geojson'),
     
 
     # Uncomment the admin/doc line below to enable admin documentation:

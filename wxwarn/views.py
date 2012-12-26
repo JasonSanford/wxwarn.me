@@ -158,12 +158,18 @@ def weather_alerts(request):
                     state['weather_alerts'].append(current_weather_alert)
             else:
                 print 'No state found for UGC: %s' % ugc
+    weather_alerts_json = copy.deepcopy(weather_alerts_by_state)
+    for item in weather_alerts_json:
+        if 'weather_alerts' in weather_alerts_json[item]:
+            del weather_alerts_json[item]['weather_alerts']
     weather_alerts_by_state = sorted(weather_alerts_by_state.items(), key=lambda x: x[1])
     weather_alerts_by_state.sort(key=lambda st:st[1]['name'])
     return render_to_response('weather_alerts.html',
             {
                 'weather_alert_count': len(current_weather_alerts),
                 'weather_alerts_by_state': weather_alerts_by_state,
+                'weather_alerts_json': weather_alerts_json,
+                'leaflet': True,
             }, context_instance=RequestContext(request))
 
 
@@ -182,4 +188,17 @@ def weather_alert(request, weather_alert_id):
                 'weather_alert': a_weather_alert,
                 'leaflet': True
             }, context_instance=RequestContext(request))
+
+
+def weather_alert_geojson(request, weather_alert_id):
+    """
+    GET /weather_alerts/<id>.geojson
+
+    View weather alert GeoJSON
+    """
+    try:
+        a_weather_alert = WeatherAlert.objects.get(id=weather_alert_id)
+    except WeatherAlert.DoesNotExist:
+        raise Http404
+    return HttpResponse(json.dumps(a_weather_alert.geojson), mimetype='application/json')
 
