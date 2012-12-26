@@ -30,6 +30,7 @@ groups = grouper(10, weather_alerts_by_state)
 <h4 id="${state[0]}">${state[1]['name']}</h4>
 
     % if 'weather_alerts' in state[1] and len(state[1]['weather_alerts']) > 0:
+    <% state[1]['weather_alerts'].sort(key=lambda wa:wa.event) %>
 <ul class="nav nav-tabs">
     <li class="active">
         <a href="#tab-${state[0]}-list" data-toggle="tab">List</a>
