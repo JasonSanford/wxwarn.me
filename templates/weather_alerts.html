@@ -1,11 +1,24 @@
 <%inherit file="base.html"/>
 
-<% from django.core.urlresolvers import reverse %>
+<%
+from django.core.urlresolvers import reverse
+import json
+%>
 
-<h3>${len(current_weather_alerts)} current weather alerts</h3>
+<h3>${weather_alert_count} current weather alert${'' if weather_alert_count == 1 else 's'}</h3>
 
+% for state in weather_alerts_by_state:
+
+<h4>${weather_alerts_by_state[state]['name']}</h4>
+
+    % if 'weather_alerts' in weather_alerts_by_state[state] and len(weather_alerts_by_state[state]['weather_alerts']) > 0:
 <ul>
-    % for cwa in current_weather_alerts:
+    % for cwa in weather_alerts_by_state[state]['weather_alerts']:
     <li><a href="${reverse('weather_alert', args=(cwa.id,))}">${cwa.event}</a> - ${cwa.summary}</li>
     % endfor
 </ul>
+    % else:
+<p>No weather alerts found.</p>
+    % endif
+
+% endfor

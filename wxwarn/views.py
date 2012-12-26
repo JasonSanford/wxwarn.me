@@ -1,5 +1,6 @@
 import logging
 import json
+import copy
 
 from djangomako.shortcuts import render_to_response
 from django.shortcuts import redirect, render
@@ -15,6 +16,7 @@ import short_url
 from wxwarn.utils import get_user_location
 from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert
 from wxwarn.forms import UserProfileForm
+from wxwarn.locations import states
 
 
 def home(request):
@@ -136,15 +138,39 @@ def user_profile(request):
 
 
 def weather_alerts(request):
+    """
+    GET /weather_alerts/
+
+    View list of weather alerts
+    """
     now = d_now()
     current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now, expires__gte=now)
+    weather_alerts_by_state = copy.deepcopy(states)
+    for current_weather_alert in current_weather_alerts:
+        for ugc in current_weather_alert.ugc.split(' '):
+            state_code = ugc[:2]
+            state = weather_alerts_by_state.get(state_code)
+            if state:
+                state.setdefault('weather_alert_ids', [])
+                state.setdefault('weather_alerts', [])
+                if not current_weather_alert.id in state['weather_alert_ids']:
+                    state['weather_alert_ids'].append(current_weather_alert.id)
+                    state['weather_alerts'].append(current_weather_alert)
+            else:
+                print 'No state found for UGC: %s' % ugc
     return render_to_response('weather_alerts.html',
             {
-                'current_weather_alerts': current_weather_alerts
+                'weather_alert_count': len(current_weather_alerts),
+                'weather_alerts_by_state': weather_alerts_by_state,
             }, context_instance=RequestContext(request))
 
 
 def weather_alert(request, weather_alert_id):
+    """
+    GET /weather_alerts/<id>/
+
+    View weather alert details
+    """
     try:
         a_weather_alert = WeatherAlert.objects.get(id=weather_alert_id)
     except WeatherAlert.DoesNotExist:
