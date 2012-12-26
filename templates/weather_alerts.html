@@ -1,9 +1,6 @@
 <%inherit file="base.html"/>
 
-<%
-from django.core.urlresolvers import reverse
-import json
-%>
+<% from django.core.urlresolvers import reverse%>
 
 <h3>${weather_alert_count} current weather alert${'' if weather_alert_count == 1 else 's'}</h3>
 
@@ -17,13 +14,13 @@ groups = grouper(10, weather_alerts_by_state)
 <div class="row-fluid">
     % for group in groups:
     <div class="span2">
-    <ul>
-        % for state in group:
-            %if state:
-            <li><a href="#${state[0]}">${state[1]['name']}</a></li>
-            % endif
-        % endfor
-    </ul>
+        <ul>
+            % for state in group:
+                %if state:
+                <li><a href="#${state[0]}">${state[1]['name']}</a></li>
+                % endif
+            % endfor
+        </ul>
     </div>
     % endfor
 </div>
@@ -33,13 +30,26 @@ groups = grouper(10, weather_alerts_by_state)
 <h4 id="${state[0]}">${state[1]['name']}</h4>
 
     % if 'weather_alerts' in state[1] and len(state[1]['weather_alerts']) > 0:
-<ul>
-    % for cwa in state[1]['weather_alerts']:
-    <li><a href="${reverse('weather_alert', args=(cwa.id,))}">${cwa.event}</a> - ${cwa.summary}</li>
-    % endfor
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a href="#tab-${state[0]}-list" data-toggle="tab">List</a>
+    </li>
+    <li>
+        <a href="#tab-${state[0]}-map" data-toggle="tab">Map</a>
+    </li>
 </ul>
+<div class="tab-content">
+    <div class="tab-pane active" id="tab-${state[0]}-list">
+        <ul>
+            % for cwa in state[1]['weather_alerts']:
+            <li><a href="${reverse('weather_alert', args=(cwa.id,))}">${cwa.event}</a> - ${cwa.summary}</li>
+            % endfor
+        </ul>
+    </div>
+    <div class="tab-pane" id="tab-${state[0]}-map">Maps n such</div>
+</div>
     % else:
-<p>No current weather alerts.</p>
+<p>No current weather alerts</p>
     % endif
 
 % endfor
