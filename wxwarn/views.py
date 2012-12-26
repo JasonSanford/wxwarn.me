@@ -158,6 +158,8 @@ def weather_alerts(request):
                     state['weather_alerts'].append(current_weather_alert)
             else:
                 print 'No state found for UGC: %s' % ugc
+    weather_alerts_by_state = sorted(weather_alerts_by_state.items(), key=lambda x: x[1])
+    weather_alerts_by_state.sort(key=lambda st:st[1]['name'])
     return render_to_response('weather_alerts.html',
             {
                 'weather_alert_count': len(current_weather_alerts),
