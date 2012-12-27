@@ -14,7 +14,7 @@ from social_auth.models import UserSocialAuth
 
 import short_url
 from wxwarn.utils import get_user_location
-from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert
+from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert, State
 from wxwarn.forms import UserProfileForm
 from wxwarn.locations import states
 
@@ -171,6 +171,25 @@ def weather_alerts(request):
                 'weather_alerts_json': weather_alerts_json,
                 'leaflet': True,
             }, context_instance=RequestContext(request))
+
+
+def weather_alerts_state(request, state_code):
+    """
+    GET /weather_alerts/<state_code>/
+
+    View list of weather alerts for a state
+    """
+    state_code = state_code.upper()
+    try:
+        state = State.objects.get(code=state_code)
+    except State.DoesNotExist:
+        raise Http404
+    now = d_now()
+    current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now, expires__gte=now)
+    for current_weather_alert in current_weather_alerts:
+        for ugc in current_weather_alert.ugc.split(' '):
+            ugc_state_code = ugc[:2]
+    return HttpResponse('got to a state page')
 
 
 def weather_alert(request, weather_alert_id):
