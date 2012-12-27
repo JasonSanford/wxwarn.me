@@ -189,7 +189,7 @@ def weather_alerts_state(request, state_code):
     for current_weather_alert in current_weather_alerts:
         for ugc in current_weather_alert.ugc.split(' '):
             ugc_state_code = ugc[:2]
-    return HttpResponse('got to a state page')
+    return HttpResponse('Got to a state page')
 
 
 def weather_alert(request, weather_alert_id):
