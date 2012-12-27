@@ -42,6 +42,14 @@ class County(models.Model):
         return '%s County, %s' % (self.name, self.state_name)
 
 
+class State(models.Model):
+    name = models.CharField(max_length=200)
+    code = models.CharField(max_length=2)
+
+    def __unicode__(self):
+        return name
+
+
 class UGC(models.Model):
     id = models.CharField(max_length=6, primary_key=True) # 6 digit UGC code
     name = models.CharField(max_length=1000)
