@@ -31,6 +31,7 @@
                 <div class="nav-collapse collapse">
                     <ul class="nav">
                         <li class="${'active' if current_page == 'how_it_works' else ''}"><a href="${reverse('how_it_works')}">How it Works</a></li>
+                        <li class="${'active' if current_page == 'weather_alerts' else ''}"><a href="${reverse('weather_alerts')}">Weather Alerts</a></li>
                         % if not request.user.is_anonymous():
                         <li class="${'active' if False else ''}"><a href="${reverse('account_landing')}">Account</a></li>
                         % endif
