@@ -16,7 +16,6 @@ import short_url
 from wxwarn.utils import get_user_location
 from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert, State
 from wxwarn.forms import UserProfileForm
-from wxwarn.locations import states
 
 
 def home(request):
@@ -138,38 +137,40 @@ def user_profile(request):
 
 
 def weather_alerts(request):
-    """
-    GET /weather_alerts/
+    states = State.objects.all().order_by('name')
+    return render_to_response('weather_alerts.html',
+            {
+                'states': states
+            }, context_instance=RequestContext(request))
 
-    View list of weather alerts
+
+def weather_alerts_all(request):
+    """
+    GET /weather_alerts/all/
+
+    View list of all weather alerts
     """
     now = d_now()
     current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now, expires__gte=now)
-    weather_alerts_by_state = copy.deepcopy(states)
+    states = State.objects.all()
+    weather_alerts_by_state = {}
+    for state in states:
+        weather_alerts_by_state[state.code] = {'name': state.name}
     for current_weather_alert in current_weather_alerts:
         for ugc in current_weather_alert.ugc.split(' '):
             state_code = ugc[:2]
-            state = weather_alerts_by_state.get(state_code)
-            if state:
-                state.setdefault('weather_alert_ids', [])
-                state.setdefault('weather_alerts', [])
-                if not current_weather_alert.id in state['weather_alert_ids']:
-                    state['weather_alert_ids'].append(current_weather_alert.id)
-                    state['weather_alerts'].append(current_weather_alert)
-            else:
-                print 'No state found for UGC: %s' % ugc
-    weather_alerts_json = copy.deepcopy(weather_alerts_by_state)
-    for item in weather_alerts_json:
-        if 'weather_alerts' in weather_alerts_json[item]:
-            del weather_alerts_json[item]['weather_alerts']
+            state = weather_alerts_by_state[state_code]
+            state.setdefault('weather_alert_ids', [])
+            state.setdefault('weather_alerts', [])
+            if not current_weather_alert.id in state['weather_alert_ids']:
+                state['weather_alert_ids'].append(current_weather_alert.id)
+                state['weather_alerts'].append(current_weather_alert)
     weather_alerts_by_state = sorted(weather_alerts_by_state.items(), key=lambda x: x[1])
     weather_alerts_by_state.sort(key=lambda st:st[1]['name'])
-    return render_to_response('weather_alerts.html',
+    return render_to_response('weather_alerts_all.html',
             {
                 'weather_alert_count': len(current_weather_alerts),
                 'weather_alerts_by_state': weather_alerts_by_state,
-                'weather_alerts_json': weather_alerts_json,
-                'leaflet': True,
             }, context_instance=RequestContext(request))
 
 
@@ -186,10 +187,30 @@ def weather_alerts_state(request, state_code):
         raise Http404
     now = d_now()
     current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now, expires__gte=now)
+    current_weather_alerts_for_state = []
+    current_weather_alerts_json = {}
+    current_weather_alerts_ids = []
     for current_weather_alert in current_weather_alerts:
         for ugc in current_weather_alert.ugc.split(' '):
             ugc_state_code = ugc[:2]
-    return HttpResponse('Got to a state page')
+            if ugc_state_code == state_code and current_weather_alert.id not in current_weather_alerts_ids:
+                current_weather_alerts_for_state.append(current_weather_alert)
+                current_weather_alerts_json[current_weather_alert.id] = {
+                    'geojson': current_weather_alert.geojson,
+                    'ugc': current_weather_alert.ugc,
+                }
+                current_weather_alerts_ids.append(current_weather_alert.id)
+
+    return render_to_response('weather_alerts_state.html',
+            {
+                'weather_alerts': current_weather_alerts_for_state,
+                'weather_alerts_json': current_weather_alerts_json,
+                'state': {
+                    'code': state.code,
+                    'name': state.name
+                },
+                'leaflet': True
+            }, context_instance=RequestContext(request))
 
 
 def weather_alert(request, weather_alert_id):

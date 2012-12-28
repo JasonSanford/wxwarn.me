@@ -1,0 +1,31 @@
+<%inherit file="base.html"/>
+
+<% from django.core.urlresolvers import reverse %>
+<%! import json %>
+
+<h3>${len(weather_alerts)} current weather alert${'' if weather_alert_count == 1 else 's'} for ${state['name']}</h3>
+
+% if len(weather_alerts) > 0:
+<div class="row-fluid" style="height: 400px;">
+    <div class="span4" style="height: 100%; overflow-y: auto;">
+        <ul>
+            % for weather_alert in weather_alerts:
+            <li class="weather-alert" data-alert-id="${weather_alert.id}"><a href="${reverse('weather_alert', args=(weather_alert.id,))}">${weather_alert.event}</a></li>
+            % endfor
+        </ul>
+    </div>
+    <div class="span8" style="height: 100%;">
+        <div id="map-container" style="height: 100%;"></div>
+    </div>
+</div>
+% else:
+<p>No current weather alerts</p>
+% endif
+
+<%block name="javascript">
+<script>
+wx.weather_alerts = {};
+wx.weather_alerts.alerts = ${json.dumps(weather_alerts_json)};
+</script>
+<script src="${STATIC_URL}js/weather_alerts_state.js"></script>
+</%block>

@@ -1,15 +1,12 @@
 <%inherit file="base.html"/>
 
 <% from django.core.urlresolvers import reverse %>
-<%! import json %>
-
-<h3>${weather_alert_count} current weather alert${'' if weather_alert_count == 1 else 's'}</h3>
 
 <h3>Jump to your state</h3>
 
 <%
 from wxwarn.utils import grouper
-groups = grouper(10, weather_alerts_by_state)
+groups = grouper(10, states)
 %>
 
 <div class="row-fluid">
@@ -17,8 +14,8 @@ groups = grouper(10, weather_alerts_by_state)
     <div class="span2">
         <ul>
             % for state in group:
-                %if state:
-                <li><a href="#${state[0]}">${state[1]['name']}</a></li>
+                % if state:
+            <li><a href="${reverse('weather_alerts_state', args=(state.code.lower(),))}">${state.name}</a></li>
                 % endif
             % endfor
         </ul>
@@ -26,41 +23,8 @@ groups = grouper(10, weather_alerts_by_state)
     % endfor
 </div>
 
-% for state in weather_alerts_by_state:
-
-<h4 id="${state[0]}">${state[1]['name']}</h4>
-
-    % if 'weather_alerts' in state[1] and len(state[1]['weather_alerts']) > 0:
-    <% state[1]['weather_alerts'].sort(key=lambda wa:wa.event) %>
-<ul class="nav nav-tabs">
-    <li class="active">
-        <a href="#tab-${state[0]}-list" data-toggle="tab">List</a>
-    </li>
-    <li>
-        <a href="#tab-${state[0]}-map" data-toggle="tab" data-state="${state[0]}" class="map-tab">Map</a>
-    </li>
-</ul>
-<div class="tab-content">
-    <div class="tab-pane active" id="tab-${state[0]}-list">
-        <ul>
-            % for cwa in state[1]['weather_alerts']:
-            <li><a href="${reverse('weather_alert', args=(cwa.id,))}">${cwa.event}</a> - ${cwa.summary}</li>
-            % endfor
-        </ul>
-    </div>
-    <div class="tab-pane" id="tab-${state[0]}-map">
-        <div class="map-container" style="height: 400px;"></div>
-    </div>
+<div class="row-fluid">
+    <ul>
+        <li><a href="${reverse('weather_alerts_all')}">View all weather alerts</a></li>
+    </ul>
 </div>
-    % else:
-<p>No current weather alerts</p>
-    % endif
-
-% endfor
-
-<%block name="javascript">
-<script>
-wx.weather_alerts = ${json.dumps(weather_alerts_json)};
-</script>
-<script src="${STATIC_URL}js/weather_alerts.js"></script>
-</%block>

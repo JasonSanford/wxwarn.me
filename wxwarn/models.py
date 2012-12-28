@@ -47,7 +47,7 @@ class State(models.Model):
     code = models.CharField(max_length=2)
 
     def __unicode__(self):
-        return name
+        return self.name
 
 
 class UGC(models.Model):
