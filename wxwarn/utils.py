@@ -20,7 +20,7 @@ from social_auth.models import UserSocialAuth
 from bs4 import BeautifulSoup
 from twilio.rest import TwilioRestClient
 
-from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, UserWeatherAlert, County, UGC
+from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, WeatherAlertType, UserWeatherAlert, County, UGC
 
 #WEATHER_ALERTS_URL = 'http://localhost:8000/static/weather_alerts.xml'
 WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/us.php?x=0'
@@ -130,12 +130,15 @@ def get_weather_alerts():
 
 
 def _create_data_dict(parsed_alert):
+    (weather_alert_type, created) = WeatherAlertType.objects.get_or_create(
+            name=parsed_alert.find('cap:event').text)
     return {
         'source_created': parser.parse(parsed_alert.published.text),
         'source_updated': parser.parse(parsed_alert.updated.text),
         'effective': parser.parse(parsed_alert.find('cap:effective').text),
         'expires': parser.parse(parsed_alert.find('cap:expires').text),
         'event': parsed_alert.find('cap:event').text,
+        'weather_alert_type': weather_alert_type,
         'title': parsed_alert.title.text,
         'summary': parsed_alert.summary.text,
         'url': parsed_alert.link['href'],

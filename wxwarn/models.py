@@ -78,6 +78,13 @@ class UGC(models.Model):
         return self.name
 
 
+class WeatherAlertType(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.name
+
+
 class WeatherAlert(models.Model):
     nws_id = models.CharField(max_length=1000, unique=True)
     created = models.DateTimeField(auto_now_add=True)
@@ -87,6 +94,7 @@ class WeatherAlert(models.Model):
     effective = models.DateTimeField()
     expires = models.DateTimeField()
     event = models.CharField(max_length=200)
+    weather_alert_type = models.ForeignKey(WeatherAlertType, default=1)
     title = models.CharField(max_length=200)
     summary = models.TextField()
     url = models.CharField(max_length=1028)
@@ -253,6 +261,14 @@ class UserWeatherAlert(models.Model):
 
     def __unicode__(self):
         return 'UserWeatherAlert: %s for %s' % (self.weather_alert, self.user_location)
+
+
+class UserWeatherAlertTypeExclusion(models.Model):
+    user = models.ForeignKey(User)
+    weather_alert_type = models.ForeignKey(WeatherAlertType)
+
+    def __unicode__(self):
+        return self.weather_alert_type.name
 
 
 def create_user_profile(sender, instance, created, **kwargs):  
