@@ -126,7 +126,6 @@ def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_s
 @require_POST
 def user_weather_alert_type_exclusions(request):
     # TODO: Make this less ... ugly?
-    #return HttpResponseBadRequest(json.dumps({'status': 'error', 'message': 'Nah, JK. You\'re good.'}), mimetype='application/json')
     try:
         weather_alert_settings_dict = json.loads(request.raw_post_data)
     except ValueError:

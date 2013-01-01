@@ -20,7 +20,7 @@ from social_auth.models import UserSocialAuth
 from bs4 import BeautifulSoup
 from twilio.rest import TwilioRestClient
 
-from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, WeatherAlertType, UserWeatherAlert, County, UGC
+from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, WeatherAlertType, UserWeatherAlert, County, UGC, UserWeatherAlertTypeExclusion
 
 #WEATHER_ALERTS_URL = 'http://localhost:8000/static/weather_alerts.xml'
 WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/us.php?x=0'
@@ -162,9 +162,8 @@ def check_users_weather_alerts():
     print 'Current located user count: %s' % len(current_located_users)
     new_user_weather_alerts = []
     for current_located_user in current_located_users:
-        #print current_located_user
+        weather_alert_type_exclusions = [uwate.weather_alert_type.id for uwate in UserWeatherAlertTypeExclusion.objects.filter(user=current_located_user.user)]
         for current_weather_alert in current_weather_alerts:
-            #print current_weather_alert
             for (ugc, polygon) in current_weather_alert.shapes:
                 if polygon.contains(current_located_user.shape):
                     """
@@ -178,11 +177,11 @@ def check_users_weather_alerts():
                                 'user_location': current_located_user,
                                 'weather_alert_ugc': ugc
                             })
-                    if created:
+                    if created and current_weather_alert.weather_alert_type.id not in weather_alert_type_exclusions:
                         new_user_weather_alerts.append(user_weather_alert)
                     break
     """
-    Gathering of new user alerts complete, send emails
+    Gathering of new user alerts complete, send emails and texts
     """
     send_bulk_weather_alerts(new_user_weather_alerts)
 
