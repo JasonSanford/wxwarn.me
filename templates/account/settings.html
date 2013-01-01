@@ -1,23 +1,53 @@
 <%inherit file="/account/base.html"/>
+<% from django.core.urlresolvers import reverse %>
 
-<form id="user-profile-form" class="form-horizontal" action="/user_profile/" method="post" >
-    <input type="hidden" name="id" value="${user_profile_id}">
-    % for field in user_profile_form:
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">${field.label}</label>
-        <div class="controls">
-            ${field}
-        </div>
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#general" data-toggle="tab">General Settings</a></li>
+    <li><a href="#types" data-toggle="tab">Weather Alert Types</a></li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="general">
+        <form id="user-profile-form" class="form-horizontal" action="${reverse('user_profile')}" method="post" >
+            <input type="hidden" name="id" value="${user_profile_id}">
+            % for field in user_profile_form:
+            <div class="control-group">
+                <label class="control-label" for="inputPassword">${field.label}</label>
+                <div class="controls">
+                    ${field}
+                </div>
+            </div>
+            % endfor
+            <div id="profile-update-success" class="alert alert-success hide"><strong>Success!!</strong> Your settings have been updated.</div>
+            <div id="profile-update-error" class="alert alert-error hide"><strong>Error :(</strong> <span class="message">There was a problem updating your profile.</span></div>
+            <div class="control-group">
+                <div class="controls">
+                    <button id="user-profile-update" type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
     </div>
-    % endfor
-    <div id="profile-update-success" class="alert alert-success hide"><strong>Success!!</strong> Your settings have been updated.</div>
-    <div id="profile-update-error" class="alert alert-error hide"><strong>Error :(</strong> <span class="message">There was a problem updating your profile.</span></div>
-    <div class="control-group">
-        <div class="controls">
-            <button id="user-profile-update" type="submit" class="btn btn-primary">Save</button>
-        </div>
+    <div class="tab-pane" id="types">
+        <p><strong>Uncheck</strong> the weather alerts that you <strong>do not</strong> wish to receive notifications for.</p>
+        <form id="weather-alert-type-exclusions-form" class="form-horizontal" action="${reverse('user_weather_alert_type_exclusions')}" method="post">
+            % for weather_alert_type in weather_alert_types:
+            <div class="control-group" style="margin-bottom: 5px;">
+                <label class="control-label" for="weather-alert-type-${weather_alert_type.id}">${weather_alert_type.name}</label>
+                <div class="controls">
+                    <input type="checkbox" class="weather-alert-check" name="${weather_alert_type.id}" id="weather-alert-type-${weather_alert_type.id}"${' checked' if not weather_alert_type.id in weather_alert_type_exclusions else ''}>
+                </div>
+            </div>
+            % endfor
+            <div id="weather-alert-type-update-success" class="alert alert-success hide"><strong>Success!!</strong> Your settings have been updated.</div>
+            <div id="weather-alert-type-update-error" class="alert alert-error hide"><strong>Error :(</strong> <span class="message">There was a problem updating your weather alert settings.</span></div>
+            <div class="control-group">
+                <div class="controls">
+                    <button id="weather-alert-update" type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+</div>
 
 <%block name="javascript">
 <script src="${STATIC_URL}js/account_settings.js"></script>

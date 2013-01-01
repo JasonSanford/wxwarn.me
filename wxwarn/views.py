@@ -14,7 +14,7 @@ from social_auth.models import UserSocialAuth
 
 import short_url
 from wxwarn.utils import get_user_location
-from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert, State
+from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert, State, WeatherAlertType, UserWeatherAlertTypeExclusion
 from wxwarn.forms import UserProfileForm
 
 
@@ -71,11 +71,15 @@ def account_settings(request):
     Account landing page
     """
     user_profile = request.user.get_profile()
+    weather_alert_types = WeatherAlertType.objects.all().order_by('name')
+    weather_alert_type_exclusions = [wat.weather_alert_type.id for wat in UserWeatherAlertTypeExclusion.objects.filter(user=request.user)]
     return render_to_response('account/settings.html',
             {
                 'page': 'settings',
                 'user_profile_form': UserProfileForm(instance=user_profile),
-                'user_profile_id': user_profile.id
+                'user_profile_id': user_profile.id,
+                'weather_alert_types': weather_alert_types,
+                'weather_alert_type_exclusions': weather_alert_type_exclusions,
             }, context_instance=RequestContext(request))
 
 
@@ -116,6 +120,37 @@ def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_s
                 'weather_alert_ugc': a_user_weather_alert.weather_alert_ugc,
                 'leaflet': True,
             }, context_instance=RequestContext(request))
+
+
+@login_required
+@require_POST
+def user_weather_alert_type_exclusions(request):
+    # TODO: Make this less ... ugly?
+    #return HttpResponseBadRequest(json.dumps({'status': 'error', 'message': 'Nah, JK. You\'re good.'}), mimetype='application/json')
+    try:
+        weather_alert_settings_dict = json.loads(request.raw_post_data)
+    except ValueError:
+        return HttpResponseBadRequest(json.dumps({'status': 'error', 'message': 'POSTed data was not JSON serializable.'}))
+    for key in weather_alert_settings_dict:
+        weather_alert_settings_dict[key]['weather_alert_type'] = WeatherAlertType.objects.get(id=key)
+        if weather_alert_settings_dict[key]['value']: # A weather alert type is checked
+            try:
+                uwate = UserWeatherAlertTypeExclusion.objects.get(user=request.user, weather_alert_type=weather_alert_settings_dict[key]['weather_alert_type'])
+            except UserWeatherAlertTypeExclusion.DoesNotExist:
+                """
+                The weather alert type was checked, but there was no entry
+                indicating we should exclude this type. Move along.
+                """
+                continue
+            """
+            The weather alert type was checked, and there was an entry indicating
+            we should exclude this type. Let's delete it so we send notifications
+            for this type of weather alert
+            """
+            uwate.delete()
+        else: # A weather alert type is unchecked
+            uwate, created = UserWeatherAlertTypeExclusion.objects.get_or_create(user=request.user, weather_alert_type=weather_alert_settings_dict[key]['weather_alert_type'])
+    return HttpResponse(json.dumps({'status': 'success'}), mimetype='application/json')
 
 
 @login_required
