@@ -78,6 +78,32 @@ class UGC(models.Model):
         return self.name
 
 
+class Marine(models.Model):
+    id = models.CharField(max_length=6, primary_key=True) # 6 digit GMZ Code
+    name = models.CharField(max_length=1000)
+    wfo = models.CharField(max_length=100)
+    geometry = models.TextField()
+
+    @property
+    def shape(self): # via Shapely
+        return asShape(json.loads(self.geometry))
+
+    @property
+    def geojson(self):
+        return {
+            'id': self.id,
+            'type': 'Feature',
+            'properties': {
+                'name': self.name,
+                'wfo': self.time_zone,
+            },
+            'geometry': json.loads(self.geometry)
+        }
+
+    def __unicode__(self):
+        return self.name
+
+
 class WeatherAlertType(models.Model):
     name = models.CharField(max_length=200)
 
