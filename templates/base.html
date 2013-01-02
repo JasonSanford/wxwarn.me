@@ -32,14 +32,19 @@
                     <ul class="nav">
                         <li class="${'active' if current_page == 'how_it_works' else ''}"><a href="${reverse('how_it_works')}">How it Works</a></li>
                         <li class="${'active' if current_page == 'weather_alerts' else ''}"><a href="${reverse('weather_alerts')}">Weather Alerts</a></li>
-                        % if not request.user.is_anonymous():
+                        % if request.user.is_anonymous():
+                        <li><a href="${reverse('signup')}">Sign Up</a></li>
+                        % else:
                         <li class="${'active' if False else ''}"><a href="${reverse('account_landing')}">Account</a></li>
                         % endif
                     </ul>
-                    % if not request.user.is_anonymous():
-                    <p class="navbar-text pull-right">&nbsp;-&nbsp;<a style="color: #fff;" href="${reverse('logout')}">logout</a></p>
-                    <p class="navbar-text pull-right">Hi <a style="color: #fff;" href="${reverse('account_landing')}">${'%s %s' % (request.user.first_name, request.user.last_name)}</a> !</p>
+                    <p class="navbar-text pull-right">
+                    % if request.user.is_anonymous():
+                    <a style="color: #fff;" href="${reverse('login')}">login</a>
+                    % else:
+                    Hi <a style="color: #fff;" href="${reverse('account_landing')}">${'%s %s' % (request.user.first_name, request.user.last_name)}</a> !&nbsp;-&nbsp;<a style="color: #fff;" href="${reverse('logout')}">logout</a>
                     % endif
+                    </p>
                 </div>
             </div>
         </div>

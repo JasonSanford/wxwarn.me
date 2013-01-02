@@ -10,7 +10,9 @@ from social_auth.views import auth
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'wxwarn.views.home', name='home'),
-    url(r'^how-it-works/$', 'wxwarn.views.how_it_works', name='how_it_works'),
+    url(r'^how_it_works/$', 'wxwarn.views.how_it_works', name='how_it_works'),
+    url(r'^premium/$', 'wxwarn.views.premium', name='premium'),
+    url(r'^signup/$', 'wxwarn.views.signup', name='signup'),
     url(r'^login/$', auth, kwargs={'backend': 'google-oauth2'}, name='login'),
     url(r'^logout/$', 'wxwarn.views.logout', name='logout'),
     url(r'^account/$', 'wxwarn.views.account_landing', name='account_landing'),

@@ -33,9 +33,27 @@ def how_it_works(request):
     """
     GET /how_it_works/
 
-    Show the home page
+    Show how this whole thing works
     """
     return render_to_response('how_it_works.html', {}, context_instance=RequestContext(request))
+
+
+def premium(request):
+    """
+    GET /premium/
+
+    Show the premium upsell page
+    """
+    return render_to_response('premium.html', {}, context_instance=RequestContext(request))
+
+
+def signup(request):
+    """
+    GET /signup/
+
+    Explain that we'll need access to your Google account and Latitdue oauth stuff
+    """
+    return render_to_response('signup.html', {}, context_instance=RequestContext(request))
 
 
 def logout(request):

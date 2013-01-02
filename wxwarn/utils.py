@@ -44,7 +44,7 @@ def get_user_location(social_auth_user):
         # {u'data': {u'kind': u'latitude#location'}}
         # TODO: Protect against user revoked access
         # {u'error': {u'code': 401, u'message': u'Invalid Credentials', u'errors': [{u'locationType': u'header', u'domain': u'global', u'message': u'Invalid Credentials', u'reason': u'authError', u'location': u'Authorization'}]}}
-        #print latitude_data
+        print latitude_data
         insert_user_location(latitude_data, social_auth_user.user)
 
         social_auth_user.oauth_data = oauth_data

@@ -1,2 +1,45 @@
 <%inherit file="base.html"/>
-<h5>About this site.</h5>
+
+<% from django.core.urlresolvers import reverse %>
+
+<div class="row">
+    <div class="span6 offset3">
+        <h3>Get Google Latitude</h3>
+        <p>Latitude is an opt-in location sharing service from Google. Apps are available for both iOS and Android that automatically track your location and store it securely on Google&apos;s servers.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span6 offset3">
+        <h3>Sign Up for WxWarnMe</h3>
+        <p>You sign up and log into WxWarnMe with your Google account. When signing up, Google will ask for your permission to allow our app to view:</p>
+        <ul>
+            <li><strong>"View basic information about your account"</strong> - Your name, timezone, etc.</li>
+            <li><strong>"Manage your best-available location and location history"</strong> - We&apos;ll need access to your location to check for weather alerts near you at any given time.</li>
+            <li><strong>"View your email address"</strong> - So we can notify you of alerts and stay in touch. We won&apos;t spam or sell your email address. Period.</li>
+            <li><strong>"Perform these operations when I'm not using the application"</strong> - To keep you informed of severe weather, we&apos;ll need access to your location at all times, not just when your on our site.</li>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span6 offset3">
+        <h3>Sit Back, Relax</h3>
+        <p>We constantly track weather alerts from the National Weather Service and compare those with your current location. If we find a weather alert near you we&apos;ll notify you via email or SMS.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span6 offset3">
+        <h3>Stay Informed</h3>
+        <p>Your email or SMS will provide valuable information about the weather alert like the severity of the event and when the alert expires. You can even view a map showing the extent of the weather alert relative to the location we tracked you.</p>
+    </div>
+</div>
+% if request.user.is_anonymous():
+<div class="row">
+    <div class="span6 offset3">
+        <h3>Ready? Go!</h3>
+        <p>What are you waiting for? It's free and you can quit at any time.</p>
+        <p><a class="btn btn-primary btn-large" href="${reverse('login')}">Sign Up Now!</a></p>
+    </div>
+</div>
+% endif

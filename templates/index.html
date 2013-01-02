@@ -1,26 +1,33 @@
 <%inherit file="base.html"/>
-<% from django.core.urlresolvers import reverse %>
-<div class="hero-unit">
-    <h1>WxWarn.Me</h1>
-    <p>We&apos;ll keep you updated on any severe weather near you based on your location from Google Latitude.</p>
-    <p><a class="btn btn-large" href="${reverse('how_it_works')}">Learn more</a> <a class="btn btn-primary btn-large" href="${reverse('login')}">Login with Google &raquo;</a></p>
+<%
+from django.core.urlresolvers import reverse
+import random
+%>
+
+<div class="hero-unit" style="background-image: url(${STATIC_URL}img/hero-${random.choice(['flood', 'lightning'])}.jpg);">
+    <div style="width: 400px;background-color: rgba(17, 17, 17, 0.65); border-radius: 8px;padding: 15px 30px;">
+        <h1 style="color: #e0e0e0;">WxWarnMe</h1>
+        <p style="color: #e0e0e0; line-height: 1.3em; margin: 8px 0 12px;">Get notifications for severe weather near you based on your location from Google Latitude.</p>
+        <p><a class="btn btn-large" href="${reverse('how_it_works')}">Learn more</a> <a class="btn btn-primary btn-large" href="${reverse('signup')}">Sign Up &raquo;</a></p>
+        <p style="color: #e0e0e0;">Already a member? <a href="${reverse('login')}">Login now</a></p>
+    </div>
 </div>
 
 <div class="row">
     <div class="span4">
-        <h2>Heading</h2>
+        <h2>Stay Informed</h2>
         <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
         <p><a class="btn" href="#">View details &raquo;</a></p>
     </div>
     <div class="span4">
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        <h2>No App Necessary</h2>
+        <p>If you already use Google Latitude on your mobile phone, there's no need for any additional apps. We'll automatically compare your current location with any active weather alerts to keep you informed.</p>
         <p><a class="btn" href="#">View details &raquo;</a></p>
     </div>
     <div class="span4">
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn" href="#">View details &raquo;</a></p>
+        <h2>Premium Features</h2>
+        <p>Our premium users get weather alert checks more often and can also get SMS notifications. But wait, there's more!</p>
+        <p><a class="btn" href="${reverse('premium')}">View all premium features &raquo;</a></p>
     </div>
 </div>
 
