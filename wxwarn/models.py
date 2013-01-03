@@ -12,6 +12,10 @@ from shapely.geometry import asShape
 import short_url
 
 
+class LocationType(models.Model):
+    name = models.CharField(max_length=100)
+
+
 class County(models.Model):
     id = models.CharField(max_length=6, primary_key=True) # 6 digit fips
     name = models.CharField(max_length=200)

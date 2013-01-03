@@ -1,0 +1,23 @@
+[
+    {
+        "pk": 1,
+        "model": "wxwarn.locationtype",
+        "fields": {
+            "name": "UGC"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "wxwarn.locationtype",
+        "fields": {
+            "name": "FIPS"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "wxwarn.locationtype",
+        "fields": {
+            "name": "Marine"
+        }
+    }
+]
