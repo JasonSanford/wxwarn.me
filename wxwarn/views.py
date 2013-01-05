@@ -14,7 +14,7 @@ from social_auth.models import UserSocialAuth
 
 import short_url
 from wxwarn.utils import get_user_location
-from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert, State, WeatherAlertType, UserWeatherAlertTypeExclusion
+from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert, State, WeatherAlertType, UserWeatherAlertTypeExclusion, MarineZone
 from wxwarn.forms import UserProfileForm
 
 
@@ -135,7 +135,7 @@ def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_s
                 'user': a_user_weather_alert.user,
                 'user_location': a_user_weather_alert.user_location,
                 'weather_alert': a_user_weather_alert.weather_alert,
-                'weather_alert_ugc': a_user_weather_alert.weather_alert_ugc,
+                'weather_alert_location_id': a_user_weather_alert.weather_alert_location_id,
                 'leaflet': True,
             }, context_instance=RequestContext(request))
 
@@ -190,45 +190,17 @@ def user_profile(request):
 
 def weather_alerts(request):
     states = State.objects.all().order_by('name')
+    marine_zones = MarineZone.objects.all().order_by('name')
     return render_to_response('weather_alerts.html',
             {
-                'states': states
-            }, context_instance=RequestContext(request))
-
-
-def weather_alerts_all(request):
-    """
-    GET /weather_alerts/all/
-
-    View list of all weather alerts
-    """
-    now = d_now()
-    current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now, expires__gte=now)
-    states = State.objects.all()
-    weather_alerts_by_state = {}
-    for state in states:
-        weather_alerts_by_state[state.code] = {'name': state.name}
-    for current_weather_alert in current_weather_alerts:
-        for ugc in current_weather_alert.ugc.split(' '):
-            state_code = ugc[:2]
-            state = weather_alerts_by_state[state_code]
-            state.setdefault('weather_alert_ids', [])
-            state.setdefault('weather_alerts', [])
-            if not current_weather_alert.id in state['weather_alert_ids']:
-                state['weather_alert_ids'].append(current_weather_alert.id)
-                state['weather_alerts'].append(current_weather_alert)
-    weather_alerts_by_state = sorted(weather_alerts_by_state.items(), key=lambda x: x[1])
-    weather_alerts_by_state.sort(key=lambda st:st[1]['name'])
-    return render_to_response('weather_alerts_all.html',
-            {
-                'weather_alert_count': len(current_weather_alerts),
-                'weather_alerts_by_state': weather_alerts_by_state,
+                'states': states,
+                'marine_zones': marine_zones,
             }, context_instance=RequestContext(request))
 
 
 def weather_alerts_state(request, state_code):
     """
-    GET /weather_alerts/<state_code>/
+    GET /weather_alerts/state/<state_code>/
 
     View list of weather alerts for a state
     """
@@ -237,19 +209,20 @@ def weather_alerts_state(request, state_code):
         state = State.objects.get(code=state_code)
     except State.DoesNotExist:
         raise Http404
+
     now = d_now()
     current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now, expires__gte=now)
     current_weather_alerts_for_state = []
     current_weather_alerts_json = {}
     current_weather_alerts_ids = []
     for current_weather_alert in current_weather_alerts:
-        for ugc in current_weather_alert.ugc.split(' '):
-            ugc_state_code = ugc[:2]
-            if ugc_state_code == state_code and current_weather_alert.id not in current_weather_alerts_ids:
+        for location_id in current_weather_alert.location_ids.split(' '):
+            location_id_code = location_id[:2]
+            if location_id_code == state_code and current_weather_alert.id not in current_weather_alerts_ids:
                 current_weather_alerts_for_state.append(current_weather_alert)
                 current_weather_alerts_json[current_weather_alert.id] = {
                     'geojson': current_weather_alert.geojson,
-                    'ugc': current_weather_alert.ugc,
+                    'location_ids': current_weather_alert.location_ids,
                 }
                 current_weather_alerts_ids.append(current_weather_alert.id)
 
@@ -263,6 +236,42 @@ def weather_alerts_state(request, state_code):
                 },
                 'leaflet': True
             }, context_instance=RequestContext(request))
+
+
+def weather_alerts_marine(request, zone_slug):
+    """
+    GET /weather_alerts/marine/<zone_slug>/
+
+    View list of weather alerts for a marine zone
+    """
+    try:
+        marine_zone = MarineZone.objects.get(slug=zone_slug)
+    except MarineZone.DoesNotExist:
+        raise Http404
+
+    now = d_now()
+    marine_zone_codes = marine_zone.codes.split(' ')
+    current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now, expires__gte=now)
+    current_weather_alerts_for_marine_zone = []
+    current_weather_alerts_json = {}
+    current_weather_alerts_ids = []
+    for current_weather_alert in current_weather_alerts:
+        for location_id in current_weather_alert.location_ids.split(' '):
+            location_id_code = location_id[:2]
+            if location_id_code in marine_zone_codes and current_weather_alert.id not in current_weather_alerts_ids:
+                current_weather_alerts_for_marine_zone.append(current_weather_alert)
+                current_weather_alerts_json[current_weather_alert.id] = {
+                    'geojson': current_weather_alert.geojson,
+                    'location_ids': current_weather_alert.location_ids,
+                }
+                current_weather_alerts_ids.append(current_weather_alert.id)
+
+    return render_to_response('weather_alerts_marine.html', {
+        'weather_alerts': current_weather_alerts_for_marine_zone,
+        'weather_alerts_json': current_weather_alerts_json,
+        'marine_zone': marine_zone,
+        'leaflet': True
+    },  context_instance=RequestContext(request))
 
 
 def weather_alert(request, weather_alert_id):

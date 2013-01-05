@@ -32,7 +32,7 @@
 <script>
 wx.user_location = ${json.dumps(user_location.geojson)};
 wx.weather_alert = ${json.dumps(weather_alert.geojson)};
-wx.weather_alert_ugc = '${weather_alert_ugc | n}';
+wx.weather_alert_location_id = '${weather_alert_location_id | n}';
 </script>
 <script src="${STATIC_URL}js/user_weather_alert.js"></script>
 </%block>

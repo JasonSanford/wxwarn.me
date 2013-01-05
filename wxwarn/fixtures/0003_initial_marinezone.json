@@ -1,0 +1,56 @@
+[
+    {
+        "pk": 1,
+        "model": "wxwarn.marinezone",
+        "fields": {
+            "name": "Alaska",
+            "slug": "alaska",
+            "codes": "PK"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "wxwarn.marinezone",
+        "fields": {
+            "name": "Atlantic",
+            "slug": "atlantic",
+            "codes": "AM AN"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "wxwarn.marinezone",
+        "fields": {
+            "name": "Great Lakes",
+            "slug": "great_lakes",
+            "codes": "LM LE LS LA LO LH LC SL"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "wxwarn.marinezone",
+        "fields": {
+            "name": "Gulf of Mexico",
+            "slug": "gulf_of_mexico",
+            "codes": "GM"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "wxwarn.marinezone",
+        "fields": {
+            "name": "Pacific",
+            "slug": "pacific",
+            "codes": "PZ"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "wxwarn.marinezone",
+        "fields": {
+            "name": "Pacific Islands",
+            "slug": "pacific_islands",
+            "codes": "PH PM PS"
+        }
+    }
+]

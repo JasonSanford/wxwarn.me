@@ -82,6 +82,12 @@ class UGC(models.Model):
         return self.name
 
 
+class MarineZone(models.Model):
+    name = models.CharField(max_length=500)
+    slug = models.CharField(max_length=200)
+    codes = models.CharField(max_length=100)
+
+
 class Marine(models.Model):
     id = models.CharField(max_length=6, primary_key=True) # 6 digit GMZ Code
     name = models.CharField(max_length=1000)
@@ -99,7 +105,7 @@ class Marine(models.Model):
             'type': 'Feature',
             'properties': {
                 'name': self.name,
-                'wfo': self.time_zone,
+                'wfo': self.wfo,
             },
             'geometry': json.loads(self.geometry)
         }
@@ -131,14 +137,25 @@ class WeatherAlert(models.Model):
     fips = models.TextField()
     ugc = models.TextField()
     fake = models.BooleanField(default=False)
+    location_type = models.ForeignKey(LocationType, default=1)
+    location_ids = models.TextField(default='')
 
     @property
     def geojson(self):
-        ugc_codes = self.ugc.split(' ')
-        ugcs = UGC.objects.filter(id__in=ugc_codes)
+
+        location_ids = self.location_ids.split(' ')
+
+        if self.location_type.name == 'UGC':
+            TheModel = UGC
+        elif self.location_type.name == 'FIPS':
+            TheModel = County
+        elif self.location_type.name == 'Marine':
+            TheModel = Marine
+
+        features = TheModel.objects.filter(id__in=location_ids)
         return {
             'type': 'FeatureCollection',
-            'features': [ugc.geojson for ugc in ugcs]
+            'features': [feature.geojson for feature in features]
         }
 
     @property
@@ -260,12 +277,18 @@ class UserWeatherAlert(models.Model):
     user = models.ForeignKey(User)
     user_location = models.ForeignKey(UserLocation)
     weather_alert = models.ForeignKey(WeatherAlert)
-    weather_alert_ugc = models.CharField(max_length=6)
+    weather_alert_location_id = models.CharField(max_length=6, null=True)
 
     @property
-    def weather_alert_shape(self): # A user is only in one ugc while some alerts cover multiple.
-        ugc = UGC.objects.get(id=self.weather_alert_ugc)
-        return ugc.shape
+    def weather_alert_shape(self): # A user is only in one location_id while some alerts cover multiple.
+        if self.weather_alert.location_type.name == 'UGC':
+            TheModel = UGC
+        elif self.weather_alert.location_type.name == 'FIPS':
+            TheModel = County
+        elif self.weather_alert.location_type.name == 'Marine':
+            TheModel = Marine
+        location = TheModel.objects.get(id=self.weather_alert_location_id)
+        return location.shape
 
     def static_map_url(self, width=560, height=450, zoom=10):
         _coords = []

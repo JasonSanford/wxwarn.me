@@ -20,10 +20,11 @@ from social_auth.models import UserSocialAuth
 from bs4 import BeautifulSoup
 from twilio.rest import TwilioRestClient
 
-from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, WeatherAlertType, UserWeatherAlert, County, UGC, UserWeatherAlertTypeExclusion
+from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, WeatherAlertType, UserWeatherAlert, County, UGC, UserWeatherAlertTypeExclusion, LocationType
 
 #WEATHER_ALERTS_URL = 'http://localhost:8000/static/weather_alerts.xml'
 WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/us.php?x=0'
+MARINE_WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/mzus.php?x=0'
 
 USER_LOCATION_MAX_AGE = 60 * 3
 
@@ -108,30 +109,54 @@ def insert_user_location(data, user):
 
 
 def get_weather_alerts():
-    response = requests.get(WEATHER_ALERTS_URL)
-    soup = BeautifulSoup(response.text)
-    parsed_alerts = soup.find_all('entry')
-    insert_count = 0
-    update_count = 0
-    print 'Total alerts from NWS: %s' % len(parsed_alerts)
-    for parsed_alert in parsed_alerts:
-        data_dict = _create_data_dict(parsed_alert)
-        (weather_alert, created) = WeatherAlert.objects.get_or_create(
-                nws_id=parsed_alert.id.text,
-                defaults=data_dict)
-        if not created and data_dict['source_updated'] > weather_alert.source_updated:
-            weather_alert.__dict__.update(data_dict)
-            weather_alert.save()
-            update_count += 1
-        if created:
-            insert_count += 1
-    print 'New alerts: %s' % insert_count
-    print 'Updated alerts: %s' % update_count
+    weather_alert_categories = {
+        'land': WEATHER_ALERTS_URL,
+        'marine': MARINE_WEATHER_ALERTS_URL,
+    }
+    for weather_alert_category in weather_alert_categories:
+        response = requests.get(weather_alert_categories[weather_alert_category])
+        soup = BeautifulSoup(response.text)
+        parsed_alerts = soup.find_all('entry')
+        insert_count = 0
+        update_count = 0
+        print 'Total %s alerts from NWS: %s' % (weather_alert_category, len(parsed_alerts))
+        for parsed_alert in parsed_alerts:
+            data_dict = _create_data_dict(parsed_alert, weather_alert_category)
+            (weather_alert, created) = WeatherAlert.objects.get_or_create(
+                    nws_id=parsed_alert.id.text,
+                    defaults=data_dict)
+            if not created and data_dict['source_updated'] > weather_alert.source_updated:
+                weather_alert.__dict__.update(data_dict)
+                weather_alert.save()
+                update_count += 1
+            if created:
+                insert_count += 1
+        print 'New %s alerts: %s' % (weather_alert_category, insert_count)
+        print 'Updated %s alerts: %s' % (weather_alert_category, update_count)
 
 
-def _create_data_dict(parsed_alert):
-    (weather_alert_type, created) = WeatherAlertType.objects.get_or_create(
-            name=parsed_alert.find('cap:event').text)
+def _create_data_dict(parsed_alert, weather_alert_category):
+    (weather_alert_type, created) = WeatherAlertType.objects.get_or_create(name=parsed_alert.find('cap:event').text)
+
+    fips = parsed_alert.find('cap:geocode').findChildren('value')[0].text
+    ugc = parsed_alert.find('cap:geocode').findChildren('value')[1].text
+    ugcs = ugc.split(' ')
+
+    if weather_alert_category == 'land':
+        if ugcs[0][2] == 'C':
+            # It seems all flood types use C, so use county insted :/
+            location_type_name = 'FIPS'
+            location_ids = fips
+        else:
+            # It's a normal UGC zone
+            location_type_name = 'UGC'
+            location_ids = ugc
+    elif weather_alert_category == 'marine':
+        location_type_name = 'Marine'
+        location_ids = ugc
+
+    location_type = LocationType.objects.get(name=location_type_name)
+
     return {
         'source_created': parser.parse(parsed_alert.published.text),
         'source_updated': parser.parse(parsed_alert.updated.text),
@@ -142,8 +167,10 @@ def _create_data_dict(parsed_alert):
         'title': parsed_alert.title.text,
         'summary': parsed_alert.summary.text,
         'url': parsed_alert.link['href'],
-        'fips': parsed_alert.find('cap:geocode').findChildren('value')[0].text,
-        'ugc': parsed_alert.find('cap:geocode').findChildren('value')[1].text
+        'fips': fips,
+        'ugc': ugc,
+        'location_type': location_type,
+        'location_ids': location_ids,
     }
 
 
@@ -164,7 +191,7 @@ def check_users_weather_alerts():
     for current_located_user in current_located_users:
         weather_alert_type_exclusions = [uwate.weather_alert_type.id for uwate in UserWeatherAlertTypeExclusion.objects.filter(user=current_located_user.user)]
         for current_weather_alert in current_weather_alerts:
-            for (ugc, polygon) in current_weather_alert.shapes:
+            for (location_id, polygon) in current_weather_alert.shapes:
                 if polygon.contains(current_located_user.shape):
                     """
                     The user is in a weather alert polygon
@@ -175,7 +202,7 @@ def check_users_weather_alerts():
                             weather_alert=current_weather_alert,
                             defaults={
                                 'user_location': current_located_user,
-                                'weather_alert_ugc': ugc
+                                'weather_alert_location_id': location_id
                             })
                     if created and current_weather_alert.weather_alert_type.id not in weather_alert_type_exclusions:
                         new_user_weather_alerts.append(user_weather_alert)
@@ -247,6 +274,8 @@ def create_fake_weather_alert(user_id):
                     summary='...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON AKST TODAY... A WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON AKST TODAY. * SNOW...ADDITIONAL ACCUMULATIONS OF 1 TO 3 INCHES THROUGH NOON MONDAY. STORM TOTAL ACCUMULATION OF 5 TO 8 INCHES SINCE SUNDAY',
                     url='http://wxwarn.me',
                     ugc=ugc.id,
+                    location_type=LocationType.objects.get(name='UGC'),
+                    location_ids=ugc.id,
                     fake=True)
             fake_weather_alert.save()
             break

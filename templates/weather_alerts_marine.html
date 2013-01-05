@@ -3,7 +3,7 @@
 <% from django.core.urlresolvers import reverse %>
 <%! import json %>
 
-<h2>${len(weather_alerts)} current weather alert${'' if weather_alert_count == 1 else 's'} for ${state['name']}</h2>
+<h2>${len(weather_alerts)} current weather alert${'' if weather_alert_count == 1 else 's'} for ${marine_zone.name}</h2>
 
 % if len(weather_alerts) > 0:
 <div class="row-fluid" style="height: 400px;">

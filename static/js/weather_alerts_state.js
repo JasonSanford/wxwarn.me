@@ -60,9 +60,9 @@ $(document).ready(function (event) {
 });
 
 function setStyle(alert_id, highlight) {
-    var ugcs = wx.weather_alerts.alerts[alert_id].ugc.split(' ');
+    var location_ids = wx.weather_alerts.alerts[alert_id].location_ids.split(' ');
     wx.weather_alerts.alerts_layer.eachLayer(function(layer) {
-        if (ugcs.indexOf(layer.feature.id) > -1) {
+        if (location_ids.indexOf(layer.feature.id) > -1) {
             layer.setStyle($.extend({}, highlight ? wx.highlight_style : wx.default_style));
         }
     });
