@@ -23,6 +23,7 @@ class County(models.Model):
     state_fips = models.CharField(max_length=6)
     county_fips = models.CharField(max_length=6)
     geometry = models.TextField()
+    geometry_bbox = models.TextField(null=True)
 
     @property
     def shape(self): # via Shapely
@@ -60,6 +61,7 @@ class UGC(models.Model):
     time_zone = models.CharField(max_length=3)
     fe_area = models.CharField(max_length=3)
     geometry = models.TextField()
+    geometry_bbox = models.TextField(null=True)
 
     @property
     def shape(self): # via Shapely
@@ -93,6 +95,7 @@ class Marine(models.Model):
     name = models.CharField(max_length=1000)
     wfo = models.CharField(max_length=100)
     geometry = models.TextField()
+    geometry_bbox = models.TextField(null=True)
 
     @property
     def shape(self): # via Shapely
