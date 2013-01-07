@@ -29,8 +29,7 @@ class County(models.Model):
     def shape(self): # via Shapely
         return asShape(json.loads(self.geometry))
 
-    @property
-    def geojson(self):
+    def geojson(self, bbox=False):
         return {
             'id': self.id,
             'type': 'Feature',
@@ -40,7 +39,7 @@ class County(models.Model):
                 'state_fips': self.state_fips,
                 'county_fips': self.county_fips,
             },
-            'geometry': json.loads(self.geometry)
+            'geometry': json.loads(self.geometry_bbox if bbox else self.geometry)
         }
 
     def __unicode__(self):
@@ -67,8 +66,7 @@ class UGC(models.Model):
     def shape(self): # via Shapely
         return asShape(json.loads(self.geometry))
 
-    @property
-    def geojson(self):
+    def geojson(self, bbox=False):
         return {
             'id': self.id,
             'type': 'Feature',
@@ -77,7 +75,7 @@ class UGC(models.Model):
                 'time_zone': self.time_zone,
                 'fe_area': self.fe_area
             },
-            'geometry': json.loads(self.geometry)
+            'geometry': json.loads(self.geometry_bbox if bbox else self.geometry)
         }
 
     def __unicode__(self):
@@ -101,8 +99,7 @@ class Marine(models.Model):
     def shape(self): # via Shapely
         return asShape(json.loads(self.geometry))
 
-    @property
-    def geojson(self):
+    def geojson(self, bbox=False):
         return {
             'id': self.id,
             'type': 'Feature',
@@ -110,7 +107,7 @@ class Marine(models.Model):
                 'name': self.name,
                 'wfo': self.wfo,
             },
-            'geometry': json.loads(self.geometry)
+            'geometry': json.loads(self.geometry_bbox if bbox else self.geometry)
         }
 
     def __unicode__(self):
@@ -143,8 +140,7 @@ class WeatherAlert(models.Model):
     location_type = models.ForeignKey(LocationType, default=1)
     location_ids = models.TextField(default='')
 
-    @property
-    def geojson(self):
+    def geojson(self, bbox=False):
 
         location_ids = self.location_ids.split(' ')
 
@@ -156,14 +152,15 @@ class WeatherAlert(models.Model):
             TheModel = Marine
 
         features = TheModel.objects.filter(id__in=location_ids)
+        if bbox:
+            features.defer('geometry')
         return {
             'type': 'FeatureCollection',
-            'features': [feature.geojson for feature in features]
+            'features': [feature.geojson(bbox=bbox) for feature in features]
         }
 
-    @property
-    def shapes(self):
-        polygons = [(feature['id'], asShape(feature['geometry'])) for feature in self.geojson['features']]
+    def shapes(self, bbox=False):
+        polygons = [(feature['id'], asShape(feature['geometry'])) for feature in self.geojson(bbox=bbox)['features']]
         return polygons
 
     @property
@@ -237,7 +234,7 @@ class UserProfile(models.Model):
         user_locations = UserLocation.objects.filter(user=self.user)
         return {
             'type': 'GeometryCollection',
-            'geometries': [user_location.geojson for user_location in user_locations]
+            'geometries': [user_location.geojson() for user_location in user_locations]
         }
 
     def __unicode__(self):
@@ -262,9 +259,8 @@ class UserLocation(models.Model):
 
     @property
     def shape(self):
-        return asShape(self.geojson)
+        return asShape(self.geojson())
 
-    @property
     def geojson(self):
         return dict(
             type = 'Point',

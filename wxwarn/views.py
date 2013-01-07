@@ -221,7 +221,7 @@ def weather_alerts_state(request, state_code):
             if location_id_code == state_code and current_weather_alert.id not in current_weather_alerts_ids:
                 current_weather_alerts_for_state.append(current_weather_alert)
                 current_weather_alerts_json[current_weather_alert.id] = {
-                    'geojson': current_weather_alert.geojson,
+                    'geojson': current_weather_alert.geojson(),
                     'location_ids': current_weather_alert.location_ids,
                 }
                 current_weather_alerts_ids.append(current_weather_alert.id)
@@ -261,7 +261,7 @@ def weather_alerts_marine(request, zone_slug):
             if location_id_code in marine_zone_codes and current_weather_alert.id not in current_weather_alerts_ids:
                 current_weather_alerts_for_marine_zone.append(current_weather_alert)
                 current_weather_alerts_json[current_weather_alert.id] = {
-                    'geojson': current_weather_alert.geojson,
+                    'geojson': current_weather_alert.geojson(),
                     'location_ids': current_weather_alert.location_ids,
                 }
                 current_weather_alerts_ids.append(current_weather_alert.id)
@@ -301,5 +301,5 @@ def weather_alert_geojson(request, weather_alert_id):
         a_weather_alert = WeatherAlert.objects.get(id=weather_alert_id)
     except WeatherAlert.DoesNotExist:
         raise Http404
-    return HttpResponse(json.dumps(a_weather_alert.geojson), mimetype='application/json')
+    return HttpResponse(json.dumps(a_weather_alert.geojson()), mimetype='application/json')
 

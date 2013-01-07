@@ -26,7 +26,7 @@
 <%block name="javascript">
 
 <script>
-wx.weather_alert = ${json.dumps(weather_alert.geojson)};
+wx.weather_alert = ${json.dumps(weather_alert.geojson())};
 </script>
 <script src="${STATIC_URL}js/weather_alert.js"></script>
 </%block>

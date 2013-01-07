@@ -191,22 +191,37 @@ def check_users_weather_alerts():
     for current_located_user in current_located_users:
         weather_alert_type_exclusions = [uwate.weather_alert_type.id for uwate in UserWeatherAlertTypeExclusion.objects.filter(user=current_located_user.user)]
         for current_weather_alert in current_weather_alerts:
-            for (location_id, polygon) in current_weather_alert.shapes:
-                if polygon.contains(current_located_user.shape):
+            for (location_id, bbox) in current_weather_alert.shapes(bbox=True):
+                if bbox.contains(current_located_user.shape):
                     """
-                    The user is in a weather alert polygon
-                    Let's see if we've already alerted them.
+                    The user is in at least the bounding box of a weather
+                    alert. Let's see if the actually polygon contains
+                    the user.
                     """
-                    (user_weather_alert, created) = UserWeatherAlert.objects.get_or_create(
-                            user=current_located_user.user,
-                            weather_alert=current_weather_alert,
-                            defaults={
-                                'user_location': current_located_user,
-                                'weather_alert_location_id': location_id
-                            })
-                    if created and current_weather_alert.weather_alert_type.id not in weather_alert_type_exclusions:
-                        new_user_weather_alerts.append(user_weather_alert)
-                    break
+                    if current_weather_alert.location_type.name == 'UGC':
+                        TheModel = UGC
+                    elif current_weather_alert.location_type.name == 'FIPS':
+                        TheModel = County
+                    elif current_weather_alert.location_type.name == 'Marine':
+                        TheModel = Marine
+
+                    weather_alert_shape = TheModel.objects.get(id=location_id).shape
+
+                    if weather_alert_shape.contains(current_located_user.shape):
+                        """
+                        The user is in a weather alert polygon
+                        Let's see if we've already alerted them.
+                        """
+                        (user_weather_alert, created) = UserWeatherAlert.objects.get_or_create(
+                                user=current_located_user.user,
+                                weather_alert=current_weather_alert,
+                                defaults={
+                                    'user_location': current_located_user,
+                                    'weather_alert_location_id': location_id
+                                })
+                        if created and current_weather_alert.weather_alert_type.id not in weather_alert_type_exclusions:
+                            new_user_weather_alerts.append(user_weather_alert)
+                        break
     """
     Gathering of new user alerts complete, send emails and texts
     """
@@ -258,7 +273,7 @@ def send_bulk_weather_sms_alerts(user_weather_alerts):
 def create_fake_weather_alert(user_id):
     user_profile = User.objects.get(id=user_id).get_profile()
     last_location = user_profile.last_location
-    print 'I\'m going to create a fake alert near %s, %s.' % (last_location.geojson['coordinates'][0], last_location.geojson['coordinates'][1])
+    print 'I\'m going to create a fake alert near %s, %s.' % (last_location.geojson()['coordinates'][0], last_location.geojson()['coordinates'][1])
     for ugc in UGC.objects.all():
         if ugc.shape.contains(last_location.shape):
             print 'Found you at %s. UGC: %s' % (ugc.name, ugc.id)
