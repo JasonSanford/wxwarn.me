@@ -21,7 +21,7 @@ DATABASES = {
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'UTC'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -177,27 +177,27 @@ import djcelery
 djcelery.setup_loader()
 
 CELERYBEAT_SCHEDULE = {
-    'update_all_users_locations': {
-        'task': 'tasks.update_locations',
-        'schedule': timedelta(minutes=15),
-        'kwargs': {
-            'premium': False,
-        },
-    },
+    #'update_all_users_locations': {
+    #    'task': 'tasks.update_locations',
+    #    'schedule': timedelta(minutes=15),
+    #    'kwargs': {
+    #        'premium': False,
+    #    },
+    #},
     'update_premium_users_locations': {
         'task': 'tasks.update_locations',
         'schedule': timedelta(minutes=5),
-        'kwargs': {
-            'premium': True,
-        },
+        #'kwargs': {
+        #    'premium': True,
+        #},
     },
     'get_weather_alerts': {
         'task': 'tasks.get_weather_alerts',
-        'schedule': timedelta(minutes=5),
+        'schedule': timedelta(minutes=3),
     },
     'check_users_weather_alerts': {
         'task': 'tasks.check_users_weather_alerts',
-        'schedule': timedelta(minutes=5),
+        'schedule': timedelta(minutes=3),
     },
 }
 
