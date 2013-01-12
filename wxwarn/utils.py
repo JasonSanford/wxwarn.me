@@ -271,8 +271,8 @@ def send_bulk_weather_sms_alerts(user_weather_alerts):
 
 
 def create_fake_weather_alert(user_id):
-    user_profile = User.objects.get(id=user_id).get_profile()
-    last_location = user_profile.last_location
+    user = User.objects.get(id=user_id)
+    last_location = UserLocation.objects.filter(user=user).order_by('-created')[0]
     print 'I\'m going to create a fake alert near %s, %s.' % (last_location.geojson()['coordinates'][0], last_location.geojson()['coordinates'][1])
     for ugc in UGC.objects.all():
         if ugc.shape.contains(last_location.shape):

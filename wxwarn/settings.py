@@ -177,19 +177,19 @@ import djcelery
 djcelery.setup_loader()
 
 CELERYBEAT_SCHEDULE = {
-    #'update_all_users_locations': {
-    #    'task': 'tasks.update_locations',
-    #    'schedule': timedelta(minutes=15),
-    #    'kwargs': {
-    #        'premium': False,
-    #    },
-    #},
+    'update_all_users_locations': {
+        'task': 'tasks.update_locations',
+        'schedule': timedelta(minutes=15),
+        'kwargs': {
+            'premium': False,
+        },
+    },
     'update_premium_users_locations': {
         'task': 'tasks.update_locations',
         'schedule': timedelta(minutes=5),
-        #'kwargs': {
-        #    'premium': True,
-        #},
+        'kwargs': {
+            'premium': True,
+        },
     },
     'get_weather_alerts': {
         'task': 'tasks.get_weather_alerts',
