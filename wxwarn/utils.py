@@ -98,10 +98,14 @@ def insert_user_location(data, user):
     source_date = datetime.datetime.fromtimestamp(float(data['data']['timestampMs']) / 1000, gmt)
     (location_source, created) = LocationSource.objects.get_or_create(name='Google Latitude')
 
+    geometry = json.dumps(dict(
+        type = 'Point',
+        coordinates = [data['data']['longitude'], data['data']['latitude']]
+    ))
+
     user_location = UserLocation(
             user = user,
-            latitude = data['data']['latitude'],
-            longitude = data['data']['longitude'],
+            geometry = geometry,
             source = location_source,
             source_data = data,
             source_created = source_date)
@@ -273,7 +277,7 @@ def send_bulk_weather_sms_alerts(user_weather_alerts):
 def create_fake_weather_alert(user_id):
     user = User.objects.get(id=user_id)
     last_location = UserLocation.objects.filter(user=user).order_by('-created')[0]
-    print 'I\'m going to create a fake alert near %s, %s.' % (last_location.geojson()['coordinates'][0], last_location.geojson()['coordinates'][1])
+    print 'I\'m going to create a fake alert near %s, %s.' % (last_location.geojson()['geometry']['coordinates'][0], last_location.geojson()['geometry']['coordinates'][1])
     for ugc in UGC.objects.all():
         if ugc.shape.contains(last_location.shape):
             print 'Found you at %s. UGC: %s' % (ugc.name, ugc.id)

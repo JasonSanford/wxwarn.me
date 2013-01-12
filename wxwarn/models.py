@@ -16,7 +16,29 @@ class LocationType(models.Model):
     name = models.CharField(max_length=100)
 
 
-class County(models.Model):
+class GeoModel(models.Model):
+    @property
+    def shape(self): # via Shapely
+        return asShape(json.loads(self.geometry))
+
+    def geojson(self, bbox=False):
+        properties = {}
+        available_fields = [field.name for field in self._meta.fields]
+        for display_field in self.display_fields:
+            if display_field in available_fields:
+                properties[display_field] = getattr(self, display_field)
+        return {
+            'id': self.id,
+            'type': 'Feature',
+            'properties': properties,
+            'geometry': json.loads(self.geometry_bbox if bbox and 'bbox' in available_fields else self.geometry)
+        }
+
+    class Meta:
+        abstract = True
+
+
+class County(GeoModel):
     id = models.CharField(max_length=6, primary_key=True) # 6 digit fips
     name = models.CharField(max_length=200)
     state_name = models.CharField(max_length=100)
@@ -25,22 +47,8 @@ class County(models.Model):
     geometry = models.TextField()
     geometry_bbox = models.TextField(null=True)
 
-    @property
-    def shape(self): # via Shapely
-        return asShape(json.loads(self.geometry))
+    display_fields = ['name', 'state_name', 'state_fips']
 
-    def geojson(self, bbox=False):
-        return {
-            'id': self.id,
-            'type': 'Feature',
-            'properties': {
-                'name': self.name,
-                'state_name': self.state_name,
-                'state_fips': self.state_fips,
-                'county_fips': self.county_fips,
-            },
-            'geometry': json.loads(self.geometry_bbox if bbox else self.geometry)
-        }
 
     def __unicode__(self):
         return '%s County, %s' % (self.name, self.state_name)
@@ -54,7 +62,7 @@ class State(models.Model):
         return self.name
 
 
-class UGC(models.Model):
+class UGC(GeoModel):
     id = models.CharField(max_length=6, primary_key=True) # 6 digit UGC code
     name = models.CharField(max_length=1000)
     time_zone = models.CharField(max_length=3)
@@ -62,21 +70,7 @@ class UGC(models.Model):
     geometry = models.TextField()
     geometry_bbox = models.TextField(null=True)
 
-    @property
-    def shape(self): # via Shapely
-        return asShape(json.loads(self.geometry))
-
-    def geojson(self, bbox=False):
-        return {
-            'id': self.id,
-            'type': 'Feature',
-            'properties': {
-                'name': self.name,
-                'time_zone': self.time_zone,
-                'fe_area': self.fe_area
-            },
-            'geometry': json.loads(self.geometry_bbox if bbox else self.geometry)
-        }
+    display_fields = ['name', 'time_zone', 'fe_area']
 
     def __unicode__(self):
         return self.name
@@ -88,27 +82,14 @@ class MarineZone(models.Model):
     codes = models.CharField(max_length=100)
 
 
-class Marine(models.Model):
+class Marine(GeoModel):
     id = models.CharField(max_length=6, primary_key=True) # 6 digit GMZ Code
     name = models.CharField(max_length=1000)
     wfo = models.CharField(max_length=100)
     geometry = models.TextField()
     geometry_bbox = models.TextField(null=True)
 
-    @property
-    def shape(self): # via Shapely
-        return asShape(json.loads(self.geometry))
-
-    def geojson(self, bbox=False):
-        return {
-            'id': self.id,
-            'type': 'Feature',
-            'properties': {
-                'name': self.name,
-                'wfo': self.wfo,
-            },
-            'geometry': json.loads(self.geometry_bbox if bbox else self.geometry)
-        }
+    display_fields = ['name', 'wfo']
 
     def __unicode__(self):
         return self.name
@@ -248,28 +229,21 @@ class LocationSource(models.Model):
         return self.name
 
 
-class UserLocation(models.Model):
+class UserLocation(GeoModel):
     user = models.ForeignKey(User)
     source = models.ForeignKey(LocationSource)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
     created = models.DateTimeField(auto_now_add=True)
     source_created = models.DateTimeField()
     source_data = JSONField()
+    geometry = models.TextField(default=json.dumps({'type': 'Point', 'coordinates': [0, 0]}))
 
-    @property
-    def shape(self):
-        return asShape(self.geojson())
-
-    def geojson(self):
-        return dict(
-            type = 'Point',
-            coordinates = [self.longitude, self.latitude])
+    display_fields = ['']
 
     def __unicode__(self):
         # TODO: Add datetime
+        geojson = json.loads(self.geometry)
         return '%s at %s, %s' % (self.user.username,
-                                 self.latitude, self.longitude)
+                                 geojson['coordinates'][1], geojson['coordinates'][0])
 
 
 class UserWeatherAlert(models.Model):
@@ -301,8 +275,10 @@ class UserWeatherAlert(models.Model):
                 coords = list(polygon.exterior.coords)
                 coords = map(lambda coord: (coord[1], coord[0]), coords)
                 _coords.append(coords)
+        latitude = self.user_location.geojson()['geometry']['coordinates'][1]
+        longitude = self.user_location.geojson()['geometry']['coordinates'][0]
         url = 'http://maps.googleapis.com/maps/api/staticmap?center=%s,%s&zoom=%s&size=%sx%s&sensor=false&markers=color:blue|label:S|%s,%s' %\
-                (self.user_location.latitude, self.user_location.longitude, zoom, width, height, self.user_location.latitude, self.user_location.longitude)
+                (latitude, longitude, zoom, width, height, latitude, longitude)
         for coords_set in _coords:
             url += '&path=color:0xff0000ff|weight:1|fillcolor:0xFF000033|%s' % '|'.join((','.join((str("{0:.4f}".format(y)) for y in x)) for x in coords_set))
         return url

@@ -7,7 +7,7 @@
     <div class="span4" style="height: 300px;${' background-image: url(%ssvg/%s.svg); background-repeat: no-repeat; background-position: right; background-size: 200px;' % (STATIC_URL, weather_alert.category) if weather_alert.category else ''}">
         <h3>${weather_alert.event}</h3>
         <h4>${user_location.user.first_name}&apos;s Location</h4>
-        <p><span class="muted">At:</span> ${user_location.latitude}, ${user_location.longitude}</p>
+        <p><span class="muted">At:</span> ${user_location.geojson()['geometry']['coordinates'][1]}, ${user_location.geojson()['geometry']['coordinates'][0]}</p>
         <p><span class="muted">Around:</span> ${user_location.source_created}</p>
         <p><span class="muted">Reported via:</span> ${user_location.source}</p>
         <h5>${weather_alert.title}</h5>

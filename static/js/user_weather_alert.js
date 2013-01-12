@@ -1,5 +1,5 @@
 (function() {
-    var start_location = new L.LatLng(wx.user_location.coordinates[1], wx.user_location.coordinates[0]),
+    var start_location = new L.LatLng(wx.user_location.geometry.coordinates[1], wx.user_location.geometry.coordinates[0]),
         road_layer = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/jcsanford.map-xu5k4lii/{z}/{x}/{y}.png', {
                 maxZoom: 16,
                 subdomains: ['a', 'b', 'c', 'd'],
