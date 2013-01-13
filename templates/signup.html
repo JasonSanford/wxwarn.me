@@ -1,9 +1,8 @@
 <%inherit file="base.html"/>
-
-<% from django.core.urlresolvers import reverse %>
+<%namespace file="/base_include.html" import="*"/>
 
 <p>Want to stay informed about severe weather wherever you are? We can help with that.</p>
 
-<p>To use WxWarnMe you&apos;ll need a Google account and must opt-in to Google Latitude. <a href="${reverse('how_it_works')}">Learn more</a> about how WxWarnMe works.</p>
+<p>To use WxWarnMe you&apos;ll need a Google account and must opt-in to Google Latitude. <a href="${url('how_it_works')}">Learn more</a> about how WxWarnMe works.</p>
 
-<p><a class="btn btn-primary btn-large" href="${reverse('login')}">Sign Up with Google &raquo;</a></p>
+<p><a class="btn btn-primary btn-large" href="${url('login')}">Sign Up with Google &raquo;</a></p>

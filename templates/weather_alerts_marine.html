@@ -1,6 +1,6 @@
 <%inherit file="base.html"/>
+<%namespace file="/base_include.html" import="*"/>
 
-<% from django.core.urlresolvers import reverse %>
 <%! import json %>
 
 <h2>${len(weather_alerts)} current weather alert${'' if weather_alert_count == 1 else 's'} for ${marine_zone.name}</h2>
@@ -10,7 +10,7 @@
     <div class="span4" style="height: 100%; overflow-y: auto;">
         <ul>
             % for weather_alert in weather_alerts:
-            <li class="weather-alert" data-alert-id="${weather_alert.id}"><a href="${reverse('weather_alert', args=(weather_alert.id,))}">${weather_alert.event}</a></li>
+            <li class="weather-alert" data-alert-id="${weather_alert.id}"><a href="${url('weather_alert', args=(weather_alert.id,))}">${weather_alert.event}</a></li>
             % endfor
         </ul>
     </div>

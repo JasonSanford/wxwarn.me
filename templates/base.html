@@ -1,4 +1,4 @@
-<% from django.core.urlresolvers import reverse %>
+<%namespace file="/base_include.html" import="*"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,22 +28,22 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
-                <a class="brand" href="${reverse('home')}">WxWarnMe</a>
+                <a class="brand" href="${url('home')}">WxWarnMe</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li class="${'active' if current_page == 'how_it_works' else ''}"><a href="${reverse('how_it_works')}">How it Works</a></li>
-                        <li class="${'active' if current_page == 'weather_alerts' else ''}"><a href="${reverse('weather_alerts')}">Weather Alerts</a></li>
+                        <li class="${'active' if current_page == 'how_it_works' else ''}"><a href="${url('how_it_works')}">How it Works</a></li>
+                        <li class="${'active' if current_page == 'weather_alerts' else ''}"><a href="${url('weather_alerts')}">Weather Alerts</a></li>
                         % if request.user.is_anonymous():
-                        <li><a href="${reverse('signup')}">Sign Up</a></li>
+                        <li><a href="${url('signup')}">Sign Up</a></li>
                         % else:
-                        <li class="${'active' if False else ''}"><a href="${reverse('account_landing')}">Account</a></li>
+                        <li class="${'active' if False else ''}"><a href="${url('account_landing')}">Account</a></li>
                         % endif
                     </ul>
                     <p class="navbar-text pull-right">
                     % if request.user.is_anonymous():
-                    <a style="color: #fff;" href="${reverse('login')}">login</a>
+                    <a style="color: #fff;" href="${url('login')}">login</a>
                     % else:
-                    Hi <a style="color: #fff;" href="${reverse('account_landing')}">${'%s %s' % (request.user.first_name, request.user.last_name)}</a> !&nbsp;-&nbsp;<a style="color: #fff;" href="${reverse('logout')}">logout</a>
+                    Hi <a style="color: #fff;" href="${url('account_landing')}">${'%s %s' % (request.user.first_name, request.user.last_name)}</a> !&nbsp;-&nbsp;<a style="color: #fff;" href="${url('logout')}">logout</a>
                     % endif
                     </p>
                 </div>
@@ -52,10 +52,9 @@
     </div>
 
     <div class="container">
-        <%block name="breadcrumbs"></%block>
         ${next.body()}
         <footer>
-            <p>&copy; WxWarnMe 2012</p>
+            <p>&copy; WxWarnMe 2013</p>
         </footer>
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>

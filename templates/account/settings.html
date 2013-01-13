@@ -1,5 +1,5 @@
 <%inherit file="/account/base.html"/>
-<% from django.core.urlresolvers import reverse %>
+<%namespace file="/base_include.html" import="*"/>
 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#general" data-toggle="tab">General Settings</a></li>
@@ -8,7 +8,7 @@
 
 <div class="tab-content">
     <div class="tab-pane active" id="general">
-        <form id="user-profile-form" class="form-horizontal" action="${reverse('user_profile')}" method="post" >
+        <form id="user-profile-form" class="form-horizontal" action="${url('user_profile')}" method="post" >
             <input type="hidden" name="id" value="${user_profile_id}">
             % for field in user_profile_form:
             <div class="control-group">
@@ -29,7 +29,7 @@
     </div>
     <div class="tab-pane" id="types">
         <p><strong>Uncheck</strong> the weather alerts that you <strong>do not</strong> wish to receive notifications for.</p>
-        <form id="weather-alert-type-exclusions-form" class="form-horizontal" action="${reverse('user_weather_alert_type_exclusions')}" method="post">
+        <form id="weather-alert-type-exclusions-form" class="form-horizontal" action="${url('user_weather_alert_type_exclusions')}" method="post">
             % for weather_alert_type in weather_alert_types:
             <div class="control-group" style="margin-bottom: 5px;">
                 <label class="control-label" for="weather-alert-type-${weather_alert_type.id}">${weather_alert_type.name}</label>

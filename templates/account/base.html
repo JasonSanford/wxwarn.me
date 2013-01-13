@@ -1,6 +1,5 @@
 <%inherit file="/base.html"/>
-
-<% from django.core.urlresolvers import reverse %>
+<%namespace file="/base_include.html" import="*"/>
 
 <h3>Hi ${request.user.first_name}!</h3>
 
@@ -9,13 +8,13 @@
         <ul class="nav nav-list">
             <li class="nav-header">My Account</li>
             <li${' class="active"' if page == 'landing' else ''}>
-                <a href="${reverse('account_landing')}">Status</a>
+                <a href="${url('account_landing')}">Status</a>
             </li>
             <li${' class="active"' if page == 'my_weather_alerts' else ''}>
-                <a href="${reverse('user_weather_alerts')}">My Weather Alerts</a>
+                <a href="${url('user_weather_alerts')}">My Weather Alerts</a>
             </li>
             <li${' class="active"' if page == 'settings' else ''}>
-                <a href="${reverse('account_settings')}">Settings</a>
+                <a href="${url('account_settings')}">Settings</a>
             </li>
         </ul>
     </div>

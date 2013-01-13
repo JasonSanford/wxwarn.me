@@ -1,0 +1,17 @@
+
+<%def name="url(url_string, *args, **kwargs)">
+    <% from django.core.urlresolvers import reverse %>
+    ${reverse(url_string, *args, **kwargs)}
+</%def>
+
+<%def name="breadcrumbs(breadcrumb_list=[])" buffered="True">
+    <ul class="breadcrumb">
+        % for (title, link) in breadcrumb_list:
+            % if link:
+                <li><a href="${link | n}">${title}</a> <span class="divider">/</span></li>
+            % else:
+                <li class="active">${title}</li>
+            % endif
+        % endfor
+    </ul>
+</%def>

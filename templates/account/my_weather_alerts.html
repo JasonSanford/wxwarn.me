@@ -1,5 +1,5 @@
 <%inherit file="/account/base.html"/>
-<% from django.core.urlresolvers import reverse %>
+<%namespace file="/base_include.html" import="*"/>
 
 <h4>We've  sent you ${len(user_weather_alerts)} weather warning${'' if len(user_weather_alerts) == 1 else 's'}</h4>
 <%
@@ -17,7 +17,7 @@ groups = grouper(3, user_weather_alerts)
                 <div class="caption">
                     <h4>${user_weather_alert.weather_alert.event}</h4>
                     <p><span class="muted">Status: </span>${'Active' if user_weather_alert.weather_alert.active else 'Expired'}</p>
-                    <a class="btn btn-primary" href="${reverse('user_weather_alert', args=(user_weather_alert.id,))}">Details</a>
+                    <a class="btn btn-primary" href="${url('user_weather_alert', args=(user_weather_alert.id,))}">Details</a>
                 </div>
             </div>
         </li>

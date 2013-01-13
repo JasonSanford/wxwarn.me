@@ -1,6 +1,5 @@
 <%inherit file="base.html"/>
-
-<% from django.core.urlresolvers import reverse %>
+<%namespace file="/base_include.html" import="*"/>
 
 <div class="row">
     <div class="span6 offset3">
@@ -39,7 +38,7 @@
     <div class="span6 offset3">
         <h3>Ready? Go!</h3>
         <p>What are you waiting for? It's free and you can quit at any time.</p>
-        <p><a class="btn btn-primary btn-large" href="${reverse('login')}">Sign Up Now!</a></p>
+        <p><a class="btn btn-primary btn-large" href="${url('login')}">Sign Up Now!</a></p>
     </div>
 </div>
 % endif

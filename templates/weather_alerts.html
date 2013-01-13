@@ -1,8 +1,7 @@
 <%inherit file="base.html"/>
+<%namespace file="/base_include.html" import="*"/>
 
 <% from wxwarn.utils import grouper %>
-
-<% from django.core.urlresolvers import reverse %>
 
 <h2>Current Weather Alerts</h2>
 
@@ -19,7 +18,7 @@ marine_zone_groups = grouper(10, marine_zones)
         <ul>
             % for state in state_group:
                 % if state:
-            <li><a href="${reverse('weather_alerts_state', args=(state.code.lower(),))}">${state.name}</a></li>
+            <li><a href="${url('weather_alerts_state', args=(state.code.lower(),))}">${state.name}</a></li>
                 % endif
             % endfor
         </ul>
@@ -35,7 +34,7 @@ marine_zone_groups = grouper(10, marine_zones)
         <ul>
             % for marine_zone in marine_zone_group:
                 % if marine_zone:
-            <li><a href="${reverse('weather_alerts_marine', args=(marine_zone.slug,))}">${marine_zone.name}</a></li>
+            <li><a href="${url('weather_alerts_marine', args=(marine_zone.slug,))}">${marine_zone.name}</a></li>
                 % endif
             % endfor
         </ul>

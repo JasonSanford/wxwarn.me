@@ -1,6 +1,7 @@
 <%inherit file="base.html"/>
+<%namespace file="/base_include.html" import="*"/>
+
 <%
-from django.core.urlresolvers import reverse
 import random
 %>
 
@@ -8,8 +9,8 @@ import random
     <div style="width: 400px;background-color: rgba(17, 17, 17, 0.65); border-radius: 8px;padding: 15px 30px;">
         <h1 style="color: #e0e0e0;">WxWarnMe</h1>
         <p style="color: #e0e0e0; line-height: 1.3em; margin: 8px 0 12px;">Get notifications for severe weather near you based on your location from Google Latitude.</p>
-        <p><a class="btn btn-large" href="${reverse('how_it_works')}">Learn more</a> <a class="btn btn-primary btn-large" href="${reverse('signup')}">Sign Up &raquo;</a></p>
-        <p style="color: #e0e0e0;">Already a member? <a href="${reverse('login')}">Login now</a></p>
+        <p><a class="btn btn-large" href="${url('how_it_works')}">Learn more</a> <a class="btn btn-primary btn-large" href="${url('signup')}">Sign Up &raquo;</a></p>
+        <p style="color: #e0e0e0;">Already a member? <a href="${url('login')}">Login now</a></p>
     </div>
 </div>
 
@@ -27,7 +28,7 @@ import random
     <div class="span4">
         <h2>Premium Features</h2>
         <p>Our premium users get weather alert checks more often and can also get SMS notifications. But wait, there's more!</p>
-        <p><a class="btn" href="${reverse('premium')}">View all premium features &raquo;</a></p>
+        <p><a class="btn" href="${url('premium')}">View all premium features &raquo;</a></p>
     </div>
 </div>
 

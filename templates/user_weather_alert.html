@@ -1,7 +1,13 @@
 <%inherit file="base.html"/>
+<%namespace file="/base_include.html" import="*"/>
 
-<% from django.core.urlresolvers import reverse %>
 <%! import json %>
+
+<ul class="breadcrumb">
+    <li><a href="${url('home')}">Home</a> <span class="divider">/</span></li>
+    <li><a href="${url('account_landing')}">Account</a> <span class="divider">/</span></li>
+    <li class="active">User Weather Alert</li>
+</ul>
 
 <div class="row" style="margin-bottom: 20px;">
     <div class="span4" style="height: 300px;${' background-image: url(%ssvg/%s.svg); background-repeat: no-repeat; background-position: right; background-size: 200px;' % (STATIC_URL, weather_alert.category) if weather_alert.category else ''}">
@@ -23,7 +29,7 @@
 </div>
 
 <div class="row">
-    <h4><a href="${reverse('weather_alert', args=(weather_alert.id,))}">Alert Details</a></h4>
+    <h4><a href="${url('weather_alert', args=(weather_alert.id,))}">Alert Details</a></h4>
     <p>${weather_alert.summary}</p>
 </div>
 
