@@ -217,7 +217,7 @@ GOOGLE_OAUTH_EXTRA_SCOPE = ['https://www.googleapis.com/auth/latitude.all.best']
 GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {'access_type': 'offline'}
 
 LOGIN_URL          = '/login/'
-LOGIN_REDIRECT_URL = '/account/'
+LOGIN_REDIRECT_URL = '/user/'
 LOGIN_ERROR_URL    = '/login-error/'
 
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
