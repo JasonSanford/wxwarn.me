@@ -214,7 +214,7 @@ RATCHET = {
     'access_token': '3ae171b96f4c4ebeb8ae06061ca00ce7',
     'environment': 'development' if DEBUG else 'production',
     'branch': 'master',
-    'root': os.getcwd(),
+    'root': os.path.realpath(os.path.join(os.getcwd(), '..')),
 }
 
 AUTH_PROFILE_MODULE = 'wxwarn.UserProfile'
