@@ -96,6 +96,8 @@ MIDDLEWARE_CLASSES = (
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'djangomako.middleware.MakoMiddleware',
+    # For proper error handling Ratchet should remain last here
+    'ratchet.contrib.django.middleware.RatchetNotifierMiddleware',
 )
 
 ROOT_URLCONF = 'wxwarn.urls'
@@ -207,6 +209,13 @@ AUTHENTICATION_BACKENDS = (
     'social_auth.backends.google.GoogleOAuth2Backend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+RATCHET = {
+    'access_token': '3ae171b96f4c4ebeb8ae06061ca00ce7',
+    'environment': 'development' if DEBUG else 'production',
+    'branch': 'master',
+    'root': os.getcwd(),
+}
 
 AUTH_PROFILE_MODULE = 'wxwarn.UserProfile'
 

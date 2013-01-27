@@ -24,6 +24,7 @@ psycopg2==2.4.5
 python-dateutil==1.5
 python-openid==2.2.5
 pytz==2012h
+ratchet==0.3.2
 requests==0.14.2
 twilio==3.4.1
 wsgiref==0.1.2
