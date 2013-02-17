@@ -20,13 +20,14 @@ from social_auth.models import UserSocialAuth
 from bs4 import BeautifulSoup
 from twilio.rest import TwilioRestClient
 
-from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, WeatherAlertType, UserWeatherAlert, County, UGC, UserWeatherAlertTypeExclusion, LocationType
+from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, WeatherAlertType, UserWeatherAlert, County, UGC, UserWeatherAlertTypeExclusion, LocationType, Marine
 
 #WEATHER_ALERTS_URL = 'http://localhost:8000/static/weather_alerts.xml'
 WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/us.php?x=0'
 MARINE_WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/mzus.php?x=0'
 
 USER_LOCATION_MAX_AGE = 60 * 3
+
 
 def get_user_location(social_auth_user):
     # TODO: support things other than Google Latitude here
@@ -54,11 +55,11 @@ def get_user_location(social_auth_user):
 
 def get_users_location(premium=False):
     user_profiles = UserProfile.objects.filter(premium=premium, active=True)
-    
+
     for user_profile in user_profiles:
         social_auth_user = UserSocialAuth.objects.get(
-                user = user_profile.user,
-                provider = 'google-oauth2')
+                user=user_profile.user,
+                provider='google-oauth2')
 
         get_user_location(social_auth_user)
 
@@ -99,16 +100,16 @@ def insert_user_location(data, user):
     (location_source, created) = LocationSource.objects.get_or_create(name='Google Latitude')
 
     geometry = json.dumps(dict(
-        type = 'Point',
-        coordinates = [data['data']['longitude'], data['data']['latitude']]
+        type='Point',
+        coordinates=[data['data']['longitude'], data['data']['latitude']]
     ))
 
     user_location = UserLocation(
-            user = user,
-            geometry = geometry,
-            source = location_source,
-            source_data = data,
-            source_created = source_date)
+            user=user,
+            geometry=geometry,
+            source=location_source,
+            source_data=data,
+            source_created=source_date)
     user_location.save()
 
 
@@ -148,7 +149,7 @@ def _create_data_dict(parsed_alert, weather_alert_category):
 
     if weather_alert_category == 'land':
         if ugcs[0][2] == 'C':
-            # It seems all flood types use C, so use county insted :/
+            # It seems all flood types use C, so use county instead :/
             location_type_name = 'FIPS'
             location_ids = fips
         else:
@@ -187,9 +188,9 @@ def check_users_weather_alerts():
                                 .filter(expires__gte=now)
     print 'Current alert count: %s' % len(current_weather_alerts)
     current_located_users = UserLocation.objects\
-                                .filter(created__gte=now-timedelta(minutes=USER_LOCATION_MAX_AGE))\
-                                .distinct('user')\
-                                .order_by('user', '-created')
+            .filter(created__gte=now - timedelta(minutes=USER_LOCATION_MAX_AGE))\
+            .distinct('user')\
+            .order_by('user', '-created')
     print 'Current located user count: %s' % len(current_located_users)
     new_user_weather_alerts = []
     for current_located_user in current_located_users:
@@ -286,8 +287,8 @@ def create_fake_weather_alert(user_id):
                     nws_id=''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(6)),
                     source_created=now,
                     source_updated=now,
-                    effective=now-timedelta(minutes=10),
-                    expires=now+timedelta(hours=2),
+                    effective=now - timedelta(minutes=10),
+                    expires=now + timedelta(hours=2),
                     event='Winter Weather Advisory',
                     title='Winter Weather Advisory issued November 26 at 4:17AM AKST until November 26 at 12:00PM AKST by NWS',
                     summary='...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON AKST TODAY... A WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON AKST TODAY. * SNOW...ADDITIONAL ACCUMULATIONS OF 1 TO 3 INCHES THROUGH NOON MONDAY. STORM TOTAL ACCUMULATION OF 5 TO 8 INCHES SINCE SUNDAY',

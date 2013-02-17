@@ -4,6 +4,7 @@ from wxwarn.utils import get_users_location
 from wxwarn.utils import get_weather_alerts as _get_weather_alerts
 from wxwarn.utils import check_users_weather_alerts as _check_users_weather_alerts
 
+
 @celery.task(name='tasks.update_locations')
 def update_locations(premium=False):
     get_users_location(premium=premium)

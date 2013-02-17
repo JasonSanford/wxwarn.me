@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url
-from django.contrib import admin
 
 from social_auth.views import auth
 
@@ -27,7 +26,6 @@ urlpatterns = patterns('',
     url(r'^weather_alerts/marine/(?P<zone_slug>\w+)/$', 'wxwarn.views.weather_alerts_marine', name='weather_alerts_marine'),
     url(r'^weather_alerts/(?P<weather_alert_id>\d+)/$', 'wxwarn.views.weather_alert', name='weather_alert'),
     url(r'^weather_alerts/(?P<weather_alert_id>\d+).geojson$', 'wxwarn.views.weather_alert_geojson', name='weather_alert_geojson'),
-    
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

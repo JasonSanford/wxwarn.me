@@ -4,7 +4,6 @@ import re
 from django.db import models
 from django.contrib.auth.models import User
 from jsonfield.fields import JSONField
-from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.utils.timezone import now as d_now
 from shapely.geometry import asShape
@@ -18,7 +17,7 @@ class LocationType(models.Model):
 
 class GeoModel(models.Model):
     @property
-    def shape(self): # via Shapely
+    def shape(self):  # via Shapely
         return asShape(json.loads(self.geometry))
 
     def geojson(self, bbox=False):
@@ -39,7 +38,7 @@ class GeoModel(models.Model):
 
 
 class County(GeoModel):
-    id = models.CharField(max_length=6, primary_key=True) # 6 digit fips
+    id = models.CharField(max_length=6, primary_key=True)  # 6 digit fips
     name = models.CharField(max_length=200)
     state_name = models.CharField(max_length=100)
     state_fips = models.CharField(max_length=6)
@@ -48,7 +47,6 @@ class County(GeoModel):
     geometry_bbox = models.TextField(null=True)
 
     display_fields = ['name', 'state_name', 'state_fips']
-
 
     def __unicode__(self):
         return '%s County, %s' % (self.name, self.state_name)
@@ -63,7 +61,7 @@ class State(models.Model):
 
 
 class UGC(GeoModel):
-    id = models.CharField(max_length=6, primary_key=True) # 6 digit UGC code
+    id = models.CharField(max_length=6, primary_key=True)  # 6 digit UGC code
     name = models.CharField(max_length=1000)
     time_zone = models.CharField(max_length=3)
     fe_area = models.CharField(max_length=3)
@@ -83,7 +81,7 @@ class MarineZone(models.Model):
 
 
 class Marine(GeoModel):
-    id = models.CharField(max_length=6, primary_key=True) # 6 digit GMZ Code
+    id = models.CharField(max_length=6, primary_key=True)  # 6 digit GMZ Code
     name = models.CharField(max_length=1000)
     wfo = models.CharField(max_length=100)
     geometry = models.TextField()
@@ -153,14 +151,14 @@ class WeatherAlert(models.Model):
     def category(self):
         event = self.event
 
-        regex_cold = re.compile('freeze|frost|chill', re.IGNORECASE|re.DOTALL)
-        regex_fire = re.compile('fire|red flag', re.IGNORECASE|re.DOTALL)
-        regex_flood = re.compile('flood|water', re.IGNORECASE|re.DOTALL)
-        regex_snow = re.compile('winter|blizzard|snow|avalanche', re.IGNORECASE|re.DOTALL)
-        regex_heat = re.compile('heat', re.IGNORECASE|re.DOTALL)
-        regex_thunder = re.compile('thunder', re.IGNORECASE|re.DOTALL)
-        regex_tornado = re.compile('tornado', re.IGNORECASE|re.DOTALL)
-        regex_wind = re.compile('wind', re.IGNORECASE|re.DOTALL)
+        regex_cold = re.compile('freeze|frost|chill', re.IGNORECASE | re.DOTALL)
+        regex_fire = re.compile('fire|red flag', re.IGNORECASE | re.DOTALL)
+        regex_flood = re.compile('flood|water', re.IGNORECASE | re.DOTALL)
+        regex_snow = re.compile('winter|blizzard|snow|avalanche', re.IGNORECASE | re.DOTALL)
+        regex_heat = re.compile('heat', re.IGNORECASE | re.DOTALL)
+        regex_thunder = re.compile('thunder', re.IGNORECASE | re.DOTALL)
+        regex_tornado = re.compile('tornado', re.IGNORECASE | re.DOTALL)
+        regex_wind = re.compile('wind', re.IGNORECASE | re.DOTALL)
 
         if regex_cold.search(event):
             return 'cold'
@@ -198,7 +196,7 @@ class UserProfile(models.Model):
     sms_number = models.CharField(max_length=50, null=True)
     send_sms_alerts = models.BooleanField(default=False)
     send_email_alerts = models.BooleanField(default=True)
-    timezone = models.ForeignKey(Timezone, default=18) # default to America/Denver
+    timezone = models.ForeignKey(Timezone, default=18)  # default to America/Denver
 
     @property
     def last_location(self):
@@ -253,7 +251,7 @@ class UserWeatherAlert(models.Model):
     weather_alert_location_id = models.CharField(max_length=6, null=True)
 
     @property
-    def weather_alert_shape(self): # A user is only in one location_id while some alerts cover multiple.
+    def weather_alert_shape(self):  # A user is only in one location_id while some alerts cover multiple.
         if self.weather_alert.location_type.name == 'UGC':
             TheModel = UGC
         elif self.weather_alert.location_type.name == 'FIPS':
@@ -266,11 +264,11 @@ class UserWeatherAlert(models.Model):
     def static_map_url(self, width=560, height=450, zoom=10):
         _coords = []
         was = self.weather_alert_shape.simplify(0.005)
-        if hasattr(was, 'exterior'): # A Polygon
+        if hasattr(was, 'exterior'):  # A Polygon
             coords = list(was.exterior.coords)
             coords = map(lambda coord: (coord[1], coord[0]), coords)
             _coords.append(coords)
-        else: # A MultiPolygon
+        else:  # A MultiPolygon
             for polygon in was:
                 coords = list(polygon.exterior.coords)
                 coords = map(lambda coord: (coord[1], coord[0]), coords)
@@ -299,8 +297,8 @@ class UserWeatherAlertTypeExclusion(models.Model):
         return self.weather_alert_type.name
 
 
-def create_user_profile(sender, instance, created, **kwargs):  
+def create_user_profile(sender, instance, created, **kwargs):
     if created:
-       profile, created = UserProfile.objects.get_or_create(user=instance)
+        profile, created = UserProfile.objects.get_or_create(user=instance)
 
-post_save.connect(create_user_profile, sender=User) 
+post_save.connect(create_user_profile, sender=User)

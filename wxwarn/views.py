@@ -1,19 +1,15 @@
-import logging
 import json
-import copy
 
 from djangomako.shortcuts import render_to_response
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.http import Http404, HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
 from django.views.decorators.http import require_POST
 from django.utils.timezone import now as d_now
-from social_auth.models import UserSocialAuth
 
 import short_url
-from wxwarn.utils import get_user_location
 from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert, State, WeatherAlertType, UserWeatherAlertTypeExclusion, MarineZone
 from wxwarn.forms import UserProfileForm
 
@@ -73,7 +69,6 @@ def account_landing(request):
 
     Account landing/status page
     """
-    user_weather_alerts = UserWeatherAlert.objects.filter(user=request.user)
     user_profile = request.user.get_profile()
     return render_to_response('account/status.html',
             {
@@ -109,7 +104,6 @@ def user_weather_alerts(request):
     Account landing page
     """
     user_weather_alerts = UserWeatherAlert.objects.filter(user=request.user)
-    user_profile = request.user.get_profile()
     return render_to_response('account/my_weather_alerts.html',
             {
                 'page': 'my_weather_alerts',
@@ -123,7 +117,7 @@ def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_s
     if user_weather_alert_short_url:
         try:
             user_weather_alert_id = short_url.decode_url(user_weather_alert_short_url)
-        except: # No good exception to catch, library complains of substring error
+        except:  # No good exception to catch, library complains of substring error
             raise Http404
 
     try:
@@ -150,7 +144,7 @@ def user_weather_alert_type_exclusions(request):
         return HttpResponseBadRequest(json.dumps({'status': 'error', 'message': 'POSTed data was not JSON serializable.'}))
     for key in weather_alert_settings_dict:
         weather_alert_settings_dict[key]['weather_alert_type'] = WeatherAlertType.objects.get(id=key)
-        if weather_alert_settings_dict[key]['value']: # A weather alert type is checked
+        if weather_alert_settings_dict[key]['value']:  # A weather alert type is checked
             try:
                 uwate = UserWeatherAlertTypeExclusion.objects.get(user=request.user, weather_alert_type=weather_alert_settings_dict[key]['weather_alert_type'])
             except UserWeatherAlertTypeExclusion.DoesNotExist:
@@ -165,7 +159,7 @@ def user_weather_alert_type_exclusions(request):
             for this type of weather alert
             """
             uwate.delete()
-        else: # A weather alert type is unchecked
+        else:  # A weather alert type is unchecked
             uwate, created = UserWeatherAlertTypeExclusion.objects.get_or_create(user=request.user, weather_alert_type=weather_alert_settings_dict[key]['weather_alert_type'])
     return HttpResponse(json.dumps({'status': 'success'}), mimetype='application/json')
 
@@ -302,4 +296,3 @@ def weather_alert_geojson(request, weather_alert_id):
     except WeatherAlert.DoesNotExist:
         raise Http404
     return HttpResponse(json.dumps(a_weather_alert.geojson()), mimetype='application/json')
-
