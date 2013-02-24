@@ -1,4 +1,5 @@
 Django==1.4.2
+GPolyEncode==0.1.1
 Mako==0.7.2
 MarkupSafe==0.15
 PyJWT==0.1.2

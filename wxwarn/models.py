@@ -1,5 +1,7 @@
 import json
 import re
+import urlparse
+from urllib import urlencode
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -7,8 +9,14 @@ from jsonfield.fields import JSONField
 from django.db.models.signals import post_save
 from django.utils.timezone import now as d_now
 from shapely.geometry import asShape
+import gpolyencode
 
 import short_url
+
+
+MAXIMUM_ENCODED_POINTS = 300
+GOOGLE_API_HOST = 'maps.googleapis.com'
+GOOGLE_STATIC_PATH = 'maps/api/staticmap'
 
 
 class LocationType(models.Model):
@@ -262,23 +270,34 @@ class UserWeatherAlert(models.Model):
         return location.shape
 
     def static_map_url(self, width=560, height=450, zoom=10):
+        encoder = gpolyencode.GPolyEncoder()
+        was = self.weather_alert_shape
+
         _coords = []
         was = self.weather_alert_shape.simplify(0.005)
         if hasattr(was, 'exterior'):  # A Polygon
-            coords = list(was.exterior.coords)
-            coords = map(lambda coord: (coord[1], coord[0]), coords)
-            _coords.append(coords)
+            _coords.append(was.exterior.coords)
         else:  # A MultiPolygon
             for polygon in was:
-                coords = list(polygon.exterior.coords)
-                coords = map(lambda coord: (coord[1], coord[0]), coords)
-                _coords.append(coords)
+                _coords.append(polygon.exterior.coords)
+
         latitude = self.user_location.geojson()['geometry']['coordinates'][1]
         longitude = self.user_location.geojson()['geometry']['coordinates'][0]
-        url = 'http://maps.googleapis.com/maps/api/staticmap?center=%s,%s&zoom=%s&size=%sx%s&sensor=false&markers=color:blue|label:S|%s,%s' %\
-                (latitude, longitude, zoom, width, height, latitude, longitude)
+
+        params = {}
+        params['center'] = '%s,%s' % (latitude, longitude)
+        params['zoom'] = zoom
+        params['size'] = '%sx%s' % (width, height)
+        params['sensor'] = 'false'
+        params['markers'] = 'color:blue|label:S|%s,%s' % (latitude, longitude)
+
+        params = urlencode(params)
+
+        url = urlparse.urlunparse(['http', GOOGLE_API_HOST, GOOGLE_STATIC_PATH, None, params, None])
+
         for coords_set in _coords:
-            url += '&path=color:0xff0000ff|weight:1|fillcolor:0xFF000033|%s' % '|'.join((','.join((str("{0:.4f}".format(y)) for y in x)) for x in coords_set))
+            point_str = encoder.encode(coords_set).get('points', [])
+            url += '&path=color:0xff0000ff|weight:1|fillcolor:0xFF000033|enc:%s' % point_str
         return url
 
     @property
