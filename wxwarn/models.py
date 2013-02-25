@@ -271,7 +271,7 @@ class UserWeatherAlert(models.Model):
 
     def static_map_url(self, width=560, height=450, zoom=10):
         encoder = gpolyencode.GPolyEncoder()
-        simplification_factor = 0.0025
+        simplification_factor = 0.005
         was = self.weather_alert_shape
 
         _coords = []
