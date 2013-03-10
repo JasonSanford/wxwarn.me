@@ -270,35 +270,13 @@ class UserWeatherAlert(models.Model):
         return location.shape
 
     def static_map_url(self, width=560, height=450, zoom=10):
-        encoder = gpolyencode.GPolyEncoder()
-        simplification_factor = 0.005
-        was = self.weather_alert_shape
+        user_location_geojson = self.user_location.geojson()
+        longitude = user_location_geojson['geometry']['coordinates'][0]
+        latitude = user_location_geojson['geometry']['coordinates'][1]
 
-        _coords = []
-        was = self.weather_alert_shape.simplify(simplification_factor)
-        if hasattr(was, 'exterior'):  # A Polygon
-            _coords.append(was.exterior.coords)
-        else:  # A MultiPolygon
-            for polygon in was:
-                _coords.append(polygon.exterior.coords)
+        url = 'http://api.tiles.mapbox.com/v3/jcsanford.map-xu5k4lii/pin-l-star+ff6633(%s,%s)/%s,%s,%s/%sx%s.png' %\
+                (longitude, latitude, longitude, latitude, zoom, width, height)
 
-        latitude = self.user_location.geojson()['geometry']['coordinates'][1]
-        longitude = self.user_location.geojson()['geometry']['coordinates'][0]
-
-        params = {}
-        params['center'] = '%s,%s' % (latitude, longitude)
-        params['zoom'] = zoom
-        params['size'] = '%sx%s' % (width, height)
-        params['sensor'] = 'false'
-        params['markers'] = 'color:blue|label:S|%s,%s' % (latitude, longitude)
-
-        params = urlencode(params)
-
-        url = urlparse.urlunparse(['http', GOOGLE_API_HOST, GOOGLE_STATIC_PATH, None, params, None])
-
-        for coords_set in _coords:
-            point_str = encoder.encode(coords_set).get('points', [])
-            url += '&path=color:0xff0000ff|weight:1|fillcolor:0xFF000033|enc:%s' % point_str
         return url
 
     @property
