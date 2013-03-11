@@ -13,11 +13,11 @@ wx.highlight_style = {
     fillColor: '#0000ff',
     fillOpacity: 0.35
 };
-        
+
 
 $(document).ready(function (event) {
 
-    var road_layer = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/jcsanford.map-xu5k4lii/{z}/{x}/{y}.png', {
+    var road_layer = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/jcsanford.map-vita0cry/{z}/{x}/{y}.png', {
             maxZoom: 16,
             subdomains: ['a', 'b', 'c', 'd'],
             attribution: 'Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
@@ -56,7 +56,7 @@ $(document).ready(function (event) {
                 alert_id = $li.data('alert-id');
             setStyle(alert_id, false);
         }
-    )
+    );
 });
 
 function setStyle(alert_id, highlight) {
