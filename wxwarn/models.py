@@ -2,6 +2,8 @@ import json
 import re
 import urlparse
 from urllib import urlencode
+import time
+import datetime
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -9,7 +11,12 @@ from jsonfield.fields import JSONField
 from django.db.models.signals import post_save
 from django.utils.timezone import now as d_now
 from shapely.geometry import asShape
+from social_auth.models import UserSocialAuth
 import gpolyencode
+import pytz
+
+from google.utils import get_latitude_location, refresh_access_token
+from google.exceptions import LatitudeNotOptedIn, LatitudeInvalidCredentials, LatitudeNoLocationHistory, LatitudeUnknown
 
 import short_url
 
@@ -17,6 +24,7 @@ import short_url
 MAXIMUM_ENCODED_POINTS = 300
 GOOGLE_API_HOST = 'maps.googleapis.com'
 GOOGLE_STATIC_PATH = 'maps/api/staticmap'
+GMT = pytz.timezone('GMT')
 
 
 class LocationType(models.Model):
@@ -197,6 +205,13 @@ class Timezone(models.Model):
         return self.name
 
 
+class LocationSource(models.Model):
+    name = models.CharField(max_length=255)
+
+    def __unicode__(self):
+        return self.name
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     active = models.BooleanField(default=True)
@@ -224,15 +239,55 @@ class UserProfile(models.Model):
             'geometries': [user_location.geojson() for user_location in user_locations]
         }
 
+    def get_location(self):
+        social_auth_user = UserSocialAuth.objects.get(user=self.user,
+                                                      provider='google-oauth2')
+        oauth_data = social_auth_user.extra_data
+
+        if 'expiration_date' not in oauth_data.keys():
+            oauth_data['expiration_date'] = 0
+        if oauth_data['expiration_date'] < time.mktime(datetime.datetime.now().timetuple()):
+            oauth_data = refresh_access_token(oauth_data)
+
+        try:
+            latitude_data = get_latitude_location(oauth_data)
+        except LatitudeNotOptedIn:
+            # TODO: Set user status as not opted in
+            print 'get_location failed for user %s because: Not opted in to Latitude' % self.user
+            return
+        except LatitudeInvalidCredentials:
+            # TODO: Set user status as invalid credentials
+            print 'get_location failed for user %s because: Invalid Creds' % self.user
+            return
+        except LatitudeNoLocationHistory:
+            # TODO: Set user status as no history
+            print 'get_location failed for user %s because: No history' % self.user
+            return
+        except LatitudeUnknown:
+            return
+        print latitude_data
+        print 'Inserting user location data'
+        source_date = datetime.datetime.fromtimestamp(float(latitude_data['data']['timestampMs']) / 1000, GMT)
+        (location_source, created) = LocationSource.objects.get_or_create(name='Google Latitude')
+
+        geometry = json.dumps(dict(
+            type='Point',
+            coordinates=[latitude_data['data']['longitude'], latitude_data['data']['latitude']]
+        ))
+
+        user_location = UserLocation(
+                user=self.user,
+                geometry=geometry,
+                source=location_source,
+                source_data=latitude_data,
+                source_created=source_date)
+        user_location.save()
+
+        social_auth_user.oauth_data = oauth_data
+        social_auth_user.save()
+
     def __unicode__(self):
         return 'UserProfile: %s' % self.user.username
-
-
-class LocationSource(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __unicode__(self):
-        return self.name
 
 
 class UserLocation(GeoModel):
