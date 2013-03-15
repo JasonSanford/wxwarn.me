@@ -217,6 +217,7 @@ class UserLocationStatus(models.Model):
     LOCATION_STATUS_NOT_OPTED_IN = 2
     LOCATION_STATUS_INVALID_CREDENTIALS = 3
     LOCATION_STATUS_NO_HISTORY = 4
+    LOCATION_STATUS_UNKNOWN = 5
 
     LOCATION_STATUS_CHOICES = (
         (LOCATION_STATUS_OK, 'OK',),
@@ -229,6 +230,12 @@ class UserLocationStatus(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     location_status = models.IntegerField(choices=LOCATION_STATUS_CHOICES)
+
+    def __unicode__(self):
+        for location_status_choice in self.LOCATION_STATUS_CHOICES:
+            if location_status_choice[0] == self.location_status:
+                return location_status_choice[1]
+        return 'UserLocationStatus'
 
 
 class UserProfile(models.Model):
@@ -270,19 +277,24 @@ class UserProfile(models.Model):
         try:
             latitude_data = get_latitude_location(oauth_data)
         except LatitudeNotOptedIn:
-            # TODO: Set user status as not opted in
+            self._save_location_status(UserLocationStatus.LOCATION_STATUS_NOT_OPTED_IN)
             print 'get_location failed for user %s because: Not opted in to Latitude' % self.user
             return
         except LatitudeInvalidCredentials:
-            # TODO: Set user status as invalid credentials
+            self._save_location_status(UserLocationStatus.LOCATION_STATUS_INVALID_CREDENTIALS)
             print 'get_location failed for user %s because: Invalid Creds' % self.user
             return
         except LatitudeNoLocationHistory:
-            # TODO: Set user status as no history
+            self._save_location_status(UserLocationStatus.LOCATION_STATUS_NO_HISTORY)
             print 'get_location failed for user %s because: No history' % self.user
             return
         except LatitudeUnknown:
+            self._save_location_status(UserLocationStatus.LOCATION_STATUS_UNKNOWN)
+            print 'get_location failed for user %s because: Unknown' % self.user
             return
+
+        self._save_location_status(UserLocationStatus.LOCATION_STATUS_OK)
+
         print latitude_data
         print 'Inserting user location data'
         source_date = datetime.datetime.fromtimestamp(float(latitude_data['data']['timestampMs']) / 1000, GMT)
@@ -304,6 +316,9 @@ class UserProfile(models.Model):
 
         social_auth_user.oauth_data = oauth_data
         social_auth_user.save()
+
+    def _save_location_status(self, location_status):
+        user_location_status, created = UserLocationStatus.objects.get_or_create(user=self.user, defaults={'location_status': location_status})
 
     def __unicode__(self):
         return 'UserProfile: %s' % self.user.username

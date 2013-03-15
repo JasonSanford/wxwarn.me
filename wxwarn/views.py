@@ -10,7 +10,7 @@ from django.views.decorators.http import require_POST
 from django.utils.timezone import now as d_now
 
 import short_url
-from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert, State, WeatherAlertType, UserWeatherAlertTypeExclusion, MarineZone
+from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert, State, WeatherAlertType, UserWeatherAlertTypeExclusion, MarineZone, UserLocationStatus
 from wxwarn.forms import UserProfileForm
 
 
@@ -69,11 +69,16 @@ def account_landing(request):
 
     Account landing/status page
     """
-    user_profile = request.user.get_profile()
+    try:
+        user_location_status = UserLocationStatus.objects.get(user=request.user)
+    except UserLocationStatus.DoesNotExist:
+        user_location_status = None
     return render_to_response('account/status.html',
-            {
-                'page': 'landing'
-            }, context_instance=RequestContext(request))
+                              {
+                                  'page': 'landing',
+                                  'user_location_status': user_location_status
+                              },
+                              context_instance=RequestContext(request))
 
 
 @login_required
