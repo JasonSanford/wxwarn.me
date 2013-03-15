@@ -212,6 +212,25 @@ class LocationSource(models.Model):
         return self.name
 
 
+class UserLocationStatus(models.Model):
+    LOCATION_STATUS_OK = 1
+    LOCATION_STATUS_NOT_OPTED_IN = 2
+    LOCATION_STATUS_INVALID_CREDENTIALS = 3
+    LOCATION_STATUS_NO_HISTORY = 4
+
+    LOCATION_STATUS_CHOICES = (
+        (LOCATION_STATUS_OK, 'OK',),
+        (LOCATION_STATUS_NOT_OPTED_IN, 'Not opted in',),
+        (LOCATION_STATUS_INVALID_CREDENTIALS, 'Invalid credentials',),
+        (LOCATION_STATUS_NO_HISTORY, 'No history',),
+    )
+
+    user = models.OneToOneField(User)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    location_status = models.IntegerField(choices=LOCATION_STATUS_CHOICES)
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     active = models.BooleanField(default=True)
@@ -224,9 +243,8 @@ class UserProfile(models.Model):
     @property
     def last_location(self):
         try:
-            user_location = UserLocation.objects\
-                                .filter(user=self.user)\
-                                .order_by('-source_created')[0]
+            user_location = UserLocation.objects.filter(user=self.user)\
+                                                .order_by('-source_created')[0]
         except IndexError:
             return None
         return user_location
@@ -272,15 +290,16 @@ class UserProfile(models.Model):
 
         geometry = json.dumps(dict(
             type='Point',
-            coordinates=[latitude_data['data']['longitude'], latitude_data['data']['latitude']]
+            coordinates=[
+                latitude_data['data']['longitude'],
+                latitude_data['data']['latitude']
+            ]
         ))
 
-        user_location = UserLocation(
-                user=self.user,
-                geometry=geometry,
-                source=location_source,
-                source_data=latitude_data,
-                source_created=source_date)
+        user_location = UserLocation(user=self.user, geometry=geometry,
+                                     source=location_source,
+                                     source_data=latitude_data,
+                                     source_created=source_date)
         user_location.save()
 
         social_auth_user.oauth_data = oauth_data
