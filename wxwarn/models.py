@@ -1,7 +1,5 @@
 import json
 import re
-import urlparse
-from urllib import urlencode
 import time
 import datetime
 
@@ -12,7 +10,6 @@ from django.db.models.signals import post_save
 from django.utils.timezone import now as d_now
 from shapely.geometry import asShape
 from social_auth.models import UserSocialAuth
-import gpolyencode
 import pytz
 
 from google.utils import get_latitude_location, refresh_access_token

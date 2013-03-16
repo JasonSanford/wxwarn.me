@@ -1,3 +1,29 @@
 <%inherit file="/account/base.html"/>
 
-Status ${user_location_status}
+<%
+from wxwarn.models import UserLocationStatus
+##user_location_status.location_status = 5
+%>
+
+% if user_location_status is not None:
+
+<div class="alert alert-${'success' if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK else 'error'}">
+% if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK:
+We&apos;re successfully tracking your location.
+% elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NOT_OPTED_IN:
+You have not opted in to Google Latitude.
+% elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_INVALID_CREDENTIALS:
+Invalid credentials.
+% elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NO_HISTORY:
+You have no Google Latitude history.
+% else:
+There was an error tracking your location.
+% endif
+Last location check: ${user_location_status.updated}
+</div>
+
+% else:
+
+<p>Your status is unknown. This could be because you recently signed up and haven&apos;t checked your location yet. Check back in a few minutes.</p>
+
+% endif

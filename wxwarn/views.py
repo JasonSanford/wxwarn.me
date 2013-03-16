@@ -73,10 +73,11 @@ def account_landing(request):
         user_location_status = UserLocationStatus.objects.get(user=request.user)
     except UserLocationStatus.DoesNotExist:
         user_location_status = None
+
     return render_to_response('account/status.html',
                               {
                                   'page': 'landing',
-                                  'user_location_status': user_location_status
+                                  'user_location_status': user_location_status,
                               },
                               context_instance=RequestContext(request))
 
