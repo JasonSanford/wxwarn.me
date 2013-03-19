@@ -325,6 +325,7 @@ class UserLocation(GeoModel):
     user = models.ForeignKey(User)
     source = models.ForeignKey(LocationSource)
     created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True, null=True)
     source_created = models.DateTimeField()
     source_data = JSONField()
     geometry = models.TextField(default=json.dumps({'type': 'Point', 'coordinates': [0, 0]}))
