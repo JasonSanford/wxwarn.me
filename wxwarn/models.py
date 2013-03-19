@@ -295,7 +295,7 @@ class UserProfile(models.Model):
         print latitude_data
         print 'Inserting user location data'
         source_date = datetime.datetime.fromtimestamp(float(latitude_data['data']['timestampMs']) / 1000, GMT)
-        (location_source, created) = LocationSource.objects.get_or_create(name='Google Latitude')
+        location_source, created = LocationSource.objects.get_or_create(name='Google Latitude')
 
         geometry = json.dumps(dict(
             type='Point',
@@ -305,11 +305,17 @@ class UserProfile(models.Model):
             ]
         ))
 
-        user_location = UserLocation(user=self.user, geometry=geometry,
-                                     source=location_source,
-                                     source_data=latitude_data,
-                                     source_created=source_date)
-        user_location.save()
+        # The timestampMs member is the location unique id. If we already have this, let's just update the record
+        user_location, created = UserLocation.objects.get_or_create(user=self.user,
+                                                                    source_created=source_date,
+                                                                    defaults={
+                                                                        'geometry': geometry,
+                                                                        'source': location_source,
+                                                                        'source_data': latitude_data
+                                                                    })
+        if not created:
+            user_location.updated = d_now()
+            user_location.save()
 
         social_auth_user.oauth_data = oauth_data
         social_auth_user.save()
