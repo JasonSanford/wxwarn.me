@@ -1,5 +1,7 @@
 <%inherit file="/account/base.html"/>
 
+<%! import json %>
+
 <%
 from wxwarn.models import UserLocationStatus
 ##user_location_status.location_status = 5
@@ -8,18 +10,18 @@ from wxwarn.models import UserLocationStatus
 % if user_location_status is not None:
 
 <div class="alert alert-${'success' if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK else 'error'}">
-% if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK:
-We&apos;re successfully tracking your location.
-% elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NOT_OPTED_IN:
-You have not opted in to Google Latitude.
-% elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_INVALID_CREDENTIALS:
-Invalid credentials.
-% elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NO_HISTORY:
-You have no Google Latitude history.
-% else:
-There was an error tracking your location.
-% endif
-Last location check: ${user_location_status.updated}
+    % if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK:
+    We&apos;re successfully tracking your location.
+    % elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NOT_OPTED_IN:
+    You have not opted in to Google Latitude.
+    % elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_INVALID_CREDENTIALS:
+    Invalid credentials.
+    % elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NO_HISTORY:
+    You have no Google Latitude history.
+    % else:
+    There was an error tracking your location.
+    % endif
+    Last location check: ${user_location_status.updated}
 </div>
 
 % else:
@@ -27,3 +29,16 @@ Last location check: ${user_location_status.updated}
 <p>Your status is unknown. This could be because you recently signed up and haven&apos;t checked your location yet. Check back in a few minutes.</p>
 
 % endif
+
+% if user_last_location:
+<div id="map" style="height: 300px;"></div>
+% endif
+
+<%block name="javascript">
+<script>
+wx.user = {};
+wx.user.last_location = ${json.dumps(user_last_location)};
+wx.user.last_locations = ${json.dumps(user_last_locations)}
+</script>
+<script src="${STATIC_URL}js/account_landing.js"></script>
+</%block>

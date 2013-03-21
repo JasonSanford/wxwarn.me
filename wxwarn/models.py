@@ -38,7 +38,15 @@ class GeoModel(models.Model):
         available_fields = [field.name for field in self._meta.fields]
         for display_field in self.display_fields:
             if display_field in available_fields:
-                properties[display_field] = getattr(self, display_field)
+                value = getattr(self, display_field)
+                if isinstance(value, datetime.date) or isinstance(value, datetime.datetime):
+                    value = str(value)
+                elif isinstance(value, models.Model):
+                    if getattr(value, '__unicode__', None):
+                        value = value.__unicode__()
+                    else:
+                        continue
+                properties[display_field] = value
         return {
             'id': self.id,
             'type': 'Feature',
@@ -247,11 +255,16 @@ class UserProfile(models.Model):
     @property
     def last_location(self):
         try:
-            user_location = UserLocation.objects.filter(user=self.user)\
-                                                .order_by('-source_created')[0]
+            user_location = UserLocation.objects.filter(user=self.user).order_by('-updated')[0]
         except IndexError:
             return None
         return user_location
+
+    def last_locations(self, minutes=60*24):
+        # Get the last n minutes worth of locations for a user
+        now = d_now()
+        user_locations = UserLocation.objects.filter(user=self.user, updated__gt=now - datetime.timedelta(minutes=minutes)).order_by('-updated')
+        return user_locations
 
     @property
     def all_locations(self):
@@ -339,7 +352,7 @@ class UserLocation(GeoModel):
     source_data = JSONField()
     geometry = models.TextField(default=json.dumps({'type': 'Point', 'coordinates': [0, 0]}))
 
-    display_fields = ['']
+    display_fields = ['created', 'updated', 'source_created', 'source_data', 'user', 'source']
 
     def __unicode__(self):
         # TODO: Add datetime

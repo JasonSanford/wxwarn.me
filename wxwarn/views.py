@@ -74,10 +74,19 @@ def account_landing(request):
     except UserLocationStatus.DoesNotExist:
         user_location_status = None
 
+    user_profile = request.user.get_profile()
+    user_last_locations = {
+        'type': 'FeatureCollection',
+        'features': [user_location.geojson() for user_location in user_profile.last_locations(minutes=1440)]
+    }
+
     return render_to_response('account/status.html',
                               {
                                   'page': 'landing',
                                   'user_location_status': user_location_status,
+                                  'user_last_location': user_profile.last_location.geojson(),
+                                  'user_last_locations': user_last_locations,
+                                  'leaflet': True,
                               },
                               context_instance=RequestContext(request))
 
