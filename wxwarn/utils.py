@@ -26,7 +26,7 @@ from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAler
 WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/us.php?x=0'
 MARINE_WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/mzus.php?x=0'
 
-USER_LOCATION_MAX_AGE = 60 * 3
+USER_LOCATION_MAX_AGE = 60 * 12
 
 
 def get_users_location(premium=False):
