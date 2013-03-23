@@ -1,4 +1,5 @@
 <%inherit file="/account/base.html"/>
+<%namespace file="/base_include.html" import="*"/>
 
 <%! import json %>
 
@@ -21,7 +22,7 @@ from wxwarn.models import UserLocationStatus
     % else:
     There was an error tracking your location.
     % endif
-    Last location check: ${user_location_status.updated}
+    Last location check: ${localize_datetime(user, user_location_status.updated)}
 </div>
 
 % else:
