@@ -1,8 +1,4 @@
-import datetime
 from datetime import timedelta
-import json
-import logging
-import time
 from dateutil import parser
 import random
 import string
@@ -16,17 +12,32 @@ from django.utils.timezone import now as d_now
 from django.core.urlresolvers import reverse
 from mako.template import Template
 from django.utils.html import strip_tags
-from social_auth.models import UserSocialAuth
 from bs4 import BeautifulSoup
 from twilio.rest import TwilioRestClient
 
-from wxwarn.models import LocationSource, UserLocation, UserProfile, WeatherAlert, WeatherAlertType, UserWeatherAlert, County, UGC, UserWeatherAlertTypeExclusion, LocationType, Marine
+from wxwarn.models import UserLocation, UserProfile, WeatherAlert, WeatherAlertType, UserWeatherAlert, County, UGC, UserWeatherAlertTypeExclusion, LocationType, Marine
 
 #WEATHER_ALERTS_URL = 'http://localhost:8000/static/weather_alerts.xml'
 WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/us.php?x=0'
 MARINE_WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/mzus.php?x=0'
 
 USER_LOCATION_MAX_AGE = 60 * 12
+
+
+def localize_datetime(user, datetime):
+    if user.is_authenticated():
+        user_profile = user.get_profile()
+        try:
+            local_tz = pytz.timezone(user_profile.timezone.name)
+            converted = datetime.astimezone(local_tz)
+        except pytz.UnknownTimeZoneError:
+            print 'UnknownTimeZoneError thrown for user %s, %s' % (user, user_profile.timezone.name)
+            converted = datetime
+    else:
+        # TODO: Guess at timezone for unauth'd users
+        converted = datetime
+    # TODO: Customizable datetime format
+    return converted.strftime('%a, %d %b %Y %H:%M')
 
 
 def get_users_location(premium=False):

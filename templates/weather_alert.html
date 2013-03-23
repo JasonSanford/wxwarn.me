@@ -7,8 +7,8 @@
     <div class="span4" style="height: 300px;${' background-image: url(%ssvg/%s.svg); background-repeat: no-repeat; background-position: right; background-size: 200px;' % (STATIC_URL, weather_alert.category) if weather_alert.category else ''}">
         <h3>${weather_alert.event}</h3>
         <h4>${weather_alert.title}</h4>
-        <p><span class="muted">Effective:</span> ${weather_alert.effective}</p>
-        <p><span class="muted">Expires:</span> ${weather_alert.expires}</p>
+        <p><span class="muted">Effective:</span> ${localize_datetime(user, weather_alert.effective)}</p>
+        <p><span class="muted">Expires:</span> ${localize_datetime(user, weather_alert.expires)}</p>
     </div>
     <div class="span8" style="height: 100%;">
         <div id="map-container" style="position: relative; height: 100%;">

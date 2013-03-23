@@ -15,11 +15,11 @@
         <h3>${weather_alert.event}</h3>
         <h4>${user_location.user.first_name}&apos;s Location</h4>
         <p><span class="muted">At:</span> ${user_location.geojson()['geometry']['coordinates'][1]}, ${user_location.geojson()['geometry']['coordinates'][0]}</p>
-        <p><span class="muted">Around:</span> ${user_location.source_created}</p>
+        <p><span class="muted">Around:</span> ${localize_datetime(user, user_location.source_created)}</p>
         <p><span class="muted">Reported via:</span> ${user_location.source}</p>
         <h5>${weather_alert.title}</h5>
-        <p><span class="muted">Effective:</span> ${weather_alert.effective}</p>
-        <p><span class="muted">Expires:</span> ${weather_alert.expires}</p>
+        <p><span class="muted">Effective:</span> ${localize_datetime(user, weather_alert.effective)}</p>
+        <p><span class="muted">Expires:</span> ${localize_datetime(user, weather_alert.expires)}</p>
     </div>
     <div class="span8" style="height: 100%;">
         <div id="map-container" style="position: relative; height: 100%;">

@@ -15,3 +15,8 @@
         % endfor
     </ul>
 </%def>
+
+<%def name="localize_datetime(user, datetime)">
+    <% from wxwarn.utils import localize_datetime %>
+    ${localize_datetime(user, datetime)}
+</%def>
