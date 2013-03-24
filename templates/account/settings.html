@@ -1,6 +1,8 @@
 <%inherit file="/account/base.html"/>
 <%namespace file="/base_include.html" import="*"/>
 
+% if user.get_profile().active:
+
 <ul class="nav nav-tabs">
     <li class="active"><a href="#general" data-toggle="tab">General Settings</a></li>
     <li><a href="#types" data-toggle="tab">Weather Alert Types</a></li>
@@ -8,7 +10,7 @@
 
 <div class="tab-content">
     <div class="tab-pane active" id="general">
-        <form id="user-profile-form" class="form-horizontal" action="${url('user_profile')}" method="post" >
+        <form id="user-profile-form" class="form-horizontal" action="${url('user_profile')}" method="post">
             <input type="hidden" name="id" value="${user_profile_id}">
             % for field in user_profile_form:
             <div class="control-group">
@@ -52,3 +54,7 @@
 <%block name="javascript">
 <script src="${STATIC_URL}js/account_settings.js"></script>
 </%block>
+
+% endif
+
+<%include file="inactive_user_form.html"/>

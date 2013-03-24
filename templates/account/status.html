@@ -5,10 +5,11 @@
 
 <%
 from wxwarn.models import UserLocationStatus
-##user_location_status.location_status = 5
 %>
 
-% if user_location_status is not None:
+% if user.get_profile().active:
+
+    % if user_location_status is not None:
 
 <div class="alert alert-${'success' if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK else 'error'}">
     % if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK:
@@ -25,15 +26,15 @@ from wxwarn.models import UserLocationStatus
     Last location check: ${localize_datetime(user, user_location_status.updated)}
 </div>
 
-% else:
+    % else:
 
 <p>Your status is unknown. This could be because you recently signed up and haven&apos;t checked your location yet. Check back in a few minutes.</p>
 
-% endif
+    % endif
 
-% if user_last_location:
+    % if user_last_location:
 <div id="map" style="height: 300px;"></div>
-% endif
+    % endif
 
 <%block name="javascript">
 <script>
@@ -43,3 +44,7 @@ wx.user.last_locations = ${json.dumps(user_last_locations)}
 </script>
 <script src="${STATIC_URL}js/account_landing.js"></script>
 </%block>
+
+% endif
+
+<%include file="inactive_user_form.html"/>

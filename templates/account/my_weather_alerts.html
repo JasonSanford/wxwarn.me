@@ -1,6 +1,8 @@
 <%inherit file="/account/base.html"/>
 <%namespace file="/base_include.html" import="*"/>
 
+% if user.get_profile().active:
+
 <h4>We've  sent you ${len(user_weather_alerts)} weather warning${'' if len(user_weather_alerts) == 1 else 's'}</h4>
 <%
 from wxwarn.utils import grouper
@@ -26,3 +28,9 @@ groups = grouper(3, user_weather_alerts)
     </ul>
 </div>
 % endfor
+
+% else:
+
+<%include file="inactive_user_form.html"/>
+
+% endif

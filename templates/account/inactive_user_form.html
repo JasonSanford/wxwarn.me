@@ -1,0 +1,13 @@
+<%namespace file="/base_include.html" import="*"/>
+
+<p>You're account is ${'' if user.get_profile().active else 'in'}active.</p>
+
+<form class="form-horizontal" action="${url('user_activate')}" method="post">
+    <input type="hidden" name="id" value="${user_profile_id}">
+    <input type="hidden" name="active" value="${0 if user.get_profile().active else 1}">
+    <div class="control-group">
+        <div class="controls">
+            <button type="submit" class="btn btn-primary">${'Deactivate' if user.get_profile().active else 'Activate'}</button>
+        </div>
+    </div>
+</form>

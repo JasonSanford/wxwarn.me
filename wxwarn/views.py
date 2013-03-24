@@ -11,7 +11,7 @@ from django.utils.timezone import now as d_now
 
 import short_url
 from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert, State, WeatherAlertType, UserWeatherAlertTypeExclusion, MarineZone, UserLocationStatus
-from wxwarn.forms import UserProfileForm
+from wxwarn.forms import UserProfileForm, UserActivateForm
 
 
 def home(request):
@@ -83,6 +83,7 @@ def account_landing(request):
     return render_to_response('account/status.html',
                               {
                                   'page': 'landing',
+                                  'user_profile_id': user_profile.id,
                                   'user_location_status': user_location_status,
                                   'user_last_location': user_profile.last_location.geojson(),
                                   'user_last_locations': user_last_locations,
@@ -122,6 +123,7 @@ def user_weather_alerts(request):
     return render_to_response('account/my_weather_alerts.html',
             {
                 'page': 'my_weather_alerts',
+                'user_profile_id': request.user.get_profile().id,
                 'user_weather_alerts': user_weather_alerts,
             }, context_instance=RequestContext(request))
 
@@ -184,11 +186,35 @@ def user_weather_alert_type_exclusions(request):
 def user_profile(request):
     if request.user.id != int(request.POST['id']):
         return HttpResponseForbidden()
+
     a_user_profile = UserProfile.objects.get(id=request.POST['id'])
+
     form = UserProfileForm(request.POST, instance=a_user_profile)
+
     if form.is_valid():
         form.save()
         return HttpResponse(json.dumps({'status': 'success'}), mimetype='application/json')
+    else:
+        message = ''
+        for field, errors in form.errors.items():
+            for error in errors:
+                message += 'Field %s: %s' % (field, error)
+        return HttpResponseBadRequest(json.dumps({'status': 'error', 'message': message}), mimetype='application/json')
+
+
+@login_required
+@require_POST
+def user_activate(request):
+    if request.user.id != int(request.POST['id']):
+        return HttpResponseForbidden()
+
+    a_user_profile = UserProfile.objects.get(id=request.POST['id'])
+
+    form = UserActivateForm(request.POST, instance=a_user_profile)
+
+    if form.is_valid():
+        form.save()
+        return redirect('account_landing')
     else:
         message = ''
         for field, errors in form.errors.items():

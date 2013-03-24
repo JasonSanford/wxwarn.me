@@ -7,7 +7,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
     url(r'^$', 'wxwarn.views.home', name='home'),
     url(r'^how_it_works/$', 'wxwarn.views.how_it_works', name='how_it_works'),
     url(r'^premium/$', 'wxwarn.views.premium', name='premium'),
@@ -19,6 +18,7 @@ urlpatterns = patterns('',
     url(r'^user/my_weather_alerts/(?P<user_weather_alert_id>\d+)/$', 'wxwarn.views.user_weather_alert', name='user_weather_alert'),
     url(r'^user/settings/$', 'wxwarn.views.account_settings', name='account_settings'),
     url(r'^user_profile/$', 'wxwarn.views.user_profile', name='user_profile'),
+    url(r'^user_activate/$', 'wxwarn.views.user_activate', name='user_activate'),
     url(r'^user_weather_alert_type_exclusions/$', 'wxwarn.views.user_weather_alert_type_exclusions', name='user_weather_alert_type_exclusions'),
     url(r'^a/(?P<user_weather_alert_short_url>.+)/$', 'wxwarn.views.user_weather_alert', name='user_weather_alert_short'),
     url(r'^weather_alerts/$', 'wxwarn.views.weather_alerts', name='weather_alerts'),
