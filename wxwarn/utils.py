@@ -117,14 +117,13 @@ def check_users_weather_alerts():
     now = d_now()
     #all = WeatherAlert.objects.all()
     #print 'All is %s' % len(all)
-    current_weather_alerts = WeatherAlert.objects\
-                                .filter(effective__lte=now)\
-                                .filter(expires__gte=now)
+    current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now,
+                                                         expires__gte=now)
     print 'Current alert count: %s' % len(current_weather_alerts)
     current_located_users = UserLocation.objects\
-            .filter(created__gte=now - timedelta(minutes=USER_LOCATION_MAX_AGE))\
+            .filter(updated__gte=now - timedelta(minutes=USER_LOCATION_MAX_AGE))\
             .distinct('user')\
-            .order_by('user', '-created')
+            .order_by('user', '-updated')
     print 'Current located user count: %s' % len(current_located_users)
     new_user_weather_alerts = []
     for current_located_user in current_located_users:
@@ -151,7 +150,7 @@ def check_users_weather_alerts():
                         The user is in a weather alert polygon
                         Let's see if we've already alerted them.
                         """
-                        (user_weather_alert, created) = UserWeatherAlert.objects.get_or_create(
+                        user_weather_alert, created = UserWeatherAlert.objects.get_or_create(
                                 user=current_located_user.user,
                                 weather_alert=current_weather_alert,
                                 defaults={
@@ -185,7 +184,7 @@ def send_bulk_weather_email_alerts(user_weather_alerts):
             summary=user_weather_alert.weather_alert.summary.lower(),
             static_map_url=user_weather_alert.static_map_url(),
             weather_alert_short_url='http://wxwarn.me%s' % reverse('user_weather_alert_short', kwargs={'user_weather_alert_short_url': user_weather_alert.short_url_id}),
-            )
+        )
         body_text = strip_tags(body_html)
         _from = 'Weather Alert <weatheralert@wxwarn.me>'
         to = (user_weather_alert.user.email, )
@@ -204,8 +203,7 @@ def send_bulk_weather_sms_alerts(user_weather_alerts):
         if sms_number[:2] != '+1':
             sms_number = '+1%s' % sms_number
         weather_alert_short_url = 'http://wxwarn.me%s' % reverse('user_weather_alert_short', kwargs={'user_weather_alert_short_url': user_weather_alert.short_url_id})
-        sms_message = "We've detected a %s near your current location. Details: %s" %\
-                (user_weather_alert.weather_alert.event, weather_alert_short_url)
+        sms_message = "We've detected a %s near your current location. Details: %s" % (user_weather_alert.weather_alert.event, weather_alert_short_url)
         message = client.sms.messages.create(to=sms_number, from_=settings.TWILIO_FROM_NUMBER, body=sms_message)
 
 
@@ -218,19 +216,19 @@ def create_fake_weather_alert(user_id):
             print 'Found you at %s. UGC: %s' % (ugc.name, ugc.id)
             now = d_now()
             fake_weather_alert = WeatherAlert(
-                    nws_id=''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(6)),
-                    source_created=now,
-                    source_updated=now,
-                    effective=now - timedelta(minutes=10),
-                    expires=now + timedelta(hours=2),
-                    event='Winter Weather Advisory',
-                    title='Winter Weather Advisory issued November 26 at 4:17AM AKST until November 26 at 12:00PM AKST by NWS',
-                    summary='...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON AKST TODAY... A WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON AKST TODAY. * SNOW...ADDITIONAL ACCUMULATIONS OF 1 TO 3 INCHES THROUGH NOON MONDAY. STORM TOTAL ACCUMULATION OF 5 TO 8 INCHES SINCE SUNDAY',
-                    url='http://wxwarn.me',
-                    ugc=ugc.id,
-                    location_type=LocationType.objects.get(name='UGC'),
-                    location_ids=ugc.id,
-                    fake=True)
+                nws_id=''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(6)),
+                source_created=now,
+                source_updated=now,
+                effective=now - timedelta(minutes=10),
+                expires=now + timedelta(hours=2),
+                event='Winter Weather Advisory',
+                title='Winter Weather Advisory issued November 26 at 4:17AM AKST until November 26 at 12:00PM AKST by NWS',
+                summary='...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON AKST TODAY... A WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL NOON AKST TODAY. * SNOW...ADDITIONAL ACCUMULATIONS OF 1 TO 3 INCHES THROUGH NOON MONDAY. STORM TOTAL ACCUMULATION OF 5 TO 8 INCHES SINCE SUNDAY',
+                url='http://wxwarn.me',
+                ugc=ugc.id,
+                location_type=LocationType.objects.get(name='UGC'),
+                location_ids=ugc.id,
+                fake=True)
             fake_weather_alert.save()
             break
     check_users_weather_alerts()

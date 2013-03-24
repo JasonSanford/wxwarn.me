@@ -39,7 +39,9 @@
                 <div class="nav-collapse collapse">
                     <ul class="nav">
                         <li class="${'active' if current_page == 'how_it_works' else ''}"><a href="${url('how_it_works')}">How it Works</a></li>
+                        % if request.user.is_staff:
                         <li class="${'active' if current_page == 'weather_alerts' else ''}"><a href="${url('weather_alerts')}">Weather Alerts</a></li>
+                        % endif
                         % if request.user.is_anonymous():
                         <li><a href="${url('signup')}">Sign Up</a></li>
                         % else:
