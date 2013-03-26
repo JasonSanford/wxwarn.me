@@ -61,16 +61,11 @@
                         % if request.user.is_staff:
                         <li class="${'active' if current_page == 'weather_alerts' else ''}"><a href="${url('weather_alerts')}">Weather Alerts</a></li>
                         % endif
-                        % if request.user.is_anonymous():
-                        <li><a href="${url('signup')}">Sign Up</a></li>
-                        % else:
-                        <li class="${'active' if False else ''}"><a href="${url('account_landing')}">Account</a></li>
-                        % endif
                     </ul>
                     <ul class="nav pull-right">
                     % if request.user.is_anonymous():
                         <li>
-                            <a href="${url('signup')}">sign up</a>
+                            <a href="${url('signup')}" class="btn-large navbutton">sign up</a>
                         </li>
                         <li>
                             <a href="${url('login')}">login</a>
