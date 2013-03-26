@@ -14,7 +14,7 @@
     <link rel="shortcut icon" href="${STATIC_URL}favicon.ico">
     <style type="text/css">
       body {
-        padding-top: 60px;
+        padding-top: 80px;
         padding-bottom: 40px;
       }
     </style>
@@ -46,9 +46,9 @@
 
     </script>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
+        <div class="navbar-inner" style="padding: 10px;">
             <div class="container">
-                <a class="brand" href="${url('home')}">WxWarnMe</a>
+                <a class="brand" href="${url('home')}" style="background-image: url(${STATIC_URL}img/brand/logo-nav.png); background-repeat: no-repeat; background-position: 0% 50%; text-indent: -3333px; width: 160px;">WxWarnMe</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
                         <li class="${'active' if current_page == 'how_it_works' else ''}"><a href="${url('how_it_works')}">How it Works</a></li>
@@ -61,13 +61,23 @@
                         <li class="${'active' if False else ''}"><a href="${url('account_landing')}">Account</a></li>
                         % endif
                     </ul>
-                    <p class="navbar-text pull-right">
+                    <ul class="nav pull-right">
                     % if request.user.is_anonymous():
-                    <a style="color: #fff;" href="${url('login')}">login</a>
+                        <li>
+                            <a href="${url('signup')}">sign up</a>
+                        </li>
+                        <li>
+                            <a href="${url('login')}">login</a>
+                        </li>
                     % else:
-                    Hi <a style="color: #fff;" href="${url('account_landing')}">${'%s %s' % (request.user.first_name, request.user.last_name)}</a> !&nbsp;-&nbsp;<a style="color: #fff;" href="${url('logout')}">logout</a>
+                        <li>
+                            <a href="${url('account_landing')}">${'%s %s' % (request.user.first_name, request.user.last_name)}</a>
+                        </li>
+                        <li>
+                            <a href="${url('logout')}">logout</a>
+                        </li>
                     % endif
-                    </p>
+                    </ul>
                 </div>
             </div>
         </div>
