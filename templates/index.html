@@ -1,16 +1,58 @@
 <%inherit file="base.html"/>
 <%namespace file="/base_include.html" import="*"/>
 
+
+
+<%block name="css">
 <%
 import random
 %>
+<style type="text/css">
+.hero-unit {
+    background-image: url(${STATIC_URL}img/hero-${random.choice(['flood', 'lightning'])}.jpg);
+}
 
-<div class="hero-unit" style="background-image: url(${STATIC_URL}img/hero-${random.choice(['flood', 'lightning'])}.jpg);">
-    <div style="width: 400px;background-color: rgba(17, 17, 17, 0.65); border-radius: 8px;padding: 15px 30px;">
-        <h1 style="color: #e0e0e0;">WxWarnMe</h1>
-        <p style="color: #e0e0e0; line-height: 1.3em; margin: 8px 0 12px;">Get notifications for severe weather near you based on your location from Google Latitude.</p>
+.hero-content {
+    width: 400px;
+    background-color: rgba(17, 17, 17, 0.65);
+    border-radius: 8px;
+    padding: 15px 30px;
+}
+
+.hero-content h1 {
+    color: #e0e0e0;
+}
+
+.hero-unit p {
+    color: #e0e0e0;
+    line-height: 1.3em;
+    margin: 8px 0 12px;
+}
+
+@media (max-width: 480px) {
+    .hero-unit {
+        padding: 20px;
+    }
+    .hero-content {
+        width: 300px;
+        padding: 10px 12px;
+    }
+    .hero-content h1 {
+        font-size: 40px;
+    }
+    .hero-content p {
+        line-height: 1.1em;
+    }
+}
+</style>
+</%block>
+
+<div class="hero-unit">
+    <div class="hero-content">
+        <h1>WxWarnMe</h1>
+        <p>Get notifications for severe weather near you based on your location from Google Latitude.</p>
         <p><a class="btn btn-large" href="${url('how_it_works')}">Learn more</a> <a class="btn btn-primary btn-large" href="${url('signup')}">Sign Up &raquo;</a></p>
-        <p style="color: #e0e0e0;">Already a member? <a href="${url('login')}">Login now</a></p>
+        <p>Already a member? <a href="${url('login')}">Login now</a></p>
     </div>
 </div>
 
