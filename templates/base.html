@@ -48,8 +48,13 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner" style="padding: 10px;">
             <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
                 <a class="brand" href="${url('home')}" style="background-image: url(${STATIC_URL}img/brand/logo-nav.png); background-repeat: no-repeat; background-position: 0% 50%; text-indent: -3333px; width: 160px;">WxWarnMe</a>
-                <div class="nav-collapse collapse">
+                <div class="nav-collapse">
                     <ul class="nav">
                         <li class="${'active' if current_page == 'how_it_works' else ''}"><a href="${url('how_it_works')}">How it Works</a></li>
                         % if request.user.is_staff:
