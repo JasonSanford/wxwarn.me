@@ -75,6 +75,8 @@ def account_landing(request):
         user_location_status = None
 
     user_profile = request.user.get_profile()
+
+    user_last_location = user_profile.last_location
     user_last_locations = {
         'type': 'FeatureCollection',
         'features': [user_location.geojson() for user_location in user_profile.last_locations(minutes=1440)]
@@ -85,7 +87,7 @@ def account_landing(request):
                                   'page': 'landing',
                                   'user_profile_id': user_profile.id,
                                   'user_location_status': user_location_status,
-                                  'user_last_location': user_profile.last_location.geojson(),
+                                  'user_last_location': user_last_location.geojson() if user_last_location is not None else None,
                                   'user_last_locations': user_last_locations,
                                   'leaflet': True,
                               },
