@@ -8,16 +8,13 @@ from .exceptions import LatitudeNotOptedIn, LatitudeInvalidCredentials, Latitude
 
 
 def get_latitude_location(oauth_data, granularity='best'):
-    
-    
-    
     resource = 'https://www.googleapis.com/latitude/v1/currentLocation?granularity=%s' % granularity
     request = requests.get(
-            resource,
-            headers={
-                'Authorization': 'Bearer ' + oauth_data['access_token']
-                }
-            )
+        resource,
+        headers={
+            'Authorization': 'Bearer ' + oauth_data['access_token']
+        }
+    )
     data = request.json
 
     if 'error' in data:
@@ -41,15 +38,16 @@ def get_latitude_location(oauth_data, granularity='best'):
 
 def refresh_access_token(oauth_data):
     request = requests.post(
-            'https://accounts.google.com/o/oauth2/token',
-            data={
-                'client_id': settings.GOOGLE_OAUTH2_CLIENT_ID,
-                'client_secret': settings.GOOGLE_OAUTH2_CLIENT_SECRET,
-                'refresh_token': oauth_data['refresh_token'],
-                'grant_type': 'refresh_token'
-                },
-            )
+        'https://accounts.google.com/o/oauth2/token',
+        data={
+            'client_id': settings.GOOGLE_OAUTH2_CLIENT_ID,
+            'client_secret': settings.GOOGLE_OAUTH2_CLIENT_SECRET,
+            'refresh_token': oauth_data['refresh_token'],
+            'grant_type': 'refresh_token'
+        },
+    )
     response = request.json
+    print 'Data ffrom refresh access token is: %s' % response
     oauth_data['access_token'] = response['access_token']
     oauth_data['id_token'] = response['id_token']
     oauth_data['expiration_date'] = time.mktime(datetime.datetime.now().timetuple()) + response['expires_in']
