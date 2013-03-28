@@ -409,4 +409,12 @@ def create_user_profile(sender, instance, created, **kwargs):
         profile, profile_created = UserProfile.objects.get_or_create(user=instance)
 
 
+def get_user_first_location(sender, instance, created, **kwargs):
+    # When I import this up top all hell breaks loose. Why?
+    from wxwarn import tasks
+    tasks.get_user_location.apply_async((instance.user, ))
+
+
 post_save.connect(create_user_profile, sender=User)
+
+post_save.connect(get_user_first_location, sender=UserProfile)

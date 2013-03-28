@@ -18,3 +18,9 @@ def get_weather_alerts():
 @celery.task(name='tasks.check_users_weather_alerts')
 def check_users_weather_alerts():
     _check_users_weather_alerts()
+
+
+@celery.task(name='tasks.get_user_location')
+def get_user_location(user):
+    user_profile = user.get_profile()
+    user_profile.get_location()
