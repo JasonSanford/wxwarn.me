@@ -61,9 +61,9 @@ def get_weather_alerts():
         print 'Total %s alerts from NWS: %s' % (weather_alert_category, len(parsed_alerts))
         for parsed_alert in parsed_alerts:
             data_dict = _create_data_dict(parsed_alert, weather_alert_category)
-            (weather_alert, created) = WeatherAlert.objects.get_or_create(
-                    nws_id=parsed_alert.id.text,
-                    defaults=data_dict)
+            weather_alert, created = WeatherAlert.objects.get_or_create(
+                nws_id=parsed_alert.id.text,
+                defaults=data_dict)
             if not created and data_dict['source_updated'] > weather_alert.source_updated:
                 weather_alert.__dict__.update(data_dict)
                 weather_alert.save()
@@ -121,15 +121,17 @@ def check_users_weather_alerts():
                                                          expires__gte=now)
     print 'Current alert count: %s' % len(current_weather_alerts)
     current_located_users = UserLocation.objects\
-            .filter(updated__gte=now - timedelta(minutes=USER_LOCATION_MAX_AGE))\
-            .distinct('user')\
-            .order_by('user', '-updated')
+        .filter(updated__gte=now - timedelta(minutes=USER_LOCATION_MAX_AGE))\
+        .distinct('user')\
+        .order_by('user', '-updated')
     print 'Current located user count: %s' % len(current_located_users)
     new_user_weather_alerts = []
     for current_located_user in current_located_users:
-        weather_alert_type_exclusions = [uwate.weather_alert_type.id for uwate in UserWeatherAlertTypeExclusion.objects.filter(user=current_located_user.user)]
+        weather_alert_type_exclusions = [
+            uwate.weather_alert_type.id for uwate in UserWeatherAlertTypeExclusion.objects.filter(user=current_located_user.user)
+        ]
         for current_weather_alert in current_weather_alerts:
-            for (location_id, bbox) in current_weather_alert.shapes(bbox=True):
+            for location_id, bbox in current_weather_alert.shapes(bbox=True):
                 if bbox.contains(current_located_user.shape):
                     """
                     The user is in at least the bounding box of a weather
@@ -151,12 +153,12 @@ def check_users_weather_alerts():
                         Let's see if we've already alerted them.
                         """
                         user_weather_alert, created = UserWeatherAlert.objects.get_or_create(
-                                user=current_located_user.user,
-                                weather_alert=current_weather_alert,
-                                defaults={
-                                    'user_location': current_located_user,
-                                    'weather_alert_location_id': location_id
-                                })
+                            user=current_located_user.user,
+                            weather_alert=current_weather_alert,
+                            defaults={
+                                'user_location': current_located_user,
+                                'weather_alert_location_id': location_id
+                            })
                         if created and current_weather_alert.weather_alert_type.id not in weather_alert_type_exclusions:
                             new_user_weather_alerts.append(user_weather_alert)
                         break

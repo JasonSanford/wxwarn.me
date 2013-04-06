@@ -79,7 +79,9 @@ def account_landing(request):
     user_last_location = user_profile.last_location
     user_last_locations = {
         'type': 'FeatureCollection',
-        'features': [user_location.geojson() for user_location in user_profile.last_locations(minutes=1440)]
+        'features': [
+            user_location.geojson() for user_location in user_profile.last_locations(minutes=1440)
+        ]
     }
 
     return render_to_response('account/status.html',
@@ -105,13 +107,13 @@ def account_settings(request):
     weather_alert_types = WeatherAlertType.objects.all().order_by('name')
     weather_alert_type_exclusions = [wat.weather_alert_type.id for wat in UserWeatherAlertTypeExclusion.objects.filter(user=request.user)]
     return render_to_response('account/settings.html',
-            {
-                'page': 'settings',
-                'user_profile_form': UserProfileForm(instance=user_profile),
-                'user_profile_id': user_profile.id,
-                'weather_alert_types': weather_alert_types,
-                'weather_alert_type_exclusions': weather_alert_type_exclusions,
-            }, context_instance=RequestContext(request))
+                              {
+                                  'page': 'settings',
+                                  'user_profile_form': UserProfileForm(instance=user_profile),
+                                  'user_profile_id': user_profile.id,
+                                  'weather_alert_types': weather_alert_types,
+                                  'weather_alert_type_exclusions': weather_alert_type_exclusions,
+                              }, context_instance=RequestContext(request))
 
 
 @login_required
@@ -123,11 +125,11 @@ def user_weather_alerts(request):
     """
     user_weather_alerts = UserWeatherAlert.objects.filter(user=request.user)
     return render_to_response('account/my_weather_alerts.html',
-            {
-                'page': 'my_weather_alerts',
-                'user_profile_id': request.user.get_profile().id,
-                'user_weather_alerts': user_weather_alerts,
-            }, context_instance=RequestContext(request))
+                              {
+                                  'page': 'my_weather_alerts',
+                                  'user_profile_id': request.user.get_profile().id,
+                                  'user_weather_alerts': user_weather_alerts,
+                              }, context_instance=RequestContext(request))
 
 
 def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_short_url=None):
@@ -144,13 +146,13 @@ def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_s
     except UserWeatherAlert.DoesNotExist:
         raise Http404
     return render_to_response('user_weather_alert.html',
-            {
-                'user': a_user_weather_alert.user,
-                'user_location': a_user_weather_alert.user_location,
-                'weather_alert': a_user_weather_alert.weather_alert,
-                'weather_alert_location_id': a_user_weather_alert.weather_alert_location_id,
-                'leaflet': True,
-            }, context_instance=RequestContext(request))
+                              {
+                                  'user': a_user_weather_alert.user,
+                                  'user_location': a_user_weather_alert.user_location,
+                                  'weather_alert': a_user_weather_alert.weather_alert,
+                                  'weather_alert_location_id': a_user_weather_alert.weather_alert_location_id,
+                                  'leaflet': True,
+                              }, context_instance=RequestContext(request))
 
 
 @login_required
@@ -264,15 +266,15 @@ def weather_alerts_state(request, state_code):
                 current_weather_alerts_ids.append(current_weather_alert.id)
 
     return render_to_response('weather_alerts_state.html',
-            {
-                'weather_alerts': current_weather_alerts_for_state,
-                'weather_alerts_json': current_weather_alerts_json,
-                'state': {
-                    'code': state.code,
-                    'name': state.name
-                },
-                'leaflet': True
-            }, context_instance=RequestContext(request))
+                              {
+                                  'weather_alerts': current_weather_alerts_for_state,
+                                  'weather_alerts_json': current_weather_alerts_json,
+                                  'state': {
+                                      'code': state.code,
+                                      'name': state.name
+                                  },
+                                  'leaflet': True
+                              }, context_instance=RequestContext(request))
 
 
 def weather_alerts_marine(request, zone_slug):
@@ -322,10 +324,10 @@ def weather_alert(request, weather_alert_id):
     except WeatherAlert.DoesNotExist:
         raise Http404
     return render_to_response('weather_alert.html',
-            {
-                'weather_alert': a_weather_alert,
-                'leaflet': True
-            }, context_instance=RequestContext(request))
+                              {
+                                  'weather_alert': a_weather_alert,
+                                  'leaflet': True
+                              }, context_instance=RequestContext(request))
 
 
 def weather_alert_geojson(request, weather_alert_id):

@@ -47,7 +47,8 @@ def refresh_access_token(oauth_data):
         },
     )
     response = request.json
-    print 'Data ffrom refresh access token is: %s' % response
+    print 'Data from refresh access token is: %s' % response
+    # TODO: Deal with token revoked error
     oauth_data['access_token'] = response['access_token']
     oauth_data['id_token'] = response['id_token']
     oauth_data['expiration_date'] = time.mktime(datetime.datetime.now().timetuple()) + response['expires_in']

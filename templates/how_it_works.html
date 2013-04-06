@@ -2,21 +2,27 @@
 <%namespace file="/base_include.html" import="*"/>
 
 <div class="row">
-    <div class="span6 offset3">
+    <div class="span6 offset5">
         <h3>How does this thing work?</h3>
         <p>Want to stay informed about severe weather wherever you are? We can help with that. Here&apos;s how.</p>
     </div>
 </div>
 
 <div class="row">
-    <div class="span6 offset3">
+    <div class="span3 offset2">
+        <div class="thumbnail" style="margin-top: 10px;"><img src="${STATIC_URL}img/latitude.jpg" alt="Sample Weather Alert" /></div>
+    </div>
+    <div class="span6">
         <h3>Get Google Latitude</h3>
         <p>Latitude is an opt-in location sharing service from Google. An app is <a href="https://itunes.apple.com/us/app/google-latitude/id306586497?mt=8">available for iOS</a> and Android has Latitude integrated in with the Google Maps app. Both of these apps automatically track your location and store it securely on Google&apos;s servers.</p>
     </div>
 </div>
 
 <div class="row">
-    <div class="span6 offset3">
+    <div class="span3 offset2">
+        <div class="thumbnail" style="margin-top: 90px;"><img src="${STATIC_URL}img/auth.png" alt="Sample Weather Alert" /></div>
+    </div>
+    <div class="span6">
         <h3>Sign Up for WxWarnMe</h3>
         <p>You sign up and log into WxWarnMe with your Google account. When signing up, Google will ask for your permission to allow our app to view:</p>
         <ul>
@@ -28,24 +34,19 @@
 </div>
 
 <div class="row">
-    <div class="span6 offset3">
-        <h3>Sit Back, Relax</h3>
-        <p>We constantly track weather alerts from the National Weather Service and compare those with your current location. If we find a weather alert near you we&apos;ll notify you via email or SMS (or both).</p>
+    <div class="span3 offset2">
+        <div class="thumbnail" style="margin-top: 40px;"><img src="${STATIC_URL}img/sms.png" alt="Sample Weather Alert" /></div>
+    </div>
+    <div class="span6">
+        <h3>Stay Informed</h3>
+        <p>We constantly track weather alerts from the National Weather Service and compare those with your current location. If we find a weather alert near you we&apos;ll notify you via email or SMS (or both). Your message will provide valuable information about the weather alert like the severity of the event and when the alert expires. You can even view an interactive map showing the extent of the weather alert relative to the location we tracked you.</p>
     </div>
 </div>
 
-<div class="row">
-    <div class="span6 offset3">
-        <h3>Stay Informed</h3>
-        <p>Your email or SMS will provide valuable information about the weather alert like the severity of the event and when the alert expires. You can even view an interactive map showing the extent of the weather alert relative to the location we tracked you.</p>
-    </div>
-</div>
 % if request.user.is_anonymous():
 <div class="row">
-    <div class="span6 offset3">
-        <h3>Ready? Go!</h3>
-        <p>What are you waiting for? It's free and you can quit at any time.</p>
-        <p><a class="btn btn-primary btn-large" href="${url('login')}">Sign Up Now!</a></p>
+    <div class="span6">
+        <p style="text-align: center;"><a class="btn btn-primary btn-large" href="${url('login')}">Sign Up Now!</a></p>
     </div>
 </div>
 % endif
