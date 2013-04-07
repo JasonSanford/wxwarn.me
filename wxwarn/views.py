@@ -117,6 +117,21 @@ def account_settings(request):
 
 
 @login_required
+def account_activate_deactivate(request):
+    """
+    GET /account/activate_deactivate/
+
+    Account landing page
+    """
+    user_profile = request.user.get_profile()
+    return render_to_response('account/activate_deactivate.html',
+                              {
+                                  'page': 'activate_deactivate',
+                                  'user_profile_id': user_profile.id,
+                              }, context_instance=RequestContext(request))
+
+
+@login_required
 def user_weather_alerts(request):
     """
     GET /account/my_weather_alerts/
@@ -231,10 +246,10 @@ def weather_alerts(request):
     states = State.objects.all().order_by('name')
     marine_zones = MarineZone.objects.all().order_by('name')
     return render_to_response('weather_alerts.html',
-            {
-                'states': states,
-                'marine_zones': marine_zones,
-            }, context_instance=RequestContext(request))
+                              {
+                                  'states': states,
+                                  'marine_zones': marine_zones,
+                              }, context_instance=RequestContext(request))
 
 
 def weather_alerts_state(request, state_code):

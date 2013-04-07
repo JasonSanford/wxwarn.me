@@ -45,6 +45,8 @@ wx.user.last_locations = ${json.dumps(user_last_locations)}
 <script src="${STATIC_URL}js/account_landing.js"></script>
 </%block>
 
-% endif
+% else:
 
 <%include file="inactive_user_form.html"/>
+
+% endif

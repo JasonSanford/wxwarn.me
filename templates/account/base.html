@@ -7,6 +7,7 @@
     <div class="span3">
         <ul class="nav nav-list">
             <li class="nav-header">My Account</li>
+            % if request.user.get_profile().active:
             <li${' class="active"' if page == 'landing' else ''}>
                 <a href="${url('account_landing')}">Status</a>
             </li>
@@ -15,6 +16,10 @@
             </li>
             <li${' class="active"' if page == 'settings' else ''}>
                 <a href="${url('account_settings')}">Settings</a>
+            </li>
+            % endif
+            <li${' class="active"' if page == 'activate_deactivate' else ''}>
+                <a href="${url('activate_deactivate')}">${'Activate' if not request.user.get_profile().active else 'Deactivate'}</a>
             </li>
         </ul>
     </div>
