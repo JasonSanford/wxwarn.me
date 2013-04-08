@@ -384,9 +384,13 @@ class UserWeatherAlert(models.Model):
         latitude = user_location_geojson['geometry']['coordinates'][1]
 
         url = 'http://api.tiles.mapbox.com/v3/jcsanford.map-vita0cry/pin-l-star+ff6633(%s,%s)/%s,%s,%s/%sx%s.png' %\
-                (longitude, latitude, longitude, latitude, zoom, width, height)
+            (longitude, latitude, longitude, latitude, zoom, width, height)
 
         return url
+
+    @property
+    def static_map_url_user_weather_alerts(self):
+        return self.static_map_url(width=300, height=200, zoom=10)
 
     @property
     def short_url_id(self):

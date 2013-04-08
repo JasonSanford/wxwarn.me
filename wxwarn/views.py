@@ -13,7 +13,7 @@ from django.utils.timezone import now as d_now
 import short_url
 from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert, State, WeatherAlertType, UserWeatherAlertTypeExclusion, MarineZone, UserLocationStatus
 from wxwarn.forms import UserProfileForm, UserActivateForm
-from wxwarn.utils import localize_datetime
+from wxwarn.utils import localize_datetime, grouper
 
 
 def home(request):
@@ -126,14 +126,14 @@ def account_settings(request):
     user_profile = request.user.get_profile()
     weather_alert_types = WeatherAlertType.objects.all().order_by('name')
     weather_alert_type_exclusions = [wat.weather_alert_type.id for wat in UserWeatherAlertTypeExclusion.objects.filter(user=request.user)]
-    return mako_render_to_response('account/settings.html',
-                              {
-                                  'page': 'settings',
-                                  'user_profile_form': UserProfileForm(instance=user_profile),
-                                  'user_profile_id': user_profile.id,
-                                  'weather_alert_types': weather_alert_types,
-                                  'weather_alert_type_exclusions': weather_alert_type_exclusions,
-                              }, context_instance=RequestContext(request))
+    return render(request, 'account/settings.html',
+                  {
+                      'page': 'settings',
+                      'user_profile_form': UserProfileForm(instance=user_profile),
+                      'user_profile_id': user_profile.id,
+                      'weather_alert_types': weather_alert_types,
+                      'weather_alert_type_exclusions': weather_alert_type_exclusions,
+                  })
 
 
 @login_required
@@ -144,11 +144,11 @@ def account_activate_deactivate(request):
     Account landing page
     """
     user_profile = request.user.get_profile()
-    return mako_render_to_response('account/activate_deactivate.html',
-                              {
-                                  'page': 'activate_deactivate',
-                                  'user_profile_id': user_profile.id,
-                              }, context_instance=RequestContext(request))
+    return render(request, 'account/activate_deactivate.html',
+                  {
+                      'page': 'activate_deactivate',
+                      'user_profile_id': user_profile.id,
+                  })
 
 
 @login_required
@@ -159,12 +159,13 @@ def user_weather_alerts(request):
     Account landing page
     """
     user_weather_alerts = UserWeatherAlert.objects.filter(user=request.user)
-    return mako_render_to_response('account/my_weather_alerts.html',
-                              {
-                                  'page': 'my_weather_alerts',
-                                  'user_profile_id': request.user.get_profile().id,
-                                  'user_weather_alerts': user_weather_alerts,
-                              }, context_instance=RequestContext(request))
+    user_weather_alert_groups = grouper(3, user_weather_alerts)
+    return render(request, 'account/my_weather_alerts.html',
+                  {
+                      'page': 'my_weather_alerts',
+                      'user_profile_id': request.user.get_profile().id,
+                      'user_weather_alert_groups': user_weather_alert_groups,
+                  })
 
 
 def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_short_url=None):
@@ -180,14 +181,25 @@ def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_s
         a_user_weather_alert = UserWeatherAlert.objects.get(id=user_weather_alert_id)
     except UserWeatherAlert.DoesNotExist:
         raise Http404
-    return mako_render_to_response('user_weather_alert.html',
-                              {
-                                  'user': a_user_weather_alert.user,
-                                  'user_location': a_user_weather_alert.user_location,
-                                  'weather_alert': a_user_weather_alert.weather_alert,
-                                  'weather_alert_location_id': a_user_weather_alert.weather_alert_location_id,
-                                  'leaflet': True,
-                              }, context_instance=RequestContext(request))
+
+    user_location_geojson = a_user_weather_alert.user_location.geojson()
+    longitude, latitude = user_location_geojson['geometry']['coordinates']
+
+    return render(request, 'user_weather_alert.html',
+                  {
+                      'user': a_user_weather_alert.user,
+                      'user_location': a_user_weather_alert.user_location,
+                      'user_location_geojson': json.dumps(user_location_geojson),
+                      'weather_alert_geojson': json.dumps(a_user_weather_alert.weather_alert.geojson()),
+                      'user_location_latitude': latitude,
+                      'user_location_longitude': longitude,
+                      'user_location_last_located': localize_datetime(a_user_weather_alert.user, a_user_weather_alert.user_location.updated),
+                      'weather_alert': a_user_weather_alert.weather_alert,
+                      'weather_alert_location_id': a_user_weather_alert.weather_alert_location_id,
+                      'effective': localize_datetime(a_user_weather_alert.user, a_user_weather_alert.weather_alert.effective),
+                      'expires': localize_datetime(a_user_weather_alert.user, a_user_weather_alert.weather_alert.expires),
+                      'leaflet': True,
+                  })
 
 
 @login_required

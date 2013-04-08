@@ -1,45 +1,46 @@
-<%inherit file="base.html"/>
-<%namespace file="/base_include.html" import="*"/>
+{% extends 'base.html' %}
 
-<%! import json %>
+{% block content %}
 
 <ul class="breadcrumb">
-    <li><a href="${url('home')}">Home</a> <span class="divider">/</span></li>
-    <li><a href="${url('account_landing')}">Account</a> <span class="divider">/</span></li>
-    <li><a href="${url('user_weather_alerts')}">My Weather Alerts</a> <span class="divider">/</span></li>
+    <li><a href="{% url home %}">Home</a> <span class="divider">/</span></li>
+    <li><a href="{% url account_landing %}">Account</a> <span class="divider">/</span></li>
+    <li><a href="{% url user_weather_alerts %}">My Weather Alerts</a> <span class="divider">/</span></li>
     <li class="active">User Weather Alert</li>
 </ul>
 
 <div class="row" style="margin-bottom: 20px;">
-    <div class="span4" style="height: 300px;${' background-image: url(%ssvg/%s.svg); background-repeat: no-repeat; background-position: right; background-size: 200px;' % (STATIC_URL, weather_alert.category) if weather_alert.category else ''}">
-        <h3>${weather_alert.event}</h3>
-        <h4>${user_location.user.first_name}&apos;s Location</h4>
-        <p><span class="muted">At:</span> ${user_location.geojson()['geometry']['coordinates'][1]}, ${user_location.geojson()['geometry']['coordinates'][0]}</p>
-        <p><span class="muted">Around:</span> ${localize_datetime(user, user_location.source_created)}</p>
-        <p><span class="muted">Reported via:</span> ${user_location.source}</p>
-        <h5>${weather_alert.title}</h5>
-        <p><span class="muted">Effective:</span> ${localize_datetime(user, weather_alert.effective)}</p>
-        <p><span class="muted">Expires:</span> ${localize_datetime(user, weather_alert.expires)}</p>
+    <div class="span4" style="height: 300px;{% if weather_alert.category %} background-image: url({{ STATIC_URL }}svg/{{ weather_alert.category }}.svg); background-repeat: no-repeat; background-position: right; background-size: 200px;{% endif %}">
+        <h3>{{ weather_alert.event }}</h3>
+        <h4>{{ user_location.user.first_name }}&apos;s Location</h4>
+        <p><span class="muted">At:</span> {{ user_location_latitude }}, {{ user_location_longitude }}</p>
+        <p><span class="muted">Around:</span> {{ user_location_last_located }}</p>
+        <p><span class="muted">Reported via:</span> {{ user_location.source }}</p>
+        <h5>{{ weather_alert.title }}</h5>
+        <p><span class="muted">Effective:</span> {{ effective }}</p>
+        <p><span class="muted">Expires:</span> {{ expires }}</p>
     </div>
     <div class="span8" style="height: 100%;">
         <div id="map-container" style="position: relative; height: 100%;">
             <div id="map" style="height: 300px;"></div>
-            <div class="active-state-flag${' active' if weather_alert.active else ''}">${'Active' if weather_alert.active else 'Expired'}</div>
+            <div class="active-state-flag{% if weather_alert.active %} active{% endif %}">{% if weather_alert.active %}Active{% else %}Expired{% endif %}</div>
         </div>
     </div>
 </div>
 
 <div class="row">
-    <h4><a href="${url('weather_alert', args=(weather_alert.id,))}">Alert Details</a></h4>
-    <p>${weather_alert.summary}</p>
+    <h4><a href="{% url weather_alert weather_alert.id %}">Alert Details</a></h4>
+    <p>{{ weather_alert.summary }}</p>
 </div>
 
-<%block name="javascript">
+{% endblock %}
+
+{% block javascript %}
 
 <script>
-wx.user_location = ${json.dumps(user_location.geojson())};
-wx.weather_alert = ${json.dumps(weather_alert.geojson())};
-wx.weather_alert_location_id = '${weather_alert_location_id | n}';
+wx.user_location = {{ user_location_geojson|safe }};
+wx.weather_alert = {{ weather_alert_geojson|safe }};
+wx.weather_alert_location_id = '{{ weather_alert_location_id }}';
 </script>
-<script src="${STATIC_URL}js/user_weather_alert.js"></script>
-</%block>
+<script src="{{ STATIC_URL }}js/user_weather_alert.js"></script>
+{% endblock %}

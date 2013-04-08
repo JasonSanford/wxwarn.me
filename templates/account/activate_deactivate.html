@@ -1,4 +1,7 @@
-<%inherit file="/account/base.html"/>
-<%namespace file="/base_include.html" import="*"/>
+{% extends 'account/base.html' %}
 
-<%include file="inactive_user_form.html"/>
+{% block account_content %}
+
+{% include "account/inactive_user_form.html" %}
+
+{% endblock %}

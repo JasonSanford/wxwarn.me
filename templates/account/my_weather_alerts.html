@@ -1,36 +1,36 @@
-<%inherit file="/account/base.html"/>
-<%namespace file="/base_include.html" import="*"/>
+{% extends 'account/base.html' %}
 
-% if user.get_profile().active:
+{% block account_content %}
 
-<h4>We've  sent you ${len(user_weather_alerts)} weather warning${'' if len(user_weather_alerts) == 1 else 's'}</h4>
-<%
-from wxwarn.utils import grouper
-groups = grouper(3, user_weather_alerts)
-%>
-% for group in groups:
+{% if extended_user.active %}
+
+<h4>We've sent you {{ user_weather_alerts|length }} weather warning{% if user_weather_alerts|length == 1 %}{% else %}s{% endif %}</h4>
+
+{% for group in user_weather_alert_groups %}
 <div class="row-fluid">
     <ul class="thumbnails">
-        % for user_weather_alert in group:
-            % if user_weather_alert:
+        {% for user_weather_alert in group %}
+            {% if user_weather_alert %}
         <li class="span4">
             <div class="thumbnail">
-                <img src="${user_weather_alert.static_map_url(width=300, height=200, zoom=10)}">
+                <img src="{{ user_weather_alert.static_map_url_user_weather_alerts }}">
                 <div class="caption">
-                    <h4>${user_weather_alert.weather_alert.event}</h4>
-                    <p><span class="muted">Status: </span>${'Active' if user_weather_alert.weather_alert.active else 'Expired'}</p>
-                    <a class="btn btn-primary" href="${url('user_weather_alert', args=(user_weather_alert.id,))}">Details</a>
+                    <h4>{{ user_weather_alert.weather_alert.event }}</h4>
+                    <p><span class="muted">Status: </span>{% if user_weather_alert.weather_alert.active %}Active{% else %}Expired{% endif %}</p>
+                    <a class="btn btn-primary" href="{% url user_weather_alert user_weather_alert.id %}">Details</a>
                 </div>
             </div>
         </li>
-            % endif
-        % endfor
+            {% endif %}
+        {% endfor %}
     </ul>
 </div>
-% endfor
+{% endfor %}
 
-% else:
+{% else %}
 
-<%include file="inactive_user_form.html"/>
+{% include "account/inactive_user_form.html" %}
 
-% endif
+{% endif %}
+
+{% endblock %}
