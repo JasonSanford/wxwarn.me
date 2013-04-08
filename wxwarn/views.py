@@ -1,11 +1,9 @@
 import json
 import random
 
-from djangomako.shortcuts import render_to_response as mako_render_to_response
 from django.shortcuts import redirect, render
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
-from django.template import RequestContext
 from django.http import Http404, HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
 from django.views.decorators.http import require_POST
 from django.utils.timezone import now as d_now
@@ -45,7 +43,7 @@ def premium(request):
 
     Show the premium upsell page
     """
-    return mako_render_to_response('premium.html', {}, context_instance=RequestContext(request))
+    return render(request, 'premium.html')
 
 
 def signup(request):
@@ -277,11 +275,11 @@ def user_activate(request):
 def weather_alerts(request):
     states = State.objects.all().order_by('name')
     marine_zones = MarineZone.objects.all().order_by('name')
-    return mako_render_to_response('weather_alerts.html',
-                              {
-                                  'states': states,
-                                  'marine_zones': marine_zones,
-                              }, context_instance=RequestContext(request))
+    return render(request, 'weather_alerts.html',
+                  {
+                      'state_groups': grouper(10, states),
+                      'marine_zone_groups': grouper(10, marine_zones)
+                  })
 
 
 def weather_alerts_state(request, state_code):
@@ -312,16 +310,16 @@ def weather_alerts_state(request, state_code):
                 }
                 current_weather_alerts_ids.append(current_weather_alert.id)
 
-    return mako_render_to_response('weather_alerts_state.html',
-                              {
-                                  'weather_alerts': current_weather_alerts_for_state,
-                                  'weather_alerts_json': current_weather_alerts_json,
-                                  'state': {
-                                      'code': state.code,
-                                      'name': state.name
-                                  },
-                                  'leaflet': True
-                              }, context_instance=RequestContext(request))
+    return render(request, 'weather_alerts_state.html',
+                  {
+                      'weather_alerts': current_weather_alerts_for_state,
+                      'weather_alerts_json': json.dumps(current_weather_alerts_json),
+                      'state': {
+                          'code': state.code,
+                          'name': state.name
+                      },
+                      'leaflet': True
+                  })
 
 
 def weather_alerts_marine(request, zone_slug):
@@ -352,12 +350,13 @@ def weather_alerts_marine(request, zone_slug):
                 }
                 current_weather_alerts_ids.append(current_weather_alert.id)
 
-    return mako_render_to_response('weather_alerts_marine.html', {
-        'weather_alerts': current_weather_alerts_for_marine_zone,
-        'weather_alerts_json': current_weather_alerts_json,
-        'marine_zone': marine_zone,
-        'leaflet': True
-    },  context_instance=RequestContext(request))
+    return render(request, 'weather_alerts_marine.html',
+                  {
+                      'weather_alerts': current_weather_alerts_for_marine_zone,
+                      'weather_alerts_json': json.dumps(current_weather_alerts_json),
+                      'marine_zone': marine_zone,
+                      'leaflet': True
+                  })
 
 
 def weather_alert(request, weather_alert_id):

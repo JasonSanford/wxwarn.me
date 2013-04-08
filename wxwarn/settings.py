@@ -95,7 +95,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'djangomako.middleware.MakoMiddleware',
     # For proper error handling Ratchet should remain last here
     'ratchet.contrib.django.middleware.RatchetNotifierMiddleware',
 )

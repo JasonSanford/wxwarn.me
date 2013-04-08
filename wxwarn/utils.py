@@ -10,7 +10,8 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.utils.timezone import now as d_now
 from django.core.urlresolvers import reverse
-from mako.template import Template
+from django.template.loader import get_template
+from django.template import Context
 from django.utils.html import strip_tags
 from bs4 import BeautifulSoup
 from twilio.rest import TwilioRestClient
@@ -179,14 +180,15 @@ def send_bulk_weather_alerts(user_weather_alerts):
 def send_bulk_weather_email_alerts(user_weather_alerts):
     for user_weather_alert in user_weather_alerts:
         print 'Sending email for UserWeatherAlert: %s' % user_weather_alert.id
-        body_template = Template(filename='templates/email/user_weather_alert.html')
-        body_html = body_template.render(
-            event=user_weather_alert.weather_alert.event,
-            title=user_weather_alert.weather_alert.title,
-            summary=user_weather_alert.weather_alert.summary.lower(),
-            static_map_url=user_weather_alert.static_map_url(),
-            weather_alert_short_url='http://wxwarn.me%s' % reverse('user_weather_alert_short', kwargs={'user_weather_alert_short_url': user_weather_alert.short_url_id}),
-        )
+        template = get_template('email/user_weather_alert.html')
+        context = Context({
+            'event': user_weather_alert.weather_alert.event,
+            'title': user_weather_alert.weather_alert.title,
+            'summary': user_weather_alert.weather_alert.summary.lower(),
+            'static_map_url': user_weather_alert.static_map_url(),
+            'weather_alert_short_url': 'http://wxwarn.me%s' % reverse('user_weather_alert_short', kwargs={'user_weather_alert_short_url': user_weather_alert.short_url_id}),
+        })
+        body_html = template.render(context)
         body_text = strip_tags(body_html)
         _from = 'Weather Alert <weatheralert@wxwarn.me>'
         to = (user_weather_alert.user.email, )

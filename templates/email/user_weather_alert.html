@@ -4,9 +4,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         
         <!-- Facebook sharing information tags -->
-        <meta property="og:title" content="${event}" />
+        <meta property="og:title" content="{{ event }}" />
         
-        <title>${event}</title>
+        <title>{{ event }}</title>
         <style type="text/css">
             /* Client-specific Styles */
             #outlook a{padding:0;} /* Force Outlook to provide a "view in browser" button. */
@@ -354,7 +354,7 @@
                                             <!-- *|IFNOT:ARCHIVE_PAGE|* -->
                                             <td valign="top" width="190">
                                                 <div mc:edit="std_preheader_links">
-                                                    Is this email not displaying correctly?<br /><a href="${weather_alert_short_url}" target="_blank">View it in your browser</a>.
+                                                    Is this email not displaying correctly?<br /><a href="{{ weather_alert_short_url }}" target="_blank">View it in your browser</a>.
                                                 </div>
                                             </td>
                                             <!-- *|END:IF|* -->
@@ -379,15 +379,15 @@
                                                     <tr mc:repeatable>
                                                         <td valign="top">
                                                             <div mc:edit="postcard_heading00">
-                                                                <h1 class="h1">${event}</h1>
+                                                                <h1 class="h1">{{ event }}</h1>
                                                             </div>
-                                                            <a href="${weather_alert_short_url}" target="_blank">
-                                                                <img src="${static_map_url}" style="max-width:560px;" mc:label="postcard_image" mc:edit="postcard_image" mc:allowtext />
+                                                            <a href="{{ weather_alert_short_url }}" target="_blank">
+                                                                <img src="{{ static_map_url }}" style="max-width:560px;" mc:label="postcard_image" mc:edit="postcard_image" mc:allowtext />
                                                             </a>
                                                             <div mc:edit="std_content00">
-                                                                <h3 class="h3">${title}</h3>
-                                                                <p>${summary}</p>
-                                                                <p><a href="${weather_alert_short_url}" target="_blank">View Weather Alert Details</a></p>
+                                                                <h3 class="h3">{{ title }}</h3>
+                                                                <p>{{ summary }}</p>
+                                                                <p><a href="{{ weather_alert_short_url }}" target="_blank">View Weather Alert Details</a></p>
                                                             </div>
                                                         </td>
                                                     </tr>

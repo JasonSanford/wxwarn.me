@@ -1,43 +1,39 @@
-<%inherit file="base.html"/>
-<%namespace file="/base_include.html" import="*"/>
+{% extends 'base.html' %}
 
-<% from wxwarn.utils import grouper %>
+{% block content %}
 
 <h2>Current Weather Alerts</h2>
 
 <h3>States</h3>
 
-<%
-state_groups = grouper(10, states)
-marine_zone_groups = grouper(10, marine_zones)
-%>
-
 <div class="row-fluid">
-    % for state_group in state_groups:
+    {% for state_group in state_groups %}
     <div class="span2">
         <ul>
-            % for state in state_group:
-                % if state:
-            <li><a href="${url('weather_alerts_state', args=(state.code.lower(),))}">${state.name}</a></li>
-                % endif
-            % endfor
+            {% for state in state_group %}
+                {% if state %}
+            <li><a href="{% url weather_alerts_state state.code|lower %}">{{ state.name }}</a></li>
+                {% endif %}
+            {% endfor %}
         </ul>
     </div>
-    % endfor
+    {% endfor %}
 </div>
 
 <h3>Marine Zones</h3>
 
 <div class="row-fluid">
-    % for marine_zone_group in marine_zone_groups:
+    {% for marine_zone_group in marine_zone_groups %}
     <div class="span2">
         <ul>
-            % for marine_zone in marine_zone_group:
-                % if marine_zone:
-            <li><a href="${url('weather_alerts_marine', args=(marine_zone.slug,))}">${marine_zone.name}</a></li>
-                % endif
-            % endfor
+            {% for marine_zone in marine_zone_group %}
+                {% if marine_zone %}
+            <li><a href="{% url weather_alerts_marine marine_zone.slug %}">{{ marine_zone.name }}</a></li>
+                {% endif %}
+            {% endfor %}
         </ul>
     </div>
-    % endfor
+    {% endfor %}
 </div>
+
+{% endblock %}

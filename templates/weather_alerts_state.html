@@ -1,31 +1,32 @@
-<%inherit file="base.html"/>
-<%namespace file="/base_include.html" import="*"/>
+{% extends 'base.html' %}
 
-<%! import json %>
+{% block content %}
 
-<h2>${len(weather_alerts)} current weather alert${'' if weather_alert_count == 1 else 's'} for ${state['name']}</h2>
+<h2>{{ weather_alerts|length }} current weather alert{% if weather_alerts|length == 1 %}{% else %}s{% endif %} for {{ state.name }}</h2>
 
-% if len(weather_alerts) > 0:
+{% if weather_alerts|length > 0 %}
 <div class="row-fluid" style="height: 400px;">
     <div class="span4" style="height: 100%; overflow-y: auto;">
         <ul>
-            % for weather_alert in weather_alerts:
-            <li class="weather-alert" data-alert-id="${weather_alert.id}"><a href="${url('weather_alert', args=(weather_alert.id,))}">${weather_alert.event}</a></li>
-            % endfor
+            {% for weather_alert in weather_alerts %}
+            <li class="weather-alert" data-alert-id="{{ weather_alert.id }}"><a href="{% url weather_alert weather_alert.id %}">{{ weather_alert.event}}</a></li>
+            {% endfor %}
         </ul>
     </div>
     <div class="span8" style="height: 100%;">
         <div id="map-container" style="height: 100%;"></div>
     </div>
 </div>
-% else:
+{% else %}
 <p>No current weather alerts</p>
-% endif
+{% endif %}
 
-<%block name="javascript">
+{% endblock %}
+
+{% block javascript %}
 <script>
 wx.weather_alerts = {};
-wx.weather_alerts.alerts = ${json.dumps(weather_alerts_json)};
+wx.weather_alerts.alerts = {{ weather_alerts_json|safe }};
 </script>
-<script src="${STATIC_URL}js/weather_alerts_state.js"></script>
-</%block>
+<script src="{{ STATIC_URL }}js/weather_alerts_state.js"></script>
+{% endblock %}
