@@ -1,5 +1,6 @@
-<%inherit file="base.html"/>
-<%namespace file="/base_include.html" import="*"/>
+{% extends 'base.html' %}
+
+{% block content %}
 
 <p>Want to stay informed about severe weather wherever you are? We can help with that.</p>
 
@@ -14,6 +15,8 @@
     <li>allow WxWarnMe to monitor your location (don&apos;t worry, we won&apos;t share with anyone)</li>
 </ol>
 
-Google Latitude is a location sharing service that let&apos;s you choose who (if anyone) to share your location with. <a href="${url('how_it_works')}">Learn more</a> about how WxWarnMe works.</p>
+Google Latitude is a location sharing service that let&apos;s you choose who (if anyone) to share your location with. <a href="{% url how_it_works %}">Learn more</a> about how WxWarnMe works.</p>
 
-<p style="text-align: center; margin: 40px 0;"><a class="btn btn-primary btn-large" href="${url('login')}">Sign Up with Google &raquo;</a></p>
+<p style="text-align: center; margin: 40px 0;"><a class="btn btn-primary btn-large" href="{% url login %}">Sign Up with Google &raquo;</a></p>
+
+{% endblock %}

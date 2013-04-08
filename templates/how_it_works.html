@@ -1,6 +1,7 @@
-<%inherit file="base.html"/>
-<%namespace file="/base_include.html" import="*"/>
+{% extends 'base.html' %}
+{% load staticfiles %}
 
+{% block content %}
 <div class="row">
     <div class="span6 offset5">
         <h3>How does this thing work?</h3>
@@ -10,7 +11,7 @@
 
 <div class="row">
     <div class="span3 offset2">
-        <div class="thumbnail" style="margin-top: 10px;"><img src="${STATIC_URL}img/latitude.jpg" alt="Sample Weather Alert" /></div>
+        <div class="thumbnail" style="margin-top: 10px;"><img src="{% static 'img/latitude.jpg' %}" alt="Sample Weather Alert" /></div>
     </div>
     <div class="span6">
         <h3>Get Google Latitude</h3>
@@ -20,7 +21,7 @@
 
 <div class="row">
     <div class="span3 offset2">
-        <div class="thumbnail" style="margin-top: 90px;"><img src="${STATIC_URL}img/auth.png" alt="Sample Weather Alert" /></div>
+        <div class="thumbnail" style="margin-top: 90px;"><img src="{% static 'img/auth.png' %}" alt="Sample Weather Alert" /></div>
     </div>
     <div class="span6">
         <h3>Sign Up for WxWarnMe</h3>
@@ -35,7 +36,7 @@
 
 <div class="row">
     <div class="span3 offset2">
-        <div class="thumbnail" style="margin-top: 40px;"><img src="${STATIC_URL}img/sms.png" alt="Sample Weather Alert" /></div>
+        <div class="thumbnail" style="margin-top: 40px;"><img src="{% static 'img/sms.png' %}" alt="Sample Weather Alert" /></div>
     </div>
     <div class="span6">
         <h3>Stay Informed</h3>
@@ -43,10 +44,12 @@
     </div>
 </div>
 
-% if request.user.is_anonymous():
+{% if user.is_anonymous %}
 <div class="row">
     <div class="span12" style="margin-top: 40px;">
-        <p style="text-align: center;"><a class="btn btn-primary btn-large" href="${url('login')}">Sign Up Now!</a></p>
+        <p style="text-align: center;"><a class="btn btn-primary btn-large" href="{% url login %}">Sign Up Now!</a></p>
     </div>
 </div>
-% endif
+{% endif %}
+
+{% endblock %}

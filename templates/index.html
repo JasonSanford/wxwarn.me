@@ -1,15 +1,10 @@
-<%inherit file="base.html"/>
-<%namespace file="/base_include.html" import="*"/>
+{% extends 'base.html' %}
 
+{% block css %}
 
-
-<%block name="css">
-<%
-import random
-%>
 <style type="text/css">
 .hero-unit {
-    background-image: url(${STATIC_URL}img/hero-${random.choice(['flood', 'lightning'])}.jpg);
+    background-image: url({{ STATIC_URL }}img/hero-{{ hero_image }}.jpg);
 }
 
 .hero-content {
@@ -50,14 +45,15 @@ import random
     }
 }
 </style>
-</%block>
+{% endblock %}
 
+{% block content %}
 <div class="hero-unit">
     <div class="hero-content">
         <h1>WxWarnMe</h1>
         <p>Get notifications for severe weather near you based on your location from Google Latitude.</p>
-        <p><a class="btn btn-large" href="${url('how_it_works')}">Learn more</a> <a class="btn btn-primary btn-large" href="${url('signup')}">Sign Up &raquo;</a></p>
-        <p>Already a member? <a href="${url('login')}">Login now</a></p>
+        <p><a class="btn btn-large" href="{% url how_it_works %}">Learn more</a> <a class="btn btn-primary btn-large" href="{% url signup %}">Sign Up &raquo;</a></p>
+        <p>Already a member? <a href="{% url login %}">Login now</a></p>
     </div>
 </div>
 
@@ -77,3 +73,5 @@ import random
 </div>
 
 <hr class="hidden-phone">
+
+{% endblock %}

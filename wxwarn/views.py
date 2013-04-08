@@ -1,7 +1,8 @@
 import json
+import random
 
-from djangomako.shortcuts import render_to_response
-from django.shortcuts import redirect
+from djangomako.shortcuts import render_to_response as mako_render_to_response
+from django.shortcuts import redirect, render
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
@@ -12,6 +13,7 @@ from django.utils.timezone import now as d_now
 import short_url
 from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert, State, WeatherAlertType, UserWeatherAlertTypeExclusion, MarineZone, UserLocationStatus
 from wxwarn.forms import UserProfileForm, UserActivateForm
+from wxwarn.utils import localize_datetime
 
 
 def home(request):
@@ -22,7 +24,10 @@ def home(request):
     """
     if request.user.is_authenticated():
         return redirect('account_landing')
-    return render_to_response('index.html', {}, context_instance=RequestContext(request))
+    context = {
+        'hero_image': random.choice(['flood', 'lightning'])
+    }
+    return render(request, 'index.html', context)
 
 
 def how_it_works(request):
@@ -31,7 +36,7 @@ def how_it_works(request):
 
     Show how this whole thing works
     """
-    return render_to_response('how_it_works.html', {}, context_instance=RequestContext(request))
+    return render(request, 'how_it_works.html')
 
 
 def premium(request):
@@ -40,7 +45,7 @@ def premium(request):
 
     Show the premium upsell page
     """
-    return render_to_response('premium.html', {}, context_instance=RequestContext(request))
+    return mako_render_to_response('premium.html', {}, context_instance=RequestContext(request))
 
 
 def signup(request):
@@ -49,7 +54,7 @@ def signup(request):
 
     Explain that we'll need access to your Google account and Latitdue oauth stuff
     """
-    return render_to_response('signup.html', {}, context_instance=RequestContext(request))
+    return render(request, 'signup.html')
 
 
 def logout(request):
@@ -74,6 +79,19 @@ def account_landing(request):
     except UserLocationStatus.DoesNotExist:
         user_location_status = None
 
+    if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK:
+        user_location_status_message = 'We\'re successfully tracking your location.'
+    elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NOT_OPTED_IN:
+        user_location_status_message = 'You have not opted in to Google Latitude.'
+    elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_INVALID_CREDENTIALS:
+        user_location_status_message = 'Invalid credentials.'
+    elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NO_HISTORY:
+        user_location_status_message = 'You have no Google Latitude history.'
+    else:
+        user_location_status_message = 'There was an error tracking your location.'
+
+    user_location_status_success_error = 'success' if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK else 'error'
+    last_location_check = localize_datetime(request.user, user_location_status.updated)
     user_profile = request.user.get_profile()
 
     user_last_location = user_profile.last_location
@@ -84,16 +102,18 @@ def account_landing(request):
         ]
     }
 
-    return render_to_response('account/status.html',
-                              {
-                                  'page': 'landing',
-                                  'user_profile_id': user_profile.id,
-                                  'user_location_status': user_location_status,
-                                  'user_last_location': user_last_location.geojson() if user_last_location is not None else None,
-                                  'user_last_locations': user_last_locations,
-                                  'leaflet': True,
-                              },
-                              context_instance=RequestContext(request))
+    return render(request, 'account/status.html',
+                  {
+                      'page': 'landing',
+                      'user_profile_id': user_profile.id,
+                      'user_location_status': user_location_status,
+                      'user_location_status_message': user_location_status_message,
+                      'user_location_status_success_error': user_location_status_success_error,
+                      'last_location_check': last_location_check,
+                      'user_last_location': json.dumps(user_last_location.geojson() if user_last_location is not None else None),
+                      'user_last_locations': json.dumps(user_last_locations),
+                      'leaflet': True,
+                  })
 
 
 @login_required
@@ -106,7 +126,7 @@ def account_settings(request):
     user_profile = request.user.get_profile()
     weather_alert_types = WeatherAlertType.objects.all().order_by('name')
     weather_alert_type_exclusions = [wat.weather_alert_type.id for wat in UserWeatherAlertTypeExclusion.objects.filter(user=request.user)]
-    return render_to_response('account/settings.html',
+    return mako_render_to_response('account/settings.html',
                               {
                                   'page': 'settings',
                                   'user_profile_form': UserProfileForm(instance=user_profile),
@@ -124,7 +144,7 @@ def account_activate_deactivate(request):
     Account landing page
     """
     user_profile = request.user.get_profile()
-    return render_to_response('account/activate_deactivate.html',
+    return mako_render_to_response('account/activate_deactivate.html',
                               {
                                   'page': 'activate_deactivate',
                                   'user_profile_id': user_profile.id,
@@ -139,7 +159,7 @@ def user_weather_alerts(request):
     Account landing page
     """
     user_weather_alerts = UserWeatherAlert.objects.filter(user=request.user)
-    return render_to_response('account/my_weather_alerts.html',
+    return mako_render_to_response('account/my_weather_alerts.html',
                               {
                                   'page': 'my_weather_alerts',
                                   'user_profile_id': request.user.get_profile().id,
@@ -160,7 +180,7 @@ def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_s
         a_user_weather_alert = UserWeatherAlert.objects.get(id=user_weather_alert_id)
     except UserWeatherAlert.DoesNotExist:
         raise Http404
-    return render_to_response('user_weather_alert.html',
+    return mako_render_to_response('user_weather_alert.html',
                               {
                                   'user': a_user_weather_alert.user,
                                   'user_location': a_user_weather_alert.user_location,
@@ -245,7 +265,7 @@ def user_activate(request):
 def weather_alerts(request):
     states = State.objects.all().order_by('name')
     marine_zones = MarineZone.objects.all().order_by('name')
-    return render_to_response('weather_alerts.html',
+    return mako_render_to_response('weather_alerts.html',
                               {
                                   'states': states,
                                   'marine_zones': marine_zones,
@@ -280,7 +300,7 @@ def weather_alerts_state(request, state_code):
                 }
                 current_weather_alerts_ids.append(current_weather_alert.id)
 
-    return render_to_response('weather_alerts_state.html',
+    return mako_render_to_response('weather_alerts_state.html',
                               {
                                   'weather_alerts': current_weather_alerts_for_state,
                                   'weather_alerts_json': current_weather_alerts_json,
@@ -320,7 +340,7 @@ def weather_alerts_marine(request, zone_slug):
                 }
                 current_weather_alerts_ids.append(current_weather_alert.id)
 
-    return render_to_response('weather_alerts_marine.html', {
+    return mako_render_to_response('weather_alerts_marine.html', {
         'weather_alerts': current_weather_alerts_for_marine_zone,
         'weather_alerts_json': current_weather_alerts_json,
         'marine_zone': marine_zone,
@@ -338,7 +358,7 @@ def weather_alert(request, weather_alert_id):
         a_weather_alert = WeatherAlert.objects.get(id=weather_alert_id)
     except WeatherAlert.DoesNotExist:
         raise Http404
-    return render_to_response('weather_alert.html',
+    return mako_render_to_response('weather_alert.html',
                               {
                                   'weather_alert': a_weather_alert,
                                   'leaflet': True

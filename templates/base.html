@@ -1,28 +1,29 @@
-<%namespace file="/base_include.html" import="*"/>
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>WxWarnMe</title>
+    <title>{% block title %}WxWarnMe{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Get weather alert emails or texts for your current location.">
     <meta name="author" content="">
     <meta name="google-site-verification" content="4SMTAyYwjLtZZqOIhVBevzbFqnbHIczrGXvR7kKn0qI" />
-    <link href="${STATIC_URL}css/bootstrap.css" rel="stylesheet">
-    <link href="${STATIC_URL}css/common.css" rel="stylesheet">
-    <link rel="shortcut icon" href="${STATIC_URL}favicon.ico">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/common.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static favicon.ico %}">
     <style type="text/css">
       body {
         padding-top: 80px;
         padding-bottom: 40px;
       }
     </style>
-    <link href="${STATIC_URL}css/bootstrap-responsive.css" rel="stylesheet">
-    % if leaflet:
+    <link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
+    {% if leaflet %}
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.css">
-    % endif
-    <%block name="css"></%block>
+    {% endif %}
+    {% block css %}{% endblock %}
     <script>
     var _ratchetParams = {"server.environment": "production"};
     _ratchetParams["notifier.snippet_version"] = "1"; var _ratchet=["c3ed28e642c441a08ed42f52835768a8", _ratchetParams];
@@ -54,30 +55,30 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="${url('home')}" style="background-image: url(${STATIC_URL}img/brand/logo-nav.png); background-repeat: no-repeat; background-position: 0% 50%; text-indent: -3333px; width: 160px;">WxWarnMe</a>
+                <a class="brand" href="{% url home %}" style="background-image: url({% static 'img/brand/logo-nav.png' %}); background-repeat: no-repeat; background-position: 0% 50%; text-indent: -3333px; width: 160px;">WxWarnMe</a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="${'active' if current_page == 'how_it_works' else ''}"><a href="${url('how_it_works')}">How it Works</a></li>
-                        % if request.user.is_staff:
-                        <li class="${'active' if current_page == 'weather_alerts' else ''}"><a href="${url('weather_alerts')}">Weather Alerts</a></li>
-                        % endif
+                        <li><a href="{% url how_it_works %}">How it Works</a></li>
+                        {% if user.is_staff %}
+                        <li><a href="{% url weather_alerts %}">Weather Alerts</a></li>
+                        {% endif %}
                     </ul>
                     <ul class="nav pull-right">
-                    % if request.user.is_anonymous():
+                    {% if user.is_anonymous %}
                         <li>
-                            <a href="${url('signup')}" class="btn-large navbutton">sign up</a>
+                            <a href="{% url signup %}" class="btn-large navbutton">sign up</a>
                         </li>
                         <li>
-                            <a href="${url('login')}">login</a>
+                            <a href="{% url login %}">login</a>
                         </li>
-                    % else:
+                    {% else %}
                         <li>
-                            <a href="${url('account_landing')}">${'%s %s' % (request.user.first_name, request.user.last_name)}</a>
+                            <a href="{% url account_landing %}">{{ extended_user.display_name }}</a>
                         </li>
                         <li>
-                            <a href="${url('logout')}">logout</a>
+                            <a href="{% url logout %}">logout</a>
                         </li>
-                    % endif
+                    {% endif %}
                     </ul>
                 </div>
             </div>
@@ -85,20 +86,20 @@
     </div>
 
     <div class="container">
-        ${next.body()}
+        {% block content %}{% endblock %}
         <footer>
             <p>&copy; WxWarnMe 2013</p>
         </footer>
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script src="${STATIC_URL}js/bootstrap.min.js"></script>
-    % if leaflet:
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% if leaflet %}
     <script src="http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.js"></script>
-    % endif
+    {% endif %}
     <script>
         window.wx = {};
     </script>
-    <%block name="javascript"></%block>
+    {% block javascript %}{% endblock %}
 </body>
 
 </html>

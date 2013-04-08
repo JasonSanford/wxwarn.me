@@ -1,29 +1,32 @@
-<%inherit file="/base.html"/>
-<%namespace file="/base_include.html" import="*"/>
+{% extends 'base.html' %}
 
-<h3>Hi ${request.user.first_name}!</h3>
+{% block content %}
+
+<h3>Hi {{ user.first_name }}!</h3>
 
 <div class="row">
     <div class="span3">
         <ul class="nav nav-list">
             <li class="nav-header">My Account</li>
-            % if request.user.get_profile().active:
-            <li${' class="active"' if page == 'landing' else ''}>
-                <a href="${url('account_landing')}">Status</a>
+            {% if extended_user.active %}
+            <li class="{% if page == 'landing' %}active{% endif %}">
+                <a href="{% url account_landing %}">Status</a>
             </li>
-            <li${' class="active"' if page == 'my_weather_alerts' else ''}>
-                <a href="${url('user_weather_alerts')}">My Weather Alerts</a>
+            <li class="{% if page == 'my_weather_alerts' %}active{% endif %}">
+                <a href="{% url user_weather_alerts %}">My Weather Alerts</a>
             </li>
-            <li${' class="active"' if page == 'settings' else ''}>
-                <a href="${url('account_settings')}">Settings</a>
+            <li class="{% if page == 'settings' %}active{% endif %}">
+                <a href="{% url account_settings %}">Settings</a>
             </li>
-            % endif
-            <li${' class="active"' if page == 'activate_deactivate' else ''}>
-                <a href="${url('activate_deactivate')}">${'Activate' if not request.user.get_profile().active else 'Deactivate'}</a>
+            {% endif %}
+            <li class="{% if page == 'activate_deactivate' %}active{% endif %}">
+                <a href="{% url activate_deactivate %}">{% if extended_user.active %}Deactivate{% else %}Deactivate{% endif %}</a>
             </li>
         </ul>
     </div>
     <div class="span9">
-        ${next.body()}
+        {% block account_content %}{% endblock %}
     </div>
 </div>
+
+{% endblock %}
