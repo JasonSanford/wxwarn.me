@@ -370,11 +370,14 @@ def weather_alert(request, weather_alert_id):
         a_weather_alert = WeatherAlert.objects.get(id=weather_alert_id)
     except WeatherAlert.DoesNotExist:
         raise Http404
-    return mako_render_to_response('weather_alert.html',
-                              {
-                                  'weather_alert': a_weather_alert,
-                                  'leaflet': True
-                              }, context_instance=RequestContext(request))
+    return render(request, 'weather_alert.html',
+                  {
+                      'weather_alert': a_weather_alert,
+                      'weather_alert_geojson': json.dumps(a_weather_alert.geojson()),
+                      'effective': localize_datetime(request.user, a_weather_alert.effective),
+                      'expires': localize_datetime(request.user, a_weather_alert.expires),
+                      'leaflet': True,
+                  })
 
 
 def weather_alert_geojson(request, weather_alert_id):
