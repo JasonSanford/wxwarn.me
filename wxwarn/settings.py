@@ -171,7 +171,9 @@ LOGGING = {
     }
 }
 
-DATABASES['default'] =  dj_database_url.config()
+SESSION_COOKIE_AGE = 1209600  # 2 weeks
+
+DATABASES['default'] = dj_database_url.config()
 
 BROKER_BACKEND = 'django'
 
