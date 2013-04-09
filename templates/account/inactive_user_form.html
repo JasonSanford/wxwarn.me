@@ -1,4 +1,4 @@
-<p>You're account is {% if extended_user.active %}in{% endif %}active.</p>
+<p>You're account is {% if extended_user.active %}{% else %}in{% endif %}active.</p>
 
 <form class="form-horizontal" action="{% url user_activate %}" method="post">
     <input type="hidden" name="id" value="{{ user_profile_id }}">
