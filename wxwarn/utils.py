@@ -17,6 +17,7 @@ from bs4 import BeautifulSoup
 from twilio.rest import TwilioRestClient
 
 from wxwarn.models import UserLocation, UserProfile, WeatherAlert, WeatherAlertType, UserWeatherAlert, County, UGC, UserWeatherAlertTypeExclusion, LocationType, Marine
+import tasks
 
 #WEATHER_ALERTS_URL = 'http://localhost:8000/static/weather_alerts.xml'
 WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/us.php?x=0'
@@ -71,6 +72,7 @@ def get_weather_alerts():
                 update_count += 1
             if created:
                 insert_count += 1
+                tasks.get_weather_alert_details.apply_async((weather_alert.id, ))
         print 'New %s alerts: %s' % (weather_alert_category, insert_count)
         print 'Updated %s alerts: %s' % (weather_alert_category, update_count)
 
