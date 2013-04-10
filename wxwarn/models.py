@@ -337,6 +337,7 @@ class UserProfile(models.Model):
         user_location_status, created = UserLocationStatus.objects.get_or_create(user=self.user, defaults={'location_status': location_status})
         if not created:
             user_location_status.updated = d_now()
+            user_location_status.location_status = location_status
             user_location_status.save()
 
     def __unicode__(self):
