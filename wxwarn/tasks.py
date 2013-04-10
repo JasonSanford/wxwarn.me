@@ -29,7 +29,7 @@ def get_user_location(user):
     user_profile.get_location()
 
 
-@celery.task(name='tasks.get_weather_alert_details', rate_limit='15/m')
+@celery.task(name='tasks.get_weather_alert_details', rate_limit='30/m')
 def get_weather_alert_details(id):
     try:
         weather_alert = WeatherAlert.objects.get(id=id)
@@ -42,4 +42,4 @@ def get_weather_alert_details(id):
     description = soup.description.text
     weather_alert.summary = description
     weather_alert.save()
-    print 'Updated %s with a better summary' % weather_alert
+    print 'Updated weather alert %s with a better summary' % weather_alert.id
