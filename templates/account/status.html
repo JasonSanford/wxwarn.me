@@ -11,13 +11,19 @@
     Last location check: {{ last_location_check }}
 </div>
 
+    {% if status_message_template %}
+
+    {% include status_message_template %}
+
+    {% endif %}
+
     {% else %}
 
 <p>Your status is unknown. This could be because you recently signed up and haven&apos;t checked your location yet. Check back in a few minutes.</p>
 
     {% endif %}
 
-    {% if user_last_location %}
+    {% if user_last_location and user_location_status_ok %}
 <div id="map" style="height: 300px;"></div>
     {% endif %}
 
@@ -31,7 +37,7 @@
 
 {% block javascript %}
 
-{% if user_last_location %}
+{% if user_last_location and user_location_status_ok %}
 
 <script>
 wx.user = {};

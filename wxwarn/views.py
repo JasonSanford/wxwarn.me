@@ -77,10 +77,13 @@ def account_landing(request):
     except UserLocationStatus.DoesNotExist:
         user_location_status = None
 
+    status_message_template = None
+
     if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK:
         user_location_status_message = 'We\'re successfully tracking your location.'
     elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NOT_OPTED_IN:
         user_location_status_message = 'You have not opted in to Google Latitude.'
+        status_message_template = 'account/status_enable_history.html'
     elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_INVALID_CREDENTIALS:
         user_location_status_message = 'Invalid credentials.'
     elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NO_HISTORY:
@@ -105,11 +108,13 @@ def account_landing(request):
                       'page': 'landing',
                       'user_profile_id': user_profile.id,
                       'user_location_status': user_location_status,
+                      'user_location_status_ok': user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK,
                       'user_location_status_message': user_location_status_message,
                       'user_location_status_success_error': user_location_status_success_error,
                       'last_location_check': last_location_check,
                       'user_last_location': json.dumps(user_last_location.geojson() if user_last_location is not None else None),
                       'user_last_locations': json.dumps(user_last_locations),
+                      'status_message_template': status_message_template,
                       'leaflet': True,
                   })
 
