@@ -162,12 +162,20 @@ def user_weather_alerts(request):
     Account landing page
     """
     user_weather_alerts = UserWeatherAlert.objects.filter(user=request.user)
+
+    active = [uwa for uwa in user_weather_alerts if uwa.active]
+    expired = [uwa for uwa in user_weather_alerts if not uwa.active]
+
+    active_groups = grouper(3, active)
+    expired_groups = grouper(3, expired)
+
     user_weather_alert_groups = grouper(3, user_weather_alerts)
     return render(request, 'account/my_weather_alerts.html',
                   {
                       'page': 'my_weather_alerts',
                       'user_profile_id': request.user.get_profile().id,
-                      'user_weather_alert_groups': user_weather_alert_groups,
+                      'active_groups': active_groups,
+                      'expired_groups': expired_groups,
                   })
 
 

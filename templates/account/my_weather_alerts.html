@@ -6,7 +6,31 @@
 
 <h4>We've sent you {{ user_weather_alerts|length }} weather warning{% if user_weather_alerts|length == 1 %}{% else %}s{% endif %}</h4>
 
-{% for group in user_weather_alert_groups %}
+
+<h3>Active Weather Alerts</h3>
+{% for group in active_groups %}
+<div class="row-fluid">
+    <ul class="thumbnails">
+        {% for user_weather_alert in group %}
+            {% if user_weather_alert %}
+        <li class="span4">
+            <div class="thumbnail">
+                <img src="{{ user_weather_alert.static_map_url_user_weather_alerts }}">
+                <div class="caption">
+                    <h4>{{ user_weather_alert.weather_alert.event }}</h4>
+                    <p><span class="muted">Status: </span>{% if user_weather_alert.weather_alert.active %}Active{% else %}Expired{% endif %}</p>
+                    <a class="btn btn-primary" href="{% url user_weather_alert user_weather_alert.id %}">Details</a>
+                </div>
+            </div>
+        </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}
+
+<h3>Expired Weather Alerts</h3>
+{% for group in expired_groups %}
 <div class="row-fluid">
     <ul class="thumbnails">
         {% for user_weather_alert in group %}
