@@ -174,7 +174,9 @@ def user_weather_alerts(request):
                       'page': 'my_weather_alerts',
                       'user_profile_id': request.user.get_profile().id,
                       'active_groups': active_groups,
+                      'active_count': len(active),
                       'expired_groups': expired_groups,
+                      'expired_count': len(expired),
                   })
 
 
