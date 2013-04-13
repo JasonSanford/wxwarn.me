@@ -199,6 +199,15 @@ class WeatherAlert(models.Model):
             return 'wind'
         return None
 
+    @property
+    def pretty_summary(self):
+        summary = self.summary
+        summary = summary.replace('... .', '. ')
+        summary = summary.replace('...', ' ')
+        summary = summary.strip().lower()
+
+        return summary
+
     def __unicode__(self):
         return self.event
 
