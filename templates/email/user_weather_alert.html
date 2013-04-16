@@ -386,7 +386,9 @@
                                                             </a>
                                                             <div mc:edit="std_content00">
                                                                 <h3 class="h3">{{ title }}</h3>
-                                                                <p>{{ summary }}</p>
+                                                                {% autoescape off %}
+                                                                {{ summary }}
+                                                                {% endautoescape %}
                                                                 <p><a href="{{ weather_alert_short_url }}" target="_blank">View Weather Alert Details</a></p>
                                                             </div>
                                                         </td>

@@ -201,12 +201,36 @@ class WeatherAlert(models.Model):
 
     @property
     def pretty_summary(self):
+        from utils import sentence_case
         summary = self.summary
         summary = summary.replace('... .', '. ')
         summary = summary.replace('...', ' ')
         summary = summary.strip().lower()
 
-        return summary
+        if summary[0] == '.':
+            summary = summary[1:]
+
+        html_sentences = []
+        html_list = []
+
+        sentences = summary.split('.')
+        for sentence in sentences:
+            sentence = sentence.strip()
+            if len(sentence) == 0:
+                continue
+            elif sentence[:2] == '* ':
+                sentence = sentence[2:].replace('\n', ' ')
+                sentence = sentence_case(sentence)
+                html_list.append(sentence)
+            else:
+                sentence = sentence_case(sentence).replace('\n', ' ')
+                html_sentences.append(sentence)
+
+        output = '<p>%s</p>' % ' '.join(html_sentences)
+        if html_list:
+            output += '<ul><li>%s</li></ul>' % '</li><li>'.join(html_list)
+
+        return output
 
     def __unicode__(self):
         return self.event

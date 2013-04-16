@@ -30,7 +30,9 @@
 
 <div class="row">
     <h4><a href="{% url weather_alert weather_alert.id %}">Alert Details</a></h4>
-    <p>{{ weather_alert.pretty_summary }}</p>
+    {% autoescape off %}
+    {{ weather_alert.pretty_summary }}
+    {% endautoescape %}
 </div>
 
 {% endblock %}
