@@ -103,20 +103,22 @@ def account_landing(request):
         ]
     }
 
-    return render(request, 'account/status.html',
-                  {
-                      'page': 'landing',
-                      'user_profile_id': user_profile.id,
-                      'user_location_status': user_location_status,
-                      'user_location_status_ok': user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK,
-                      'user_location_status_message': user_location_status_message,
-                      'user_location_status_success_error': user_location_status_success_error,
-                      'last_location_check': last_location_check,
-                      'user_last_location': json.dumps(user_last_location.geojson() if user_last_location is not None else None),
-                      'user_last_locations': json.dumps(user_last_locations),
-                      'status_message_template': status_message_template,
-                      'leaflet': True,
-                  })
+    return render(
+        request,
+        'account/status.html',
+        {
+            'page': 'landing',
+            'user_profile_id': user_profile.id,
+            'user_location_status': user_location_status,
+            'user_location_status_ok': user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK,
+            'user_location_status_message': user_location_status_message,
+            'user_location_status_success_error': user_location_status_success_error,
+            'last_location_check': last_location_check,
+            'user_last_location': json.dumps(user_last_location.geojson() if user_last_location is not None else None),
+            'user_last_locations': json.dumps(user_last_locations),
+            'status_message_template': status_message_template,
+            'leaflet': True,
+        })
 
 
 @login_required
@@ -129,14 +131,16 @@ def account_settings(request):
     user_profile = request.user.get_profile()
     weather_alert_types = WeatherAlertType.objects.all().order_by('name')
     weather_alert_type_exclusions = [wat.weather_alert_type.id for wat in UserWeatherAlertTypeExclusion.objects.filter(user=request.user)]
-    return render(request, 'account/settings.html',
-                  {
-                      'page': 'settings',
-                      'user_profile_form': UserProfileForm(instance=user_profile),
-                      'user_profile_id': user_profile.id,
-                      'weather_alert_types': weather_alert_types,
-                      'weather_alert_type_exclusions': weather_alert_type_exclusions,
-                  })
+    return render(
+        request,
+        'account/settings.html',
+        {
+            'page': 'settings',
+            'user_profile_form': UserProfileForm(instance=user_profile),
+            'user_profile_id': user_profile.id,
+            'weather_alert_types': weather_alert_types,
+            'weather_alert_type_exclusions': weather_alert_type_exclusions,
+        })
 
 
 @login_required
@@ -147,11 +151,13 @@ def account_activate_deactivate(request):
     Account landing page
     """
     user_profile = request.user.get_profile()
-    return render(request, 'account/activate_deactivate.html',
-                  {
-                      'page': 'activate_deactivate',
-                      'user_profile_id': user_profile.id,
-                  })
+    return render(
+        request,
+        'account/activate_deactivate.html',
+        {
+            'page': 'activate_deactivate',
+            'user_profile_id': user_profile.id,
+        })
 
 
 @login_required
@@ -169,15 +175,17 @@ def user_weather_alerts(request):
     active_groups = grouper(3, active)
     expired_groups = grouper(3, expired)
 
-    return render(request, 'account/my_weather_alerts.html',
-                  {
-                      'page': 'my_weather_alerts',
-                      'user_profile_id': request.user.get_profile().id,
-                      'active_groups': active_groups,
-                      'active_count': len(active),
-                      'expired_groups': expired_groups,
-                      'expired_count': len(expired),
-                  })
+    return render(
+        request,
+        'account/my_weather_alerts.html',
+        {
+            'page': 'my_weather_alerts',
+            'user_profile_id': request.user.get_profile().id,
+            'active_groups': active_groups,
+            'active_count': len(active),
+            'expired_groups': expired_groups,
+            'expired_count': len(expired),
+        })
 
 
 def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_short_url=None):
@@ -197,21 +205,23 @@ def user_weather_alert(request, user_weather_alert_id=None, user_weather_alert_s
     user_location_geojson = a_user_weather_alert.user_location.geojson()
     longitude, latitude = user_location_geojson['geometry']['coordinates']
 
-    return render(request, 'user_weather_alert.html',
-                  {
-                      'user': a_user_weather_alert.user,
-                      'user_location': a_user_weather_alert.user_location,
-                      'user_location_geojson': json.dumps(user_location_geojson),
-                      'weather_alert_geojson': json.dumps(a_user_weather_alert.weather_alert.geojson()),
-                      'user_location_latitude': latitude,
-                      'user_location_longitude': longitude,
-                      'user_location_last_located': localize_datetime(a_user_weather_alert.user, a_user_weather_alert.user_location.updated),
-                      'weather_alert': a_user_weather_alert.weather_alert,
-                      'weather_alert_location_id': a_user_weather_alert.weather_alert_location_id,
-                      'effective': localize_datetime(a_user_weather_alert.user, a_user_weather_alert.weather_alert.effective),
-                      'expires': localize_datetime(a_user_weather_alert.user, a_user_weather_alert.weather_alert.expires),
-                      'leaflet': True,
-                  })
+    return render(
+        request,
+        'user_weather_alert.html',
+        {
+            'user': a_user_weather_alert.user,
+            'user_location': a_user_weather_alert.user_location,
+            'user_location_geojson': json.dumps(user_location_geojson),
+            'weather_alert_geojson': json.dumps(a_user_weather_alert.weather_alert.geojson()),
+            'user_location_latitude': latitude,
+            'user_location_longitude': longitude,
+            'user_location_last_located': localize_datetime(a_user_weather_alert.user, a_user_weather_alert.user_location.updated),
+            'weather_alert': a_user_weather_alert.weather_alert,
+            'weather_alert_location_id': a_user_weather_alert.weather_alert_location_id,
+            'effective': localize_datetime(a_user_weather_alert.user, a_user_weather_alert.weather_alert.effective),
+            'expires': localize_datetime(a_user_weather_alert.user, a_user_weather_alert.weather_alert.expires),
+            'leaflet': True,
+        })
 
 
 @login_required
@@ -289,11 +299,13 @@ def user_activate(request):
 def weather_alerts(request):
     states = State.objects.all().order_by('name')
     marine_zones = MarineZone.objects.all().order_by('name')
-    return render(request, 'weather_alerts.html',
-                  {
-                      'state_groups': grouper(10, states),
-                      'marine_zone_groups': grouper(10, marine_zones)
-                  })
+    return render(
+        request,
+        'weather_alerts.html',
+        {
+            'state_groups': grouper(10, states),
+            'marine_zone_groups': grouper(10, marine_zones)
+        })
 
 
 def weather_alerts_state(request, state_code):
@@ -324,16 +336,18 @@ def weather_alerts_state(request, state_code):
                 }
                 current_weather_alerts_ids.append(current_weather_alert.id)
 
-    return render(request, 'weather_alerts_state.html',
-                  {
-                      'weather_alerts': current_weather_alerts_for_state,
-                      'weather_alerts_json': json.dumps(current_weather_alerts_json),
-                      'state': {
-                          'code': state.code,
-                          'name': state.name
-                      },
-                      'leaflet': True
-                  })
+    return render(
+        request,
+        'weather_alerts_state.html',
+        {
+            'weather_alerts': current_weather_alerts_for_state,
+            'weather_alerts_json': json.dumps(current_weather_alerts_json),
+            'state': {
+                'code': state.code,
+                'name': state.name
+            },
+            'leaflet': True
+        })
 
 
 def weather_alerts_marine(request, zone_slug):
@@ -364,13 +378,15 @@ def weather_alerts_marine(request, zone_slug):
                 }
                 current_weather_alerts_ids.append(current_weather_alert.id)
 
-    return render(request, 'weather_alerts_marine.html',
-                  {
-                      'weather_alerts': current_weather_alerts_for_marine_zone,
-                      'weather_alerts_json': json.dumps(current_weather_alerts_json),
-                      'marine_zone': marine_zone,
-                      'leaflet': True
-                  })
+    return render(
+        request,
+        'weather_alerts_marine.html',
+        {
+            'weather_alerts': current_weather_alerts_for_marine_zone,
+            'weather_alerts_json': json.dumps(current_weather_alerts_json),
+            'marine_zone': marine_zone,
+            'leaflet': True
+        })
 
 
 def weather_alert(request, weather_alert_id):
@@ -383,14 +399,16 @@ def weather_alert(request, weather_alert_id):
         a_weather_alert = WeatherAlert.objects.get(id=weather_alert_id)
     except WeatherAlert.DoesNotExist:
         raise Http404
-    return render(request, 'weather_alert.html',
-                  {
-                      'weather_alert': a_weather_alert,
-                      'weather_alert_geojson': json.dumps(a_weather_alert.geojson()),
-                      'effective': localize_datetime(request.user, a_weather_alert.effective),
-                      'expires': localize_datetime(request.user, a_weather_alert.expires),
-                      'leaflet': True,
-                  })
+    return render(
+        request,
+        'weather_alert.html',
+        {
+            'weather_alert': a_weather_alert,
+            'weather_alert_geojson': json.dumps(a_weather_alert.geojson()),
+            'effective': localize_datetime(request.user, a_weather_alert.effective),
+            'expires': localize_datetime(request.user, a_weather_alert.expires),
+            'leaflet': True,
+        })
 
 
 def weather_alert_geojson(request, weather_alert_id):
