@@ -204,6 +204,7 @@ class WeatherAlert(models.Model):
         from utils import sentence_case
         summary = self.summary
         summary = summary.replace('... .', '. ')
+        summary = summary.replace('...\n', '. ')
         summary = summary.replace('...', ' ')
         summary = summary.strip().lower()
 
@@ -226,7 +227,7 @@ class WeatherAlert(models.Model):
                 sentence = sentence_case(sentence).replace('\n', ' ')
                 html_sentences.append(sentence)
 
-        output = '<p>%s</p>' % '. '.join(html_sentences)
+        output = '<p>%s.</p>' % '. '.join(html_sentences)
         if html_list:
             output += '<ul><li>%s</li></ul>' % '</li><li>'.join(html_list)
 
