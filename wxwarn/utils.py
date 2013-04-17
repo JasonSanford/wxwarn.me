@@ -205,7 +205,7 @@ def send_bulk_weather_sms_alerts(user_weather_alerts):
     client = TwilioRestClient()
     for user_weather_alert in user_weather_alerts:
         print 'Sending SMS alert for UserWeatherAlert: %s' % user_weather_alert.id
-        sms_number = user_weather_alert.user.get_profile().sms_number
+        sms_number = user_weather_alert.user.get_profile().sms_number.strip()
         if sms_number[:2] != '+1':
             sms_number = '+1%s' % sms_number
         weather_alert_short_url = 'http://wxwarn.me%s' % reverse('user_weather_alert_short', kwargs={'user_weather_alert_short_url': user_weather_alert.short_url_id})
