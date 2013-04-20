@@ -2,6 +2,7 @@ import json
 import re
 import time
 import datetime
+import logging
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -17,6 +18,7 @@ from google.exceptions import LatitudeNotOptedIn, LatitudeInvalidCredentials, La
 
 import short_url
 
+logger = logging.getLogger(__name__)
 
 MAXIMUM_ENCODED_POINTS = 300
 GOOGLE_API_HOST = 'maps.googleapis.com'
@@ -322,25 +324,23 @@ class UserProfile(models.Model):
             latitude_data = get_latitude_location(oauth_data)
         except LatitudeNotOptedIn:
             self._save_location_status(UserLocationStatus.LOCATION_STATUS_NOT_OPTED_IN)
-            print 'get_location failed for user %s because: Not opted in to Latitude' % self.user
+            logger.error('get_location failed for user %s because: Not opted in to Latitude' % self.user)
             return
         except LatitudeInvalidCredentials:
             self._save_location_status(UserLocationStatus.LOCATION_STATUS_INVALID_CREDENTIALS)
-            print 'get_location failed for user %s because: Invalid Creds' % self.user
+            logger.error('get_location failed for user %s because: Invalid Credentials' % self.user)
             return
         except LatitudeNoLocationHistory:
             self._save_location_status(UserLocationStatus.LOCATION_STATUS_NO_HISTORY)
-            print 'get_location failed for user %s because: No history' % self.user
+            logger.error('get_location failed for user %s because: No history' % self.user)
             return
         except LatitudeUnknown:
             self._save_location_status(UserLocationStatus.LOCATION_STATUS_UNKNOWN)
-            print 'get_location failed for user %s because: Unknown' % self.user
+            logger.error('get_location failed for user %s because: Unknown' % self.user)
             return
 
         self._save_location_status(UserLocationStatus.LOCATION_STATUS_OK)
 
-        print latitude_data
-        print 'Inserting user location data'
         source_date = datetime.datetime.fromtimestamp(float(latitude_data['data']['timestampMs']) / 1000, GMT)
         location_source, created = LocationSource.objects.get_or_create(name='Google Latitude')
 
@@ -360,6 +360,9 @@ class UserProfile(models.Model):
                                                                         'source': location_source,
                                                                         'source_data': latitude_data
                                                                     })
+
+        logger.info('%s UserLocation for %s.' % ('Created' if created else 'Update', self.user))
+
         if not created:
             user_location.updated = d_now()
             user_location.save()

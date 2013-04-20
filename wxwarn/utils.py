@@ -2,6 +2,7 @@ from datetime import timedelta
 from dateutil import parser
 import random
 import string
+import logging
 
 import pytz
 import requests
@@ -25,6 +26,8 @@ MARINE_WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/mzus.php?x=0'
 
 USER_LOCATION_MAX_AGE = 60 * 12
 
+logger = logging.getLogger(__name__)
+
 
 def localize_datetime(user, datetime):
     if user.is_authenticated():
@@ -33,7 +36,7 @@ def localize_datetime(user, datetime):
             local_tz = pytz.timezone(user_profile.timezone.name)
             converted = datetime.astimezone(local_tz)
         except pytz.UnknownTimeZoneError:
-            print 'UnknownTimeZoneError thrown for user %s, %s' % (user, user_profile.timezone.name)
+            logger.warning('UnknownTimeZoneError thrown for user %s, %s' % (user, user_profile.timezone.name))
             converted = datetime
     else:
         # TODO: Guess at timezone for unauth'd users
@@ -60,7 +63,7 @@ def get_weather_alerts():
         parsed_alerts = soup.find_all('entry')
         insert_count = 0
         update_count = 0
-        print 'Total %s alerts from NWS: %s' % (weather_alert_category, len(parsed_alerts))
+        logger.info('Total %s alerts from NWS: %s' % (weather_alert_category, len(parsed_alerts)))
         for parsed_alert in parsed_alerts:
             data_dict = _create_data_dict(parsed_alert, weather_alert_category)
             weather_alert, created = WeatherAlert.objects.get_or_create(
@@ -73,8 +76,8 @@ def get_weather_alerts():
             if created:
                 insert_count += 1
                 tasks.get_weather_alert_details.apply_async((weather_alert.id, ))
-        print 'New %s alerts: %s' % (weather_alert_category, insert_count)
-        print 'Updated %s alerts: %s' % (weather_alert_category, update_count)
+        logger.info('New %s alerts: %s' % (weather_alert_category, insert_count))
+        logger.info('Updated %s alerts: %s' % (weather_alert_category, update_count))
 
 
 def _create_data_dict(parsed_alert, weather_alert_category):
@@ -117,17 +120,16 @@ def _create_data_dict(parsed_alert, weather_alert_category):
 
 
 def check_users_weather_alerts():
+    logger.info('Checking user weather alerts')
     now = d_now()
-    #all = WeatherAlert.objects.all()
-    #print 'All is %s' % len(all)
     current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now,
                                                          expires__gte=now)
-    print 'Current alert count: %s' % len(current_weather_alerts)
+    logger.info('Current active alert count: %s' % len(current_weather_alerts))
     current_located_users = UserLocation.objects\
         .filter(updated__gte=now - timedelta(minutes=USER_LOCATION_MAX_AGE))\
         .distinct('user')\
         .order_by('user', '-updated')
-    print 'Current located user count: %s' % len(current_located_users)
+    logger.info('Current located user count: %s' % len(current_located_users))
     new_user_weather_alerts = []
     for current_located_user in current_located_users:
         weather_alert_type_exclusions = [
@@ -181,7 +183,7 @@ def send_bulk_weather_alerts(user_weather_alerts):
 
 def send_bulk_weather_email_alerts(user_weather_alerts):
     for user_weather_alert in user_weather_alerts:
-        print 'Sending email for UserWeatherAlert: %s' % user_weather_alert.id
+        logger.info('Sending email for UserWeatherAlert: %s' % user_weather_alert.id)
         template = get_template('email/user_weather_alert.html')
         context = Context({
             'event': user_weather_alert.weather_alert.event,
@@ -204,7 +206,7 @@ def send_bulk_weather_email_alerts(user_weather_alerts):
 def send_bulk_weather_sms_alerts(user_weather_alerts):
     client = TwilioRestClient()
     for user_weather_alert in user_weather_alerts:
-        print 'Sending SMS alert for UserWeatherAlert: %s' % user_weather_alert.id
+        logger.info('Sending SMS alert for UserWeatherAlert: %s' % user_weather_alert.id)
         sms_number = user_weather_alert.user.get_profile().sms_number.strip()
         if sms_number[:2] != '+1':
             sms_number = '+1%s' % sms_number
@@ -216,10 +218,9 @@ def send_bulk_weather_sms_alerts(user_weather_alerts):
 def create_fake_weather_alert(user_id):
     user = User.objects.get(id=user_id)
     last_location = UserLocation.objects.filter(user=user).order_by('-created')[0]
-    print 'I\'m going to create a fake alert near %s, %s.' % (last_location.geojson()['geometry']['coordinates'][0], last_location.geojson()['geometry']['coordinates'][1])
+    logger.info('Creating a fake alert near %s, %s.' % (last_location.geojson()['geometry']['coordinates'][0], last_location.geojson()['geometry']['coordinates'][1]))
     for ugc in UGC.objects.all():
         if ugc.shape.contains(last_location.shape):
-            print 'Found you at %s. UGC: %s' % (ugc.name, ugc.id)
             now = d_now()
             fake_weather_alert = WeatherAlert(
                 nws_id=''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(6)),

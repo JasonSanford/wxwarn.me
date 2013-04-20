@@ -47,7 +47,6 @@ def refresh_access_token(oauth_data):
         },
     )
     response = request.json
-    print 'Data from refresh access token is: %s' % response
     # TODO: Deal with token revoked error
     # {u'error': u'invalid_grant'}
     oauth_data['access_token'] = response['access_token']
