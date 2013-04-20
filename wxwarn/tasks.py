@@ -1,3 +1,5 @@
+import logging
+
 import celery
 import requests
 from bs4 import BeautifulSoup
@@ -6,6 +8,8 @@ from wxwarn.utils import get_users_location
 from wxwarn.utils import get_weather_alerts as _get_weather_alerts
 from wxwarn.utils import check_users_weather_alerts as _check_users_weather_alerts
 from wxwarn.models import WeatherAlert
+
+logger = logging.getLogger(__name__)
 
 
 @celery.task(name='tasks.update_locations')
@@ -34,7 +38,6 @@ def get_weather_alert_details(id):
     try:
         weather_alert = WeatherAlert.objects.get(id=id)
     except WeatherAlert.DoesNotExist:
-        print 'Could not find route with id %s' % id
         return
 
     response = requests.get(weather_alert.nws_id)
@@ -42,4 +45,4 @@ def get_weather_alert_details(id):
     description = soup.description.text
     weather_alert.summary = description
     weather_alert.save()
-    print 'Updated weather alert %s with a better summary' % weather_alert.id
+    logger.info('Updated weather alert %s with a better summary' % weather_alert.id)
