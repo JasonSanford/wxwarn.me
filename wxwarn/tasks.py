@@ -1,5 +1,6 @@
 import logging
 
+from django.conf import settings
 import celery
 import requests
 from bs4 import BeautifulSoup
@@ -35,6 +36,10 @@ def get_user_location(user):
 
 @celery.task(name='tasks.get_weather_alert_details', rate_limit='30/m')
 def get_weather_alert_details(id):
+    if settings.DEBUG:
+        # No sense getting all weather alert details locally. It takes a long time.
+        logger.info('Skipping fetch of weather alert details')
+        return
     try:
         weather_alert = WeatherAlert.objects.get(id=id)
     except WeatherAlert.DoesNotExist:
