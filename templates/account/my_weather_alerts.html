@@ -1,4 +1,5 @@
 {% extends 'account/base.html' %}
+{% load thumbnails %}
 
 {% block account_content %}
 
@@ -13,7 +14,7 @@
             {% if user_weather_alert %}
         <li class="span4">
             <div class="thumbnail">
-                <img src="{{ user_weather_alert.static_map_url_user_weather_alerts }}">
+                <img src="{% user_weather_alert_thumbnail user_weather_alert width=300 height=200 zoom=10 %}">
                 <div class="caption">
                     <h4>{{ user_weather_alert.weather_alert.event }}</h4>
                     <p><span class="muted">Status: </span>{% if user_weather_alert.weather_alert.active %}Active{% else %}Expired{% endif %}</p>
@@ -30,6 +31,8 @@
 <h4>No active weather alerts</h4>
 {% endif %}
 
+<hr>
+
 <h3>Expired Weather Alerts</h3>
 {% if expired_count %}
 {% for group in expired_groups %}
@@ -39,7 +42,7 @@
             {% if user_weather_alert %}
         <li class="span4">
             <div class="thumbnail">
-                <img src="{{ user_weather_alert.static_map_url_user_weather_alerts }}">
+                <img src="{% user_weather_alert_thumbnail user_weather_alert width=300 height=200 zoom=10 %}">
                 <div class="caption">
                     <h4>{{ user_weather_alert.weather_alert.event }}</h4>
                     <p><span class="muted">Status: </span>{% if user_weather_alert.weather_alert.active %}Active{% else %}Expired{% endif %}</p>

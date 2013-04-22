@@ -427,10 +427,6 @@ class UserWeatherAlert(models.Model):
         return url
 
     @property
-    def static_map_url_user_weather_alerts(self):
-        return self.static_map_url(width=300, height=200, zoom=10)
-
-    @property
     def short_url_id(self):
         return short_url.encode_url(self.id)
 
