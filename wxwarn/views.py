@@ -79,20 +79,26 @@ def account_landing(request):
 
     status_message_template = None
 
-    if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK:
-        user_location_status_message = 'We\'re successfully tracking your location.'
-    elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NOT_OPTED_IN:
-        user_location_status_message = 'You have not opted in to Google Latitude.'
-        status_message_template = 'account/status_enable_history.html'
-    elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_INVALID_CREDENTIALS:
-        user_location_status_message = 'Invalid credentials.'
-    elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NO_HISTORY:
-        user_location_status_message = 'You have no Google Latitude history.'
-    else:
-        user_location_status_message = 'There was an error tracking your location.'
+    if user_location_status is not None:
+        if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK:
+            user_location_status_message = 'We\'re successfully tracking your location.'
+        elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NOT_OPTED_IN:
+            user_location_status_message = 'You have not opted in to Google Latitude.'
+            status_message_template = 'account/status_enable_history.html'
+        elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_INVALID_CREDENTIALS:
+            user_location_status_message = 'Invalid credentials.'
+        elif user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_NO_HISTORY:
+            user_location_status_message = 'You have no Google Latitude history.'
+        else:
+            user_location_status_message = 'There was an error tracking your location.'
 
-    user_location_status_success_error = 'success' if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK else 'error'
-    last_location_check = localize_datetime(request.user, user_location_status.updated)
+        user_location_status_success_error = 'success' if user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK else 'error'
+        last_location_check = localize_datetime(request.user, user_location_status.updated)
+    else:
+        user_location_status_message = 'You must be new here. We haven\'t quite got around to checking your location yet, but refresh to see if we have.'
+        user_location_status_success_error = 'error'
+        last_location_check = None
+
     user_profile = request.user.get_profile()
 
     user_last_location = user_profile.last_location
@@ -110,7 +116,7 @@ def account_landing(request):
             'page': 'landing',
             'user_profile_id': user_profile.id,
             'user_location_status': user_location_status,
-            'user_location_status_ok': user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK,
+            'user_location_status_ok': user_location_status is not None and user_location_status.location_status == UserLocationStatus.LOCATION_STATUS_OK,
             'user_location_status_message': user_location_status_message,
             'user_location_status_success_error': user_location_status_success_error,
             'last_location_check': last_location_check,
