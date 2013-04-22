@@ -1,0 +1,62 @@
+[
+    {
+        "pk": 1,
+        "model": "wxwarn.locationsource",
+        "fields": {
+            "name": "Google Latitude"
+        }
+    },
+    {
+        "pk": 18719,
+        "model": "wxwarn.userlocation",
+        "fields": {
+            "user": 1,
+            "source": 1,
+            "created": "2013-04-18 00:24:53.096389+00:00",
+            "source_created": "2013-04-18 00:21:53.456+00:00",
+            "source_data": "{\"data\": {\"latitude\": 39.573623, \"kind\": \"latitude#location\", \"accuracy\": 5, \"longitude\": -105.016213, \"timestampMs\": \"1366244513456\"}}",
+            "geometry": "{\"type\": \"Point\", \"coordinates\": [-105.016213, 39.573623]}",
+            "updated": "2013-04-18 13:43:32.790189+00:00"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "wxwarn.weatheralerttype",
+        "fields": {
+            "name": "Winter Weather Advisory"
+        }
+    },
+    {
+        "pk": 204178,
+        "model": "wxwarn.weatheralert",
+        "fields": {
+            "nws_id": "http://alerts.weather.gov/cap/wwacapget.php?x=CO124EFA6A2E98.WinterWeatherAdvisory.124EFA6AEAE0CO.BOUWSWBOU.3537f996e4fed4e8a6f5bdb0b55ab3b6",
+            "created": "2013-04-18 01:20:08.221312+00:00",
+            "updated": "2013-04-18 01:20:19.652454+00:00",
+            "source_created": "2013-04-18 01:18:00+00:00",
+            "source_updated": "2013-04-18 01:18:00+00:00",
+            "effective": "2013-04-18 01:18:00+00:00",
+            "expires": "2013-04-18 06:00:00+00:00",
+            "event": "Winter Weather Advisory",
+            "title": "Winter Weather Advisory issued April 17 at 6:18PM PDT until April 17 at 11:00PM PDT by NWS",
+            "summary": "...WINTER STORM WINDING DOWN... ...WINTER WEATHER ADVISORY REMAINS IN EFFECT UNTIL MIDNIGHT MDT TONIGHT... * TIMING...SNOW WILL CONTINUE THROUGH MID TO LATE EVENING AND THEN COME TO AN END AFTER MIDNIGHT * SNOW ACCUMULATIONS...ADDITIONAL SNOWFALL OF UP TO 2 INCHES IS EXPECTED. TOTAL SNOWFALL FOR THIS STORM WILL BE 2 TO 5 INCHES. * WIND/VISIBILITY...NORTH WINDS WILL OF 10 TO 25 MPH WILL CONTINUE THROUGH THE EVENING AND THEN DECREASE AFTER MIDNIGHT. * IMPACTS...ROADS ARE SNOWPACKED AND ICY IN AREAS DUE TO SNOW AND BLOWING SNOW. IF TRAVELING SLOW DOWN AND USE CAUTION.",
+            "url": "http://alerts.weather.gov/cap/wwacapget.php?x=CO124EFA6A2E98.WinterWeatherAdvisory.124EFA6AEAE0CO.BOUWSWBOU.3537f996e4fed4e8a6f5bdb0b55ab3b6",
+            "fips": "008001 008005 008013 008014 008031 008035 008059",
+            "ugc": "COZ039 COZ040",
+            "fake": false,
+            "weather_alert_type": 1,
+            "location_type": 1,
+            "location_ids": "COZ039 COZ040"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "wxwarn.userweatheralert",
+        "fields": {
+            "user": 1,
+            "user_location": 18719,
+            "weather_alert": 204178,
+            "weather_alert_location_id": "COZ040"
+        }
+    }
+]
