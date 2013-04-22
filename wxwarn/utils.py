@@ -75,7 +75,8 @@ def get_weather_alerts():
                 update_count += 1
             if created:
                 insert_count += 1
-                tasks.get_weather_alert_details.apply_async((weather_alert.id, ))
+                if not settings.DEBUG:
+                    tasks.get_weather_alert_details.apply_async((weather_alert.id, ))
         logger.info('New %s alerts: %s' % (weather_alert_category, insert_count))
         logger.info('Updated %s alerts: %s' % (weather_alert_category, update_count))
 
