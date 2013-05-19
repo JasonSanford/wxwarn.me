@@ -1,7 +1,8 @@
 import json
 import random
 
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage as EmptyPageException
+from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
@@ -180,8 +181,22 @@ def user_weather_alerts(request):
     expired = [uwa for uwa in user_weather_alerts if not uwa.weather_alert.active]
 
     requested_page = request.GET.get('page', 1)
+
+    try:
+        requested_page = int(requested_page)
+    except ValueError:
+        return redirect('user_weather_alerts')
+
     paginated = Paginator(expired, 12)
-    current_page = paginated.page(requested_page)
+
+    try:
+        current_page = paginated.page(requested_page)
+    except EmptyPageException:
+        if requested_page == 0:
+            return redirect('%s?page=%s' % (reverse('user_weather_alerts'), 1))
+        else:
+            return redirect('%s?page=%s' % (reverse('user_weather_alerts'), paginated.num_pages))
+
     previous_page_number = current_page.previous_page_number() if current_page.has_previous() else None
     next_page_number = current_page.next_page_number() if current_page.has_next() else None
 
