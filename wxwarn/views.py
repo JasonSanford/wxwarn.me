@@ -173,7 +173,7 @@ def user_weather_alerts(request):
 
     Account landing page
     """
-    user_weather_alerts = UserWeatherAlert.objects.filter(user=request.user)
+    user_weather_alerts = UserWeatherAlert.objects.filter(user=request.user).order_by('-weather_alert__expires')
 
     active = [uwa for uwa in user_weather_alerts if uwa.weather_alert.active]
     expired = [uwa for uwa in user_weather_alerts if not uwa.weather_alert.active]

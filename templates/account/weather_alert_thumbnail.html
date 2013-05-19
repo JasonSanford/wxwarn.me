@@ -1,0 +1,14 @@
+{% load thumbnails %}
+
+<li class="span4">
+    <div class="thumbnail">
+        <img src="{% user_weather_alert_thumbnail user_weather_alert width=300 height=100 zoom=10 %}">
+        <div class="caption">
+            <h4>{{ user_weather_alert.weather_alert.event }}</h4>
+            <p class="info"><span class="muted">Status: </span>{% if user_weather_alert.weather_alert.active %}Active{% else %}Expired{% endif %}</p>
+            <p class="info"><span class="muted">Effective: </span>{{ user_weather_alert.weather_alert.effective|date:'D, d M Y H:i' }}</p>
+            <p class="info"><span class="muted">Expires: </span>{{ user_weather_alert.weather_alert.expires|date:'D, d M Y H:i' }}</p>
+            <a class="btn btn-primary details" href="{% url user_weather_alert user_weather_alert.id %}">Details</a>
+        </div>
+    </div>
+</li>

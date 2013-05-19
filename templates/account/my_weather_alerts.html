@@ -1,5 +1,4 @@
 {% extends 'account/base.html' %}
-{% load thumbnails %}
 
 {% block account_content %}
 
@@ -12,16 +11,7 @@
     <ul class="thumbnails">
         {% for user_weather_alert in group %}
             {% if user_weather_alert %}
-        <li class="span4">
-            <div class="thumbnail">
-                <img src="{% user_weather_alert_thumbnail user_weather_alert width=300 height=200 zoom=10 %}">
-                <div class="caption">
-                    <h4>{{ user_weather_alert.weather_alert.event }}</h4>
-                    <p><span class="muted">Status: </span>{% if user_weather_alert.weather_alert.active %}Active{% else %}Expired{% endif %}</p>
-                    <a class="btn btn-primary" href="{% url user_weather_alert user_weather_alert.id %}">Details</a>
-                </div>
-            </div>
-        </li>
+                {% include "account/weather_alert_thumbnail.html" %}
             {% endif %}
         {% endfor %}
     </ul>
@@ -40,16 +30,7 @@
     <ul class="thumbnails">
         {% for user_weather_alert in group %}
             {% if user_weather_alert %}
-        <li class="span4">
-            <div class="thumbnail">
-                <img src="{% user_weather_alert_thumbnail user_weather_alert width=300 height=200 zoom=10 %}">
-                <div class="caption">
-                    <h4>{{ user_weather_alert.weather_alert.event }}</h4>
-                    <p><span class="muted">Status: </span>{% if user_weather_alert.weather_alert.active %}Active{% else %}Expired{% endif %}</p>
-                    <a class="btn btn-primary" href="{% url user_weather_alert user_weather_alert.id %}">Details</a>
-                </div>
-            </div>
-        </li>
+                {% include "account/weather_alert_thumbnail.html" %}
             {% endif %}
         {% endfor %}
     </ul>
