@@ -36,6 +36,7 @@
     </ul>
 </div>
 {% endfor %}
+<p class="count"><strong>{{ start_index }} - {{ end_index }}</strong> of {{ expired_count_total }}</p>
 <p class="nav">
 {% if previous_page_number %}<a class="previous" href="{% url user_weather_alerts %}?page={{ previous_page_number }}">&larr; Previous</a>{% endif %}
 {% if next_page_number %}<a class="next" href="{% url user_weather_alerts %}?page={{ next_page_number }}">Next &rarr;</a>{% endif %}

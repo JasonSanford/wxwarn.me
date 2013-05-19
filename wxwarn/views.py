@@ -213,6 +213,9 @@ def user_weather_alerts(request):
             'active_count': len(active),
             'expired_groups': expired_groups,
             'expired_count': len(current_page.object_list),
+            'expired_count_total': len(expired),
+            'start_index': current_page.start_index(),
+            'end_index': current_page.end_index(),
             'previous_page_number': previous_page_number,
             'next_page_number': next_page_number,
         })

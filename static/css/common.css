@@ -86,7 +86,7 @@
     margin-top: 8px;
 }
 
-p.nav {
+p.nav, p.count {
     text-align: center;
 }
 
