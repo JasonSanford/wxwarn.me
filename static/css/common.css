@@ -85,3 +85,15 @@
 .thumbnails a.details {
     margin-top: 8px;
 }
+
+p.nav {
+    text-align: center;
+}
+
+p.nav .previous {
+    margin-right: 15px;
+}
+
+p.nav .next {
+    margin-left: 15px;
+}

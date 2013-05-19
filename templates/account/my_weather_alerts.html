@@ -36,6 +36,10 @@
     </ul>
 </div>
 {% endfor %}
+<p class="nav">
+{% if previous_page_number %}<a class="previous" href="{% url user_weather_alerts %}?page={{ previous_page_number }}">&larr; Previous</a>{% endif %}
+{% if next_page_number %}<a class="next" href="{% url user_weather_alerts %}?page={{ next_page_number }}">Next &rarr;</a>{% endif %}
+</p>
 {% else %}
 <h4>No expired weather alerts</h4>
 

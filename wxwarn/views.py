@@ -1,6 +1,7 @@
 import json
 import random
 
+from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
@@ -178,8 +179,14 @@ def user_weather_alerts(request):
     active = [uwa for uwa in user_weather_alerts if uwa.weather_alert.active]
     expired = [uwa for uwa in user_weather_alerts if not uwa.weather_alert.active]
 
+    requested_page = request.GET.get('page', 1)
+    paginated = Paginator(expired, 12)
+    current_page = paginated.page(requested_page)
+    previous_page_number = current_page.previous_page_number() if current_page.has_previous() else None
+    next_page_number = current_page.next_page_number() if current_page.has_next() else None
+
     active_groups = grouper(3, active)
-    expired_groups = grouper(3, expired)
+    expired_groups = grouper(3, current_page.object_list)
 
     return render(
         request,
@@ -190,7 +197,9 @@ def user_weather_alerts(request):
             'active_groups': active_groups,
             'active_count': len(active),
             'expired_groups': expired_groups,
-            'expired_count': len(expired),
+            'expired_count': len(current_page.object_list),
+            'previous_page_number': previous_page_number,
+            'next_page_number': next_page_number,
         })
 
 
