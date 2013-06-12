@@ -56,6 +56,9 @@ def signup(request):
     """
     return render(request, 'signup.html')
 
+def login_error(request):
+    return redirect('wxwarn.views.home')
+
 
 def logout(request):
     """
@@ -354,7 +357,7 @@ def weather_alerts_state(request, state_code):
         raise Http404
 
     now = d_now()
-    current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now, expires__gte=now)
+    current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now, expires__gte=now, cancelled=False)
     current_weather_alerts_for_state = []
     current_weather_alerts_json = {}
     current_weather_alerts_ids = []
@@ -396,7 +399,7 @@ def weather_alerts_marine(request, zone_slug):
 
     now = d_now()
     marine_zone_codes = marine_zone.codes.split(' ')
-    current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now, expires__gte=now)
+    current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now, expires__gte=now, cancelled=False)
     current_weather_alerts_for_marine_zone = []
     current_weather_alerts_json = {}
     current_weather_alerts_ids = []

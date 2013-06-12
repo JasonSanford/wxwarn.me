@@ -230,7 +230,8 @@ GOOGLE_OAUTH2_AUTH_EXTRA_ARGUMENTS = {'access_type': 'offline'}
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/user/'
-LOGIN_ERROR_URL = '/login-error/'
+LOGIN_ERROR_URL = '/login_error/'
+SOCIAL_AUTH_BACKEND_ERROR_URL = '/login_error/'
 
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 

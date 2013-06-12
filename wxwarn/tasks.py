@@ -46,3 +46,15 @@ def get_weather_alert_details(id):
     weather_alert.summary = description
     weather_alert.save()
     logger.info('Updated weather alert %s with a better summary' % weather_alert.id)
+
+
+@celery.task(name='tasks.cancel_weather_alerts')
+def cancel_weather_alerts(our_current_weather_alert_ids, their_current_weather_alert_ids):
+    #print 'ours'
+    #print our_current_weather_alert_ids
+    #print 'theirs'
+    #print their_current_weather_alert_ids
+    for our_weather_alert_id in our_current_weather_alert_ids:
+        if our_weather_alert_id not in their_current_weather_alert_ids:
+            logger.info('Update weather alert %s. Cancelled.' % our_weather_alert_id)
+            WeatherAlert.objects.filter(nws_id=our_weather_alert_id).update(cancelled=True)

@@ -57,14 +57,32 @@ def get_weather_alerts():
         'land': WEATHER_ALERTS_URL,
         'marine': MARINE_WEATHER_ALERTS_URL,
     }
+
     for weather_alert_category in weather_alert_categories:
         response = requests.get(weather_alert_categories[weather_alert_category])
         soup = BeautifulSoup(response.text)
         parsed_alerts = soup.find_all('entry')
         insert_count = 0
         update_count = 0
+
+        now = d_now()
+        our_current_weather_alerts = WeatherAlert.objects.filter(
+            effective__lte=now,
+            expires__gte=now,
+            cancelled=False)
+        if weather_alert_category == 'marine':
+            our_current_weather_alerts = our_current_weather_alerts.filter(location_type=3)
+        else:
+            our_current_weather_alerts = our_current_weather_alerts.filter(location_type__in=[1, 2])
+        our_current_weather_alert_ids = [
+            weather_alert.nws_id for weather_alert in our_current_weather_alerts
+        ]
+        their_current_weather_alert_ids = []
+
         logger.info('Total %s alerts from NWS: %s' % (weather_alert_category, len(parsed_alerts)))
+
         for parsed_alert in parsed_alerts:
+            their_current_weather_alert_ids.append(parsed_alert.id.text)
             data_dict = _create_data_dict(parsed_alert, weather_alert_category)
             weather_alert, created = WeatherAlert.objects.get_or_create(
                 nws_id=parsed_alert.id.text,
@@ -77,6 +95,9 @@ def get_weather_alerts():
                 insert_count += 1
                 if not settings.DEBUG:
                     tasks.get_weather_alert_details.apply_async((weather_alert.id, ))
+
+        tasks.cancel_weather_alerts.apply_async((our_current_weather_alert_ids, their_current_weather_alert_ids))
+
         logger.info('New %s alerts: %s' % (weather_alert_category, insert_count))
         logger.info('Updated %s alerts: %s' % (weather_alert_category, update_count))
 
@@ -124,7 +145,8 @@ def check_users_weather_alerts():
     logger.info('Checking user weather alerts')
     now = d_now()
     current_weather_alerts = WeatherAlert.objects.filter(effective__lte=now,
-                                                         expires__gte=now)
+                                                         expires__gte=now,
+                                                         cancelled=False)
     logger.info('Current active alert count: %s' % len(current_weather_alerts))
     current_located_users = UserLocation.objects\
         .filter(updated__gte=now - timedelta(minutes=USER_LOCATION_MAX_AGE))\

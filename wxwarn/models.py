@@ -141,6 +141,7 @@ class WeatherAlert(models.Model):
     fake = models.BooleanField(default=False)
     location_type = models.ForeignKey(LocationType, default=1)
     location_ids = models.TextField(default='')
+    cancelled = models.BooleanField(default=False)
 
     def geojson(self, bbox=False):
 
