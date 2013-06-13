@@ -16,6 +16,7 @@ from django.template import Context
 from django.utils.html import strip_tags
 from bs4 import BeautifulSoup
 from twilio.rest import TwilioRestClient
+from shapely.geometry import LineString, Point
 
 from wxwarn.models import UserLocation, UserProfile, WeatherAlert, WeatherAlertType, UserWeatherAlert, County, UGC, UserWeatherAlertTypeExclusion, LocationType, Marine
 import tasks
@@ -27,6 +28,20 @@ MARINE_WEATHER_ALERTS_URL = 'http://alerts.weather.gov/cap/mzus.php?x=0'
 USER_LOCATION_MAX_AGE = 60 * 12
 
 logger = logging.getLogger(__name__)
+
+
+def cut_linestring(linestring, point):
+    closest_coord_index = 0
+    closest_coord_distance = point.distance(Point(linestring.coords[0]))
+    for i, coord in enumerate(linestring.coords):
+        distance = point.distance(Point(coord))
+        if distance < closest_coord_distance:
+            closest_coord_index = i
+            closest_coord_distance = distance
+    return (
+        LineString(linestring.coords[:closest_coord_index+1]),
+        LineString(linestring.coords[closest_coord_index:])
+    )
 
 
 def localize_datetime(user, datetime):

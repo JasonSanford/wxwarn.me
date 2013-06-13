@@ -5,6 +5,7 @@ from django.core.paginator import Paginator, EmptyPage as EmptyPageException
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponse, HttpResponseForbidden, HttpResponseBadRequest
 from django.views.decorators.http import require_POST
@@ -13,7 +14,56 @@ from django.utils.timezone import now as d_now
 import short_url
 from wxwarn.models import UserWeatherAlert, UserProfile, WeatherAlert, State, WeatherAlertType, UserWeatherAlertTypeExclusion, MarineZone, UserLocationStatus
 from wxwarn.forms import UserProfileForm, UserActivateForm
-from wxwarn.utils import localize_datetime, grouper
+from wxwarn.utils import localize_datetime, grouper, cut_linestring
+from geometry import dcr as dcr_geometry
+from shapely.geometry import asShape, mapping
+
+
+MILES_PER_DEGREE = 58.77836087838773
+
+
+def dcr(request):
+    jason = User.objects.get(id=1)
+    last_location = jason.get_profile().last_location.geometry
+
+    # TODO: Kill this hack to fake location on route before DCR day
+    last_location = {'type': 'Point', 'coordinates': [-105.25382995605467, 39.715109947757554]}
+    #last_location = {'type': 'Point', 'coordinates': [-104.97505187988281, 39.926588421909436]}
+
+    last_location_shape = asShape(last_location)
+    dcr_shape = asShape(dcr_geometry)
+
+    linestrings = cut_linestring(dcr_shape, last_location_shape)
+
+    enhanced_route = {
+        'type': 'FeatureCollection',
+        'features': [
+            {
+                'type': 'Feature',
+                'geometry': mapping(linestring),
+                'properties': {
+                    'span': 'past' if i == 0 else 'future',
+                    'distance': linestring.length * MILES_PER_DEGREE
+                }
+            }
+            for i, linestring in enumerate(linestrings)
+        ]
+    }
+    last_location = {
+        'type': 'Feature',
+        'properties': {
+            'distance': linestrings[0].length * MILES_PER_DEGREE
+        },
+        'geometry':  last_location
+    }
+
+    context = {
+        'route_geojson': json.dumps(enhanced_route),
+        'last_location': last_location,
+        'distance_complete': '%.1f' % (linestrings[0].length * MILES_PER_DEGREE),
+        'distance_to_go': '%.1f' % (linestrings[1].length * MILES_PER_DEGREE)
+    }
+    return render(request, 'dcr.html', context)
 
 
 def home(request):
