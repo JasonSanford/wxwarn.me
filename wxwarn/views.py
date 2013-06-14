@@ -24,10 +24,11 @@ MILES_PER_DEGREE = 58.77836087838773
 
 def dcr(request):
     jason = User.objects.get(id=1)
-    last_location = json.loads(jason.get_profile().last_location.geometry)
+    jasons_last_location = jason.get_profile().last_location
+    last_location = json.loads(jasons_last_location.geometry)
 
     # TODO: Kill this hack to fake location on route before DCR day
-    #last_location = {'type': 'Point', 'coordinates': [-105.25382995605467, 39.715109947757554]}
+    #last_location = {'type': 'Point', 'coordinates': [-105.18173217773438, 39.62420161273124]}
 
     last_location_shape = asShape(last_location)
     dcr_shape = asShape(dcr_geometry)
@@ -51,7 +52,8 @@ def dcr(request):
     last_location = {
         'type': 'Feature',
         'properties': {
-            'distance': linestrings[0].length * MILES_PER_DEGREE
+            'distance':  '%.1f mi' % (linestrings[0].length * MILES_PER_DEGREE),
+            'time': localize_datetime(jason, jasons_last_location.updated)
         },
         'geometry': {
             'type': 'Point',

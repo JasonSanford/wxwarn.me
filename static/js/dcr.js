@@ -26,13 +26,14 @@ var map, jason;
                 }
             }
         });
-    jason = L.marker(L.latLng(dcr.jason.geometry.coordinates[1], dcr.jason.geometry.coordinates[0]));
+    jason = L.marker(L.latLng(dcr.jason.geometry.coordinates[1], dcr.jason.geometry.coordinates[0])).bindPopup('Distance: ' + dcr.jason.properties.distance + '<br>At: ' + dcr.jason.properties.time);
     map = new L.Map('map', {
         center: start_location,
         zoom: 8,
         layers: [
             road_layer
-        ]
+        ],
+        attributionControl: false
     });
 
     map
