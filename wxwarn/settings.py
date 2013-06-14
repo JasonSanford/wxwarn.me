@@ -59,7 +59,7 @@ STATIC_ROOT = ''
 # Example: "http://media.lawrence.com/static/"
 #STATIC_URL = '/static/'
 # You'll need to set `export STATIC_URL=/static/` locally. Found in .env
-STATIC_URL = os.environ['STATIC_URL'] if os.environ.get('STATIC_URL') else 'http://s3.amazonaws.com/wxwarnme/'
+STATIC_URL = os.environ['STATIC_URL'] if os.environ.get('STATIC_URL') else 'http://s3.amazonaws.com/dcride/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
