@@ -3,7 +3,6 @@ import logging
 import celery
 import requests
 from bs4 import BeautifulSoup
-
 from wxwarn.utils import get_users_location
 from wxwarn.utils import get_weather_alerts as _get_weather_alerts
 from wxwarn.utils import check_users_weather_alerts as _check_users_weather_alerts
@@ -46,3 +45,9 @@ def get_weather_alert_details(id):
     weather_alert.summary = description
     weather_alert.save()
     logger.info('Updated weather alert %s with a better summary' % weather_alert.id)
+
+
+@celery.task(name='tasks.ping_dcr_app')
+def ping_dcr_app():
+    resp = requests.get('http://dcr.herokuapp.com')
+    logger.info('Pinged DCR app')
