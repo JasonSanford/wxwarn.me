@@ -28,7 +28,6 @@ def dcr(request):
 
     # TODO: Kill this hack to fake location on route before DCR day
     #last_location = {'type': 'Point', 'coordinates': [-105.25382995605467, 39.715109947757554]}
-    #last_location = {'type': 'Point', 'coordinates': [-104.97505187988281, 39.926588421909436]}
 
     last_location_shape = asShape(last_location)
     dcr_shape = asShape(dcr_geometry)
