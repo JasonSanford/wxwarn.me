@@ -204,10 +204,6 @@ CELERYBEAT_SCHEDULE = {
         'task': 'tasks.check_users_weather_alerts',
         'schedule': timedelta(minutes=3),
     },
-    'ping_dcr_app': {
-        'task': 'tasks.ping_dcr_app',
-        'schedule': timedelta(minutes=5),
-    },
 }
 
 CELERY_TIMEZONE = 'UTC'
