@@ -141,9 +141,9 @@ class WeatherAlert(models.Model):
     fake = models.BooleanField(default=False)
     location_type = models.ForeignKey(LocationType, default=1)
     location_ids = models.TextField(default='')
+    polygon = models.TextField(null=True)
 
     def geojson(self, bbox=False):
-
         location_ids = self.location_ids.split(' ')
 
         if self.location_type.name == 'UGC':

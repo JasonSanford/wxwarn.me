@@ -117,6 +117,7 @@ def _create_data_dict(parsed_alert, weather_alert_category):
         'ugc': ugc,
         'location_type': location_type,
         'location_ids': location_ids,
+        'polygon': parsed_alert.find('cap:polygon').text or None
     }
 
 
