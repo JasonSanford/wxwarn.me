@@ -1,0 +1,9 @@
+[
+    {
+        "pk": 4,
+        "model": "wxwarn.locationtype",
+        "fields": {
+            "name": "Polygon"
+        }
+    }
+]

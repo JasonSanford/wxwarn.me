@@ -144,21 +144,50 @@ class WeatherAlert(models.Model):
     polygon = models.TextField(null=True)
 
     def geojson(self, bbox=False):
-        location_ids = self.location_ids.split(' ')
-
-        if self.location_type.name == 'UGC':
-            TheModel = UGC
-        elif self.location_type.name == 'FIPS':
-            TheModel = County
-        elif self.location_type.name == 'Marine':
-            TheModel = Marine
-
-        features = TheModel.objects.filter(id__in=location_ids)
-        if bbox:
-            features.defer('geometry')
+        if self.polygon is not None:
+            coords = self.polygon.split(' ')
+            coords = [
+                (float(coord.split(',')[1]), float(coord.split(',')[0]))
+                for coord in coords
+            ]
+            polygon = {'type': 'Polygon', 'coordinates': [coords]}
+            if bbox:
+                shape = asShape(polygon)
+                bounds = shape.bounds
+                min_x, min_y, max_x, max_y = bounds
+                bounds_polygon = {'type': 'Polygon', 'coordinates': [[
+                    (min_x, min_y),
+                    (min_x, max_y),
+                    (max_x, max_y),
+                    (max_x, min_y),
+                    (min_x, min_y),
+                ]]}
+                geometry = bounds_polygon
+            else:
+                geometry = polygon
+            features = [{
+                'id': self.id,
+                'type': 'Feature',
+                'properties': {
+                    'name': 'NWS Polygon'
+                },
+                'geometry': geometry
+            }]
+        else:
+            location_ids = self.location_ids.split(' ')
+            if self.location_type.name == 'UGC':
+                TheModel = UGC
+            elif self.location_type.name == 'FIPS':
+                TheModel = County
+            elif self.location_type.name == 'Marine':
+                TheModel = Marine
+            areas = TheModel.objects.filter(id__in=location_ids)
+            if bbox:
+                areas.defer('geometry')
+            features = [area.geojson(bbox=bbox) for area in areas]
         return {
             'type': 'FeatureCollection',
-            'features': [feature.geojson(bbox=bbox) for feature in features]
+            'features': features
         }
 
     def shapes(self, bbox=False):
@@ -403,7 +432,7 @@ class UserWeatherAlert(models.Model):
     user = models.ForeignKey(User)
     user_location = models.ForeignKey(UserLocation)
     weather_alert = models.ForeignKey(WeatherAlert)
-    weather_alert_location_id = models.CharField(max_length=6, null=True)
+    weather_alert_location_id = models.CharField(max_length=2048, null=True)
 
     @property
     def weather_alert_shape(self):  # A user is only in one location_id while some alerts cover multiple.

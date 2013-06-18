@@ -82,14 +82,18 @@ def get_weather_alerts():
 
 
 def _create_data_dict(parsed_alert, weather_alert_category):
-    (weather_alert_type, created) = WeatherAlertType.objects.get_or_create(name=parsed_alert.find('cap:event').text)
+    weather_alert_type, created = WeatherAlertType.objects.get_or_create(name=parsed_alert.find('cap:event').text)
 
     fips = parsed_alert.find('cap:geocode').findChildren('value')[0].text
     ugc = parsed_alert.find('cap:geocode').findChildren('value')[1].text
     ugcs = ugc.split(' ')
+    polygon = parsed_alert.find('cap:polygon').text or None
 
     if weather_alert_category == 'land':
-        if ugcs[0][2] == 'C':
+        if polygon:
+            location_type_name = 'Polygon'
+            location_ids = parsed_alert.id.text
+        elif ugcs[0][2] == 'C':
             # It seems all flood types use C, so use county instead :/
             location_type_name = 'FIPS'
             location_ids = fips
@@ -117,7 +121,7 @@ def _create_data_dict(parsed_alert, weather_alert_category):
         'ugc': ugc,
         'location_type': location_type,
         'location_ids': location_ids,
-        'polygon': parsed_alert.find('cap:polygon').text or None
+        'polygon': polygon
     }
 
 
@@ -145,14 +149,16 @@ def check_users_weather_alerts():
                     alert. Let's see if the actually polygon contains
                     the user.
                     """
-                    if current_weather_alert.location_type.name == 'UGC':
-                        TheModel = UGC
-                    elif current_weather_alert.location_type.name == 'FIPS':
-                        TheModel = County
-                    elif current_weather_alert.location_type.name == 'Marine':
-                        TheModel = Marine
-
-                    weather_alert_shape = TheModel.objects.get(id=location_id).shape
+                    if current_weather_alert.location_type.name == 'Polygon':
+                        weather_alert_shape = current_weather_alert.shapes()[0][1]
+                    else:
+                        if current_weather_alert.location_type.name == 'UGC':
+                            TheModel = UGC
+                        elif current_weather_alert.location_type.name == 'FIPS':
+                            TheModel = County
+                        elif current_weather_alert.location_type.name == 'Marine':
+                            TheModel = Marine
+                        weather_alert_shape = TheModel.objects.get(id=location_id).shape
 
                     if weather_alert_shape.contains(current_located_user.shape):
                         """

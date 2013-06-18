@@ -19,7 +19,7 @@
         }),
         alert_layer = new L.GeoJSON(wx.weather_alert, {
             filter: function(feature, layer) {
-                return feature.id === wx.weather_alert_location_id;
+                return feature.id == wx.weather_alert_location_id;
             },
             style: {
                 color: '#ff0000',
@@ -36,4 +36,4 @@
         .addLayer(alert_layer)
         .addLayer(start_marker);
     L.control.layers({'Road': road_layer, 'Satellite': satellite_layer}, {'User Location': start_marker, 'Alert Area': alert_layer}).addTo(map);
-}())
+}());
