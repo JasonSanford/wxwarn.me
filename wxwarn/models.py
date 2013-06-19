@@ -97,6 +97,19 @@ class UGC(GeoModel):
         return self.name
 
 
+class Fire(GeoModel):
+    id = models.CharField(max_length=6, primary_key=True)  # 6 digit UGC code
+    name = models.CharField(max_length=1000)
+    time_zone = models.CharField(max_length=3)
+    geometry = models.TextField()
+    geometry_bbox = models.TextField()
+
+    display_fields = ['name', 'time_zone']
+
+    def __unicode__(self):
+        return self.name
+
+
 class MarineZone(models.Model):
     name = models.CharField(max_length=500)
     slug = models.CharField(max_length=200)

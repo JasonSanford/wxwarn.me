@@ -6,3 +6,4 @@ celerybeat-schedule.db
 initial_ugc.json
 initial_county.json
 initial_marine.json
+initial_fire.json
