@@ -1,0 +1,9 @@
+[
+    {
+        "pk": 5,
+        "model": "wxwarn.locationtype",
+        "fields": {
+            "name": "Fire"
+        }
+    }
+]

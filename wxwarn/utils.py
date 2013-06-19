@@ -93,6 +93,9 @@ def _create_data_dict(parsed_alert, weather_alert_category):
         if polygon:
             location_type_name = 'Polygon'
             location_ids = parsed_alert.id.text
+        elif weather_alert_type.name in ('Extreme Fire Danger', 'Fire Warning', 'Fire Weather Watch', 'Red Flag Warning'):
+            location_type_name = 'Fire'
+            location_ids = ugc
         elif ugcs[0][2] == 'C':
             # It seems all flood types use C, so use county instead :/
             location_type_name = 'FIPS'

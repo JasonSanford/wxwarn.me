@@ -194,6 +194,8 @@ class WeatherAlert(models.Model):
                 TheModel = County
             elif self.location_type.name == 'Marine':
                 TheModel = Marine
+            elif self.location_type.name == 'Fire':
+                TheModel = Fire
             areas = TheModel.objects.filter(id__in=location_ids)
             if bbox:
                 areas.defer('geometry')
