@@ -465,7 +465,7 @@ class UserWeatherAlert(models.Model):
         longitude = user_location_geojson['geometry']['coordinates'][0]
         latitude = user_location_geojson['geometry']['coordinates'][1]
 
-        url = 'http://api.tiles.mapbox.com/v3/jcsanford.map-vita0cry/pin-l-star+ff6633(%s,%s)/%s,%s,%s/%sx%s.png' %\
+        url = 'http://api.tiles.mapbox.com/v3/jcsanford.map-qh86l7s4/pin-l-star+ff6633(%s,%s)/%s,%s,%s/%sx%s.png' %\
             (longitude, latitude, longitude, latitude, zoom, width, height)
 
         return url

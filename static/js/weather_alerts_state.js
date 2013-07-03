@@ -17,7 +17,7 @@ wx.highlight_style = {
 
 $(document).ready(function (event) {
 
-    var road_layer = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/jcsanford.map-vita0cry/{z}/{x}/{y}.png', {
+    var road_layer = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/jcsanford.map-qh86l7s4/{z}/{x}/{y}.png', {
             maxZoom: 16,
             subdomains: ['a', 'b', 'c', 'd'],
             attribution: 'Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'

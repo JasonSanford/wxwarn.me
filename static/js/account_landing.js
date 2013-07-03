@@ -14,7 +14,7 @@
 
     if ($('#map').length > 0) {
         var start_location = new L.LatLng(wx.user.last_location.geometry.coordinates[1], wx.user.last_location.geometry.coordinates[0]),
-            road_layer = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/jcsanford.map-vita0cry/{z}/{x}/{y}.png', {
+            road_layer = new L.TileLayer('http://{s}.tiles.mapbox.com/v3/jcsanford.map-qh86l7s4/{z}/{x}/{y}.png', {
                     maxZoom: 16,
                     subdomains: ['a', 'b', 'c', 'd'],
                     attribution: 'Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
