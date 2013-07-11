@@ -5,7 +5,7 @@ from django.core.management import call_command
 class Migration(DataMigration):
 
     def forwards(self, orm):
-        call_command('loaddata', '0006_add_fire_location_type.json')
+        call_command('loaddata', '0005_add_fire_location_type.json')
         # Note: Remember to use orm['appname.ModelName'] rather than "from appname.models..."
 
     def backwards(self, orm):
